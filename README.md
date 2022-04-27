@@ -22,8 +22,6 @@ Wybraliśmy **WordPress** jako CMS ze względu na:
 ### Git
 ### GitHub Actions (CI)
 
-## 🐳 Docker
-
 ## 🌳 Roots: nowoczesny development z WordPress
 <img src="https://user-images.githubusercontent.com/61631665/165557020-af66e038-2b9b-46d3-85e7-481a247cbcfa.png" width="100%">
 
