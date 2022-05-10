@@ -3,4 +3,4 @@
 .git/
 build/
 node_modules/
-data/
+database/

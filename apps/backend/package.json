@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^1.0.9",
+    "@strapi/plugin-graphql": "^4.1.9",
     "@strapi/plugin-i18n": "4.1.9",
     "@strapi/plugin-users-permissions": "4.1.9",
     "@strapi/strapi": "4.1.9",
+    "fs-extra": "^10.1.0",
     "knex": "^2.0.0",
+    "lodash.set": "^4.3.2",
+    "mime-types": "^2.1.35",
     "pg": "^8.7.3"
   },
   "author": {
