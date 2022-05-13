@@ -1,6 +1,7 @@
 <h1 align="center">✨ Strona Szkolna</h1>
   <p align="center">
-    <a href="https://github.com/ElektronPlus/school-website/projects/1">🎯 Zadania</a>
+    <a href="https://github.com/ElektronPlus/school-website/projects/1">🎯 Zadania</a> ·
+  <a href="https://github.com/ElektronPlus/school-website/projects/2">💡 Pomysły</a>
 </p>
 
 ### Struktura
