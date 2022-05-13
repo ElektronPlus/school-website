@@ -18,7 +18,7 @@ services:
     links:
       - postgresDB:postgresDB
     volumes:
-      - ./uploads:/opt/app/uploads
+      - ./public:/opt/app/public
       - ./config:/opt/app/config
       - ./src:/opt/app/src
       - ./package.json:/opt/package.json
