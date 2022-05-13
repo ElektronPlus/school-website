@@ -13,7 +13,8 @@
   - React
 - Strapi
   - PostgreSQL
-- Docker  
+- Docker
+- [Storybook](https://storybook.js.org/): pogląd Reactowych komponentów
 
 ### Linki
 - [🖼 Projekt graficzny](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
