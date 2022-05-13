@@ -24,7 +24,7 @@ services:
       - ./package.json:/opt/package.json
       - ./.env:/opt/app/.env
     ports:
-      - "3000:3000"
+      - "8888:8888"
     networks:
       - strapi
     depends_on:
