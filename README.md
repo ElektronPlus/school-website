@@ -1,3 +1,8 @@
+<h1 align="center">✨ Strona Szkolna</h1>
+  <p align="center">
+    <a href="https://github.com/ElektronPlus/school-website/projects/1">🎯 Zadania</a>
+</p>
+
 ### Struktura
 - **`📁 apps`**
   - **`📁 backend`**: headless CMS (API) używający [Strapi](https://strapi.com/), które umożliwia dowolne typy contentu, np. artykuły, zastępstwa, nawigacje
