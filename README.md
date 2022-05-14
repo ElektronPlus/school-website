@@ -10,11 +10,11 @@
   - **`📁 frontend`**: strona zbudowana za pomocą Reactowego frameworka [Next.js](https://nextjs.org/), pobiera dane z API
 
 ### Technologia
-- Next.js
+- [Next.js](https://nextjs.org/): wygodny i nowoczesny framework front-endowy
   - React
-- Strapi
+- [Strapi](https://strapi.io/): builder API z niestandardowymi typami danych - np. zastępstwa, alerty
   - PostgreSQL
-- Docker
+- [Docker](https://www.docker.com/): lekka konteneryzacja, żeby ułatwić instalacje na dev lub produkcji
 - [Storybook](https://storybook.js.org/): pogląd Reactowych komponentów
 
 ### Linki
