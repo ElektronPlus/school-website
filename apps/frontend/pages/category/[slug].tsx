@@ -3,6 +3,7 @@ import Layout from "../../components/layout";
 import Articles from "../../components/articles";
 
 import { fetchAPI } from "../../services/api";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 const Category = ({ category, categories }) => {
   const seo = {
@@ -11,19 +12,16 @@ const Category = ({ category, categories }) => {
   };
 
   return (
-    <Layout categories={categories.data}>
-      <Seo seo={seo} />
-      <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <h1>{category.attributes.name}</h1>
-          <Articles articles={category.attributes.articles.data} />
-        </div>
+      <><Seo seo={seo} /><div className="uk-section">
+      <div className="uk-container uk-container-large">
+        <h1>{category.attributes.name}</h1>
+        <Articles articles={category.attributes.articles.data} />
       </div>
-    </Layout>
+    </div></>
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const categoriesRes = await fetchAPI("/categories", { fields: ["slug"] });
 
   return {
@@ -36,7 +34,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const matchingCategories = await fetchAPI("/categories", {
     filters: { slug: params.slug },
     populate: {

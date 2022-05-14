@@ -1,13 +1,15 @@
-import App from "next/app";
+import App, { AppContext } from "next/app";
 import Head from "next/head";
 import '../styles/globals.css'
 import { createContext } from "react";
 import { fetchAPI } from "../services/api";
 import { getStrapiMedia } from "../services/media";
+import Layout from "../components/layout"
+import type { AppProps } from 'next/app'
 
 export const GlobalContext = createContext({});
 
-const MyApp = ({ Component, pageProps }) => {
+export default function MyApp({ Component, pageProps }: AppProps) {
   const { global } = pageProps;
 
   return (
@@ -15,17 +17,18 @@ const MyApp = ({ Component, pageProps }) => {
       <Head>
         <link
           rel="shortcut icon"
-          href={getStrapiMedia(global.attributes.favicon)}
-        />
+          href={getStrapiMedia(global.attributes.favicon)} />
       </Head>
-      <GlobalContext.Provider value={global.attributes}>
-        <Component {...pageProps} />
-      </GlobalContext.Provider>
+      <Layout>
+        <GlobalContext.Provider value={global.attributes}>
+          <Component {...pageProps} />
+        </GlobalContext.Provider>
+      </Layout>
     </>
   );
-};
+}
 
-MyApp.getInitialProps = async (ctx) => {
+MyApp.getInitialProps = async (ctx: AppContext) => {
   const appProps = await App.getInitialProps(ctx);
   const globalRes = await fetchAPI("/global", {
     populate: {
@@ -37,5 +40,3 @@ MyApp.getInitialProps = async (ctx) => {
   });
   return { ...appProps, pageProps: { global: globalRes.data } };
 };
-
-export default MyApp;

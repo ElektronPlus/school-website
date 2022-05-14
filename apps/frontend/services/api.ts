@@ -2,11 +2,11 @@ import qs from 'qs';
 
 export function getStrapiURL(path = '') {
   return `${
-    process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:3000'
+    process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://strapi.elektronplus.pl'
   }${path}`;
 }
 
-export async function fetchAPI(path, urlParamsObject = {}, options = {}) {
+export async function fetchAPI(path: string, urlParamsObject = {}, options = {}) {
   const mergedOptions = {
     headers: {
       'Content-Type': 'application/json',
@@ -23,6 +23,7 @@ export async function fetchAPI(path, urlParamsObject = {}, options = {}) {
 
   if (!response.ok) {
     console.error(response.statusText);
+    console.log(requestUrl)
     throw new Error(`An error occured please try again`);
   }
   const data = await response.json();
