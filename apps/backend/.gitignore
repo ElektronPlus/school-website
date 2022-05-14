@@ -76,9 +76,11 @@ $RECYCLE.BIN/
 # Misc.
 ############################
 
+*#
 ssl
 .idea
 nbproject
+public/uploads/*
 !public/uploads/.gitkeep
 
 ############################
@@ -110,5 +112,3 @@ exports
 *.cache
 build
 .strapi-updater.json
-database
-public/uploads
