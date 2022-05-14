@@ -18,13 +18,13 @@ services:
     links:
       - postgresDB:postgresDB
     volumes:
-      - ./uploads:/opt/app/uploads
+      - ./public:/opt/app/public
       - ./config:/opt/app/config
       - ./src:/opt/app/src
       - ./package.json:/opt/package.json
       - ./.env:/opt/app/.env
     ports:
-      - "3000:3000"
+      - "8888:8888"
     networks:
       - strapi
     depends_on:
@@ -48,5 +48,4 @@ services:
 
 networks:
   strapi:
-    name: Strapi
     driver: bridge
