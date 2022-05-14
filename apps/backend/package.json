@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^1.0.9",
-    "@strapi/plugin-graphql": "^4.1.9",
-    "@strapi/plugin-i18n": "4.1.9",
-    "@strapi/plugin-users-permissions": "4.1.9",
-    "@strapi/strapi": "4.1.9",
+    "@strapi/plugin-i18n": "^4.1.11",
+    "@strapi/plugin-users-permissions": "^4.1.11",
+    "@strapi/strapi": "^4.1.11",
     "fs-extra": "^10.1.0",
     "knex": "^2.0.0",
     "lodash.set": "^4.3.2",
     "mime-types": "^2.1.35",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "strapi-plugin-meilisearch": "^0.6.3",
+    "strapi-plugin-navigation": "^2.0.13"
   },
   "author": {
     "name": "A Strapi developer"
