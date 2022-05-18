@@ -22,7 +22,14 @@
 - [🖼 Projekt graficzny](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
 - [📰 Instancja Strapi](https://strapi.elektronplus.pl)
 
---- 
+---
+
+
+### Licencja & open-source
+
+- Projekt jest otwartoźródłowy i dostępny na [**⚖ licencji MIT**](https://github.com/ElektronPlus/school-website/blob/main/LICENSE).
+- Oferujemy bezpłatną pomoc z implementacją według potrzeb dla szkół i organizacji edukacyjnych. **Skontaktuj się z nami! »**
+- Zasugeruj swoją zmianę, tworząc **Issue** lub **Pull Request.**
 
 ### Infrastruktura
 
