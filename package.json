@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "build-storybook": "build-storybook --config-dir apps/frontend/.storybook"
   },
   "private": true,
   "devDependencies": {
