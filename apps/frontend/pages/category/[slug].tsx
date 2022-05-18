@@ -5,7 +5,7 @@ import Articles from "../../components/articles";
 import { fetchAPI } from "../../services/api";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-const Category = ({ category, categories }) => {
+const Category = ({ category }) => {
   const seo = {
     metaTitle: category.attributes.name,
     metaDescription: `All ${category.attributes.name} articles`,

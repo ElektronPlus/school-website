@@ -3,14 +3,13 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
 import Seo from "../../components/seo";
-import Layout from "../../components/layout";
 
 import { fetchAPI } from "../../services/api";
 import { getStrapiMedia } from "../../services/media";
 
 import { GetStaticPaths, GetStaticProps } from "next";
 
-export default function Article({ article, categories }) {
+export default function Article({ article }) {
   const imageUrl = getStrapiMedia(article.attributes.image);
 
   const seo = {
