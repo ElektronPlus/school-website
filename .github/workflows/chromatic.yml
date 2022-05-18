@@ -9,21 +9,19 @@ on: push
 # List of jobs
 jobs:
   chromatic-deployment:
-    # Operating System
     runs-on: ubuntu-latest
-    # Job steps
+    defaults:
+      run:
+        working-directory: apps/frontend
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: yarn
-        # 👇 Adds Chromatic as a step in the workflow
-      - run: npm install
-      - run: npm run build-storybook
+        run: npm install
+        # 👇 Runs yarn in ./apps/frontend
+        working-directory: apps/frontend
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        # Chromatic GitHub Action options
         with:
-          workingDir: ./
-          storybookBuildDir: storybook-static
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          # 👇 Runs Chromatic CLI in ./apps/frontend
+          workingDir: apps/frontend
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
