@@ -1,3 +1,6 @@
+<div align="center">
+     <img alt="Components Preview (Chromatic)" src="https://github.com/ElektronPlus/school-website/actions/workflows/chromatic.yml/badge.svg?branch=main"/>
+ </div>
 <h1 align="center">✨ Strona Szkolna</h1>
   <p align="center">
     <a href="https://github.com/ElektronPlus/school-website/projects/1">🎯 Zadania</a> ·
@@ -7,16 +10,16 @@
 ### Struktura
 - **`📁 apps`**
   - **`📁 backend`**: headless CMS (API) używający [Strapi](https://strapi.com/), które umożliwia dowolne typy contentu, np. artykuły, zastępstwa, nawigacje
-  - **`📁 frontend`**: strona zbudowana za pomocą Reactowego frameworka [Next.js](https://nextjs.org/), pobiera dane z API
+  - **`📁 frontend`**: strona zbudowana za pomocą Reactowego frameworka [Next.js](https://nextjs.org/), pobiera dane z API (Strapi), działa na platformie Vercel, wyświetla komponenty za pomocą Storybook.
 
 ### Technologia
-- [**Next.js**](https://nextjs.org/): wygodny i nowoczesny framework front-endowy
+- [**Next.js**](https://nextjs.org/): wygodny i nowoczesny framework front-endowy.
   - React
-- [**Strapi**](https://strapi.io/): builder API z niestandardowymi typami danych - np. zastępstwa, alerty
+- [**Strapi**](https://strapi.io/): builder API z niestandardowymi typami danych - np. zastępstwa, alerty. [**Użyj API »**]()
   - PostgreSQL
-- [**Docker**](https://www.docker.com/): lekka konteneryzacja, żeby ułatwić instalacje na dev lub produkcji
-- [**Storybook**](https://storybook.js.org/): pogląd Reactowych komponentów
-- [**▲ Vercel**](https://vercel.com): platforma dla frameworków frontendowych i stron statycznych od twórcow **Next.js**
+- [**Docker**](https://www.docker.com/): lekka konteneryzacja, żeby ułatwić instalacje na dev lub produkcji. [**Pobierz kontener »**]()
+- [**Storybook**](https://storybook.js.org/): pogląd Reactowych komponentów. [**Przejrzyj komponenty »**]()
+- [**▲ Vercel**](https://vercel.com): platforma dla frameworków frontendowych i stron statycznych od twórcow Next.js. [**Przeczytaj więcej o Infrastrukturze »**]()
 
 ### Linki
 - [🖼 Projekt graficzny](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
@@ -25,11 +28,21 @@
 ---
 
 
+### API
+API opiera się o [**Strapi**](https://strapi.io/) i jest publicznie dostępne, możesz użyć je we własnym projekcie.
+- [**strapi.elektronplus.pl/api**](https://strapi.elektronplus.pl/api)
+  - [/substitusions](https://strapi.elektronplus.pl/api/substitusions)
+  - [/articles](https://strapi.elektronplus.pl/api/aritcles)
+  - [/alerts](https://strapi.elektronplus.pl/api/alerts)
+  - [/pages](https://strapi.elektronplus.pl/api/pages)
+
+
 ### Licencja & open-source
 
 - Projekt jest otwartoźródłowy i dostępny na [**⚖ licencji MIT**](https://github.com/ElektronPlus/school-website/blob/main/LICENSE).
 - Oferujemy bezpłatną pomoc z implementacją według potrzeb dla szkół i organizacji edukacyjnych. **Skontaktuj się z nami! »**
-- Zasugeruj swoją zmianę, tworząc **Issue** lub **Pull Request.**
+- Zauważyłeś błąd na stronie lub chcesz zasugerować zmianę? [**Stwórz Issue »**](https://github.com/ElektronPlus/school-website/issues) lub **Skontaktuj się z nami! »**
+
 
 ### Infrastruktura
 
