@@ -10,16 +10,16 @@
 ### Struktura
 - **`📁 apps`**
   - **`📁 backend`**: headless CMS (API) używający [Strapi](https://strapi.com/), które umożliwia dowolne typy contentu, np. artykuły, zastępstwa, nawigacje
-  - **`📁 frontend`**: strona zbudowana za pomocą Reactowego frameworka [Next.js](https://nextjs.org/), pobiera dane z API (Strapi), działa na platformie Vercel, wyświetla komponenty za pomocą Storybook.
+  - **`📁 frontend`**: strona zbudowana za pomocą **Reactowego** frameworka [Next.js](https://nextjs.org/), pobiera dane z API (**Strapi**), działa na platformie **▲ Vercel**, wyświetla komponenty za pomocą **Storybook.**
 
 ### Technologia
 - [**Next.js**](https://nextjs.org/): wygodny i nowoczesny framework front-endowy.
   - React
-- [**Strapi**](https://strapi.io/): builder API z niestandardowymi typami danych - np. zastępstwa, alerty. [**Użyj API »**]()
+- [**Strapi**](https://strapi.io/): builder API z niestandardowymi typami danych - np. zastępstwa, alerty. [**Użyj API »**](https://github.com/ElektronPlus/school-website#api)
   - PostgreSQL
 - [**Docker**](https://www.docker.com/): lekka konteneryzacja, żeby ułatwić instalacje na dev lub produkcji. [**Pobierz kontener »**]()
-- [**Storybook**](https://storybook.js.org/): pogląd Reactowych komponentów. [**Przejrzyj komponenty »**]()
-- [**▲ Vercel**](https://vercel.com): platforma dla frameworków frontendowych i stron statycznych od twórcow Next.js. [**Przeczytaj więcej o Infrastrukturze »**]()
+- [**Storybook**](https://storybook.js.org/): pogląd Reactowych komponentów. [**🖼 Przejrzyj komponenty »**](https://main--6284fb53d2efc2004a5d01dd.chromatic.com/)
+- [**▲ Vercel**](https://vercel.com): platforma dla frameworków frontendowych i stron statycznych od twórcow Next.js. [**Przeczytaj więcej o Infrastrukturze »**](https://github.com/ElektronPlus/school-website#infrastruktura)
 
 ### Linki
 - [🖼 Projekt graficzny](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
