@@ -2,9 +2,13 @@ import React from "react";
 import Link from "next/link";
 import NextImage from "./image";
 
+
 const Card = ({ article }) => {
+  // article by default
+  const ARTICLE_PATH = 'artykul'
+
   return (
-    <Link href={`/article/${article.attributes.slug}`}>
+    <Link href={`/${ARTICLE_PATH}/${article.attributes.slug}`}>
       <a className="uk-link-reset">
         <div className="uk-card uk-card-muted">
           <div className="uk-card-media-top">
