@@ -20,7 +20,7 @@
   - PostgreSQL
 - [**Docker**](https://www.docker.com/): lekka konteneryzacja, żeby ułatwić instalacje na dev lub produkcji. [**Pobierz kontener »**]()
 - [**Storybook**](https://storybook.js.org/): pogląd Reactowych komponentów. [**🖼 Przejrzyj komponenty »**](https://main--6284fb53d2efc2004a5d01dd.chromatic.com/)
-- [**▲ Vercel**](https://vercel.com): platforma dla frameworków frontendowych i stron statycznych od twórcow Next.js. [**Przeczytaj więcej o Infrastrukturze »**](https://github.com/ElektronPlus/school-website#infrastruktura)
+- [**▲ Vercel**](https://vercel.com/?utm_source=ElektronPlus&utm_campaign=oss): platforma dla frameworków frontendowych i stron statycznych od twórcow Next.js. [**Przeczytaj więcej o Infrastrukturze »**](https://github.com/ElektronPlus/school-website#infrastruktura)
 
 ## Linki
 - [🖼 Projekt graficzny](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
