@@ -8,13 +8,13 @@ import styles from './branding.module.css';
 export default function Branding() {
   const { logo } = useContext(GlobalContext);
 
-  const { alt, width, height } = logo.data.attributes;
+  const { alternativeText, width, height } = logo.data.attributes;
 
   console.log(logo)
 
   return (
       <h1 className={styles.h1}>
-        <Image objectFit="contain" layout="fill" alt={alt} width={width} height={height} src={getStrapiMedia(logo)}></Image>
+        <Image objectFit="contain" layout="fill" alt={alternativeText} width={width} height={height} src={getStrapiMedia(logo)}></Image>
       </h1>
   );
 }
