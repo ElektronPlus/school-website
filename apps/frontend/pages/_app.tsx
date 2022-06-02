@@ -19,11 +19,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           rel="shortcut icon"
           href={getStrapiMedia(global.attributes.favicon)} />
       </Head>
-      <Layout>
         <GlobalContext.Provider value={global.attributes}>
+        <Layout>
           <Component {...pageProps} />
+        </Layout>
         </GlobalContext.Provider>
-      </Layout>
     </>
   );
 }
@@ -33,6 +33,7 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
   const globalRes = await fetchAPI("/global", {
     populate: {
       favicon: "*",
+      logo: "*",
       defaultSeo: {
         populate: "*",
       },

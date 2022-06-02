@@ -1,16 +1,18 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import Branding from './branding';
+import styles from './navigation.module.css';
 
-const Nav = () => {
+export default function Navigation() {
   return (
-    <nav>
-        <header>
-          <h1>
-            <Link href="#">Elektronik</Link>
-          </h1>
-        </header>
+    <nav className={styles.nav}>
+      <header className={styles.header}>
+        <Link href="/" passHref>
+          <a className={styles.a}>
+            <Branding />
+          </a>
+        </Link>
+      </header>
     </nav>
   );
-};
-
-export default Nav;
+}

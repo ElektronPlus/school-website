@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { GlobalContext } from "../pages/_app";
 import { getStrapiMedia } from "../services/media";
 
-const Seo = ({ seo }) => {
+function Seo({ seo }) {
   const { defaultSeo, siteName } = useContext(GlobalContext);
+
   const seoWithDefaults = {
     ...defaultSeo,
     ...seo,
@@ -44,6 +45,6 @@ const Seo = ({ seo }) => {
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
   );
-};
+}
 
 export default Seo;
