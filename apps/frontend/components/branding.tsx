@@ -10,8 +10,6 @@ export default function Branding() {
 
   const { alternativeText, width, height } = logo.data.attributes;
 
-  console.log(logo)
-
   return (
       <h1 className={styles.h1}>
         <Image objectFit="contain" layout="fill" alt={alternativeText} width={width} height={height} src={getStrapiMedia(logo)}></Image>

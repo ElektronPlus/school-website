@@ -3,7 +3,21 @@ import Link from 'next/link';
 import Branding from './branding';
 import styles from './navigation.module.css';
 
-export default function Navigation() {
+function getLinks(props) {
+  return (
+    <ul className={styles.menu}>
+      {props.navigationRes.map((item) => (
+        <li className={styles.menuItem} key={item.uiRouterKey}>
+          <Link passHref href={item.path}>
+            <a>{item.title}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function Navigation(navigationRes) {
   return (
     <nav className={styles.nav}>
       <header className={styles.header}>
@@ -13,6 +27,8 @@ export default function Navigation() {
           </a>
         </Link>
       </header>
+      {getLinks(navigationRes)}
+      <div className={styles.emptySpace}></div>
     </nav>
   );
 }

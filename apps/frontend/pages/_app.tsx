@@ -7,10 +7,11 @@ import { getStrapiMedia } from "../services/media";
 import Layout from "../components/layout"
 import type { AppProps } from 'next/app'
 
+
 export const GlobalContext = createContext({});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { global } = pageProps;
+  const { global, navigationRes } = pageProps;
 
   return (
     <>
@@ -20,7 +21,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           href={getStrapiMedia(global.attributes.favicon)} />
       </Head>
         <GlobalContext.Provider value={global.attributes}>
-        <Layout>
+        <Layout navigationRes={navigationRes}>
           <Component {...pageProps} />
         </Layout>
         </GlobalContext.Provider>
@@ -30,6 +31,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 MyApp.getInitialProps = async (ctx: AppContext) => {
   const appProps = await App.getInitialProps(ctx);
+
+  const navigationRes = await fetchAPI("/navigation/render/1", { type: "tree" })
+
   const globalRes = await fetchAPI("/global", {
     populate: {
       favicon: "*",
@@ -39,5 +43,5 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
       },
     },
   });
-  return { ...appProps, pageProps: { global: globalRes.data } };
+  return { ...appProps, pageProps: { global: globalRes.data, navigationRes: navigationRes } };
 };
