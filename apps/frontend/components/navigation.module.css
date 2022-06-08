@@ -1,0 +1,26 @@
+.nav {
+    margin: 16px;
+    display: flex;
+}
+
+.header {
+    width: 100%;
+}
+
+.menuItem {
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    align-items: center;
+    align-content: space-between;
+}
+
+.emptySpace {
+    width: 25%;
+}

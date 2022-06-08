@@ -12,6 +12,7 @@
     "chromatic": "npx chromatic"
   },
   "dependencies": {
+    "@svgr/webpack": "^6.2.1",
     "moment": "^2.29.3",
     "next": "12.1.6",
     "qs": "^6.10.3",
