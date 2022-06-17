@@ -3,22 +3,19 @@ import Card from './card';
 
 const Articles = ({ articles }) => {
   return (
-    <div>
-      <div>
-        <div>
-          <div>
-            {articles.map((article) => {
-              return (
-                <Card
-                  article={article}
-                  key={`article-${article.attributes.slug}`}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
+    <section>
+      <h2>Aktualności</h2>
+      <ul>
+        {articles.map((article) => {
+          return (
+            <Card
+              article={article}
+              key={`article-${article.attributes.slug}`}
+            />
+          );
+        })}
+      </ul>
+    </section>
   );
 };
 
