@@ -1476,7 +1476,7 @@ export type WriterInput = {
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null } | null } | null } | null };
+export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, defaultSeo: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null }, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null } | null } | null } | null };
 
 export type GetIndexQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1493,6 +1493,20 @@ export const GetGlobalDocument = gql`
         siteName
         createdAt
         updatedAt
+        defaultSeo {
+          metaTitle
+          metaDescription
+          shareImage {
+            data {
+              attributes {
+                alternativeText
+                width
+                height
+                url
+              }
+            }
+          }
+        }
         favicon {
           data {
             attributes {

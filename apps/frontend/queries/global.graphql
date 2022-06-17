@@ -6,6 +6,20 @@ query GetGlobal {
 				siteName
 				createdAt
 				updatedAt
+				defaultSeo {
+					metaTitle	
+					metaDescription
+					shareImage {
+						data {
+							attributes {
+								alternativeText
+								width
+								height
+								url
+							}
+						}
+					}
+				}
 				favicon {
 					data {
 						attributes {
