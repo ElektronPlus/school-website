@@ -5,6 +5,9 @@ const nextConfig = {
     loader: "default",
     domains: ["strapi.elektronplus.pl"],
   },
+  env: {
+    NEXT_PUBLIC_STRAPI_API_URL: 'https://strapi.elektronplus.pl'
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
