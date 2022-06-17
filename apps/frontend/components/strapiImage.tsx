@@ -1,5 +1,5 @@
-import { getStrapiMedia } from "../services/media";
-import NextImage from "next/image";
+import { getStrapiMedia } from '../services/media';
+import NextImage from 'next/image';
 
 export default function StrapiImage({ image }) {
   const { alternativeText, width, height } = image.data.attributes;
@@ -11,6 +11,7 @@ export default function StrapiImage({ image }) {
       height={height}
       objectFit="contain"
       src={getStrapiMedia(image)}
-      alt={alternativeText || ""} />
+      alt={alternativeText || ''}
+    />
   );
 }
