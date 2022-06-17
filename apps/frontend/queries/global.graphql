@@ -1,0 +1,32 @@
+query GetGlobal {
+	global {
+		data {
+			id
+			attributes {
+				siteName
+				createdAt
+				updatedAt
+				favicon {
+					data {
+						attributes {
+							alternativeText
+							width
+							height
+							url
+						}
+					}
+				}
+				logo {
+					data {
+						attributes {
+							alternativeText
+							width
+							height
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+}

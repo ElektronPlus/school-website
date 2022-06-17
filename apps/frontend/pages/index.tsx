@@ -1,38 +1,26 @@
 import React from "react";
 import Articles from "../components/articles";
 import Seo from "../components/seo";
-import { fetchAPI } from "../services/api";
+import { GetIndexDocument, GetIndexQuery } from '../generated/graphql'
+import client from "../lib/apolloClient";
 
-export default function Home({ articles, categories, homepage }) {
+export default function Home({ articles, homepage }) {
   return (
     <>
-      <Seo seo={homepage.attributes.seo} /><div className="uk-section">
+      <Seo seo={homepage.data.attributes.seo} /><div className="uk-section">
         <div className="uk-container uk-container-large">
-          <Articles articles={articles} />
+          <Articles articles={articles.data} />
         </div>
       </div>
     </>
-  );
+  );  
 }
 
 export async function getStaticProps() {
-  // Run API calls in parallel
-  const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-    fetchAPI("/articles", { populate: ["image", "category"] }),
-    fetchAPI("/categories", { populate: "*" }),
-    fetchAPI("/homepage", {
-      populate: {
-        seo: { populate: "*" },
-      },
-    }),
-  ]);
+  const { data }: { data: GetIndexQuery} = await client.query({query: GetIndexDocument})
 
   return {
-    props: {
-      articles: articlesRes.data,
-      categories: categoriesRes.data,
-      homepage: homepageRes.data,
-    },
+    props: data,
     revalidate: 1,
   };
 }

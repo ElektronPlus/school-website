@@ -1,0 +1,72 @@
+query getIndex {
+  homepage {
+    data {
+      attributes {
+        hero {
+          id
+          title
+        }
+        seo {
+          metaTitle
+          metaDescription
+          shareImage {
+            data {
+              attributes {
+                alternativeText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  articles {
+    data {
+      id
+      attributes {
+        title
+        content
+        slug
+        image {
+          data {
+            attributes {
+              alternativeText
+              width
+              height
+              url
+            }
+          }
+        }
+        category {
+          data {
+            attributes {
+              name
+              slug
+            }
+          }
+        }
+        author {
+          data {
+            attributes {
+              name
+              picture {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+        createdAt
+        updatedAt
+        publishedAt
+      }
+    }
+  }
+}
