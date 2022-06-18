@@ -1,5 +1,5 @@
-import Moment from 'react-moment';
 import ReactMarkdown from 'react-markdown';
+import Moment from 'react-moment';
 import rehypeRaw from 'rehype-raw';
 
 import Seo from '../../components/seo';
@@ -8,13 +8,13 @@ import { fetchAPI } from '../../services/api';
 import { getStrapiMedia } from '../../services/media';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
-
-export default function Article({ article }) {
+import { ArticleEntity } from '../../generated/graphql';
+export default function Article({ article }: { article: ArticleEntity }) {
   const imageUrl = getStrapiMedia(article.attributes.image);
 
   const seo = {
     metaTitle: article.attributes.title,
-    metaDescription: article.attributes.description,
+    metaDescription: article.attributes.content,
     shareImage: article.attributes.image,
     article: true,
   };
@@ -37,7 +37,7 @@ export default function Article({ article }) {
               <p>By {article.attributes.author.data.attributes.name}</p>
               <p>
                 <Moment format="MMM Do YYYY">
-                  {article.attributes.published_at}
+                  {article.attributes.publishedAt}
                 </Moment>
               </p>
             </div>

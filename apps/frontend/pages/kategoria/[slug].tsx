@@ -1,13 +1,21 @@
 import Seo from '../../components/seo';
 import Articles from '../../components/Articles/articles';
 
-import { fetchAPI } from '../../services/api';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import {
+  GetCategoriesBySlugDocument,
+  GetCategoriesBySlugQuery,
+  GetCategoriesSlugsDocument,
+  GetCategoriesSlugsQuery,
+} from '../../generated/graphql';
+import client from '../../lib/apolloClient';
 
-const Category = ({ category }) => {
+const Category = ({ category }: { category: GetCategoriesBySlugQuery }) => {
+  const { name, articles } = category.categories.data[0].attributes;
+
   const seo = {
-    metaTitle: category.attributes.name,
-    metaDescription: `All ${category.attributes.name} articles`,
+    metaTitle: name,
+    metaDescription: `Wszystkie artykuły z kategorii ${name}.`,
   };
 
   return (
@@ -15,8 +23,8 @@ const Category = ({ category }) => {
       <Seo seo={seo} />
       <div>
         <div>
-          <h1>{category.attributes.name}</h1>
-          <Articles articles={category.attributes.articles.data} />
+          <h2>{name}</h2>
+          <Articles articles={articles} />
         </div>
       </div>
     </>
@@ -24,10 +32,12 @@ const Category = ({ category }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoriesRes = await fetchAPI('/categories', { fields: ['slug'] });
+  const categoriesSlugsData: GetCategoriesSlugsQuery = (
+    await client.query({ query: GetCategoriesSlugsDocument })
+  ).data;
 
   return {
-    paths: categoriesRes.data.map((category) => ({
+    paths: categoriesSlugsData.categories.data.map((category) => ({
       params: {
         slug: category.attributes.slug,
       },
@@ -37,20 +47,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const matchingCategories = await fetchAPI('/categories', {
-    filters: { slug: params.slug },
-    populate: {
-      articles: {
-        populate: '*',
-      },
-    },
-  });
-  const allCategories = await fetchAPI('/categories');
+  const matchingCategoriesData: GetCategoriesBySlugQuery = (
+    await client.query({
+      query: GetCategoriesBySlugDocument,
+      variables: { slug: params.slug },
+    })
+  ).data;
 
   return {
     props: {
-      category: matchingCategories.data[0],
-      categories: allCategories,
+      category: matchingCategoriesData,
     },
     revalidate: 1,
   };

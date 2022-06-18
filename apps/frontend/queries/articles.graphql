@@ -1,0 +1,52 @@
+query GetArticles {
+	articles {
+		data {
+			id
+			attributes {
+				publishedAt
+
+				title
+				content
+				slug
+				image {
+					data {
+						attributes {
+							alternativeText
+							width
+							height
+							url
+						}
+					}
+				}
+				category {
+					data {
+						attributes {
+							name
+							slug
+						}
+					}
+				}
+				author {
+					data {
+						attributes {
+							name
+							picture {
+								data {
+									attributes {
+										url
+										alternativeText
+										width
+										height
+									}
+								}
+							}
+						}
+					}
+				}
+				createdAt
+				updatedAt
+				publishedAt
+			}
+		}
+	}
+}
