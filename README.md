@@ -16,13 +16,26 @@
   - **`📁 frontend`**: strona zbudowana za pomocą **Reactowego** frameworka [Next.js](https://nextjs.org/), pobiera dane z API (**Strapi**), działa na platformie **▲ Vercel**, wyświetla komponenty za pomocą **Storybook.**
 
 ## Technologia
-- [**Next.js**](https://nextjs.org/): wygodny i nowoczesny framework front-endowy.
-  - React
-- [**Strapi**](https://strapi.io/): builder API z niestandardowymi typami danych - np. zastępstwa, alerty. [**Użyj API »**](https://github.com/ElektronPlus/school-website#api)
-  - PostgreSQL
-- [**Docker**](https://www.docker.com/): lekka konteneryzacja, żeby ułatwić instalacje na dev lub produkcji. [**Pobierz kontener »**]()
-- [**Storybook**](https://storybook.js.org/): pogląd Reactowych komponentów. [**🖼 Przejrzyj komponenty »**](https://main--6284fb53d2efc2004a5d01dd.chromatic.com/)
-- [**▲ Vercel**](https://vercel.com/?utm_source=ElektronPlus&utm_campaign=oss): platforma dla frameworków frontendowych i stron statycznych od twórcow Next.js. [**Przeczytaj więcej o Infrastrukturze »**](https://github.com/ElektronPlus/school-website#infrastruktura)
+
+### Front-end
+| Technology | Description |
+|------------|-------------|
+| [**Next.js**](https://nextjs.org/) | The React Framework for Production. Next.js gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed. |
+| [**React**](https://reactjs.org/) | The most popular JavaScript library for building user interfaces. |
+| [**TypeScript**](https://www.typescriptlang.org/) | TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale. |
+| [**Storybook**](https://storybook.js.org/) | Tool for building UI components and pages in isolation. It streamlines UI development, testing, and documentation. |
+
+#### Fetching
+| Technology | Description |
+|------------|-------------|
+| [**GraphQL**](https://graphql.org/) | Main way to fetch data from the Strapi API. Gives us automatic TypeScript support thanks to [**GraphQL Code Generator**](https://www.graphql-code-generator.com/). We use [**Apollo Client**](https://www.apollographql.com/docs/) |
+| **REST API** | REST is rarely used, but sometimes it works out better with Strapi plugins, for example Navigation. External developers also might want to prefer use it in their projects. [**See documentation »**](https://github.com/ElektronPlus/school-website#api) |
+
+### Back-end
+| Technology | Description |
+|------------|-------------|
+| [**Strapi**](https://strapi.io) | Design APIs fast, manage content easily. Strapi is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first. |
+| [**MySQL**](https://www.mysql.com/) | Database with PhpMyAdmin. Might be changed to PostgreSQL. |
 
 ## Linki
 - [🖼 Projekt graficzny](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
@@ -48,6 +61,14 @@ API opiera się o [**Strapi**](https://strapi.io/) i jest publicznie dostępne, 
 
 
 ## Infrastruktura
+
+This section explains this specific instance infrastructure. You're free to use anything you want.
+
+| Type | Infrastructure | Instance | Description |
+|-------|-----------------|----------|------------
+| Frontend | [**▲ Vercel**](https://vercel.com/?utm_source=ElektronPlus&utm_campaign=oss) | [dev.elektronplus.pl](https://dev.elektronplus.pl) | Website |
+| Backend | **Self-hosted VPS** | [strapi.elektronplus.pl](https://strapi.elektronplus.pl/) | Strapi (Headless CMS), MySQL Database |
+| Developer-only | [**Chromatic**](https://www.chromatic.com/) | [**See components »**](https://main--6284fb53d2efc2004a5d01dd.chromatic.com/) | Storybook |
 
 <div align="center">
 
