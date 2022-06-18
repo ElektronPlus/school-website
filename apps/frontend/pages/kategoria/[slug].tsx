@@ -1,5 +1,5 @@
 import Seo from '../../components/seo';
-import Articles from '../../components/articles';
+import Articles from '../../components/Articles/articles';
 
 import { fetchAPI } from '../../services/api';
 import { GetStaticPaths, GetStaticProps } from 'next';

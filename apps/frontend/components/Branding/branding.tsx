@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useContext } from 'react';
-import { GlobalContext } from '../pages/_app';
-import { getStrapiMedia } from '../services/media';
+import { GlobalContext } from '../../pages/_app';
+import { getStrapiMedia } from '../../services/media';
 import styles from './branding.module.css';
 
 export default function Branding() {

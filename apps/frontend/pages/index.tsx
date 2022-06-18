@@ -1,5 +1,5 @@
 import React from 'react';
-import Articles from '../components/articles';
+import Articles from '../components/Articles/articles';
 import Seo from '../components/seo';
 import { GetIndexDocument, GetIndexQuery } from '../generated/graphql';
 import client from '../lib/apolloClient';

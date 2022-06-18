@@ -1,5 +1,5 @@
-import Navigation from './navigation';
-import Footer from './footer';
+import Navigation from './Navigation/navigation';
+import Footer from './Footer/footer';
 
 export default function Layout({ children, navigationRes }) {
   return (

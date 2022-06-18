@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Branding from './branding';
+import Branding from '../Branding/branding';
 import styles from './navigation.module.css';
 
 function getLinks(props) {

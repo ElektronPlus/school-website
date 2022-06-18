@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import NextImage from './strapiImage';
+import NextImage from '../strapiImage';
 import Moment from 'react-moment';
 import styles from './card.module.css';
 
