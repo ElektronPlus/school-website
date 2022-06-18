@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import NextImage from './strapiImage';
 import Moment from 'react-moment';
+import styles from './card.module.css';
 
 const Card = ({ article }) => {
   // article by default
@@ -9,7 +10,7 @@ const Card = ({ article }) => {
   const CATEGORY_PATH = 'kategoria';
 
   return (
-    <li key={`article-${article.attributes.slug}`}>
+    <li className={styles.li} key={`article-${article.attributes.slug}`}>
       <article>
         <Link href={`/${ARTICLE_PATH}/${article.attributes.slug}`}>
           <a>
