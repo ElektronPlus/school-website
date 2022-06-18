@@ -13,7 +13,15 @@
 ## Struktura
 - **`📁 apps`**
   - **`📁 backend`**: headless CMS (API) używający [Strapi](https://strapi.com/), które umożliwia dowolne typy contentu, np. artykuły, zastępstwa, nawigacje
-  - **`📁 frontend`**: strona zbudowana za pomocą **Reactowego** frameworka [Next.js](https://nextjs.org/), pobiera dane z API (**Strapi**), działa na platformie **▲ Vercel**, wyświetla komponenty za pomocą **Storybook.**
+  - **`📁 frontend`**
+    - **`📁 queries`**: GraphQL queries. Just create a `.graphql` that you will want to use.
+    - **`📁 generated`**: Generated GraphQL queries with [GraphQL Code Generator](https://www.graphql-code-generator.com/). Runs automatically while developing. You import types and queries from there (not from `📁 queries`!)
+    - **`📁 stories`**: [Storybook stories.](https://storybook.js.org/docs/react/writing-stories/introduction/)
+    - **`📁 pages`**: [Next.js pages](https://nextjs.org/docs/basic-features/pages).
+    - **`📁 public`**: [Next.js static file serving](https://nextjs.org/docs/basic-features/static-file-serving).
+    - **`📁 styles`**: Global CSS Styles. It's better to use CSS modules (`component.module.css` in `📁 components`
+    - **`📁 lib`**: Libraries wrappers (such as for Apollo Client) and configs.
+    - **`📁 components`**: React components and their styles. There's also a [Next.js Layout](https://nextjs.org/docs/basic-features/layouts)
 
 ## Technologia
 
