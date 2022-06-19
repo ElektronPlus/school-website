@@ -1,6 +1,5 @@
 .nav {
     margin: 16px;
-    display: flex;
 }
 
 .header {
@@ -11,16 +10,26 @@
     width: 100%;
     list-style-type: none;
     text-align: center;
+    padding: 16px;
 }
 
 .menu {
-    display: flex;
     padding: 0;
     width: 100%;
-    align-items: center;
-    align-content: space-between;
 }
 
 .emptySpace {
     width: 25%;
+}
+
+@media only screen and (min-width: 768px) {
+    .nav {
+        display: flex;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        align-content: space-between;
+    }
 }
