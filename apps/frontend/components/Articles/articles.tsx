@@ -7,7 +7,7 @@ type Articles = GetArticlesQuery['articles'] | GetCategoriesBySlugQuery['categor
 
 function Articles({ articles }: { articles: Articles }) {
   return (
-    <section>
+    <section className={styles.section}>
       <h2 className={styles.title}>Aktualności</h2>
       <ul className={styles.ul}>
         {articles.data.map((article) => {

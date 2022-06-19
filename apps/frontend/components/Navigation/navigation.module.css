@@ -1,5 +1,5 @@
 .nav {
-    margin: 16px;
+    padding: 16px;
 }
 
 .header {
@@ -7,7 +7,7 @@
 }
 
 .menuItem {
-    width: 100%;
+    max-width: 100%;
     list-style-type: none;
     text-align: center;
     padding: 16px;
@@ -16,6 +16,7 @@
 .menu {
     padding: 0;
     width: 100%;
+    margin: 0;
 }
 
 .emptySpace {

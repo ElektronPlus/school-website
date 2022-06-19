@@ -6,8 +6,13 @@ a {
 .wrapper {
   max-width: 1280px;
   margin: auto;
+  width: 100%;
 }
 
 * {
   font-family: sans-serif;
+}
+
+body {
+  margin: 0;
 }
