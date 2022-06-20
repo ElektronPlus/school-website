@@ -33,6 +33,6 @@ export async function getStaticProps() {
       homepageData,
       articlesQuery,
     },
-    revalidate: 1,
+    // revalidate: 1,
   };
 }

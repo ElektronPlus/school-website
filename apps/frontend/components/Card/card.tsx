@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 
 import styles from './card.module.css';
-import { ArticleEntity } from '../../generated/graphql';
+import { Article, ArticleEntity } from '../../generated/graphql';
 import StrapiImage from '../strapiImage';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
-import Moment from '../../lib/moment'
+import Moment from '../../lib/moment';
 
 function ArticleLink({
   children,
@@ -24,6 +24,56 @@ function ArticleLink({
   );
 }
 
+function Category({ article }: { article: ArticleEntity }) {
+  if (article.attributes.category.data === null) {
+    console.debug(
+      'No image data for item. This is correct for optional fields!'
+    );
+
+    return null;
+  }
+
+  return (
+    <Link
+      passHref
+      href={`/kategoria/${article.attributes.category.data.attributes.slug}`}
+    >
+      <a>
+        <span>{article.attributes.category.data.attributes.name}</span>
+      </a>
+    </Link>
+  );
+}
+
+function BulletPoint() {
+  return <span>&nbsp;&bull;&nbsp;</span>;
+}
+
+function CardContent({ article }: { article: ArticleEntity }) {
+  const MAX_CHARACTERS = 1000;
+  const content = article.attributes.content.substring(0, MAX_CHARACTERS);
+
+  return <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]} />;
+}
+
+function CardTitle({ article }: { article: ArticleEntity }) {
+  return (
+    <ArticleLink article={article}>
+      <h3>{article.attributes.title}</h3>
+    </ArticleLink>
+  );
+}
+
+function CardDate({ article }: { article: ArticleEntity }) {
+  const DATE_FORMAT = "MMMM Do YYYY, HH:mm"
+
+  return (
+    <Moment format={DATE_FORMAT}>
+    {article.attributes.publishedAt}
+  </Moment>
+  )
+}
+
 function Card({ article }: { article: ArticleEntity }) {
   return (
     <li className={styles.li} key={`article-${article.attributes.slug}`}>
@@ -36,25 +86,11 @@ function Card({ article }: { article: ArticleEntity }) {
             />
           </ArticleLink>
           <figcaption className={styles.figcaption}>
-            <Moment format="MMMM Do YYYY, HH:mm">
-              {article.attributes.publishedAt}
-            </Moment>
-            &nbsp;•&nbsp;
-            <Link
-              passHref
-              href={`/kategoria/${article.attributes.category.data.attributes.slug}`}
-            >
-              <a>
-                <span>{article.attributes.category.data.attributes.name}</span>
-              </a>
-            </Link>
-            <ArticleLink article={article}>
-              <h3>{article.attributes.title}</h3>
-            </ArticleLink>
-            <ReactMarkdown
-              children={article.attributes.content.substring(0, 1000)}
-              rehypePlugins={[rehypeRaw]}
-            />
+            <CardDate article={article}/>
+            <BulletPoint />
+            <Category article={article} />
+            <CardTitle article={article} />
+            <CardContent article={article} />
           </figcaption>
         </figure>
       </article>

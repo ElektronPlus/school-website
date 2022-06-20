@@ -34,6 +34,32 @@ export type Article = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
+export type ArticleConfig = {
+  __typename?: 'ArticleConfig';
+  articlesPerPage: Scalars['Int'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  linkPath: Scalars['String'];
+  sectionHeader: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ArticleConfigEntity = {
+  __typename?: 'ArticleConfigEntity';
+  attributes?: Maybe<ArticleConfig>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ArticleConfigEntityResponse = {
+  __typename?: 'ArticleConfigEntityResponse';
+  data?: Maybe<ArticleConfigEntity>;
+};
+
+export type ArticleConfigInput = {
+  articlesPerPage?: InputMaybe<Scalars['Int']>;
+  linkPath?: InputMaybe<Scalars['String']>;
+  sectionHeader?: InputMaybe<Scalars['String']>;
+};
+
 export type ArticleEntity = {
   __typename?: 'ArticleEntity';
   attributes?: Maybe<Article>;
@@ -120,6 +146,28 @@ export type CategoryArticlesArgs = {
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type CategoryConfig = {
+  __typename?: 'CategoryConfig';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  linkPath: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type CategoryConfigEntity = {
+  __typename?: 'CategoryConfigEntity';
+  attributes?: Maybe<CategoryConfig>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type CategoryConfigEntityResponse = {
+  __typename?: 'CategoryConfigEntityResponse';
+  data?: Maybe<CategoryConfigEntity>;
+};
+
+export type CategoryConfigInput = {
+  linkPath?: InputMaybe<Scalars['String']>;
 };
 
 export type CategoryEntity = {
@@ -243,7 +291,29 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Article | Category | ComponentSectionsHero | ComponentSharedSeo | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type Footer = {
+  __typename?: 'Footer';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  showVercelBadge: Scalars['Boolean'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type FooterEntity = {
+  __typename?: 'FooterEntity';
+  attributes?: Maybe<Footer>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type FooterEntityResponse = {
+  __typename?: 'FooterEntityResponse';
+  data?: Maybe<FooterEntity>;
+};
+
+export type FooterInput = {
+  showVercelBadge?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -417,7 +487,10 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   createWriter?: Maybe<WriterEntityResponse>;
   deleteArticle?: Maybe<ArticleEntityResponse>;
+  deleteArticleConfig?: Maybe<ArticleConfigEntityResponse>;
   deleteCategory?: Maybe<CategoryEntityResponse>;
+  deleteCategoryConfig?: Maybe<CategoryConfigEntityResponse>;
+  deleteFooter?: Maybe<FooterEntityResponse>;
   deleteGlobal?: Maybe<GlobalEntityResponse>;
   deleteHomepage?: Maybe<HomepageEntityResponse>;
   deleteNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
@@ -442,8 +515,11 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateArticle?: Maybe<ArticleEntityResponse>;
+  updateArticleConfig?: Maybe<ArticleConfigEntityResponse>;
   updateCategory?: Maybe<CategoryEntityResponse>;
+  updateCategoryConfig?: Maybe<CategoryConfigEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateFooter?: Maybe<FooterEntityResponse>;
   updateGlobal?: Maybe<GlobalEntityResponse>;
   updateHomepage?: Maybe<HomepageEntityResponse>;
   updateNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
@@ -606,15 +682,30 @@ export type MutationUpdateArticleArgs = {
 };
 
 
+export type MutationUpdateArticleConfigArgs = {
+  data: ArticleConfigInput;
+};
+
+
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   id: Scalars['ID'];
 };
 
 
+export type MutationUpdateCategoryConfigArgs = {
+  data: CategoryConfigInput;
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+
+export type MutationUpdateFooterArgs = {
+  data: FooterInput;
 };
 
 
@@ -940,9 +1031,12 @@ export enum PublicationState {
 export type Query = {
   __typename?: 'Query';
   article?: Maybe<ArticleEntityResponse>;
+  articleConfig?: Maybe<ArticleConfigEntityResponse>;
   articles?: Maybe<ArticleEntityResponseCollection>;
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
+  categoryConfig?: Maybe<CategoryConfigEntityResponse>;
+  footer?: Maybe<FooterEntityResponse>;
   global?: Maybe<GlobalEntityResponse>;
   homepage?: Maybe<HomepageEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
