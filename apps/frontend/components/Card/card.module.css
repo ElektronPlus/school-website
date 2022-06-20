@@ -1,6 +1,6 @@
 .li {
   list-style-type: none;
-  margin: 32px 8px;
+  margin: 24px 0;
 }
 
 .figure {
@@ -20,4 +20,10 @@
 
 .figcaption {
   margin: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .li {
+    margin: 0;
+  }
 }

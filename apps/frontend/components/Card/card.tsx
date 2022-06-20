@@ -65,7 +65,7 @@ function CardTitle({ article }: { article: ArticleEntity }) {
 }
 
 function CardDate({ article }: { article: ArticleEntity }) {
-  const DATE_FORMAT = "MMMM Do YYYY, HH:mm"
+  const DATE_FORMAT = "Do MMMM YYYY, HH:mm"
 
   return (
     <Moment format={DATE_FORMAT}>
@@ -87,7 +87,9 @@ function Card({ article }: { article: ArticleEntity }) {
           </ArticleLink>
           <figcaption className={styles.figcaption}>
             <CardDate article={article}/>
-            <BulletPoint />
+            {article.attributes.category.data !== null &&
+              <BulletPoint />
+            }
             <Category article={article} />
             <CardTitle article={article} />
             <CardContent article={article} />
