@@ -11,7 +11,6 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   text-decoration: none;
-  color: var(--text-primary);
 }
 
 .wrapper {
@@ -20,11 +19,8 @@ a {
   width: 100%;
 }
 
-* {
-  font-family: sans-serif;
-}
-
 body {
+  font-family: 'IBM Plex Sans', sans-serif;
   color: var(--text-secondary);
   margin: 0;
 }
