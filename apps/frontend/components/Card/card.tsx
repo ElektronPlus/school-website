@@ -74,6 +74,17 @@ function CardDate({ article }: { article: ArticleEntity }) {
   )
 }
 
+function CardMeta({ article }: { article: ArticleEntity }) {
+  return (
+    <div>
+      <CardDate article={article}/>
+    {article.attributes.category.data !== null &&
+      <BulletPoint />
+    }
+    </div>
+  )
+}
+
 function Card({ article }: { article: ArticleEntity }) {
   return (
     <li className={styles.li} key={`article-${article.attributes.slug}`}>
@@ -86,10 +97,7 @@ function Card({ article }: { article: ArticleEntity }) {
             />
           </ArticleLink>
           <figcaption className={styles.figcaption}>
-            <CardDate article={article}/>
-            {article.attributes.category.data !== null &&
-              <BulletPoint />
-            }
+            <CardMeta article={article}/>
             <Category article={article} />
             <CardTitle article={article} />
             <CardContent article={article} />
