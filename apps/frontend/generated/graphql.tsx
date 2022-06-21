@@ -1567,10 +1567,17 @@ export type WriterInput = {
   picture?: InputMaybe<Scalars['ID']>;
 };
 
-export type GetArticlesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetArticlesQueryVariables = Exact<{
+  articlesPerPage?: InputMaybe<Scalars['Int']>;
+}>;
 
 
 export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', publishedAt?: any | null, title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null }> } | null };
+
+export type GetArticlesConfigQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetArticlesConfigQuery = { __typename?: 'Query', articleConfig?: { __typename?: 'ArticleConfigEntityResponse', data?: { __typename?: 'ArticleConfigEntity', attributes?: { __typename?: 'ArticleConfig', articlesPerPage: number } | null } | null } | null };
 
 export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1601,8 +1608,8 @@ export type GetIndexQuery = { __typename?: 'Query', homepage?: { __typename?: 'H
 
 
 export const GetArticlesDocument = gql`
-    query GetArticles {
-  articles {
+    query GetArticles($articlesPerPage: Int) {
+  articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
     data {
       id
       attributes {
@@ -1666,6 +1673,7 @@ export const GetArticlesDocument = gql`
  * @example
  * const { data, loading, error } = useGetArticlesQuery({
  *   variables: {
+ *      articlesPerPage: // value for 'articlesPerPage'
  *   },
  * });
  */
@@ -1680,6 +1688,44 @@ export function useGetArticlesLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetArticlesQueryHookResult = ReturnType<typeof useGetArticlesQuery>;
 export type GetArticlesLazyQueryHookResult = ReturnType<typeof useGetArticlesLazyQuery>;
 export type GetArticlesQueryResult = Apollo.QueryResult<GetArticlesQuery, GetArticlesQueryVariables>;
+export const GetArticlesConfigDocument = gql`
+    query GetArticlesConfig {
+  articleConfig {
+    data {
+      attributes {
+        articlesPerPage
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetArticlesConfigQuery__
+ *
+ * To run a query within a React component, call `useGetArticlesConfigQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetArticlesConfigQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetArticlesConfigQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetArticlesConfigQuery(baseOptions?: Apollo.QueryHookOptions<GetArticlesConfigQuery, GetArticlesConfigQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetArticlesConfigQuery, GetArticlesConfigQueryVariables>(GetArticlesConfigDocument, options);
+      }
+export function useGetArticlesConfigLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticlesConfigQuery, GetArticlesConfigQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetArticlesConfigQuery, GetArticlesConfigQueryVariables>(GetArticlesConfigDocument, options);
+        }
+export type GetArticlesConfigQueryHookResult = ReturnType<typeof useGetArticlesConfigQuery>;
+export type GetArticlesConfigLazyQueryHookResult = ReturnType<typeof useGetArticlesConfigLazyQuery>;
+export type GetArticlesConfigQueryResult = Apollo.QueryResult<GetArticlesConfigQuery, GetArticlesConfigQueryVariables>;
 export const GetCategoriesSlugsDocument = gql`
     query GetCategoriesSlugs {
   categories {

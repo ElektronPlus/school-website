@@ -1,0 +1,9 @@
+query GetArticlesConfig {
+	articleConfig {
+		data {
+			attributes {
+				articlesPerPage
+			}
+		}
+	}
+}

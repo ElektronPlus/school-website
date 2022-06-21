@@ -5,13 +5,28 @@ import rehypeRaw from 'rehype-raw';
 import Seo from '../../components/seo';
 
 import { fetchAPI } from '../../services/api';
-import { getStrapiMedia } from '../../services/media';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ArticleEntity } from '../../generated/graphql';
-export default function Article({ article }: { article: ArticleEntity }) {
-  const imageUrl = getStrapiMedia(article.attributes.image);
+import { CardMeta } from '../../components/Card/card';
 
+function ArticleAuthor({ article }: { article: ArticleEntity }) {
+  if (article.attributes.author.data === null) {
+    console.debug(
+      `Author not specificied for article with id: ${article.id}.`
+    );
+
+    return null;
+  }
+
+  return (
+    <div>
+      <span>By {article.attributes.author.data.attributes.name}</span>
+    </div>
+  );
+}
+
+export default function Article({ article }: { article: ArticleEntity }) {
   const seo = {
     metaTitle: article.attributes.title,
     metaDescription: article.attributes.content,
@@ -22,7 +37,7 @@ export default function Article({ article }: { article: ArticleEntity }) {
   return (
     <>
       <Seo seo={seo} />
-      <div data-src={imageUrl} data-srcset={imageUrl}>
+      <div>
         <h1>{article.attributes.title}</h1>
       </div>
       <div>
@@ -34,12 +49,8 @@ export default function Article({ article }: { article: ArticleEntity }) {
           <hr />
           <div>
             <div>
-              <p>By {article.attributes.author.data.attributes.name}</p>
-              <p>
-                <Moment format="MMM Do YYYY">
-                  {article.attributes.publishedAt}
-                </Moment>
-              </p>
+              <ArticleAuthor article={article} />
+              <CardMeta article={article}></CardMeta>
             </div>
           </div>
         </div>

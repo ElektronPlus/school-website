@@ -1,5 +1,5 @@
-query GetArticles {
-	articles {
+query GetArticles($articlesPerPage: Int) {
+	articles(sort: "createdAt:desc", pagination: { limit: $articlesPerPage }) {
 		data {
 			id
 			attributes {

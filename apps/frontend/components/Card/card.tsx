@@ -74,7 +74,7 @@ function CardDate({ article }: { article: ArticleEntity }) {
   )
 }
 
-function CardMeta({ article }: { article: ArticleEntity }) {
+export function CardMeta({ article }: { article: ArticleEntity }) {
   return (
     <div>
       <CardDate article={article}/>
