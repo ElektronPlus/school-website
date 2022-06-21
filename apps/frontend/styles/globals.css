@@ -4,8 +4,8 @@
   --border: #d7d7d7;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
+h1, h2, h3, h4, h5, h6, bold, strong {
+  font-weight: 500;
 }
 
 
