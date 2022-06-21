@@ -81,6 +81,7 @@ export function CardMeta({ article }: { article: ArticleEntity }) {
     {article.attributes.category.data !== null &&
       <BulletPoint />
     }
+    <Category article={article} />
     </div>
   )
 }
@@ -98,7 +99,6 @@ function Card({ article }: { article: ArticleEntity }) {
           </ArticleLink>
           <figcaption className={styles.figcaption}>
             <CardMeta article={article}/>
-            <Category article={article} />
             <CardTitle article={article} />
             <CardContent article={article} />
           </figcaption>
