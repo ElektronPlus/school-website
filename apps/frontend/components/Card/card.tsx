@@ -116,7 +116,7 @@ function Card({ article }: { article: ArticleEntity }) {
         <Center py={4}>
           <Box
             border="1px"
-            borderColor="blue.300"
+            borderColor="gray.200"
             w={'full'}
             bg={useColorModeValue('white', 'gray.900')}
             boxShadow={'lg'}
