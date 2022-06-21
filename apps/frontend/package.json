@@ -27,6 +27,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-markdown": "^8.0.3",
+    "react-masonry-css": "^1.0.16",
     "react-moment": "^1.1.2",
     "rehype-raw": "^6.1.1",
     "webpack": "^5.72.1"

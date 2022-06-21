@@ -10,10 +10,13 @@
   margin: 8px;
 }
 
-@media only screen and (min-width: 768px) {
-  .ul {
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 24px;
-  }
+.articlesGrid {
+  display: flex;
+  margin-left: -24px; /* gutter size offset */
+  width: auto;
+}
+
+.articlesColumn {
+  padding-left: 24px; /* gutter size */
+  background-clip: padding-box;
 }
