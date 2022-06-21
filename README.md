@@ -36,6 +36,7 @@
 #### UI Libs
 | Library | Description |
 |---------|-------------|
+| [**Chakra UI**](https://chakra-ui.com/) | Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications. We use templates from [**Chakra Templates**](https://chakra-templates.dev/). |
 | [**React Masonry CSS**](https://github.com/paulcollett/react-masonry-css) | A Masonry component leveraging CSS and native React rendering, for fast, responsive masonry layouts. |
 
 #### Fetching
