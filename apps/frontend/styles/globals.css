@@ -1,6 +1,17 @@
+:root {
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.58);
+  --border: #d7d7d7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+
 a {
   text-decoration: none;
-  color: black;
+  color: var(--text-primary);
 }
 
 .wrapper {
@@ -14,5 +25,6 @@ a {
 }
 
 body {
+  color: var(--text-secondary);
   margin: 0;
 }
