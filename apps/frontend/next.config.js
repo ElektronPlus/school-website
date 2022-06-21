@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  compiler: {
+    emotion: true
+  },
+  swcMinify: true,
   images: {
     loader: "default",
     domains: ["strapi.elektronplus.pl"],

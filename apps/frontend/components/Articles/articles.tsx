@@ -3,13 +3,14 @@ import { GetArticlesQuery, GetCategoriesBySlugQuery } from '../../generated/grap
 import Card from '../Card/card';
 import styles from './articles.module.css';
 import Masonry from 'react-masonry-css';
+import { Heading } from '@chakra-ui/react'
 
 type Articles = GetArticlesQuery['articles'] | GetCategoriesBySlugQuery['categories']['data']['0']['attributes']['articles'];
 
 function Articles({ articles }: { articles: Articles }) {
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>Aktualności</h2>
+      <Heading as="h2" textAlign={'center'} fontWeight={'medium'}>Aktualności</Heading>
       <ul className={styles.ul}>
       <Masonry
           breakpointCols={{
