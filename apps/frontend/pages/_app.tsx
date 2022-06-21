@@ -8,6 +8,7 @@ import type { AppProps } from 'next/app';
 import { GetGlobalDocument, GetGlobalQuery } from '../generated/graphql';
 import client from '../lib/apolloClient';
 import { fetchAPI } from '../services/api';
+import { ChakraProvider } from '@chakra-ui/react';
 
 export const GlobalContext = createContext({});
 
@@ -23,9 +24,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <GlobalContext.Provider value={global.attributes}>
-        <Layout navigationRes={navigationRes}>
-          <Component {...pageProps} />
-        </Layout>
+        <ChakraProvider>
+          <Layout navigationRes={navigationRes}>
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
       </GlobalContext.Provider>
     </>
   );
