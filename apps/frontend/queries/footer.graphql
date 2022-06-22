@@ -1,0 +1,20 @@
+query getFooter {
+	footer {
+		data {
+			attributes {
+				copyright
+				showVercelBadge
+			}
+		}
+	}
+
+	socialMedias {
+		data {
+			attributes {
+				iconSlug
+				showInFooter
+				link
+			}
+		}
+	}
+}

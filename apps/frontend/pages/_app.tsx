@@ -5,7 +5,7 @@ import { createContext } from 'react';
 import { getStrapiMedia } from '../services/media';
 import Layout from '../components/layout';
 import type { AppProps } from 'next/app';
-import { GetGlobalDocument, GetGlobalQuery } from '../generated/graphql';
+import { GetFooterDocument, GetFooterQuery, GetGlobalDocument, GetGlobalQuery } from '../generated/graphql';
 import client from '../lib/apolloClient';
 import { fetchAPI } from '../services/api';
 import { theme } from '../lib/chakraUi';
@@ -14,7 +14,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 export const GlobalContext = createContext({});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { global, navigationRes } = pageProps;
+  const { global, navigationRes, footerData, footerLinksRes } = pageProps;
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalContext.Provider value={global.attributes}>
         <ChakraProvider theme={theme}>
-          <Layout navigationRes={navigationRes}>
+          <Layout footerData={footerData} footerLinks={footerLinksRes} navigationRes={navigationRes}>
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
@@ -43,12 +43,20 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
     type: 'tree',
   });
 
+  const footerLinksRes = await fetchAPI('/navigation/render/footer', {
+    type: 'tree'
+  })
+
+  const footerData: GetFooterQuery = (
+    await client.query({ query: GetFooterDocument })
+  ).data;
+
   const globalData: GetGlobalQuery = (
     await client.query({ query: GetGlobalDocument })
   ).data;
 
   return {
     ...appProps,
-    pageProps: { global: globalData.global.data, navigationRes: navigationRes },
+    pageProps: { global: globalData.global.data, navigationRes, footerData, footerLinksRes },
   };
 };

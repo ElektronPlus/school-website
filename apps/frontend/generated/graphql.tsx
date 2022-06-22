@@ -480,6 +480,7 @@ export type FloatFilterInput = {
 
 export type Footer = {
   __typename?: 'Footer';
+  copyright?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   showVercelBadge: Scalars['Boolean'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -497,10 +498,11 @@ export type FooterEntityResponse = {
 };
 
 export type FooterInput = {
+  copyright?: InputMaybe<Scalars['String']>;
   showVercelBadge?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | SocialMedia | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -669,6 +671,7 @@ export type Mutation = {
   createNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
   createNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   createNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  createSocialMedia?: Maybe<SocialMediaEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
@@ -686,6 +689,7 @@ export type Mutation = {
   deleteNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
   deleteNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   deleteNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  deleteSocialMedia?: Maybe<SocialMediaEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
@@ -715,6 +719,7 @@ export type Mutation = {
   updateNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
   updateNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   updateNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  updateSocialMedia?: Maybe<SocialMediaEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
@@ -752,6 +757,11 @@ export type MutationCreateNavigationNavigationItemArgs = {
 
 export type MutationCreateNavigationNavigationsItemsRelatedArgs = {
   data: NavigationNavigationsItemsRelatedInput;
+};
+
+
+export type MutationCreateSocialMediaArgs = {
+  data: SocialMediaInput;
 };
 
 
@@ -801,6 +811,11 @@ export type MutationDeleteNavigationNavigationItemArgs = {
 
 
 export type MutationDeleteNavigationNavigationsItemsRelatedArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSocialMediaArgs = {
   id: Scalars['ID'];
 };
 
@@ -928,6 +943,12 @@ export type MutationUpdateNavigationNavigationItemArgs = {
 
 export type MutationUpdateNavigationNavigationsItemsRelatedArgs = {
   data: NavigationNavigationsItemsRelatedInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateSocialMediaArgs = {
+  data: SocialMediaInput;
   id: Scalars['ID'];
 };
 
@@ -1239,6 +1260,8 @@ export type Query = {
   navigationNavigations?: Maybe<NavigationNavigationEntityResponseCollection>;
   navigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
   navigationNavigationsItemsRelateds?: Maybe<NavigationNavigationsItemsRelatedEntityResponseCollection>;
+  socialMedia?: Maybe<SocialMediaEntityResponse>;
+  socialMedias?: Maybe<SocialMediaEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
@@ -1335,6 +1358,18 @@ export type QueryNavigationNavigationsItemsRelatedsArgs = {
 };
 
 
+export type QuerySocialMediaArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySocialMediasArgs = {
+  filters?: InputMaybe<SocialMediaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1385,6 +1420,50 @@ export type QueryWritersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type SocialMedia = {
+  __typename?: 'SocialMedia';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  iconSlug: Scalars['String'];
+  link: Scalars['String'];
+  showInFooter: Scalars['Boolean'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SocialMediaEntity = {
+  __typename?: 'SocialMediaEntity';
+  attributes?: Maybe<SocialMedia>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SocialMediaEntityResponse = {
+  __typename?: 'SocialMediaEntityResponse';
+  data?: Maybe<SocialMediaEntity>;
+};
+
+export type SocialMediaEntityResponseCollection = {
+  __typename?: 'SocialMediaEntityResponseCollection';
+  data: Array<SocialMediaEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SocialMediaFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SocialMediaFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  iconSlug?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  link?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SocialMediaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SocialMediaFiltersInput>>>;
+  showInFooter?: InputMaybe<BooleanFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SocialMediaInput = {
+  iconSlug?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
+  showInFooter?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type StringFilterInput = {
@@ -1780,6 +1859,11 @@ export type GetCategoriesBySlugQueryVariables = Exact<{
 
 export type GetCategoriesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', publishedAt?: any | null, title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null }> } | null } | null }> } | null };
 
+export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
+
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2042,6 +2126,54 @@ export function useGetCategoriesBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHo
 export type GetCategoriesBySlugQueryHookResult = ReturnType<typeof useGetCategoriesBySlugQuery>;
 export type GetCategoriesBySlugLazyQueryHookResult = ReturnType<typeof useGetCategoriesBySlugLazyQuery>;
 export type GetCategoriesBySlugQueryResult = Apollo.QueryResult<GetCategoriesBySlugQuery, GetCategoriesBySlugQueryVariables>;
+export const GetFooterDocument = gql`
+    query getFooter {
+  footer {
+    data {
+      attributes {
+        copyright
+        showVercelBadge
+      }
+    }
+  }
+  socialMedias {
+    data {
+      attributes {
+        iconSlug
+        showInFooter
+        link
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetFooterQuery__
+ *
+ * To run a query within a React component, call `useGetFooterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFooterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFooterQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetFooterQuery(baseOptions?: Apollo.QueryHookOptions<GetFooterQuery, GetFooterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFooterQuery, GetFooterQueryVariables>(GetFooterDocument, options);
+      }
+export function useGetFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFooterQuery, GetFooterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFooterQuery, GetFooterQueryVariables>(GetFooterDocument, options);
+        }
+export type GetFooterQueryHookResult = ReturnType<typeof useGetFooterQuery>;
+export type GetFooterLazyQueryHookResult = ReturnType<typeof useGetFooterLazyQuery>;
+export type GetFooterQueryResult = Apollo.QueryResult<GetFooterQuery, GetFooterQueryVariables>;
 export const GetGlobalDocument = gql`
     query GetGlobal {
   global {
