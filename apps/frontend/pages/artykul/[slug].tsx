@@ -17,7 +17,7 @@ export default function Article({ article }: { article: ArticleEntity }) {
   return (
     <>
       <Seo seo={seo} />
-      <Card article={article} thumbnail={false}/>
+      <Card article={article} isThumbnail={false}/>
     </>
   );
 }

@@ -24,7 +24,7 @@ function Articles({ articles }: { articles: Articles }) {
             <Card
               // @ts-expect-error
               article={article}
-              thumbnail={true}
+              isThumbnail={true}
               key={`article-${article.attributes.slug}`}
             />
           );
