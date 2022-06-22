@@ -59,9 +59,17 @@ function BulletPoint() {
   return <span>&nbsp;&bull;&nbsp;</span>;
 }
 
-function CardContent({ article }: { article: ArticleEntity }) {
-  const MAX_CHARACTERS = 1000;
-  const content = article.attributes.content.substring(0, MAX_CHARACTERS);
+function CardContent({ article, thumbnail }: { article: ArticleEntity, thumbnail: boolean }) {
+  let content = article.attributes.content;
+  const THUMBNAIL_MAX_CHARACTERS = 500;
+
+  if(thumbnail) {
+    if(content.length > THUMBNAIL_MAX_CHARACTERS) {
+      content = content.substring(0, THUMBNAIL_MAX_CHARACTERS) + 
+      `
+      \n ... czytaj dalej`;
+    }
+  }
 
   return <ReactMarkdown css={css`color: #718096`} children={content} rehypePlugins={[rehypeRaw]} />;
 }
@@ -104,7 +112,18 @@ export function CardMeta({ article }: { article: ArticleEntity }) {
   );
 }
 
-function Card({ article }: { article: ArticleEntity }) {
+function ArticleAuthor({ article }: { article: ArticleEntity }) {
+  if (article.attributes.author.data === null) {
+    return null;
+  }
+  return (
+    <div>
+      <span>📝 {article.attributes.author.data.attributes.name}</span>
+    </div>
+  );
+}
+
+function Card({ article, thumbnail }: { article: ArticleEntity, thumbnail: boolean }) {
   return (
     <li
       css={css`
@@ -113,7 +132,7 @@ function Card({ article }: { article: ArticleEntity }) {
       key={`article-${article.attributes.slug}`}
     >
       <article>
-        <Center py={4}>
+        <Center p={10}>
           <Box
             border="1px"
             borderColor="gray.200"
@@ -131,7 +150,8 @@ function Card({ article }: { article: ArticleEntity }) {
             <Stack p={6}>
               <CardMeta article={article} />
               <CardTitle article={article} />
-              <CardContent article={article} />
+              <CardContent article={article} thumbnail={thumbnail}/>
+              {!thumbnail ? <ArticleAuthor article={article} /> : null}
             </Stack>
           </Box>
         </Center>

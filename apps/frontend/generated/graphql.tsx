@@ -480,6 +480,7 @@ export type FloatFilterInput = {
 
 export type Footer = {
   __typename?: 'Footer';
+  copyright?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   showVercelBadge: Scalars['Boolean'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -497,10 +498,11 @@ export type FooterEntityResponse = {
 };
 
 export type FooterInput = {
+  copyright?: InputMaybe<Scalars['String']>;
   showVercelBadge?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | SocialMedia | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -669,6 +671,7 @@ export type Mutation = {
   createNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
   createNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   createNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  createSocialMedia?: Maybe<SocialMediaEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
@@ -686,6 +689,7 @@ export type Mutation = {
   deleteNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
   deleteNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   deleteNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  deleteSocialMedia?: Maybe<SocialMediaEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
@@ -715,6 +719,7 @@ export type Mutation = {
   updateNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
   updateNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   updateNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  updateSocialMedia?: Maybe<SocialMediaEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
@@ -752,6 +757,11 @@ export type MutationCreateNavigationNavigationItemArgs = {
 
 export type MutationCreateNavigationNavigationsItemsRelatedArgs = {
   data: NavigationNavigationsItemsRelatedInput;
+};
+
+
+export type MutationCreateSocialMediaArgs = {
+  data: SocialMediaInput;
 };
 
 
@@ -801,6 +811,11 @@ export type MutationDeleteNavigationNavigationItemArgs = {
 
 
 export type MutationDeleteNavigationNavigationsItemsRelatedArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSocialMediaArgs = {
   id: Scalars['ID'];
 };
 
@@ -928,6 +943,12 @@ export type MutationUpdateNavigationNavigationItemArgs = {
 
 export type MutationUpdateNavigationNavigationsItemsRelatedArgs = {
   data: NavigationNavigationsItemsRelatedInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateSocialMediaArgs = {
+  data: SocialMediaInput;
   id: Scalars['ID'];
 };
 
@@ -1239,6 +1260,8 @@ export type Query = {
   navigationNavigations?: Maybe<NavigationNavigationEntityResponseCollection>;
   navigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
   navigationNavigationsItemsRelateds?: Maybe<NavigationNavigationsItemsRelatedEntityResponseCollection>;
+  socialMedia?: Maybe<SocialMediaEntityResponse>;
+  socialMedias?: Maybe<SocialMediaEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
@@ -1335,6 +1358,18 @@ export type QueryNavigationNavigationsItemsRelatedsArgs = {
 };
 
 
+export type QuerySocialMediaArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySocialMediasArgs = {
+  filters?: InputMaybe<SocialMediaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1385,6 +1420,50 @@ export type QueryWritersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type SocialMedia = {
+  __typename?: 'SocialMedia';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  iconSlug: Scalars['String'];
+  link: Scalars['String'];
+  showInFooter: Scalars['Boolean'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SocialMediaEntity = {
+  __typename?: 'SocialMediaEntity';
+  attributes?: Maybe<SocialMedia>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SocialMediaEntityResponse = {
+  __typename?: 'SocialMediaEntityResponse';
+  data?: Maybe<SocialMediaEntity>;
+};
+
+export type SocialMediaEntityResponseCollection = {
+  __typename?: 'SocialMediaEntityResponseCollection';
+  data: Array<SocialMediaEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SocialMediaFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SocialMediaFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  iconSlug?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  link?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SocialMediaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SocialMediaFiltersInput>>>;
+  showInFooter?: InputMaybe<BooleanFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SocialMediaInput = {
+  iconSlug?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
+  showInFooter?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type StringFilterInput = {
