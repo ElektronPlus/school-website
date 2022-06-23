@@ -68,7 +68,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug: article.attributes.slug,
       },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
