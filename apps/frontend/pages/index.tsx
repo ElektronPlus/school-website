@@ -61,5 +61,6 @@ export async function getStaticProps() {
       articlesQuery,
     },
     revalidate: 1,
+    fallback: 'true',
   };
 }
