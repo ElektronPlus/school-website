@@ -33,8 +33,9 @@ export default function Footer({
         bg={useColorModeValue('gray.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}
       >
+        <Wave />
         <Container width={'full'} as={Stack} py={10}>
-          <Container m={4}>
+        <Container p={4}>
             <Copyright footerData={footerData} />
           </Container>
 
@@ -54,22 +55,23 @@ export default function Footer({
           </Container>
           <SimpleGrid
             columns={{ base: 1, sm: 2 }}
-            justifyItems={{sm: 'center'}}
+            justifyItems={{ sm: 'center' }}
             spacing={8}
           >
             <Columns footerLinks={footerLinks} />
           </SimpleGrid>
         </Container>
-        <Box py={10}>
+        <Container p={4}>
+          <HorizontalLine />
+          <Text textAlign={'center'} py={5} m={4} fontSize={'md'}>
+            <TemplateAuthors />
+          </Text>
           <Flex justifyContent={'center'}>
             {footerData.footer.data.attributes.showVercelBadge && (
               <PoweredByVercel />
             )}
           </Flex>
-          <Text textAlign={'center'} pt={6} fontSize={'sm'}>
-              <TemplateAuthors />
-           </Text>
-        </Box>
+        </Container>
       </Box>
     </footer>
   );
@@ -106,6 +108,14 @@ function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
         );
       })}
     </List>
+  );
+}
+
+function Wave() {
+  return (
+    <Box maxHeight={250}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFFFFF" fill-opacity="1" d="M0,96L60,112C120,128,240,160,360,176C480,192,600,192,720,181.3C840,171,960,149,1080,144C1200,139,1320,149,1380,154.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+    </Box>
   );
 }
 
