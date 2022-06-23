@@ -1,30 +1,10 @@
-import ReactMarkdown from 'react-markdown';
-import Moment from 'react-moment';
-import rehypeRaw from 'rehype-raw';
-
 import Seo from '../../components/seo';
 
 import { fetchAPI } from '../../services/api';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ArticleEntity } from '../../generated/graphql';
-import { CardMeta } from '../../components/Card/card';
-
-function ArticleAuthor({ article }: { article: ArticleEntity }) {
-  if (article.attributes.author.data === null) {
-    console.debug(
-      `Author not specificied for article with id: ${article.id}.`
-    );
-
-    return null;
-  }
-
-  return (
-    <div>
-      <span>By {article.attributes.author.data.attributes.name}</span>
-    </div>
-  );
-}
+import Card from '../../components/Card/card';
 
 export default function Article({ article }: { article: ArticleEntity }) {
   const seo = {
@@ -37,24 +17,7 @@ export default function Article({ article }: { article: ArticleEntity }) {
   return (
     <>
       <Seo seo={seo} />
-      <div>
-        <h1>{article.attributes.title}</h1>
-      </div>
-      <div>
-        <div>
-          <ReactMarkdown
-            children={article.attributes.content}
-            rehypePlugins={[rehypeRaw]}
-          />
-          <hr />
-          <div>
-            <div>
-              <ArticleAuthor article={article} />
-              <CardMeta article={article}></CardMeta>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Card article={article} isThumbnail={false}/>
     </>
   );
 }
