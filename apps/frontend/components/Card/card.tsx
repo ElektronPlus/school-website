@@ -134,7 +134,7 @@ function Card({article, isThumbnail} : {article: ArticleEntity; isThumbnail: boo
             boxShadow={'lg'}
             rounded={'md'}>
             {article.attributes.image.data != null && (
-            <Box bg={'gray.100'} position='relative' height="400px">
+            <Box bg={'gray.100'} position='relative' height="340px">
               <StrapiImage
                 image={article.attributes.image}
                 imageProps={{ layout: 'fill', objectFit: 'cover', style: {borderRadius: '4px' } }} />

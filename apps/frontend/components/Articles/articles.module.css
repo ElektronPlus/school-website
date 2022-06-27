@@ -12,11 +12,9 @@
 
 .articlesGrid {
   display: flex;
-  margin-left: -24px; /* gutter size offset */
   width: auto;
 }
 
 .articlesColumn {
-  padding-left: 24px; /* gutter size */
   background-clip: padding-box;
 }
