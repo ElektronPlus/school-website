@@ -1845,7 +1845,7 @@ export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?:
 export type GetArticlesConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetArticlesConfigQuery = { __typename?: 'Query', articleConfig?: { __typename?: 'ArticleConfigEntityResponse', data?: { __typename?: 'ArticleConfigEntity', attributes?: { __typename?: 'ArticleConfig', articlesPerPage: number } | null } | null } | null };
+export type GetArticlesConfigQuery = { __typename?: 'Query', articleConfig?: { __typename?: 'ArticleConfigEntityResponse', data?: { __typename?: 'ArticleConfigEntity', attributes?: { __typename?: 'ArticleConfig', articlesPerPage: number, sectionHeader: string } | null } | null } | null };
 
 export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1967,6 +1967,7 @@ export const GetArticlesConfigDocument = gql`
     data {
       attributes {
         articlesPerPage
+        sectionHeader
       }
     }
   }

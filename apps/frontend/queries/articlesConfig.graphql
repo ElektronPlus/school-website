@@ -3,6 +3,7 @@ query GetArticlesConfig {
 		data {
 			attributes {
 				articlesPerPage
+				sectionHeader
 			}
 		}
 	}

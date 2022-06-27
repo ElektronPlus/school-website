@@ -14,9 +14,11 @@ import client from '../lib/apolloClient';
 export default function Home({
   articlesQuery,
   homepageData,
+  sectionHeader
 }: {
   articlesQuery: GetArticlesQuery;
   homepageData: GetHomepageQuery;
+  sectionHeader: string;
 }) {
   const { articles } = articlesQuery;
 
@@ -25,7 +27,7 @@ export default function Home({
       <Seo seo={homepageData.homepage.data.attributes.seo} />
       <div>
         <div>
-          <Articles articles={articles} />
+          <Articles articles={articles} sectionHeader={sectionHeader} />
         </div>
       </div>
     </>
@@ -45,8 +47,8 @@ export async function getStaticProps() {
     })
   ).data;
 
-  const articlesPerPage =
-    articlesConfig.articleConfig.data.attributes.articlesPerPage;
+  const { articlesPerPage, sectionHeader } =
+    articlesConfig.articleConfig.data.attributes;
 
   const articlesQuery: GetArticlesQuery = (
     await client.query({
@@ -59,6 +61,7 @@ export async function getStaticProps() {
     props: {
       homepageData,
       articlesQuery,
+      sectionHeader
     },
     revalidate: 1,
   };
