@@ -21,10 +21,12 @@ export default function StrapiImage({ image, imageProps }: { image: UploadFileEn
     ...imageProps
   }
 
+  // according to the next.js docs, layout fill shouldn't have size props
+  const sizeProps = imagePropsWithDefaults.layout === "fill" ? null : { width, height }
+
   return (
     <NextImage
-      width={width}
-      height={height}
+      {...sizeProps}
       src={getStrapiMedia(image)}
       alt={alternativeText || ''}
       {...imagePropsWithDefaults}

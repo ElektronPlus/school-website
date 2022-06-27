@@ -133,11 +133,13 @@ function Card({article, isThumbnail} : {article: ArticleEntity; isThumbnail: boo
             bg={useColorModeValue('white', 'gray.900')}
             boxShadow={'lg'}
             rounded={'md'}>
-            <Box bg={'gray.100'}>
+            {article.attributes.image.data != null && (
+            <Box bg={'gray.100'} position='relative' height="400px">
               <StrapiImage
                 image={article.attributes.image}
-                imageProps={{ style: { borderRadius: '4px' } }} />
+                imageProps={{ layout: 'fill', objectFit: 'cover', style: {borderRadius: '4px' } }} />
             </Box>
+            )}
             <Stack p={6}>
               <CardMeta article={article} />
               <CardTitle article={article} />
