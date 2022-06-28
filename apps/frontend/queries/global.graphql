@@ -7,7 +7,7 @@ query GetGlobal {
 				createdAt
 				updatedAt
 				defaultSeo {
-					metaTitle	
+					metaTitle
 					metaDescription
 					shareImage {
 						data {
@@ -17,6 +17,16 @@ query GetGlobal {
 								height
 								url
 							}
+						}
+					}
+				}
+				background {
+					data {
+						attributes {
+							alternativeText
+							width
+							height
+							url
 						}
 					}
 				}

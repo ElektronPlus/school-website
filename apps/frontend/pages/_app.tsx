@@ -26,7 +26,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalContext.Provider value={global.attributes}>
         <ChakraProvider theme={theme}>
-          <Layout footerData={footerData} footerLinks={footerLinksRes} navigationRes={navigationRes}>
+          <Layout background={global.attributes.background} footerData={footerData} footerLinks={footerLinksRes} navigationRes={navigationRes}>
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>

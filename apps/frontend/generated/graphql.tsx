@@ -506,6 +506,7 @@ export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig |
 
 export type Global = {
   __typename?: 'Global';
+  background?: Maybe<UploadFileEntityResponse>;
   createdAt?: Maybe<Scalars['DateTime']>;
   defaultSeo: ComponentSharedSeo;
   favicon?: Maybe<UploadFileEntityResponse>;
@@ -527,6 +528,7 @@ export type GlobalEntityResponse = {
 };
 
 export type GlobalInput = {
+  background?: InputMaybe<Scalars['ID']>;
   defaultSeo?: InputMaybe<ComponentSharedSeoInput>;
   favicon?: InputMaybe<Scalars['ID']>;
   language?: InputMaybe<Enum_Global_Language>;
@@ -1867,7 +1869,7 @@ export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'Fo
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, defaultSeo: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null }, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null } | null } | null } | null };
+export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, defaultSeo: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null }, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null } | null } | null } | null };
 
 export type GetHomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2195,6 +2197,16 @@ export const GetGlobalDocument = gql`
                 height
                 url
               }
+            }
+          }
+        }
+        background {
+          data {
+            attributes {
+              alternativeText
+              width
+              height
+              url
             }
           }
         }
