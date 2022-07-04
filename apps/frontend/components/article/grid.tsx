@@ -1,10 +1,9 @@
-import React from 'react';
 import {
   GetArticlesQuery,
   GetCategoriesBySlugQuery,
 } from '../../generated/graphql';
-import Article from './article';
-import styles from './articlesGrid.module.css';
+import Article from '.';
+import styles from './grid.module.css';
 import Masonry from 'react-masonry-css';
 import { css } from '@emotion/react';
 import { H } from 'react-headings';

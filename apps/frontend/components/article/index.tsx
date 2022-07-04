@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArticleEntity } from '../../generated/graphql';
 import StrapiImage from '../strapiImage';
 import {
@@ -6,17 +5,15 @@ import {
   useColorModeValue,
   Stack,
   Box,
-  Text,
-  Flex,
 } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import {
   getCategoryPathBySlug,
 } from '../../services/utils';
-import { ArticleAuthorCard } from './articleAuthorCard';
-import { ArticleTitle } from './articleTitle';
-import { ArticleDetails } from './articleDetails';
-import { ArticleContent } from './articleContent';
+import { ArticleAuthorCard } from 'components/article/author';
+import { ArticleTitle } from 'components/article/title';
+import { ArticleDetails } from 'components/article/details';
+import { ArticleContent } from 'components/article/content';
 
 export const CARD_MAX_CHARACTERS = 500;
 

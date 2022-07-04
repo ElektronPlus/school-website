@@ -3,8 +3,8 @@ import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import { css } from '@emotion/react';
 import { getArticlePathBySlug } from '../../services/utils';
-import { ArticleReadMore } from './articleReadMore';
-import { CARD_MAX_CHARACTERS } from './article';
+import { ArticleReadMore } from './readMore';
+import { CARD_MAX_CHARACTERS } from '.';
 
 export function ArticleContent({
   content, slug, isSingleArticlePage,

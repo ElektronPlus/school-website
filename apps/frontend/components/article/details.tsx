@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { ArticleCategory } from './articleCategory';
-import { ArticleDate } from './articleDate';
-import { BulletPoint } from './article';
+import { ArticleCategory } from './category';
+import { ArticleDate } from './date';
+import { BulletPoint } from '.';
 
 
 export function ArticleDetails({

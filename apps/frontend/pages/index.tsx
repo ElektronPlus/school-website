@@ -1,5 +1,4 @@
-import React from 'react';
-import ArticlesGrid from '../components/article/articlesGrid';
+import ArticlesGrid from 'components/article/grid';
 import Seo from '../components/seo';
 import {
   GetHomepageQuery,
@@ -14,7 +13,7 @@ import client from '../lib/apolloClient';
 export default function Home({
   articlesQuery,
   homepageData,
-  sectionHeader
+  sectionHeader,
 }: {
   articlesQuery: GetArticlesQuery;
   homepageData: GetHomepageQuery;
@@ -61,7 +60,7 @@ export async function getStaticProps() {
     props: {
       homepageData,
       articlesQuery,
-      sectionHeader
+      sectionHeader,
     },
     revalidate: 1,
   };

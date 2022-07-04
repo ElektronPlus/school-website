@@ -4,7 +4,7 @@ import { fetchAPI } from '../../services/api';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ArticleEntity } from '../../generated/graphql';
-import Article from '../../components/article/article';
+import Article from 'components/article';
 
 export default function ArticlePage({ article }: { article: ArticleEntity }) {
   const seo = {
