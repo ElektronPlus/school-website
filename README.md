@@ -61,6 +61,7 @@
 |------------|-------------|
 | [**Strapi**](https://strapi.io) | Design APIs fast, manage content easily. Strapi is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first. |
 | [**MySQL**](https://www.mysql.com/) | Database with PhpMyAdmin. Might be changed to PostgreSQL. |
+| [**Meilisearch**](https://www.meilisearch.com/) | Meilisearch is a RESTful search API. It aims to be a ready-to-go solution for everyone who wants a fast and relevant search experience for their end-users ⚡️🔎 |
 
 ### Analytics
 | Technology | Description |
@@ -102,6 +103,7 @@ This section explains this specific instance infrastructure. You're free to use 
 |-------|-----------------|----------|------------
 | Frontend | [**▲ Vercel**](https://vercel.com/?utm_source=ElektronPlus&utm_campaign=oss) | [dev.elektronplus.pl](https://dev.elektronplus.pl) | Website |
 | Backend | **Self-hosted VPS** | [strapi.elektronplus.pl](https://strapi.elektronplus.pl/) | Strapi (Headless CMS), MySQL Database |
+| Meilisearch | [**Koyeb**](https://www.koyeb.com/) | [zseis-zgora-meilisearch-konhi.koyeb.app](https://zseis-zgora-meilisearch-konhi.koyeb.app/) | Search Engine |
 | Developer-only | [**Chromatic**](https://www.chromatic.com/) | [**See components »**](https://main--6284fb53d2efc2004a5d01dd.chromatic.com/) | Storybook |
 
 <div align="center">
