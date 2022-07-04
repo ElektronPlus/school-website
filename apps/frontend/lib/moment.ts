@@ -6,4 +6,6 @@ Moment.globalLocale = 'pl';
 Moment.globalTimezone = 'Poland';
 Moment.globalLocal = true;
 
+export const ARTICLE_DATE_FORMAT = 'Do MMMM YYYY, HH:mm';
+
 export default Moment

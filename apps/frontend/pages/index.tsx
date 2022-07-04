@@ -1,5 +1,5 @@
 import React from 'react';
-import Articles from '../components/Articles/articles';
+import ArticlesGrid from '../components/article/articlesGrid';
 import Seo from '../components/seo';
 import {
   GetHomepageQuery,
@@ -27,7 +27,7 @@ export default function Home({
       <Seo seo={homepageData.homepage.data.attributes.seo} />
       <div>
         <div>
-          <Articles articles={articles} sectionHeader={sectionHeader} />
+          <ArticlesGrid articles={articles} sectionHeader={sectionHeader} />
         </div>
       </div>
     </>

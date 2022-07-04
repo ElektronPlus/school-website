@@ -3,17 +3,17 @@ import {
   GetArticlesQuery,
   GetCategoriesBySlugQuery,
 } from '../../generated/graphql';
-import Card from '../Card/card';
-import styles from './articles.module.css';
+import Article from './article';
+import styles from './articlesGrid.module.css';
 import Masonry from 'react-masonry-css';
-import { Heading } from '@chakra-ui/react';
 import { css } from '@emotion/react';
+import { H } from 'react-headings';
 
 type Articles =
   | GetArticlesQuery['articles']
   | GetCategoriesBySlugQuery['categories']['data']['0']['attributes']['articles'];
 
-function Articles({
+function ArticlesGrid({
   articles,
   sectionHeader,
 }: {
@@ -21,16 +21,20 @@ function Articles({
   sectionHeader: string;
 }) {
   return (
-    <section className={styles.section}>
+    <section>
       <div
         css={css`
           text-align: center;
           font-size: 2em;
         `}
       >
-        <h2>{sectionHeader}</h2>
+        <H>{sectionHeader}</H>
       </div>
-      <ul className={styles.ul}>
+      <ul
+        css={css`
+          padding: 0;
+        `}
+      >
         <Masonry
           breakpointCols={{
             default: 2,
@@ -41,10 +45,10 @@ function Articles({
         >
           {articles.data.map((article) => {
             return (
-              <Card
+              <Article
                 // @ts-expect-error
                 article={article}
-                isThumbnail={true}
+                isSingleArticlePage={false}
                 key={`article-${article.attributes.slug}`}
               />
             );
@@ -55,4 +59,4 @@ function Articles({
   );
 }
 
-export default Articles;
+export default ArticlesGrid;

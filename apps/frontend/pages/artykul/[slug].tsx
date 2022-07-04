@@ -4,9 +4,9 @@ import { fetchAPI } from '../../services/api';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ArticleEntity } from '../../generated/graphql';
-import Card from '../../components/Card/card';
+import Article from '../../components/article/article';
 
-export default function Article({ article }: { article: ArticleEntity }) {
+export default function ArticlePage({ article }: { article: ArticleEntity }) {
   const seo = {
     metaTitle: article.attributes.title,
     metaDescription: article.attributes.content,
@@ -17,7 +17,7 @@ export default function Article({ article }: { article: ArticleEntity }) {
   return (
     <>
       <Seo seo={seo} />
-      <Card article={article} isThumbnail={false}/>
+      <Article article={article} isSingleArticlePage={true}/>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import Seo from '../../components/seo';
-import Articles from '../../components/Articles/articles';
+import ArticlesGrid from '../../components/article/articlesGrid';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import {
@@ -24,7 +24,7 @@ const Category = ({ category }: { category: GetCategoriesBySlugQuery }) => {
       <div>
         <div>
           <h2>{name}</h2>
-          <Articles articles={articles} />
+          <ArticlesGrid articles={articles} />
         </div>
       </div>
     </>
