@@ -31,8 +31,9 @@ export default function Layout({
           }}
         />
       </div>
+      <Navigation navigationRes={navigationRes} />
       <div className="wrapper">
-        <Navigation navigationRes={navigationRes} />
+        
         <main>{children}</main>
       </div>
       <Footer footerData={footerData} footerLinks={footerLinks} />

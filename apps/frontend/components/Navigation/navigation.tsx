@@ -39,29 +39,42 @@ function getLinks(props) {
 
 export default function Navigation(navigationRes) {
   return (
-    <nav
+    <div
       css={css`
-        padding: 16px;
-        @media only screen and (min-width: 768px) {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
+        background-color: #ffffffcc;
+        backdrop-filter: blur(16px);
+        border-bottom: #d9d9d9 1px solid;
+        position: sticky;
+        z-index: 10;
+        top: 0;
       `}
     >
-      <header
+      <nav
         css={css`
-          width: 100%;
+          padding: 16px;
+          max-width: 1280px;
+          margin: auto;
+          @media only screen and (min-width: 768px) {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+          }
         `}
       >
-        <Link href="/" passHref>
-          <a>
-            <Branding />
-          </a>
-        </Link>
-      </header>
-      {getLinks(navigationRes)}
-      <Search />
-    </nav>
+        <header
+          css={css`
+            width: 100%;
+          `}
+        >
+          <Link href="/" passHref>
+            <a>
+              <Branding />
+            </a>
+          </Link>
+        </header>
+        {getLinks(navigationRes)}
+        <Search />
+      </nav>
+    </div>
   );
 }

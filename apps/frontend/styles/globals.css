@@ -31,6 +31,8 @@ body {
 }
 
 .ais-Hits-list {
+  background-color: #ffffffcc;
+    backdrop-filter: blur(10px);
   position: absolute;
   z-index: 1; 
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -175,7 +177,7 @@ body {
 
 .ais-RangeSlider .rheostat-background {
   position: relative;
-  background-color: #ffffff;
+  
   border: 1px solid #aaa; }
 
 .ais-RangeSlider .rheostat-progress {
@@ -189,7 +191,6 @@ body {
   z-index: 1;
   width: 20px;
   height: 20px;
-  background-color: #fff;
   border: 1px solid #333;
   border-radius: 50%;
   cursor: -webkit-grab;
@@ -253,7 +254,6 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fcfcfd));
   background-image: linear-gradient(-180deg, #fff, #fcfcfd);
   border: 1px solid #d6d6e7;
@@ -576,7 +576,6 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #fff;
   border: 1px solid #d6d6e7;
   border-radius: 16px;
   -webkit-box-shadow: rgba(119, 122, 175, 0.3) 0 1px 4px 0 inset;
@@ -717,9 +716,7 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #fff;
-  -webkit-box-shadow: 0 0 0 1px rgba(35, 38, 59, 0.05), 0 1px 3px 0 rgba(35, 38, 59, 0.15);
-  box-shadow: 0 0 0 1px rgba(35, 38, 59, 0.05), 0 1px 3px 0 rgba(35, 38, 59, 0.15);
+  backdrop-filter: blur(10px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
