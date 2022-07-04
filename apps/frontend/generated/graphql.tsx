@@ -13,6 +13,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  Date: any;
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
@@ -231,6 +233,29 @@ export type ComponentSharedSeoInput = {
   metaDescription?: InputMaybe<Scalars['String']>;
   metaTitle?: InputMaybe<Scalars['String']>;
   shareImage?: InputMaybe<Scalars['ID']>;
+};
+
+export type DateFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  contains?: InputMaybe<Scalars['Date']>;
+  containsi?: InputMaybe<Scalars['Date']>;
+  endsWith?: InputMaybe<Scalars['Date']>;
+  eq?: InputMaybe<Scalars['Date']>;
+  gt?: InputMaybe<Scalars['Date']>;
+  gte?: InputMaybe<Scalars['Date']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  lt?: InputMaybe<Scalars['Date']>;
+  lte?: InputMaybe<Scalars['Date']>;
+  ne?: InputMaybe<Scalars['Date']>;
+  not?: InputMaybe<DateFilterInput>;
+  notContains?: InputMaybe<Scalars['Date']>;
+  notContainsi?: InputMaybe<Scalars['Date']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  startsWith?: InputMaybe<Scalars['Date']>;
 };
 
 export type DateTimeFilterInput = {
@@ -502,7 +527,7 @@ export type FooterInput = {
   showVercelBadge?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | SocialMedia | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | SocialMedia | Substitusion | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -674,6 +699,7 @@ export type Mutation = {
   createNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   createNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
   createSocialMedia?: Maybe<SocialMediaEntityResponse>;
+  createSubstitusion?: Maybe<SubstitusionEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
@@ -692,6 +718,7 @@ export type Mutation = {
   deleteNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   deleteNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
   deleteSocialMedia?: Maybe<SocialMediaEntityResponse>;
+  deleteSubstitusion?: Maybe<SubstitusionEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
@@ -722,6 +749,7 @@ export type Mutation = {
   updateNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
   updateNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
   updateSocialMedia?: Maybe<SocialMediaEntityResponse>;
+  updateSubstitusion?: Maybe<SubstitusionEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
@@ -764,6 +792,11 @@ export type MutationCreateNavigationNavigationsItemsRelatedArgs = {
 
 export type MutationCreateSocialMediaArgs = {
   data: SocialMediaInput;
+};
+
+
+export type MutationCreateSubstitusionArgs = {
+  data: SubstitusionInput;
 };
 
 
@@ -818,6 +851,11 @@ export type MutationDeleteNavigationNavigationsItemsRelatedArgs = {
 
 
 export type MutationDeleteSocialMediaArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSubstitusionArgs = {
   id: Scalars['ID'];
 };
 
@@ -951,6 +989,12 @@ export type MutationUpdateNavigationNavigationsItemsRelatedArgs = {
 
 export type MutationUpdateSocialMediaArgs = {
   data: SocialMediaInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateSubstitusionArgs = {
+  data: SubstitusionInput;
   id: Scalars['ID'];
 };
 
@@ -1264,6 +1308,8 @@ export type Query = {
   navigationNavigationsItemsRelateds?: Maybe<NavigationNavigationsItemsRelatedEntityResponseCollection>;
   socialMedia?: Maybe<SocialMediaEntityResponse>;
   socialMedias?: Maybe<SocialMediaEntityResponseCollection>;
+  substitusion?: Maybe<SubstitusionEntityResponse>;
+  substitusions?: Maybe<SubstitusionEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
@@ -1368,6 +1414,19 @@ export type QuerySocialMediaArgs = {
 export type QuerySocialMediasArgs = {
   filters?: InputMaybe<SocialMediaFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QuerySubstitusionArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySubstitusionsArgs = {
+  filters?: InputMaybe<SubstitusionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1489,6 +1548,58 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   startsWith?: InputMaybe<Scalars['String']>;
+};
+
+export type Substitusion = {
+  __typename?: 'Substitusion';
+  author?: Maybe<WriterEntityResponse>;
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['Date']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SubstitusionEntity = {
+  __typename?: 'SubstitusionEntity';
+  attributes?: Maybe<Substitusion>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SubstitusionEntityResponse = {
+  __typename?: 'SubstitusionEntityResponse';
+  data?: Maybe<SubstitusionEntity>;
+};
+
+export type SubstitusionEntityResponseCollection = {
+  __typename?: 'SubstitusionEntityResponseCollection';
+  data: Array<SubstitusionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SubstitusionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SubstitusionFiltersInput>>>;
+  author?: InputMaybe<WriterFiltersInput>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<DateFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<SubstitusionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SubstitusionFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SubstitusionInput = {
+  author?: InputMaybe<Scalars['ID']>;
+  content?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['Date']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type SubstitusionRelationResponseCollection = {
+  __typename?: 'SubstitusionRelationResponseCollection';
+  data: Array<SubstitusionEntity>;
 };
 
 export type UploadFile = {
@@ -1790,12 +1901,21 @@ export type Writer = {
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   picture?: Maybe<UploadFileEntityResponse>;
+  substitusions?: Maybe<SubstitusionRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
 export type WriterArticlesArgs = {
   filters?: InputMaybe<ArticleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type WriterSubstitusionsArgs = {
+  filters?: InputMaybe<SubstitusionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1827,6 +1947,7 @@ export type WriterFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<WriterFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<WriterFiltersInput>>>;
+  substitusions?: InputMaybe<SubstitusionFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -1835,6 +1956,7 @@ export type WriterInput = {
   email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   picture?: InputMaybe<Scalars['ID']>;
+  substitusions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
 export type GetArticlesQueryVariables = Exact<{

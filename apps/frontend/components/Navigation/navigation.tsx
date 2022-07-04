@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Branding from '../Branding/branding';
 import styles from './navigation.module.css';
+import Search from '../search';
 
 function getLinks(props) {
   return (
@@ -28,7 +29,7 @@ export default function Navigation(navigationRes) {
         </Link>
       </header>
       {getLinks(navigationRes)}
-      <div className={styles.emptySpace}></div>
+      <Search/>
     </nav>
   );
 }

@@ -3,6 +3,7 @@ import Footer from './Footer/footer';
 import { GetFooterQuery } from '../generated/graphql';
 import { css } from '@emotion/react';
 import StrapiImage from './strapiImage';
+import Search from './search';
 
 export default function Layout({
   children,

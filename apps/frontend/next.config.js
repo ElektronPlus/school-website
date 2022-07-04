@@ -17,7 +17,9 @@ const moduleExports = {
     },
     env: {
       NEXT_PUBLIC_STRAPI_API_URL: 'https://strapi.elektronplus.pl',
-      NEXT_PUBLIC_SENTRY_DSN: 'https://93d1ca7d72e54f05af207dab352a95aa@o1206761.ingest.sentry.io/6533213'
+      NEXT_PUBLIC_SENTRY_DSN: 'https://93d1ca7d72e54f05af207dab352a95aa@o1206761.ingest.sentry.io/6533213',
+      NEXT_PUBLIC_MEILISEARCH_INSTANCE_URL: 'https://zseis-zgora-meilisearch-konhi.koyeb.app/',
+      NEXT_PUBLIC_MEILISEARCH_PUBLIC_KEY: 'mAXjXfvP8ebfefa1484813b824bdce8b4ad694a89fb236578955452f67e6a18a18ce9f7b'
     },
     typescript: {
       // !! WARN !!
