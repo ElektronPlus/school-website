@@ -15,7 +15,7 @@ type Articles =
 
 function ArticlesGrid({
   articles,
-  sectionHeader,
+  sectionHeader = 'Co nowego w Elektronie?',
 }: {
   articles: Articles;
   sectionHeader: string;
