@@ -20,7 +20,7 @@ export default function Layout({
 }) {
   return (
     <>
-      <div css={css`z-index: -1; width: 100vw; height: 25%; position: absolute;`}>
+      <div css={css`z-index: -1; width: 100%; height: 25%; position: absolute;`}>
         <StrapiImage
           image={background}
           imageProps={{
