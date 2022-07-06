@@ -4,19 +4,22 @@ import { css } from '@emotion/react';
 import { H } from 'react-accessible-headings';
 
 export function ArticleTitle({ title, slug, isSingleArticlePage }) {
-  return (
-    <Link href={getArticlePathBySlug(slug)} passHref>
-      <a>
-        {isSingleArticlePage ? (
-          <H
-            css={css`
-              font-size: 2rem;
-              padding-bottom: 16px;
-            `}
-          >
-            {title}
-          </H>
-        ) : (
+  if (isSingleArticlePage) {
+    return (
+      <H
+        css={css`
+          font-size: 2rem;
+          padding-bottom: 48px;
+          font-weight: 700;
+        `}
+      >
+        {title}
+      </H>
+    );
+  } else {
+    return (
+      <Link href={getArticlePathBySlug(slug)} passHref>
+        <a>
           <H
             css={css`
               font-size: 1.5rem;
@@ -25,8 +28,8 @@ export function ArticleTitle({ title, slug, isSingleArticlePage }) {
           >
             {title}
           </H>
-        )}
-      </a>
-    </Link>
-  );
+        </a>
+      </Link>
+    );
+  }
 }

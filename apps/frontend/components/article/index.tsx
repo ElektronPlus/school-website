@@ -8,6 +8,7 @@ import { ArticleDetails } from 'components/article/details';
 import { ArticleContent } from 'components/article/content';
 import { Level } from 'react-accessible-headings';
 import { getStrapiMedia } from 'services/media';
+import styled from '@emotion/styled';
 
 export const CARD_MAX_CHARACTERS = 500;
 
@@ -28,9 +29,27 @@ function Article({
   const authorName = article.attributes.author?.data?.attributes?.name;
   const authorDescription =
     article.attributes.author?.data?.attributes?.description;
-  const authorPictureUrl = getStrapiMedia(article.attributes.author?.data?.attributes?.picture);
+  const authorPictureUrl = getStrapiMedia(
+    article.attributes.author?.data?.attributes?.picture
+  );
 
   const { title, slug, content } = article.attributes;
+
+  const CenterIfSingleArticlePage = isSingleArticlePage
+    ? styled.div(
+        css`
+          text-align: center;
+          margin: auto;
+          width: 75%;
+        `
+      )
+    : styled.div();
+  const CoverImageIfNotSingleArticlePage = isSingleArticlePage
+    ? styled.div()
+    : styled.div`
+        position: relative;
+        height: 340px;
+      `;
 
   return (
     <li
@@ -58,21 +77,23 @@ function Article({
               `}
             >
               {article.attributes.image.data != null && (
-                <div
-                  css={css`
-                    position: relative;
-                    height: 340px;
-                  `}
-                >
+                <CoverImageIfNotSingleArticlePage>
                   <StrapiImage
                     image={article.attributes.image}
-                    imageProps={{
-                      layout: 'fill',
-                      objectFit: 'cover',
-                      style: { borderRadius: '4px' },
-                    }}
+                    imageProps={
+                      isSingleArticlePage
+                        ? {
+                            objectFit: 'contain',
+                            style: { borderRadius: '4px' },
+                          }
+                        : {
+                            layout: 'fill',
+                            objectFit: 'cover',
+                            style: { borderRadius: '4px' },
+                          }
+                    }
                   />
-                </div>
+                </CoverImageIfNotSingleArticlePage>
               )}
               <div
                 css={css`
@@ -80,16 +101,18 @@ function Article({
                 `}
               >
                 <div>
-                  <ArticleDetails
-                    publishedAt={publishedAt}
-                    categoryName={categoryName}
-                    categoryPath={categoryPath}
-                  />
-                  <ArticleTitle
-                    title={title}
-                    slug={slug}
-                    isSingleArticlePage={isSingleArticlePage}
-                  />
+                  <CenterIfSingleArticlePage>
+                    <ArticleDetails
+                      publishedAt={publishedAt}
+                      categoryName={categoryName}
+                      categoryPath={categoryPath}
+                    />
+                    <ArticleTitle
+                      title={title}
+                      slug={slug}
+                      isSingleArticlePage={isSingleArticlePage}
+                    />
+                  </CenterIfSingleArticlePage>
 
                   <ArticleContent
                     content={content}
