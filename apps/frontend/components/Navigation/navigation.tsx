@@ -46,6 +46,7 @@ export default function Navigation(navigationRes) {
         border-bottom: #d9d9d9 1px solid;
         position: sticky;
         z-index: 10;
+        margin-bottom: 50px;
         top: 0;
       `}
     >

@@ -26,6 +26,7 @@ function ArticlesGrid({
         css={css`
           text-align: center;
           font-size: 2em;
+          padding: 16px;
         `}
       >
         <H>{sectionHeader}</H>
