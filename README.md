@@ -23,6 +23,12 @@
     - **`📁 styles`**: Global CSS Styles. It's better to use CSS modules (`component.module.css` in `📁 components`
     - **`📁 lib`**: Libraries wrappers (such as for Apollo Client) and configs.
     - **`📁 components`**: React components and their styles. There's also a [Next.js Layout](https://nextjs.org/docs/basic-features/layouts)
+    
+## Features
+- **⚠️ Alerts**: customizable information on top of the page
+- **📅 Substitusions**: inform about changes in a timetable
+- **🔎 Search Bar**: let users quickly find what they're looking for
+- **✨ Rich Footer**: customizable social media icons, e-mail, copyright, related links
 
 ## Technology
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
