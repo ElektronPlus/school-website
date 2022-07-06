@@ -46,7 +46,6 @@ function ArticlesGrid({
           {articles.data.map((article) => {
             return (
               <Article
-                // @ts-expect-error
                 article={article}
                 isSingleArticlePage={false}
                 key={`article-${article.attributes.slug}`}

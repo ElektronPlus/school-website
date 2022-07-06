@@ -7,6 +7,7 @@ import { ArticleTitle } from 'components/article/title';
 import { ArticleDetails } from 'components/article/details';
 import { ArticleContent } from 'components/article/content';
 import { Level } from 'react-accessible-headings';
+import { getStrapiMedia } from 'services/media';
 
 export const CARD_MAX_CHARACTERS = 500;
 
@@ -25,6 +26,9 @@ function Article({
   const categoryName = article.attributes.category?.data?.attributes?.name;
 
   const authorName = article.attributes.author?.data?.attributes?.name;
+  const authorDescription =
+    article.attributes.author?.data?.attributes?.description;
+  const authorPictureUrl = getStrapiMedia(article.attributes.author?.data?.attributes?.picture);
 
   const { title, slug, content } = article.attributes;
 
@@ -81,14 +85,23 @@ function Article({
                     categoryName={categoryName}
                     categoryPath={categoryPath}
                   />
-                  <ArticleTitle title={title} slug={slug} />
+                  <ArticleTitle
+                    title={title}
+                    slug={slug}
+                    isSingleArticlePage={isSingleArticlePage}
+                  />
+
                   <ArticleContent
                     content={content}
                     slug={slug}
                     isSingleArticlePage={isSingleArticlePage}
                   />
                   {isSingleArticlePage && (
-                    <ArticleAuthorCard authorName={authorName} />
+                    <ArticleAuthorCard
+                      authorName={authorName}
+                      authorDescription={authorDescription}
+                      authorPictureUrl={authorPictureUrl}
+                    />
                   )}
                 </div>
               </div>

@@ -30,6 +30,7 @@ query GetArticles($articlesPerPage: Int) {
 					data {
 						attributes {
 							name
+							description
 							picture {
 								data {
 									attributes {
