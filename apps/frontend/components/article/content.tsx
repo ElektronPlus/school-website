@@ -1,4 +1,3 @@
-import React from 'react';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import { css } from '@emotion/react';

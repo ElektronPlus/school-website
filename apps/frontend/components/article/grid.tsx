@@ -6,7 +6,7 @@ import Article from '.';
 import styles from './grid.module.css';
 import Masonry from 'react-masonry-css';
 import { css } from '@emotion/react';
-import { H } from 'react-headings';
+import { Level, H } from 'react-accessible-headings';
 
 type Articles =
   | GetArticlesQuery['articles']
@@ -21,6 +21,7 @@ function ArticlesGrid({
 }) {
   return (
     <section>
+      <Level>
       <div
         css={css`
           text-align: center;
@@ -54,6 +55,7 @@ function ArticlesGrid({
           })}
         </Masonry>
       </ul>
+      </Level>
     </section>
   );
 }

@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import Link from 'next/link';
+import { H, Level } from 'react-accessible-headings';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { GetFooterQuery } from '../../generated/graphql';
@@ -28,60 +29,67 @@ export default function Footer({
 }) {
   return (
     <footer className={styles.footer}>
-      <Box
-        width={'full'}
-        bg={useColorModeValue('gray.50', 'gray.900')}
-        color={useColorModeValue('gray.700', 'gray.200')}
-      >
-        <Wave />
-        <Container width={'full'} as={Stack} py={10}>
-        <Container p={4}>
-            <Copyright footerData={footerData} />
-          </Container>
+      <Level>
+        <Box
+          width={'full'}
+          bg={useColorModeValue('gray.50', 'gray.900')}
+          color={useColorModeValue('gray.700', 'gray.200')}
+        >
+          <Wave />
+          <Container width={'full'} as={Stack} py={10}>
+            <Container p={4}>
+              <Copyright footerData={footerData} />
+            </Container>
 
-          <HorizontalLine />
-          <Container
-            as={Stack}
-            maxW={'full'}
-            py={4}
-            direction={'column'}
-            spacing={4}
-            justify={{ md: 'space-between' }}
-            align={'center'}
-          >
-            <Stack direction={'column'} spacing={6}>
-              <SocialButtonsList footerData={footerData} />
-            </Stack>
+            <HorizontalLine />
+            <Container
+              as={Stack}
+              maxW={'full'}
+              py={4}
+              direction={'column'}
+              spacing={4}
+              justify={{ md: 'space-between' }}
+              align={'center'}
+            >
+              <Stack direction={'column'} spacing={6}>
+                <SocialButtonsList footerData={footerData} />
+              </Stack>
+            </Container>
+            <SimpleGrid
+              columns={{ base: 1, sm: 2 }}
+              justifyItems={{ sm: 'center' }}
+              spacing={8}
+            >
+              <Columns footerLinks={footerLinks} />
+            </SimpleGrid>
           </Container>
-          <SimpleGrid
-            columns={{ base: 1, sm: 2 }}
-            justifyItems={{ sm: 'center' }}
-            spacing={8}
-          >
-            <Columns footerLinks={footerLinks} />
-          </SimpleGrid>
-        </Container>
-        <Container p={4}>
-          <HorizontalLine />
-          <Text textAlign={'center'} py={5} m={4} fontSize={'md'}>
-            <TemplateAuthors />
-          </Text>
-          <Flex justifyContent={'center'}>
-            {footerData.footer.data.attributes.showVercelBadge && (
-              <PoweredByVercel />
-            )}
-          </Flex>
-        </Container>
-      </Box>
+          <Container p={4}>
+            <HorizontalLine />
+            <Text textAlign={'center'} py={5} m={4} fontSize={'md'}>
+              <TemplateAuthors />
+            </Text>
+            <Flex justifyContent={'center'}>
+              {footerData.footer.data.attributes.showVercelBadge && (
+                <PoweredByVercel />
+              )}
+            </Flex>
+          </Container>
+        </Box>
+      </Level>
     </footer>
   );
 }
 
 function ListHeader({ children }: { children: React.ReactNode }) {
   return (
-    <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+    <H
+      css={css`
+        font-weight: 500;
+        font-size: 1.25rem;
+      `}
+    >
       {children}
-    </Text>
+    </H>
   );
 }
 
@@ -114,7 +122,13 @@ function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
 function Wave() {
   return (
     <Box maxHeight={250}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFFFFF" fillOpacity="1" d="M0,96L60,112C120,128,240,160,360,176C480,192,600,192,720,181.3C840,171,960,149,1080,144C1200,139,1320,149,1380,154.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#FFFFFF"
+          fillOpacity="1"
+          d="M0,96L60,112C120,128,240,160,360,176C480,192,600,192,720,181.3C840,171,960,149,1080,144C1200,139,1320,149,1380,154.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+        ></path>
+      </svg>
     </Box>
   );
 }

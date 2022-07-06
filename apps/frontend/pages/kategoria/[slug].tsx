@@ -9,7 +9,6 @@ import {
   GetCategoriesSlugsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
-import { H } from 'react-headings';
 
 const Category = ({ category }: { category: GetCategoriesBySlugQuery }) => {
   const { name, articles } = category.categories.data[0].attributes;
@@ -24,7 +23,7 @@ const Category = ({ category }: { category: GetCategoriesBySlugQuery }) => {
       <Seo seo={seo} />
       <div>
         <div>
-          <H>{name}</H>
+          <h2>{name}</h2>
           <ArticlesGrid articles={articles} sectionHeader={''} />
         </div>
       </div>

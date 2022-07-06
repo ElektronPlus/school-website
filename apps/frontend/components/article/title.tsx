@@ -1,7 +1,7 @@
 import { getArticlePathBySlug } from '../../services/utils';
 import Link from 'next/link';
-import { H } from 'react-headings';
 import { css } from '@emotion/react';
+import { H } from 'react-accessible-headings';
 
 export function ArticleTitle({ title, slug }) {
   return (
