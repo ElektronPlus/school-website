@@ -10,14 +10,18 @@ import { Level } from 'react-accessible-headings';
 import { getStrapiMedia } from 'services/media';
 import styled from '@emotion/styled';
 
-export const CARD_MAX_CHARACTERS = 500;
-
 function Article({
   article,
   isSingleArticlePage,
+  readMore,
+  cardMaxCharacters,
+  isPriority = false,
 }: {
   article: ArticleEntity;
   isSingleArticlePage: boolean;
+  readMore: string;
+  cardMaxCharacters: number
+  isPriority?: boolean;
 }) {
   const publishedAt = article.attributes.publishedAt;
 
@@ -92,11 +96,13 @@ function Article({
                       isSingleArticlePage
                         ? {
                             objectFit: 'contain',
+                            priority: true,
                             style: { borderRadius: '4px' },
                           }
                         : {
                             layout: 'fill',
                             objectFit: 'cover',
+                            priority: isPriority,
                             style: { borderRadius: '4px' },
                           }
                     }
@@ -126,6 +132,8 @@ function Article({
                     content={content}
                     slug={slug}
                     isSingleArticlePage={isSingleArticlePage}
+                    readMore={readMore}
+                    cardMaxCharacters={cardMaxCharacters}
                   />
                   {isSingleArticlePage && authorName && (
                     <ArticleAuthorCard

@@ -3,17 +3,18 @@ import ReactMarkdown from 'react-markdown';
 import { css } from '@emotion/react';
 import { getArticlePathBySlug } from '../../services/utils';
 import { ArticleReadMore } from './readMore';
-import { CARD_MAX_CHARACTERS } from '.';
 
 export function ArticleContent({
-  content, slug, isSingleArticlePage,
+  content, slug, isSingleArticlePage, readMore, cardMaxCharacters,
 }: {
   content: string;
   slug: string;
+  readMore: string;
   isSingleArticlePage: boolean;
+  cardMaxCharacters: number;
 }) {
   function getTrimmedContent(content: string) {
-    return content.substring(0, CARD_MAX_CHARACTERS) + '...';
+    return content.substring(0, cardMaxCharacters) + '...';
   }
 
   const article = {
@@ -22,7 +23,7 @@ export function ArticleContent({
   };
 
   if (!isSingleArticlePage) {
-    if (article.content.length > CARD_MAX_CHARACTERS) {
+    if (article.content.length > cardMaxCharacters) {
       article.content = getTrimmedContent(article.content);
       article.isTrimmed = true;
     }
@@ -37,7 +38,7 @@ export function ArticleContent({
         rehypePlugins={[rehypeRaw]} />
       {article.isTrimmed && (
         <ArticleReadMore
-          text="Czytaj więcej"
+          text={readMore}
           path={getArticlePathBySlug(slug)} />
       )}
     </>

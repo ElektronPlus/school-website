@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 
 export function ArticleReadMore({
-  text = 'Read More', path,
+  text, path,
 }: {
   text: string;
   path: string;

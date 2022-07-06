@@ -12,21 +12,28 @@ import client from '../lib/apolloClient';
 
 export default function Home({
   articlesQuery,
+  articlesConfig,
   homepageData,
-  sectionHeader,
 }: {
   articlesQuery: GetArticlesQuery;
   homepageData: GetHomepageQuery;
-  sectionHeader: string;
+  articlesConfig: GetArticlesConfigQuery;
 }) {
   const { articles } = articlesQuery;
+  const { sectionHeader, readMore, cardMaxCharacters } =
+    articlesConfig.articleConfig.data.attributes;
 
   return (
     <>
       <Seo seo={homepageData.homepage.data.attributes.seo} />
       <div>
         <div>
-          <ArticlesGrid articles={articles} sectionHeader={sectionHeader} />
+          <ArticlesGrid
+            articles={articles}
+            sectionHeader={sectionHeader}
+            readMore={readMore}
+            cardMaxCharacters={cardMaxCharacters}
+          />
         </div>
       </div>
     </>
@@ -46,13 +53,13 @@ export async function getStaticProps() {
     })
   ).data;
 
-  const { articlesPerPage, sectionHeader } =
-    articlesConfig.articleConfig.data.attributes;
-
   const articlesQuery: GetArticlesQuery = (
     await client.query({
       query: GetArticlesDocument,
-      variables: { articlesPerPage },
+      variables: {
+        articlesPerPage:
+          articlesConfig.articleConfig.data.attributes.articlesPerPage,
+      },
     })
   ).data;
 
@@ -60,7 +67,7 @@ export async function getStaticProps() {
     props: {
       homepageData,
       articlesQuery,
-      sectionHeader,
+      articlesConfig,
     },
     revalidate: 1,
   };

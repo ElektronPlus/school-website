@@ -4,6 +4,8 @@ query GetArticlesConfig {
 			attributes {
 				articlesPerPage
 				sectionHeader
+				cardMaxCharacters
+				readMore
 			}
 		}
 	}
