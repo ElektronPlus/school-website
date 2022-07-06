@@ -511,6 +511,7 @@ export type Footer = {
   __typename?: 'Footer';
   copyright?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
   showVercelBadge: Scalars['Boolean'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -528,6 +529,7 @@ export type FooterEntityResponse = {
 
 export type FooterInput = {
   copyright?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
   showVercelBadge?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -1993,7 +1995,7 @@ export type GetCategoriesBySlugQuery = { __typename?: 'Query', categories?: { __
 export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
+export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean, email?: string | null } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
 
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2266,6 +2268,7 @@ export const GetFooterDocument = gql`
       attributes {
         copyright
         showVercelBadge
+        email
       }
     }
   }

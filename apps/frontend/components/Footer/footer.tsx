@@ -17,8 +17,9 @@ import rehypeRaw from 'rehype-raw';
 import { GetFooterQuery } from '../../generated/graphql';
 import styles from './footer.module.css';
 import { PoweredByVercel } from './PoweredByVercel';
-import { SocialMediaIcons } from './SocialMediaIcons';
+import { SocialMediaIcon } from './SocialMediaIcon';
 import { TemplateAuthors } from './TemplateAuthors';
+import { MdMail } from 'react-icons/md';
 
 export default function Footer({
   footerData,
@@ -105,16 +106,24 @@ function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
 
         return (
           <ListItem p={4} listStyleType={'none'} key={iconSlug}>
-            <SocialMediaIcons href={link} label={iconSlug}>
+            <SocialMediaIcon href={link} label={iconSlug}>
               <img
                 width="24px"
                 height="24px"
                 src={`https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/${iconSlug}.svg`}
               />
-            </SocialMediaIcons>
+            </SocialMediaIcon>
           </ListItem>
         );
       })}
+      <ListItem p={4} listStyleType={'none'} key="email">
+        <SocialMediaIcon
+          href={`mailto:${footerData.footer.data.attributes.email}`}
+          label="email"
+        >
+          <MdMail css={css`width: 24px; height: 24px;`}/>
+        </SocialMediaIcon>
+      </ListItem>
     </List>
   );
 }

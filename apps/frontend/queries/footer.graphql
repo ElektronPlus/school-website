@@ -4,6 +4,7 @@ query getFooter {
 			attributes {
 				copyright
 				showVercelBadge
+				email
 			}
 		}
 	}

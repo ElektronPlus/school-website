@@ -1,7 +1,7 @@
 import { VisuallyHidden } from '@chakra-ui/react';
 import Link from 'next/link';
 
-export function SocialMediaIcons({
+export function SocialMediaIcon({
   children, label, href,
 }: {
   children: React.ReactNode;
