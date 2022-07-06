@@ -51,6 +51,23 @@ function Article({
         height: 340px;
       `;
 
+  const ShadowAndBorderIfNotSingleArticlePage = isSingleArticlePage
+    ? styled.div`
+        width: 100%;
+      `
+    : styled.div`
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        width: 100%;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+      `;
+
+    const NarrowWrapperIfSingleArticlePage = isSingleArticlePage
+    ? styled.div(`max-width: 900px; margin: auto;`)
+    : styled.div();
+
   return (
     <li
       css={css`
@@ -66,16 +83,7 @@ function Article({
               padding: 16px;
             `}
           >
-            <div
-              css={css`
-                background-color: white;
-                border: 1px solid #e2e8f0;
-                width: 100%;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                  0 4px 6px -2px rgba(0, 0, 0, 0.05);
-                border-radius: 4px;
-              `}
-            >
+            <ShadowAndBorderIfNotSingleArticlePage>
               {article.attributes.image.data != null && (
                 <CoverImageIfNotSingleArticlePage>
                   <StrapiImage
@@ -100,7 +108,7 @@ function Article({
                   padding: 24px;
                 `}
               >
-                <div>
+                <NarrowWrapperIfSingleArticlePage>
                   <CenterIfSingleArticlePage>
                     <ArticleDetails
                       publishedAt={publishedAt}
@@ -126,9 +134,9 @@ function Article({
                       authorPictureUrl={authorPictureUrl}
                     />
                   )}
-                </div>
+                </NarrowWrapperIfSingleArticlePage>
               </div>
-            </div>
+            </ShadowAndBorderIfNotSingleArticlePage>
           </div>
         </Level>
       </article>
