@@ -121,7 +121,7 @@ function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
           href={`mailto:${footerData.footer.data.attributes.email}`}
           label="email"
         >
-          <MdMail css={css`width: 24px; height: 24px;`}/>
+          <MdMail css={css`width: 24px; height: 24px; color: black;`}/>
         </SocialMediaIcon>
       </ListItem>
     </List>
