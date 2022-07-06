@@ -42,7 +42,7 @@ export default function Navigation(navigationRes) {
     <div
       css={css`
         background-color: #ffffffcc;
-        backdrop-filter: blur(16px);
+        backdrop-filter: blur(48px) saturate(5);
         border-bottom: #d9d9d9 1px solid;
         position: sticky;
         z-index: 10;
