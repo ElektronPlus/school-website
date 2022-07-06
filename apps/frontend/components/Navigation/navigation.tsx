@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Branding from '../Branding/branding';
 import Search from '../search';
 import { css } from '@emotion/react';
+import { GetAlertQuery } from 'generated/graphql';
+import { Alert } from 'components/alert';
 
-function getLinks(props) {
+function getLinks({ navigationRes }) {
   return (
     <ul
       css={css`
@@ -19,7 +21,7 @@ function getLinks(props) {
         }
       `}
     >
-      {props.navigationRes.map((item) => (
+      {navigationRes.map((item) => (
         <li
           css={css`
             max-width: 100%;
@@ -37,45 +39,62 @@ function getLinks(props) {
   );
 }
 
-export default function Navigation(navigationRes) {
+export default function Navigation({
+  navigationRes,
+  alertData,
+}: {
+  navigationRes: object;
+  alertData: GetAlertQuery;
+}) {
   return (
-    <div
-      css={css`
-        background-color: #ffffffcc;
-        backdrop-filter: blur(48px) saturate(5);
-        border-bottom: #d9d9d9 1px solid;
-        position: sticky;
-        z-index: 10;
-        margin-bottom: 50px;
-        top: 0;
-      `}
+    <nav
+      css={{
+        position: 'sticky',
+        zIndex: 10,
+        top: 0,
+        backdropFilter: 'blur(48px) saturate(5)',
+        backgroundColor: '#ffffffcc',
+      }}
     >
-      <nav
+      {alertData.alert.data.attributes.isVisible && (
+        <Alert
+          link={alertData.alert.data.attributes.link}
+          message={alertData.alert.data.attributes.message}
+        />
+      )}
+      <div
         css={css`
-          padding: 16px;
-          max-width: 1280px;
-          margin: auto;
-          @media only screen and (min-width: 768px) {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-          }
+          border-bottom: #d9d9d9 1px solid;
+          margin-bottom: 50px;
         `}
       >
-        <header
+        <div
           css={css`
-            width: 100%;
+            padding: 16px;
+            max-width: 1280px;
+            margin: auto;
+            @media only screen and (min-width: 768px) {
+              display: flex;
+              align-items: center;
+              gap: 16px;
+            }
           `}
         >
-          <Link href="/" passHref>
-            <a>
-              <Branding />
-            </a>
-          </Link>
-        </header>
-        {getLinks(navigationRes)}
-        <Search />
-      </nav>
-    </div>
+          <header
+            css={css`
+              width: 100%;
+            `}
+          >
+            <Link href="/" passHref>
+              <a>
+                <Branding />
+              </a>
+            </Link>
+          </header>
+          {getLinks({ navigationRes })}
+          <Search />
+        </div>
+      </div>
+    </nav>
   );
 }

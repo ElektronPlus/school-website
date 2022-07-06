@@ -1,9 +1,10 @@
 import Navigation from './Navigation/navigation';
 import Footer from './Footer/footer';
-import { GetFooterQuery } from '../generated/graphql';
+import { GetAlertQuery, GetFooterQuery } from '../generated/graphql';
 import { css } from '@emotion/react';
 import StrapiImage from './strapiImage';
 import Search from './search';
+import { Alert } from './alert';
 
 export default function Layout({
   children,
@@ -11,29 +12,37 @@ export default function Layout({
   footerData,
   footerLinks,
   background,
+  alertData,
 }: {
   children: React.ReactNode;
   navigationRes: object;
   footerData: GetFooterQuery;
   footerLinks: object[];
   background: object;
+  alertData: GetAlertQuery;
 }) {
   return (
     <>
-      <div css={css`z-index: -1; width: 100%; height: 25%; position: absolute;`}>
+      <div
+        css={css`
+          z-index: -1;
+          width: 100%;
+          height: 25%;
+          position: absolute;
+        `}
+      >
         <StrapiImage
           image={background}
           imageProps={{
-            layout: "fill",
-            objectFit: "cover",
-            objectPosition: "center",
+            layout: 'fill',
+            objectFit: 'cover',
+            objectPosition: 'center',
             priority: true,
           }}
         />
       </div>
-      <Navigation navigationRes={navigationRes} />
+      <Navigation navigationRes={navigationRes} alertData={alertData}/>
       <div className="wrapper">
-        
         <main>{children}</main>
       </div>
       <Footer footerData={footerData} footerLinks={footerLinks} />

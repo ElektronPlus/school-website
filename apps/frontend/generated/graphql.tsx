@@ -23,6 +23,32 @@ export type Scalars = {
   Upload: any;
 };
 
+export type Alert = {
+  __typename?: 'Alert';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  isVisible: Scalars['Boolean'];
+  link?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type AlertEntity = {
+  __typename?: 'AlertEntity';
+  attributes?: Maybe<Alert>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type AlertEntityResponse = {
+  __typename?: 'AlertEntityResponse';
+  data?: Maybe<AlertEntity>;
+};
+
+export type AlertInput = {
+  isVisible?: InputMaybe<Scalars['Boolean']>;
+  link?: InputMaybe<Scalars['String']>;
+  message?: InputMaybe<Scalars['String']>;
+};
+
 export type Article = {
   __typename?: 'Article';
   author?: Maybe<WriterEntityResponse>;
@@ -533,7 +559,7 @@ export type FooterInput = {
   showVercelBadge?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type GenericMorph = Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | SocialMedia | Substitusion | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Alert | Article | ArticleConfig | Category | CategoryConfig | ComponentSectionsHero | ComponentSharedSeo | Footer | Global | Homepage | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | SocialMedia | Substitusion | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -712,6 +738,7 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   createWriter?: Maybe<WriterEntityResponse>;
+  deleteAlert?: Maybe<AlertEntityResponse>;
   deleteArticle?: Maybe<ArticleEntityResponse>;
   deleteArticleConfig?: Maybe<ArticleConfigEntityResponse>;
   deleteCategory?: Maybe<CategoryEntityResponse>;
@@ -742,6 +769,7 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateAlert?: Maybe<AlertEntityResponse>;
   updateArticle?: Maybe<ArticleEntityResponse>;
   updateArticleConfig?: Maybe<ArticleConfigEntityResponse>;
   updateCategory?: Maybe<CategoryEntityResponse>;
@@ -923,6 +951,11 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+
+export type MutationUpdateAlertArgs = {
+  data: AlertInput;
 };
 
 
@@ -1292,6 +1325,7 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  alert?: Maybe<AlertEntityResponse>;
   article?: Maybe<ArticleEntityResponse>;
   articleConfig?: Maybe<ArticleConfigEntityResponse>;
   articles?: Maybe<ArticleEntityResponseCollection>;
@@ -1968,6 +2002,11 @@ export type WriterInput = {
   substitusions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
+export type GetAlertQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', message?: string | null, link?: string | null, isVisible: boolean } | null } | null } | null };
+
 export type GetArticlesQueryVariables = Exact<{
   articlesPerPage?: InputMaybe<Scalars['Int']>;
 }>;
@@ -2013,6 +2052,46 @@ export type GetIndexQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetIndexQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', attributes?: { __typename?: 'Homepage', hero: { __typename?: 'ComponentSectionsHero', id: string, title: string }, seo?: { __typename?: 'ComponentSharedSeo', metaTitle: string, metaDescription: string, shareImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } | null } | null } | null } | null } | null, articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null }> } | null };
 
 
+export const GetAlertDocument = gql`
+    query getAlert {
+  alert {
+    data {
+      attributes {
+        message
+        link
+        isVisible
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAlertQuery__
+ *
+ * To run a query within a React component, call `useGetAlertQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAlertQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAlertQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAlertQuery(baseOptions?: Apollo.QueryHookOptions<GetAlertQuery, GetAlertQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAlertQuery, GetAlertQueryVariables>(GetAlertDocument, options);
+      }
+export function useGetAlertLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAlertQuery, GetAlertQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAlertQuery, GetAlertQueryVariables>(GetAlertDocument, options);
+        }
+export type GetAlertQueryHookResult = ReturnType<typeof useGetAlertQuery>;
+export type GetAlertLazyQueryHookResult = ReturnType<typeof useGetAlertLazyQuery>;
+export type GetAlertQueryResult = Apollo.QueryResult<GetAlertQuery, GetAlertQueryVariables>;
 export const GetArticlesDocument = gql`
     query GetArticles($articlesPerPage: Int) {
   articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
