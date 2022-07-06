@@ -1,6 +1,5 @@
 import { ArticleEntity } from '../../generated/graphql';
 import StrapiImage from '../strapiImage';
-import { Center, useColorModeValue, Stack, Box } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { getCategoryPathBySlug } from '../../services/utils';
 import { ArticleAuthorCard } from 'components/article/author';
@@ -38,17 +37,29 @@ function Article({
     >
       <article>
         <Level>
-          <Center p={4}>
-            <Box
-              border="1px"
-              borderColor="gray.200"
-              w={'full'}
-              bg={useColorModeValue('white', 'gray.900')}
-              boxShadow={'lg'}
-              rounded={'md'}
+          <div
+            css={css`
+              margin: auto;
+              padding: 16px;
+            `}
+          >
+            <div
+              css={css`
+                background-color: white;
+                border: 1px solid #e2e8f0;
+                width: 100%;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                border-radius: 4px;
+              `}
             >
               {article.attributes.image.data != null && (
-                <Box bg={'gray.100'} position="relative" height="340px">
+                <div
+                  css={css`
+                    position: relative;
+                    height: 340px;
+                  `}
+                >
                   <StrapiImage
                     image={article.attributes.image}
                     imageProps={{
@@ -57,26 +68,32 @@ function Article({
                       style: { borderRadius: '4px' },
                     }}
                   />
-                </Box>
+                </div>
               )}
-              <Stack p={6}>
-                <ArticleDetails
-                  publishedAt={publishedAt}
-                  categoryName={categoryName}
-                  categoryPath={categoryPath}
-                />
-                <ArticleTitle title={title} slug={slug} />
-                <ArticleContent
-                  content={content}
-                  slug={slug}
-                  isSingleArticlePage={isSingleArticlePage}
-                />
-                {isSingleArticlePage && (
-                  <ArticleAuthorCard authorName={authorName} />
-                )}
-              </Stack>
-            </Box>
-          </Center>
+              <div
+                css={css`
+                  padding: 24px;
+                `}
+              >
+                <div>
+                  <ArticleDetails
+                    publishedAt={publishedAt}
+                    categoryName={categoryName}
+                    categoryPath={categoryPath}
+                  />
+                  <ArticleTitle title={title} slug={slug} />
+                  <ArticleContent
+                    content={content}
+                    slug={slug}
+                    isSingleArticlePage={isSingleArticlePage}
+                  />
+                  {isSingleArticlePage && (
+                    <ArticleAuthorCard authorName={authorName} />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </Level>
       </article>
     </li>
