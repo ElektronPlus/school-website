@@ -1,7 +1,7 @@
 import { getStrapiURL } from './api';
 
 export function getStrapiMedia(media) {
-  if (media.data === null) {
+  if (media === undefined || media.data === null) {
     return null
   }
 

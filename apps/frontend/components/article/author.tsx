@@ -42,7 +42,7 @@ function AuthorName({ content }: { content: string }) {
 export function ArticleAuthorCard({
   authorName,
   authorDescription,
-  authorPictureUrl
+  authorPictureUrl,
 }: {
   authorName: string;
   authorDescription?: string;
@@ -64,7 +64,16 @@ export function ArticleAuthorCard({
     >
       <Level>
         <div>
-          <Avatar src={authorPictureUrl} name={authorName} size="48px" round />
+          {authorPictureUrl !== null && (
+            <Avatar
+              alt=""
+              title=""
+              src={authorPictureUrl}
+              name={authorName}
+              size="48px"
+              round
+            />
+          )}
         </div>
         <div>
           <AuthorDescription content={authorDescription} />

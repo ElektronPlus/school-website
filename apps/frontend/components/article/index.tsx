@@ -96,7 +96,7 @@ function Article({
                     slug={slug}
                     isSingleArticlePage={isSingleArticlePage}
                   />
-                  {isSingleArticlePage && (
+                  {isSingleArticlePage && authorName && (
                     <ArticleAuthorCard
                       authorName={authorName}
                       authorDescription={authorDescription}
