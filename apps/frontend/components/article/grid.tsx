@@ -25,7 +25,8 @@ function ArticlesGrid({
       <div
         css={css`
           text-align: center;
-          font-size: 2em;
+          font-size: 2.75rem;
+          font-weight: 700;
           padding: 16px;
         `}
       >

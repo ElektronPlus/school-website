@@ -20,6 +20,7 @@ export function ArticleTitle({ title, slug, isSingleArticlePage }) {
           <H
             css={css`
               font-size: 1.5rem;
+              font-weight: 500;
             `}
           >
             {title}
