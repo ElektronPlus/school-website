@@ -17,7 +17,7 @@ export default function ArticlePage({ article }: { article: ArticleEntity }) {
   return (
     <>
       <Seo seo={seo} />
-      <Article article={article} isSingleArticlePage={true}/>
+      <Article article={article} isSingleArticlePage={true} isPriority/>
     </>
   );
 }

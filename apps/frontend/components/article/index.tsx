@@ -14,13 +14,13 @@ function Article({
   article,
   isSingleArticlePage,
   readMore,
-  cardMaxCharacters,
+  cardMaxCharacters = 500,
   isPriority = false,
 }: {
   article: ArticleEntity;
   isSingleArticlePage: boolean;
-  readMore: string;
-  cardMaxCharacters: number;
+  readMore?: string;
+  cardMaxCharacters?: number;
   isPriority?: boolean;
 }) {
   const publishedAt = article.attributes.publishedAt;
