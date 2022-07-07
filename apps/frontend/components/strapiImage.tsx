@@ -9,7 +9,7 @@ export default function StrapiImage({ image, imageProps }: { image: UploadFileEn
     return null
   }
 
-  const { alternativeText, width, height } = image.data.attributes;
+  const { alternativeText, width, height, updatedAt } = image.data.attributes;
 
   const defaultImageProps: Partial<ImageProps> = {
     layout: "responsive",

@@ -11,6 +11,7 @@ query GetArticles($articlesPerPage: Int) {
 				image {
 					data {
 						attributes {
+							updatedAt
 							alternativeText
 							width
 							height
@@ -34,6 +35,7 @@ query GetArticles($articlesPerPage: Int) {
 							picture {
 								data {
 									attributes {
+										updatedAt
 										url
 										alternativeText
 										width

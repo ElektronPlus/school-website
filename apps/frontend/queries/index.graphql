@@ -12,6 +12,7 @@ query getIndex {
           shareImage {
             data {
               attributes {
+                updatedAt
                 alternativeText
                 url
               }
@@ -31,6 +32,7 @@ query getIndex {
         image {
           data {
             attributes {
+              updatedAt
               alternativeText
               width
               height
@@ -53,6 +55,7 @@ query getIndex {
               picture {
                 data {
                   attributes {
+                    updatedAt
                     url
                     alternativeText
                     width

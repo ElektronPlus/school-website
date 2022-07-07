@@ -16,6 +16,7 @@ const moduleExports = {
       emotion: true
     },
     images: {
+      minimumCacheTTL: 604800,
       loader: "default",
       domains: ["strapi.elektronplus.pl"],
     },

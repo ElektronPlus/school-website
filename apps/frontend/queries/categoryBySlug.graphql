@@ -15,6 +15,7 @@ query GetCategoriesBySlug($slug: String) {
               image {
                 data {
                   attributes {
+                    updatedAt
                     alternativeText
                     width
                     height
@@ -38,6 +39,7 @@ query GetCategoriesBySlug($slug: String) {
                       data {
                         attributes {
                           url
+                          updatedAt
                           alternativeText
                           width
                           height
