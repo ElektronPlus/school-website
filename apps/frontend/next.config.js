@@ -15,7 +15,6 @@ const moduleExports = {
     compiler: {
       emotion: true
     },
-    swcMinify: true,
     images: {
       loader: "default",
       domains: ["strapi.elektronplus.pl"],
