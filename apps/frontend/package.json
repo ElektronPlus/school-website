@@ -16,6 +16,7 @@
     "@sentry/nextjs": "^7.3.0",
     "moment-timezone": "^0.5.34",
     "next": "^12.2.0",
+    "next-plugin-preval": "^1.2.4",
     "qs": "^6.10.3",
     "react": "18.1.0",
     "react-accessible-headings": "^4.2.0",
