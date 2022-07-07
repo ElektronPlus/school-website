@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function PoweredByVercel() {
   return (
@@ -7,9 +8,11 @@ export function PoweredByVercel() {
       passHref
     >
       <a>
-        <img
-          alt="Banner reklamowy Vercel"
-          src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" />
+        <Image
+          width="222px"
+          height="44px"
+          alt="Powered By Vercel"
+          src="https://strapi.elektronplus.pl/uploads/powered_by_vercel_42e6a757ad.svg" />
       </a>
     </Link>
   );

@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic",
-    "graphql-codegen": "graphql-codegen --config codegen.yml"
+    "graphql-codegen": "graphql-codegen --config codegen.yml",
+    "analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@apollo/client": "^3.6.8",
@@ -21,6 +22,7 @@
     "@graphql-codegen/import-types-preset": "^2.1.20",
     "@graphql-codegen/typescript": "^2.5.1",
     "@meilisearch/instant-meilisearch": "^0.7.1",
+    "@next/bundle-analyzer": "^12.2.0",
     "@sentry/nextjs": "^7.3.0",
     "@svgr/webpack": "^6.2.1",
     "framer-motion": "^6.3.12",

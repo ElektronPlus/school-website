@@ -67,7 +67,6 @@ export type ArticleConfig = {
   articlesPerPage: Scalars['Int'];
   cardMaxCharacters: Scalars['Int'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  linkPath: Scalars['String'];
   readMore: Scalars['String'];
   sectionHeader: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -87,7 +86,6 @@ export type ArticleConfigEntityResponse = {
 export type ArticleConfigInput = {
   articlesPerPage?: InputMaybe<Scalars['Int']>;
   cardMaxCharacters?: InputMaybe<Scalars['Int']>;
-  linkPath?: InputMaybe<Scalars['String']>;
   readMore?: InputMaybe<Scalars['String']>;
   sectionHeader?: InputMaybe<Scalars['String']>;
 };
