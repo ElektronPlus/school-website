@@ -1,6 +1,5 @@
-import React from 'react';
 import Link from 'next/link';
-import Branding from '../Branding/branding';
+import { Header } from 'components/Navigation/header';
 import Search from '../search';
 import { css } from '@emotion/react';
 import { GetAlertQuery } from 'generated/graphql';
@@ -40,10 +39,14 @@ function getLinks({ navigationRes }) {
 }
 
 export default function Navigation({
+  headerImgSrc,
+  headerAlternativeText,
   navigationRes,
   alertData,
 }: {
   navigationRes: object;
+  headerImgSrc: string,
+  headerAlternativeText?: string,
   alertData: GetAlertQuery;
 }) {
   return (
@@ -87,7 +90,7 @@ export default function Navigation({
           >
             <Link href="/" passHref>
               <a>
-                <Branding />
+                <Header src={headerImgSrc} alternativeText={headerAlternativeText} />
               </a>
             </Link>
           </header>

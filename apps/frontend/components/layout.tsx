@@ -13,6 +13,8 @@ export default function Layout({
   footerLinks,
   background,
   alertData,
+  headerImgSrc,
+  headerAlternativeText,
 }: {
   children: React.ReactNode;
   navigationRes: object;
@@ -20,6 +22,8 @@ export default function Layout({
   footerLinks: object[];
   background: object;
   alertData: GetAlertQuery;
+  headerImgSrc: string;
+  headerAlternativeText?: string;
 }) {
   return (
     <>
@@ -41,7 +45,7 @@ export default function Layout({
           }}
         />
       </div>
-      <Navigation navigationRes={navigationRes} alertData={alertData}/>
+      <Navigation headerImgSrc={headerImgSrc} headerAlternativeText={headerAlternativeText} navigationRes={navigationRes} alertData={alertData}/>
       <div className="wrapper">
         <main>{children}</main>
       </div>

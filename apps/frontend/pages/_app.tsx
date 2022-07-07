@@ -14,19 +14,19 @@ import { ChakraProvider } from '@chakra-ui/react';
 export const GlobalContext = createContext({});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { global, navigationRes, footerData, footerLinksRes, alertData } = pageProps;
+  const { globalData, navigationRes, footerData, footerLinksRes, alertData }: {globalData: GetGlobalQuery, navigationRes: any, footerData: GetFooterQuery, footerLinksRes: any, alertData: GetAlertQuery} = pageProps;
 
   return (
     <>
       <Head>
         <link
           rel="shortcut icon"
-          href={getStrapiMedia(global.attributes.favicon)}
+          href={getStrapiMedia(globalData.global.data.attributes.favicon)}
         />
       </Head>
-      <GlobalContext.Provider value={global.attributes}>
+      <GlobalContext.Provider value={globalData.global.data.attributes}>
         <ChakraProvider theme={theme}>
-          <Layout background={global.attributes.background} footerData={footerData} footerLinks={footerLinksRes} navigationRes={navigationRes} alertData={alertData}>
+          <Layout background={globalData.global.data.attributes.background} footerData={footerData} footerLinks={footerLinksRes} navigationRes={navigationRes} alertData={alertData} headerImgSrc={getStrapiMedia(globalData.global.data.attributes.logo)} headerAlternativeText={globalData.global.data.attributes.logo.data.attributes.alternativeText}>
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
@@ -61,6 +61,6 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 
   return {
     ...appProps,
-    pageProps: { global: globalData.global.data, navigationRes, footerData, footerLinksRes, alertData },
+    pageProps: { globalData, navigationRes, footerData, footerLinksRes, alertData },
   };
 };
