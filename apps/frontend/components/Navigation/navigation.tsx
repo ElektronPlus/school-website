@@ -4,7 +4,7 @@ import Branding from '../Branding/branding';
 import Search from '../search';
 import { css } from '@emotion/react';
 import { GetAlertQuery } from 'generated/graphql';
-import { Alert } from 'components/alert';
+import { Alert } from 'components/Navigation/alert';
 
 function getLinks({ navigationRes }) {
   return (

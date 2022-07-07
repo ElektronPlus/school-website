@@ -4,7 +4,7 @@ import { GetAlertQuery, GetFooterQuery } from '../generated/graphql';
 import { css } from '@emotion/react';
 import StrapiImage from './strapiImage';
 import Search from './search';
-import { Alert } from './alert';
+import { Alert } from './Navigation/alert';
 
 export default function Layout({
   children,
