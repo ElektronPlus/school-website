@@ -52,11 +52,12 @@ function ArticlesGrid({
             {articles.data.map((article, index) => {
 
               // optimizing largest contentful paint https://web.dev/optimize-lcp/
-              const isPriority = index > 1
+              const isPriority = (index > 1)
+
               return (
                 <Article
                   article={article}
-                  isPriority
+                  isPriority={isPriority}
                   isSingleArticlePage={false}
                   key={`article-${article.attributes.slug}`} readMore={readMore} cardMaxCharacters={cardMaxCharacters}                />
               );
