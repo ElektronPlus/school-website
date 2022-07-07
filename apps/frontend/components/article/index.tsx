@@ -20,7 +20,7 @@ function Article({
   article: ArticleEntity;
   isSingleArticlePage: boolean;
   readMore: string;
-  cardMaxCharacters: number
+  cardMaxCharacters: number;
   isPriority?: boolean;
 }) {
   const publishedAt = article.attributes.publishedAt;
@@ -68,7 +68,7 @@ function Article({
         border-radius: 4px;
       `;
 
-    const NarrowWrapperIfSingleArticlePage = isSingleArticlePage
+  const NarrowWrapperIfSingleArticlePage = isSingleArticlePage
     ? styled.div(`max-width: 900px; margin: auto;`)
     : styled.div();
 
@@ -103,6 +103,8 @@ function Article({
                             layout: 'fill',
                             objectFit: 'cover',
                             priority: isPriority,
+                            sizes:
+                              '(max-width: 768px) 90vw, 40vw, (max-width: 1680px) 33vw, 25vw, (max-width: 1920px) 20vw',
                             style: { borderRadius: '4px' },
                           }
                     }

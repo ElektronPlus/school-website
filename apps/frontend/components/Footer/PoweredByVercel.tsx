@@ -9,10 +9,12 @@ export function PoweredByVercel() {
     >
       <a>
         <Image
+          layout="fixed"
           width="222px"
           height="44px"
           alt="Powered By Vercel"
-          src="https://strapi.elektronplus.pl/uploads/powered_by_vercel_42e6a757ad.svg" />
+          src="https://strapi.elektronplus.pl/uploads/powered_by_vercel_42e6a757ad.svg"
+        />
       </a>
     </Link>
   );
