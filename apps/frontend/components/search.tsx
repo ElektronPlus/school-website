@@ -1,13 +1,8 @@
-import { Popover, PopoverTrigger } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import {
-  InstantSearch,
-  SearchBox,
-  Hits,
-  Highlight,
-  useInstantSearch,
-  Index,
+  Highlight, Hits, InstantSearch,
+  SearchBox, useInstantSearch
 } from 'react-instantsearch-hooks-web';
 import { searchClient } from '../lib/instantSearch';
 import { getArticlePathBySlug } from '../services/utils';

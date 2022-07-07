@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../pages/_app';
 import { getStrapiMedia } from '../../services/media';
 import styles from './branding.module.css';
-import { Level, H } from 'react-accessible-headings';
+import {  H } from 'react-accessible-headings';
 
 export default function Branding() {
   const { logo } = useContext(GlobalContext);
