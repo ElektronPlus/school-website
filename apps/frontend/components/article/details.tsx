@@ -18,7 +18,7 @@ export function ArticleDetails({
       <ArticleDate publishedAt={publishedAt} />
       {categoryName !== null && categoryPath !== null && (
         <>
-          &bull;
+          &nbsp;&bull;&nbsp;
           <ArticleCategory path={categoryPath} name={categoryName} />
         </>
       )}
