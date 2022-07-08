@@ -41,6 +41,10 @@
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Sentry](https://img.shields.io/badge/Sentry-6c5fc7?style=for-the-badge&logo=sentry&logoColor=white)
 
+| Technology | Description |
+|------------|-------------|
+| [**Doppler**](https://www.doppler.com/) | Doppler streamlines secrets management with a beautiful and intuitive dashboard, powerful CLI, and integrations for syncing secrets across development environments, cloud providers, hosting platforms, CI/CD tools, Docker, Kubernetes, and Terraform. |
+
 ### Front-end
 
 | Technology | Description |
