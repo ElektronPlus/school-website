@@ -80,6 +80,7 @@
 | [**Sentry**](https://sentry.io/) | From error tracking to performance monitoring, developers can see what actually matters, solve quicker, and learn continuously about their applications - from the frontend to the backend. |
 
 ### Strapi Plugins
+- [**SEO**](https://market.strapi.io/plugins/@strapi-plugin-seo)
 
 ## Links
 - [🖼 Figma Project](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
