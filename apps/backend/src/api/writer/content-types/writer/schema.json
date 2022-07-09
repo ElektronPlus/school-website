@@ -5,24 +5,27 @@
     "singularName": "writer",
     "pluralName": "writers",
     "displayName": "Writer",
-    "name": "writer"
+    "name": "writer",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "name": {
       "type": "string"
     },
     "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "articles": {
       "type": "relation",
@@ -32,6 +35,17 @@
     },
     "email": {
       "type": "string"
+    },
+    "substitusions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::substitusion.substitusion",
+      "mappedBy": "author"
+    },
+    "description": {
+      "type": "string",
+      "unique": false,
+      "required": false
     }
   }
 }
