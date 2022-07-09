@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "build-storybook": "build-storybook --config-dir apps/frontend/.storybook"
   },
   "private": true,
   "devDependencies": {
@@ -14,6 +15,7 @@
     "@nrwl/workspace": "14.1.4",
     "nx": "14.1.4",
     "prettier": "^2.5.1",
-    "typescript": "~4.6.2"
+    "typescript": "~4.6.2",
+    "webpack": "^5.72.1"
   }
 }

@@ -1,14 +1,39 @@
-import React from "react";
-import Articles from "../components/articles";
-import Seo from "../components/seo";
-import { fetchAPI } from "../services/api";
+import ArticlesGrid from 'components/article/grid';
+import Seo from '../components/seo';
+import {
+  GetHomepageQuery,
+  GetArticlesDocument,
+  GetArticlesQuery,
+  GetHomepageDocument,
+  GetArticlesConfigDocument,
+  GetArticlesConfigQuery,
+} from '../generated/graphql';
+import client from '../lib/apolloClient';
 
-export default function Home({ articles, categories, homepage }) {
+export default function Home({
+  articlesQuery,
+  articlesConfig,
+  homepageData,
+}: {
+  articlesQuery: GetArticlesQuery;
+  homepageData: GetHomepageQuery;
+  articlesConfig: GetArticlesConfigQuery;
+}) {
+  const { articles } = articlesQuery;
+  const { sectionHeader, readMore, cardMaxCharacters } =
+    articlesConfig.articleConfig.data.attributes;
+
   return (
     <>
-      <Seo seo={homepage.attributes.seo} /><div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <Articles articles={articles} />
+      <Seo seo={homepageData.homepage.data.attributes.seo} />
+      <div>
+        <div>
+          <ArticlesGrid
+            articles={articles}
+            sectionHeader={sectionHeader}
+            readMore={readMore}
+            cardMaxCharacters={cardMaxCharacters}
+          />
         </div>
       </div>
     </>
@@ -16,22 +41,33 @@ export default function Home({ articles, categories, homepage }) {
 }
 
 export async function getStaticProps() {
-  // Run API calls in parallel
-  const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-    fetchAPI("/articles", { populate: ["image", "category"] }),
-    fetchAPI("/categories", { populate: "*" }),
-    fetchAPI("/homepage", {
-      populate: {
-        seo: { populate: "*" },
+  const homepageData: GetHomepageQuery = (
+    await client.query({
+      query: GetHomepageDocument,
+    })
+  ).data;
+
+  const articlesConfig: GetArticlesConfigQuery = (
+    await client.query({
+      query: GetArticlesConfigDocument,
+    })
+  ).data;
+
+  const articlesQuery: GetArticlesQuery = (
+    await client.query({
+      query: GetArticlesDocument,
+      variables: {
+        articlesPerPage:
+          articlesConfig.articleConfig.data.attributes.articlesPerPage,
       },
-    }),
-  ]);
+    })
+  ).data;
 
   return {
     props: {
-      articles: articlesRes.data,
-      categories: categoriesRes.data,
-      homepage: homepageRes.data,
+      homepageData,
+      articlesQuery,
+      articlesConfig,
     },
     revalidate: 1,
   };

@@ -1,0 +1,9 @@
+overwrite: true
+schema: "https://strapi.elektronplus.pl/graphql"
+documents: "**/*.graphql"
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

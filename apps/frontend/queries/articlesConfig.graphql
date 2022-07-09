@@ -1,0 +1,12 @@
+query GetArticlesConfig {
+	articleConfig {
+		data {
+			attributes {
+				articlesPerPage
+				sectionHeader
+				cardMaxCharacters
+				readMore
+			}
+		}
+	}
+}
