@@ -4,7 +4,7 @@ services:
     container_name: school-website-starter-strapi
     build: ./apps/backend
     image: school-website-starter-strapi:latest
-    # restart: unless-stopped
+    restart: always
     environment:
       - ADMIN_JWT_SECRET
       - JWT_SECRET
@@ -45,7 +45,7 @@ services:
       - MYSQL_USER
       - MYSQL_PORT
       - MYSQL_ROOT_PASSWORD
-    # restart: always
+    restart: always
     volumes:
       - strapi-data:/var/lib/mysql
     expose:
