@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "social_medias",
+  "info": {
+    "singularName": "social-media",
+    "pluralName": "social-medias",
+    "displayName": "Social Media",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "iconSlug": {
+      "type": "string",
+      "required": true
+    },
+    "showInFooter": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

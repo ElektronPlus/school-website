@@ -1,21 +1,25 @@
 {
   "kind": "singleType",
-  "collectionName": "homepages",
+  "collectionName": "blogs",
   "info": {
-    "singularName": "homepage",
-    "pluralName": "homepages",
-    "displayName": "Page.Home",
-    "name": "homepage",
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Page.Blog",
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "articlesSection": {
+      "displayName": "Articles Section",
+      "type": "component",
+      "repeatable": false,
+      "component": "articles.articles-section",
+      "required": true
+    },
+    "categorySection": {
       "type": "component",
       "repeatable": false,
       "component": "articles.articles-section"

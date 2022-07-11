@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "blogs",
+  "info": {
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Blog",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "articlesSection": {
+      "displayName": "Articles Section",
+      "type": "component",
+      "repeatable": false,
+      "component": "articles.articles-section",
+      "required": true
+    },
+    "categorySection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "articles.articles-section"
+    }
+  }
+}

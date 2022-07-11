@@ -4,4 +4,7 @@ module.exports = ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
+  cron: {
+    enabled: true // strapi-plugin-publisher relies on it
+  }
 });
