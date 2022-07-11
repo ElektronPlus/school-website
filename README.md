@@ -41,6 +41,10 @@
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Sentry](https://img.shields.io/badge/Sentry-6c5fc7?style=for-the-badge&logo=sentry&logoColor=white)
 
+| Technology | Description |
+|------------|-------------|
+| [**Doppler**](https://www.doppler.com/) | Doppler streamlines secrets management with a beautiful and intuitive dashboard, powerful CLI, and integrations for syncing secrets across development environments, cloud providers, hosting platforms, CI/CD tools, Docker, Kubernetes, and Terraform. |
+
 ### Front-end
 
 | Technology | Description |
@@ -76,6 +80,7 @@
 | [**Sentry**](https://sentry.io/) | From error tracking to performance monitoring, developers can see what actually matters, solve quicker, and learn continuously about their applications - from the frontend to the backend. |
 
 ### Strapi Plugins
+- [**SEO**](https://market.strapi.io/plugins/@strapi-plugin-seo)
 
 ## Links
 - [🖼 Figma Project](https://www.figma.com/file/q12uPmoO5j5LdxRQhHIIGe/Elektronik?node-id=0%3A1)
