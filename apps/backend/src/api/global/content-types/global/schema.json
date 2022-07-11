@@ -16,13 +16,8 @@
   "attributes": {
     "siteName": {
       "type": "string",
-      "required": true
-    },
-    "defaultSeo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.seo",
-      "required": true
+      "required": true,
+      "default": "Warsaw University"
     },
     "favicon": {
       "type": "media",
@@ -234,12 +229,13 @@
       "default": "en"
     },
     "background": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

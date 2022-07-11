@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "alerts",
+  "info": {
+    "singularName": "alert",
+    "pluralName": "alerts",
+    "displayName": "Layout.Alert",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "message": {
+      "type": "string",
+      "default": "Important changes to our schedule"
+    },
+    "link": {
+      "type": "string",
+      "default": "https://en.wikipedia.org/wiki/Warsaw_University_of_Technology"
+    },
+    "isVisible": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

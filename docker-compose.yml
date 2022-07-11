@@ -1,0 +1,66 @@
+version: "3"
+services:
+  strapi:
+    container_name: school-website-starter-strapi
+    build: ./apps/backend
+    image: school-website-starter-strapi:latest
+    restart: always
+    environment:
+      - ADMIN_JWT_SECRET
+      - JWT_SECRET
+      - API_TOKEN_SALT
+      - APP_KEYS
+      - DATABASE_CLIENT=mysql
+      - DATABASE_HOST=database # docker service name instead of localhost - https://stackoverflow.com/questions/67457694/mysql-docker-error-connect-econnrefused-127-0-0-17201-to-mysql-container
+      - DATABASE_NAME=${MYSQL_DATABASE}
+      - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+      - DATABASE_PORT=${MYSQL_PORT}
+      - DATABASE_USERNAME=${MYSQL_USER}
+      - HOST=${STRAPI_HOST}
+      - NODE_ENV=development
+      - PORT=${STRAPI_PORT}
+      - MEILI_HOST
+      - MEILI_MASTER_KEY
+    volumes:
+      - ./apps/backend/config:/opt/app/config
+      - ./apps/backend/src:/opt/app/src
+      - ./apps/backend/package.json:/opt/package.json
+      - ./apps/backend/package-lock.json:/opt/package-lock.json
+      - ./apps/backend/.env:/opt/app/.env
+    ports:
+      - "${STRAPI_PORT}:${STRAPI_PORT}"
+    networks:
+      - strapi
+    depends_on:
+      - database
+
+  database:
+    image: mysql:8
+    container_name: school-website-starter-database
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    command: --default-authentication-plugin=mysql_native_password # Old way of storing passwords, required because strapi uses old mysql client - https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server
+    environment:
+      - MYSQL_DATABASE
+      - MYSQL_PASSWORD
+      - MYSQL_USER
+      - MYSQL_PORT
+      - MYSQL_ROOT_PASSWORD
+    restart: always
+    volumes:
+      - strapi-data:/var/lib/mysql
+    expose:
+      - ${MYSQL_PORT}
+    # uncomment if you want to have a port exposed on the host machine - usable for debugging
+    # ports:
+      # - "${MYSQL_PORT}:${MYSQL_PORT}"
+    networks:
+      - strapi
+
+volumes:
+  strapi-data:
+
+
+networks:
+  strapi:
+    name: Strapi
+    driver: bridge

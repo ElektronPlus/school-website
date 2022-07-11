@@ -19,7 +19,7 @@ const moduleExports = {
       formats: ['image/avif', 'image/webp'],
       minimumCacheTTL: 604800,
       loader: "default",
-      domains: ["strapi.elektronplus.pl"],
+      domains: [process.env.NEXT_PUBLIC_STRAPI_API_URL] || [],
     },
     env: {
       NEXT_PUBLIC_STRAPI_API_URL: 'https://strapi.elektronplus.pl',

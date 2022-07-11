@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_articles_articles_sections",
+  "info": {
+    "displayName": "Articles.Section",
+    "icon": "border-all",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "entriesPerPage": {
+      "type": "integer",
+      "required": true,
+      "default": 6,
+      "min": 1
+    },
+    "header": {
+      "type": "string",
+      "required": true,
+      "default": "What's new"
+    },
+    "previewMaxCharacters": {
+      "type": "integer",
+      "default": 500,
+      "min": 0
+    }
+  }
+}

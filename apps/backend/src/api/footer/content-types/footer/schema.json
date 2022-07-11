@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Layout.Footer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "showVercelBadge": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "copyright": {
+      "type": "richtext",
+      "default": "Copyright ©"
+    },
+    "email": {
+      "type": "email",
+      "default": "hello@uni.edu"
+    }
+  }
+}

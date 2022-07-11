@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "substitusions",
+  "info": {
+    "singularName": "substitusion",
+    "pluralName": "substitusions",
+    "displayName": "Substitusion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::writer.writer",
+      "inversedBy": "substitusions"
+    }
+  }
+}
