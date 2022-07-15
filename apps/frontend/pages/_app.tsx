@@ -39,11 +39,11 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
   const appProps = await App.getInitialProps(ctx);
 
   // Navigation requires additional configuration to use GraphQL API, so we use REST API to fetch it
-  const navigationRes = await fetchAPI('/navigation/render/1', {
+  const navigationRes = await fetchAPI('/navigation/render/main-navigation', {
     type: 'tree',
   });
 
-  const footerLinksRes = await fetchAPI('/navigation/render/footer', {
+  const footerLinksRes = await fetchAPI('/navigation/render/footerColumns', {
     type: 'tree'
   })
 

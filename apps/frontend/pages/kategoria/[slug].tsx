@@ -3,33 +3,34 @@ import ArticlesGrid from 'components/article/grid';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import {
-  GetCategoriesBySlugDocument,
-  GetCategoriesBySlugQuery,
   GetCategoriesSlugsDocument,
   GetCategoriesSlugsQuery,
+  GetBlogPageDocument,
+  GetBlogPageQuery,
+  GetCategoryPageQuery,
+  GetCategoryPageDocument,
+  GetTranslationsDocument,
+  GetTranslationsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 
-const Category = ({ category }: { category: GetCategoriesBySlugQuery }) => {
-  const { name, articles } = category.categories.data[0].attributes;
+function Category({ categoryArticlesData, blogPageData, translationsData}: { categoryArticlesData: GetCategoryPageQuery; blogPageData: GetBlogPageQuery; translationsData: GetTranslationsQuery }) {
+  const { name, articles } = categoryArticlesData.categories.data[0].attributes;
+  const { previewMaxCharacters } = blogPageData.blog.data.attributes.categorySection;
+  const { articleReadMore } = translationsData.translation.data.attributes;
 
-  const seo = {
-    metaTitle: name,
-    metaDescription: `Wszystkie artykuły z kategorii ${name}.`,
-  };
 
   return (
     <>
-      <Seo seo={seo} />
+      {/* <Seo seo={seo} /> */}
       <div>
         <div>
-          <h2>{name}</h2>
-          <ArticlesGrid articles={articles} sectionHeader={''} />
+          <ArticlesGrid articles={articles} sectionHeader={name} cardMaxCharacters={previewMaxCharacters} readMore={articleReadMore} />
         </div>
       </div>
     </>
   );
-};
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const categoriesSlugsData: GetCategoriesSlugsQuery = (
@@ -47,16 +48,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const matchingCategoriesData: GetCategoriesBySlugQuery = (
+  const blogPageData: GetBlogPageQuery = (
     await client.query({
-      query: GetCategoriesBySlugDocument,
-      variables: { slug: params.slug },
+      query: GetBlogPageDocument
+    })
+  ).data
+
+  const categoryArticlesData: GetCategoryPageQuery = (
+    await client.query({
+      query: GetCategoryPageDocument,
+      variables: { slug: params.slug, entriesPerPage: blogPageData.blog.data.attributes.categorySection.entriesPerPage },
     })
   ).data;
 
+  const translationsData: GetTranslationsQuery = (
+    await client.query({
+      query: GetTranslationsDocument
+    })
+  ).data
+
+
   return {
     props: {
-      category: matchingCategoriesData,
+      blogPageData,
+      categoryArticlesData,
+      translationsData,
     },
     revalidate: 1,
   };

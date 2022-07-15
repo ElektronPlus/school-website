@@ -1,38 +1,38 @@
 import ArticlesGrid from 'components/article/grid';
-import Seo from '../components/seo';
+import Seo from 'components/seo';
 import {
-  GetHomepageQuery,
+  GetHomePageQuery,
   GetArticlesDocument,
   GetArticlesQuery,
-  GetHomepageDocument,
-  GetArticlesConfigDocument,
-  GetArticlesConfigQuery,
-} from '../generated/graphql';
-import client from '../lib/apolloClient';
+  GetHomePageDocument,
+  GetTranslationsQuery,
+  GetTranslationsDocument
+} from 'generated/graphql';
+import client from 'lib/apolloClient';
 
 export default function Home({
-  articlesQuery,
-  articlesConfig,
-  homepageData,
+  articlesData,
+  homePageData,
+  translationsData
 }: {
-  articlesQuery: GetArticlesQuery;
-  homepageData: GetHomepageQuery;
-  articlesConfig: GetArticlesConfigQuery;
+  articlesData: GetArticlesQuery;
+  homePageData: GetHomePageQuery;
+  translationsData: GetTranslationsQuery;
 }) {
-  const { articles } = articlesQuery;
-  const { sectionHeader, readMore, cardMaxCharacters } =
-    articlesConfig.articleConfig.data.attributes;
+  const { articles } = articlesData;
+  const { header, previewMaxCharacters } = homePageData.homepage.data.attributes.articlesSection
+  const { articleReadMore, paginationNextPage } = translationsData.translation.data.attributes;
 
   return (
     <>
-      <Seo seo={homepageData.homepage.data.attributes.seo} />
+      <Seo seo={homePageData.homepage.data.attributes.seo} />
       <div>
         <div>
           <ArticlesGrid
             articles={articles}
-            sectionHeader={sectionHeader}
-            readMore={readMore}
-            cardMaxCharacters={cardMaxCharacters}
+            sectionHeader={header}
+            readMore={articleReadMore}
+            cardMaxCharacters={previewMaxCharacters}
           />
         </div>
       </div>
@@ -41,33 +41,33 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const homepageData: GetHomepageQuery = (
+  const homePageData: GetHomePageQuery = (
     await client.query({
-      query: GetHomepageDocument,
+      query: GetHomePageDocument,
     })
   ).data;
 
-  const articlesConfig: GetArticlesConfigQuery = (
-    await client.query({
-      query: GetArticlesConfigDocument,
-    })
-  ).data;
-
-  const articlesQuery: GetArticlesQuery = (
+  const articlesData: GetArticlesQuery = (
     await client.query({
       query: GetArticlesDocument,
       variables: {
         articlesPerPage:
-          articlesConfig.articleConfig.data.attributes.articlesPerPage,
+          homePageData.homepage.data.attributes.articlesSection.entriesPerPage,
       },
     })
   ).data;
 
+  const translationsData: GetTranslationsQuery = (
+    await client.query({
+      query: GetTranslationsDocument
+    })
+  ).data
+
   return {
     props: {
-      homepageData,
-      articlesQuery,
-      articlesConfig,
+      homePageData,
+      articlesData,
+      translationsData,
     },
     revalidate: 1,
   };
