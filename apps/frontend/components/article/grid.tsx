@@ -43,8 +43,8 @@ function ArticlesGrid({
         >
           <Masonry
             breakpointCols={{
-              default: 2,
-              1000: 1,
+              default: 1,
+              1000: 2,
             }}
             className={styles.articlesGrid}
             columnClassName={styles.articlesColumn}
