@@ -1,6 +1,5 @@
-import rehypeRaw from 'rehype-raw';
-import ReactMarkdown from 'react-markdown';
 import { css } from '@emotion/react';
+import DOMPurify from 'isomorphic-dompurify';
 import { getArticlePathBySlug } from '../../services/utils';
 import { ArticleReadMore } from './readMore';
 
@@ -28,14 +27,17 @@ export function ArticleContent({
       article.isTrimmed = true;
     }
   }
+
+  // disable styling on the preview of the article
+  const forbiddenTags = isSingleArticlePage ? [] : ['style']
+
   return (
     <>
-      <ReactMarkdown
+      <div
         css={css`
           color: #718096;
         `}
-        children={article.content}
-        rehypePlugins={[rehypeRaw]} />
+        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article.content, {FORBID_ATTR: forbiddenTags})}} />
       {article.isTrimmed && (
         <ArticleReadMore
           text={readMore}

@@ -12,14 +12,13 @@ import {
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { H, Level } from 'react-accessible-headings';
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 import { GetFooterQuery } from '../../generated/graphql';
 import styles from './footer.module.css';
 import { PoweredByVercel } from './PoweredByVercel';
 import { SocialMediaIcon } from './SocialMediaIcon';
 import { TemplateAuthors } from './TemplateAuthors';
 import { MdMail } from 'react-icons/md';
+import DOMPurify from 'isomorphic-dompurify';
 
 export default function Footer({
   footerData,
@@ -154,12 +153,11 @@ function HorizontalLine() {
 
 function Copyright({ footerData }: { footerData: GetFooterQuery }) {
   return (
-    <ReactMarkdown
+    <div
       css={css`
         color: #718096;
       `}
-      children={footerData.footer.data.attributes.copyright}
-      rehypePlugins={[rehypeRaw]}
+      dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(footerData.footer.data.attributes.copyright)}}
     />
   );
 }
