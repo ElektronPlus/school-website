@@ -1,5 +1,5 @@
-const ARTICLES_PATH = 'artykul'
-const CATEGORY_PATH = 'kategoria'
+const ARTICLES_PATH = 'blog'
+const CATEGORY_PATH = 'tag'
 
 
 export function getArticlePathBySlug(slug: string) {
