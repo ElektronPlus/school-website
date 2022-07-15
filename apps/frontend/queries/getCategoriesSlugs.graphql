@@ -1,4 +1,4 @@
-query GetCategoriesSlugs {
+query getCategoriesSlugs {
 	categories {
 		data {
 			id
