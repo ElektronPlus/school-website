@@ -31,7 +31,7 @@ const moduleExports = {
       // !! WARN !!
       ignoreBuildErrors: true,
     },
-    webpack(config) {
+    webpack(config, { dev, isServer}) {
       config.module.rules.push({
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,

@@ -1,9 +1,14 @@
-import Link from 'next/link';
-import { Header } from 'components/Navigation/header';
-import Search from '../search';
 import { css } from '@emotion/react';
-import { GetAlertQuery } from 'generated/graphql';
 import { Alert } from 'components/Navigation/alert';
+import { Header } from 'components/Navigation/header';
+import { GetAlertQuery } from 'generated/graphql';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+const DynamicSearch = dynamic(() => import('components/search'), {
+  suspense: true,
+});
 
 function getLinks({ navigationRes }) {
   return (
@@ -45,8 +50,8 @@ export default function Navigation({
   alertData,
 }: {
   navigationRes: object;
-  headerImgSrc: string,
-  headerAlternativeText?: string,
+  headerImgSrc: string;
+  headerAlternativeText?: string;
   alertData: GetAlertQuery;
 }) {
   return (
@@ -90,12 +95,17 @@ export default function Navigation({
           >
             <Link href="/" passHref>
               <a>
-                <Header src={headerImgSrc} alternativeText={headerAlternativeText} />
+                <Header
+                  src={headerImgSrc}
+                  alternativeText={headerAlternativeText}
+                />
               </a>
             </Link>
           </header>
           {getLinks({ navigationRes })}
-          <Search />
+          <Suspense>
+            <DynamicSearch />
+          </Suspense>
         </div>
       </div>
     </nav>
