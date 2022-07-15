@@ -9,7 +9,7 @@ export default function StrapiImage({ image, imageProps }: { image: UploadFileEn
     return null
   }
 
-  const { alternativeText, width, height, updatedAt } = image.data.attributes;
+  const { alternativeText, width, height, placeholder} = image.data.attributes;
 
   const defaultImageProps: Partial<ImageProps> = {
     layout: "responsive",
@@ -21,6 +21,8 @@ export default function StrapiImage({ image, imageProps }: { image: UploadFileEn
     ...imageProps
   }
 
+  const blurProps = placeholder ? { placeholder: 'blur', blurDataURL: placeholder } : null
+
   // according to the next.js docs, layout fill shouldn't have size props
   const sizeProps = imagePropsWithDefaults.layout === "fill" ? null : { width, height }
 
@@ -30,6 +32,7 @@ export default function StrapiImage({ image, imageProps }: { image: UploadFileEn
       src={getStrapiMedia(image)}
       alt={alternativeText || ''}
       {...imagePropsWithDefaults}
+      {...blurProps}
     />
   );
 }
