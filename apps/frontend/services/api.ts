@@ -1,7 +1,7 @@
 import qs from 'qs';
 
 export function getStrapiURL(path = '') {
-  return `${
+  return `https://${
     process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://strapi.elektronplus.pl'
   }${path}`;
 }
