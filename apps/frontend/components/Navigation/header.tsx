@@ -9,6 +9,7 @@ export function Header({src, alternativeText = "Logo"}: {src: string, alternativ
         objectFit="contain"
         layout="fill"
         sizes="16rem"
+        priority
         alt={alternativeText}
         src={src}
       ></Image>
