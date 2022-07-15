@@ -9,5 +9,5 @@ export function getStrapiMedia(media) {
   const imageUrl = url.startsWith('/') ? getStrapiURL(url) : url;
 
   // adding updatedAt to the image object will allow us to cache the image and revalidate it only when it's updated
-  return `${imageUrl}?updatedAt=${media.data.attributes.updatedAt}`;
+  return `${imageUrl}?hash=${media.data.attributes.hash}`;
 }
