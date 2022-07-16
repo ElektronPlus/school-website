@@ -1,10 +1,10 @@
 query getCategoriesSlugs {
-	categories {
-		data {
-			id
-			attributes {
-				slug
-			}
-		}
-	}
+  categories {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
 }

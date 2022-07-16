@@ -121,7 +121,13 @@ function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
           href={`mailto:${footerData.footer.data.attributes.email}`}
           label="email"
         >
-          <MdMail css={css`width: 24px; height: 24px; color: black;`}/>
+          <MdMail
+            css={css`
+              width: 24px;
+              height: 24px;
+              color: black;
+            `}
+          />
         </SocialMediaIcon>
       </ListItem>
     </List>
@@ -158,7 +164,9 @@ function Copyright({ footerData }: { footerData: GetFooterQuery }) {
       css={css`
         color: #718096;
       `}
-      dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(footerData.footer.data.attributes.copyright)}}
+      dangerouslySetInnerHTML={{
+        __html: DOMPurify.sanitize(footerData.footer.data.attributes.copyright),
+      }}
     />
   );
 }

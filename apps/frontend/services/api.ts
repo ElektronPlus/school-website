@@ -6,7 +6,11 @@ export function getStrapiURL(path = '') {
   }${path}`;
 }
 
-export async function fetchAPI(path: string, urlParamsObject = {}, options = {}) {
+export async function fetchAPI(
+  path: string,
+  urlParamsObject = {},
+  options = {}
+) {
   const mergedOptions = {
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +27,7 @@ export async function fetchAPI(path: string, urlParamsObject = {}, options = {})
 
   if (!response.ok) {
     console.error(response.statusText);
-    console.log(requestUrl)
+    console.log(requestUrl);
     throw new Error(`An error occured please try again`);
   }
   const data = await response.json();

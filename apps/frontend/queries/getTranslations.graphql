@@ -1,10 +1,10 @@
 query getTranslations {
-	translation {
-		data {
-			attributes {
-				articleReadMore
-				paginationNextPage
-			}
-		}
-	}
+  translation {
+    data {
+      attributes {
+        articleReadMore
+        paginationNextPage
+      }
+    }
+  }
 }

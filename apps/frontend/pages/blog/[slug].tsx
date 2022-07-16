@@ -4,7 +4,7 @@ import {
   GetArticleBySlugDocument,
   GetArticleBySlugQuery,
   GetArticlesSlugsDocument,
-  GetArticlesSlugsQuery
+  GetArticlesSlugsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 import { GetStaticPaths, GetStaticProps } from 'next';

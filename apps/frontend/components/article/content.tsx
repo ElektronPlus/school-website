@@ -4,7 +4,11 @@ import { getArticlePathBySlug } from '../../services/utils';
 import { ArticleReadMore } from './readMore';
 
 export function ArticleContent({
-  content, slug, isSingleArticlePage, readMore, cardMaxCharacters,
+  content,
+  slug,
+  isSingleArticlePage,
+  readMore,
+  cardMaxCharacters,
 }: {
   content: string;
   slug: string;
@@ -29,7 +33,7 @@ export function ArticleContent({
   }
 
   // disable styling on the preview of the article
-  const forbiddenTags = isSingleArticlePage ? [] : ['style']
+  const forbiddenTags = isSingleArticlePage ? [] : ['style'];
 
   return (
     <>
@@ -37,11 +41,14 @@ export function ArticleContent({
         css={css`
           color: #718096;
         `}
-        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article.content, {FORBID_ATTR: forbiddenTags})}} />
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(article.content, {
+            FORBID_ATTR: forbiddenTags,
+          }),
+        }}
+      />
       {article.isTrimmed && (
-        <ArticleReadMore
-          text={readMore}
-          path={getArticlePathBySlug(slug)} />
+        <ArticleReadMore text={readMore} path={getArticlePathBySlug(slug)} />
       )}
     </>
   );

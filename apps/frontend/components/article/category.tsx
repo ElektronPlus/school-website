@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-
 export function ArticleCategory({
-  path, name,
+  path,
+  name,
 }: {
   path: string;
   name: string;

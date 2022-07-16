@@ -43,7 +43,12 @@ export default function Layout({
           }}
         />
       </div>
-      <Navigation headerImgSrc={headerImgSrc} headerAlternativeText={headerAlternativeText} navigationRes={navigationRes} alertData={alertData}/>
+      <Navigation
+        headerImgSrc={headerImgSrc}
+        headerAlternativeText={headerAlternativeText}
+        navigationRes={navigationRes}
+        alertData={alertData}
+      />
       <div className="wrapper">
         <main>{children}</main>
       </div>

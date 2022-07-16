@@ -2,9 +2,11 @@ import { css } from '@emotion/react';
 import { ArticleCategory } from './category';
 import { ArticleDate } from './date';
 
-
 export function ArticleDetails({
-  publishedAt, categoryName = null, categoryPath = null, isSingleArticlePage = false,
+  publishedAt,
+  categoryName = null,
+  categoryPath = null,
+  isSingleArticlePage = false,
 }) {
   return (
     <span

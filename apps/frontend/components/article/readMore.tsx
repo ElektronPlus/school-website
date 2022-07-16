@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { css } from '@emotion/react';
 
-
 export function ArticleReadMore({
-  text, path,
+  text,
+  path,
 }: {
   text: string;
   path: string;

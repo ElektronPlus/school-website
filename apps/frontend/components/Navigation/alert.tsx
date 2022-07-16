@@ -4,9 +4,7 @@ function Content({ message, link }: { message: string; link: string | null }) {
   if (link) {
     return (
       <Link href={link} passHref>
-        <a>
-          {message} ➞
-        </a>
+        <a>{message} ➞</a>
       </Link>
     );
   }

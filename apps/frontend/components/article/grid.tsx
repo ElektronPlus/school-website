@@ -34,7 +34,7 @@ function ArticlesGrid({
             padding: 16px;
           `}
         >
-            <H>{sectionHeader}</H>
+          <H>{sectionHeader}</H>
         </div>
         <ul
           css={css`
@@ -50,16 +50,18 @@ function ArticlesGrid({
             columnClassName={styles.articlesColumn}
           >
             {articles.data.map((article, index) => {
-
               // optimizing largest contentful paint https://web.dev/optimize-lcp/
-              const isPriority = (index <= 1);
+              const isPriority = index <= 1;
 
               return (
                 <Article
                   article={article}
                   isPriority={isPriority}
                   isSingleArticlePage={false}
-                  key={`article-${article.attributes.slug}`} readMore={readMore} cardMaxCharacters={cardMaxCharacters}                />
+                  key={`article-${article.attributes.slug}`}
+                  readMore={readMore}
+                  cardMaxCharacters={cardMaxCharacters}
+                />
               );
             })}
           </Masonry>

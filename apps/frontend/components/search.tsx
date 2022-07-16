@@ -1,8 +1,11 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import {
-  Highlight, Hits, InstantSearch,
-  SearchBox, useInstantSearch
+  Highlight,
+  Hits,
+  InstantSearch,
+  SearchBox,
+  useInstantSearch,
 } from 'react-instantsearch-hooks-web';
 import { searchClient } from '../lib/instantSearch';
 import { getArticlePathBySlug } from '../services/utils';
@@ -10,11 +13,11 @@ import { getArticlePathBySlug } from '../services/utils';
 function Hit({ hit }) {
   return (
     <>
-    <Link href={getArticlePathBySlug(hit.slug)} passHref>
-      <a>
-        <Highlight attribute="title" hit={hit} />
-      </a>
-    </Link>
+      <Link href={getArticlePathBySlug(hit.slug)} passHref>
+        <a>
+          <Highlight attribute="title" hit={hit} />
+        </a>
+      </Link>
     </>
   );
 }
@@ -27,12 +30,12 @@ export default function Search() {
         position: relative;
       `}
     >
-        <InstantSearch indexName="article" searchClient={searchClient}>
-            <SearchBox />
-          <EmptyQueryBoundary fallback={null}>
-            <Hits hitComponent={Hit} />
-          </EmptyQueryBoundary>
-        </InstantSearch>
+      <InstantSearch indexName="article" searchClient={searchClient}>
+        <SearchBox />
+        <EmptyQueryBoundary fallback={null}>
+          <Hits hitComponent={Hit} />
+        </EmptyQueryBoundary>
+      </InstantSearch>
     </div>
   );
 }
