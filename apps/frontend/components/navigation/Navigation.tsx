@@ -65,19 +65,13 @@ export default function Navigation({
         backgroundColor: '#ffffffcc',
       }}
     >
-      {alertData.alert.data.attributes.isVisible && (
-        <Alert
-          link={alertData.alert.data.attributes.link}
-          message={alertData.alert.data.attributes.message}
-        />
-      )}
       <nav
         css={css`
           border-bottom: #d9d9d9 1px solid;
           margin-bottom: 50px;
         `}
       >
-        <Popover css={{position: "relative"}}>
+        <Popover css={{ position: 'relative' }}>
           <div
             css={css`
               padding: 16px;
@@ -95,7 +89,7 @@ export default function Navigation({
             <div css={{ display: 'flex' }}>
               <Header header={header} />
               <Popover.Button>
-                <MdMenu css={{ fontSize: '2rem' }} />
+                <MdMenu aria-label='menu' css={{ fontSize: '2rem' }} />
               </Popover.Button>
             </div>
             <div
@@ -106,7 +100,7 @@ export default function Navigation({
               `}
             >
               <div>
-                  <Popover.Panel css={{height: "60vh"}}>{getLinks({ navigationRes })}</Popover.Panel>
+                <Popover.Panel>{getLinks({ navigationRes })}</Popover.Panel>
               </div>
               {/* <Suspense>
                 <DynamicSearch />
@@ -114,6 +108,12 @@ export default function Navigation({
             </div>
           </div>
         </Popover>
+        {alertData.alert.data.attributes.isVisible && (
+          <Alert
+            link={alertData.alert.data.attributes.link}
+            message={alertData.alert.data.attributes.message}
+          />
+        )}
       </nav>
     </div>
   );
