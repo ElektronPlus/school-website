@@ -1,4 +1,3 @@
-import { VisuallyHidden } from '@chakra-ui/react';
 import Link from 'next/link';
 
 export function SocialMediaIcon({
@@ -11,7 +10,6 @@ export function SocialMediaIcon({
   return (
     <Link passHref href={href}>
       <a>
-        <VisuallyHidden>{label}</VisuallyHidden>
         {children}
       </a>
     </Link>

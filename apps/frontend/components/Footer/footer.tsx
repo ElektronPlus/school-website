@@ -109,6 +109,7 @@ function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
               <img
                 width="24px"
                 height="24px"
+                alt={iconSlug}
                 src={`https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/${iconSlug}.svg`}
               />
             </SocialMediaIcon>
