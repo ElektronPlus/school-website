@@ -1,6 +1,8 @@
+import { UploadFileEntityResponse } from 'generated/graphql';
+import { PartialDeep } from 'type-fest';
 import { getStrapiURL } from './api';
 
-export function getStrapiMedia(media) {
+export function getStrapiMedia(media: PartialDeep<UploadFileEntityResponse>) {
   if (media === undefined || media.data === null) {
     return null;
   }
