@@ -15,6 +15,11 @@ const moduleExports = {
     compiler: {
       emotion: true
     },
+    // This template doesn't support internationalization, but we use it to dynamcially set html lang (https://newdevzone.com/posts/how-to-set-html-lang-attribute-dynamically-on-nextjs-document)
+    i18n: {
+      locales: [process.env.NEXT_PUBLIC_LANGUAGE],
+      defaultLocale: process.env.NEXT_PUBLIC_LANGUAGE
+    },
     images: {
       formats: ['image/avif', 'image/webp'],
       minimumCacheTTL: 604800,
