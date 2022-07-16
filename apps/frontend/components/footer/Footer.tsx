@@ -7,18 +7,18 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { css } from '@emotion/react';
+import { PoweredByVercel } from 'components/footer/PoweredByVercel';
+import { SocialMediaIcon } from 'components/footer/SocialMediaIcon';
+import { TemplateAuthors } from 'components/footer/TemplateAuthors';
+import { GetFooterQuery } from 'generated/graphql';
+import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import { H, Level } from 'react-accessible-headings';
-import { GetFooterQuery } from '../../generated/graphql';
-import styles from './footer.module.css';
-import { PoweredByVercel } from './PoweredByVercel';
-import { SocialMediaIcon } from './SocialMediaIcon';
-import { TemplateAuthors } from './TemplateAuthors';
 import { MdMail } from 'react-icons/md';
-import DOMPurify from 'isomorphic-dompurify';
+import styles from './footer.module.css';
 
 export default function Footer({
   footerData,

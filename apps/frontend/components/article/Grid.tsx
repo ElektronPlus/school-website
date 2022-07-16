@@ -2,7 +2,7 @@ import {
   GetArticlesQuery,
   GetCategoriesBySlugQuery,
 } from '../../generated/graphql';
-import Article from '.';
+import Article from './Index';
 import styles from './grid.module.css';
 import Masonry from 'react-masonry-css';
 import { css } from '@emotion/react';

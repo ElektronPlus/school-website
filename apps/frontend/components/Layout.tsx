@@ -1,8 +1,8 @@
-import Navigation from './Navigation/navigation';
-import Footer from './Footer/footer';
-import { GetAlertQuery, GetFooterQuery } from '../generated/graphql';
 import { css } from '@emotion/react';
-import StrapiImage from './strapiImage';
+import Footer from 'components/footer/Footer';
+import Navigation from 'components/navigation/Navigation';
+import StrapiImage from 'components/StrapiImage';
+import { GetAlertQuery, GetFooterQuery } from 'generated/graphql';
 
 export default function Layout({
   children,

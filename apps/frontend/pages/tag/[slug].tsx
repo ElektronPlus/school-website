@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo';
-import ArticlesGrid from 'components/article/grid';
+import ArticlesGrid from 'components/article/Grid';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import {

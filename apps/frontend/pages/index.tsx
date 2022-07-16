@@ -1,4 +1,4 @@
-import ArticlesGrid from 'components/article/grid';
+import ArticlesGrid from 'components/article/Grid';
 import {
   GetHomePageQuery,
   GetArticlesDocument,

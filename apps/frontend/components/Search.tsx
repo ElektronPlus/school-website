@@ -5,10 +5,10 @@ import {
   Hits,
   InstantSearch,
   SearchBox,
-  useInstantSearch,
+  useInstantSearch
 } from 'react-instantsearch-hooks-web';
-import { searchClient } from '../lib/instantSearch';
-import { getArticlePathBySlug } from '../services/utils';
+import { searchClient } from 'lib/instantSearch';
+import { getArticlePathBySlug } from 'services/utils';
 
 function Hit({ hit }) {
   return (

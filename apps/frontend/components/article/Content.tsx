@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import DOMPurify from 'isomorphic-dompurify';
-import { getArticlePathBySlug } from '../../services/utils';
-import { ArticleReadMore } from './readMore';
+import { getArticlePathBySlug } from 'services/utils';
+import { ArticleReadMore } from 'components/article/ReadMore';
 
 export function ArticleContent({
   content,

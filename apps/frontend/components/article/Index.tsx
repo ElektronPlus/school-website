@@ -1,11 +1,11 @@
-import { ArticleEntity } from '../../generated/graphql';
-import StrapiImage from '../strapiImage';
+import { ArticleEntity } from 'generated/graphql';
+import StrapiImage from '../StrapiImage';
 import { css } from '@emotion/react';
-import { getCategoryPathBySlug } from '../../services/utils';
-import { ArticleAuthorCard } from 'components/article/author';
-import { ArticleTitle } from 'components/article/title';
-import { ArticleDetails } from 'components/article/details';
-import { ArticleContent } from 'components/article/content';
+import { getCategoryPathBySlug } from 'services/utils';
+import { ArticleAuthorCard } from 'components/article/Author';
+import { ArticleTitle } from 'components/article/Title';
+import { ArticleDetails } from 'components/article/Details';
+import { ArticleContent } from 'components/article/Content';
 import { Level } from 'react-accessible-headings';
 import { getStrapiMedia } from 'services/media';
 import styled from '@emotion/styled';

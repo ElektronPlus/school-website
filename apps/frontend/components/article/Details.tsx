@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import { ArticleCategory } from './category';
-import { ArticleDate } from './date';
+import { ArticleCategory } from './Category';
+import { ArticleDate } from './Date';
 
 export function ArticleDetails({
   publishedAt,

@@ -1,12 +1,12 @@
 import { css } from '@emotion/react';
-import { Alert } from 'components/Navigation/alert';
-import { Header } from 'components/Navigation/header';
+import { Alert } from 'components/navigation/Alert';
+import { Header } from 'components/navigation/Header';
 import { GetAlertQuery } from 'generated/graphql';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-const DynamicSearch = dynamic(() => import('components/search'), {
+const DynamicSearch = dynamic(() => import('components/Search'), {
   suspense: true,
 });
 

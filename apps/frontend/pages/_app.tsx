@@ -1,23 +1,23 @@
+import { ChakraProvider } from '@chakra-ui/react';
+import Layout from 'components/Layout';
+import { DefaultSeo } from 'next-seo';
+import type { AppProps } from 'next/app';
 import App, { AppContext } from 'next/app';
 import Head from 'next/head';
-import '../styles/globals.css';
 import { createContext } from 'react';
-import { getStrapiMedia } from '../services/media';
-import Layout from '../components/layout';
-import type { AppProps } from 'next/app';
+import { getStrapiMedia } from 'services/media';
 import {
   GetAlertDocument,
   GetAlertQuery,
   GetFooterDocument,
   GetFooterQuery,
   GetGlobalDocument,
-  GetGlobalQuery,
-} from '../generated/graphql';
-import client from '../lib/apolloClient';
-import { fetchAPI } from '../services/api';
-import { theme } from '../lib/chakraUi';
-import { ChakraProvider } from '@chakra-ui/react';
-import { DefaultSeo } from 'next-seo';
+  GetGlobalQuery
+} from 'generated/graphql';
+import client from 'lib/apolloClient';
+import { theme } from 'lib/chakraUi';
+import { fetchAPI } from 'services/api';
+import 'styles/globals.css';
 
 export const GlobalContext = createContext({});
 

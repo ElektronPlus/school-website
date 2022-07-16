@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo';
-import Article from 'components/article';
+import Article from 'components/article/Index';
 import {
   GetArticleBySlugDocument,
   GetArticleBySlugQuery,
