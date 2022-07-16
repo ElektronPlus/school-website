@@ -91,19 +91,7 @@ export default function Navigation({
           `}
         >
           <div></div>
-          <header
-            css={css`
-              width: 100%;
-            `}
-          >
-            <Link href="/" passHref>
-              <a>
-                <Header
-                  header={header}
-                />
-              </a>
-            </Link>
-          </header>
+          <Header header={header} />
           <div
             css={css`
               @media only screen and (min-width: 768px) {
