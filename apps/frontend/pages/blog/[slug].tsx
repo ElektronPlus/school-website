@@ -40,7 +40,7 @@ export default function ArticlePage({
             publishedTime: publishedAt,
             modifiedTime: updatedAt,
             authors: [
-              articleData.articles.data[0].attributes.author.data.attributes
+              articleData.articles.data[0].attributes.author?.data?.attributes
                 .name,
             ],
             tags: [category.data?.attributes.name],
