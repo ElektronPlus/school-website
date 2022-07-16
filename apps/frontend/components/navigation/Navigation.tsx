@@ -6,6 +6,8 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { PartialDeep } from 'type-fest';
+import { MdMenu } from 'react-icons/md';
+import { Popover } from '@headlessui/react';
 
 const DynamicSearch = dynamic(() => import('components/Search'), {
   suspense: true,
@@ -15,7 +17,7 @@ function getLinks({ navigationRes }) {
   return (
     <ul
       css={css`
-        padding: 0;
+        padding: 16px 0;
         width: 100%;
         margin: 0;
         @media only screen and (min-width: 768px) {
@@ -31,7 +33,7 @@ function getLinks({ navigationRes }) {
           css={css`
             max-width: 100%;
             list-style-type: none;
-            padding: 12px;
+            padding: 16px 0;
           `}
           key={item.uiRouterKey}
         >
@@ -75,36 +77,43 @@ export default function Navigation({
           margin-bottom: 50px;
         `}
       >
-        <div
-          css={css`
-            padding: 16px;
-            max-width: 1280px;
-            margin: auto;
-            display: grid;
-            gap: 32px;
-            @media only screen and (min-width: 768px) {
-              display: grid;
-              grid-template-columns: 1fr 2fr;
-              align-items: center;
-              gap: 16px;
-            }
-          `}
-        >
-          <div></div>
-          <Header header={header} />
+        <Popover css={{position: "relative"}}>
           <div
             css={css`
+              padding: 16px;
+              max-width: 1280px;
+              margin: auto;
+              display: grid;
               @media only screen and (min-width: 768px) {
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                align-items: center;
+                gap: 16px;
               }
             `}
           >
-            {getLinks({ navigationRes })}
-            <Suspense>
-              <DynamicSearch />
-            </Suspense>
+            <div css={{ display: 'flex' }}>
+              <Header header={header} />
+              <Popover.Button>
+                <MdMenu css={{ fontSize: '2rem' }} />
+              </Popover.Button>
+            </div>
+            <div
+              css={css`
+                @media only screen and (min-width: 768px) {
+                  display: flex;
+                }
+              `}
+            >
+              <div>
+                  <Popover.Panel css={{height: "60vh"}}>{getLinks({ navigationRes })}</Popover.Panel>
+              </div>
+              {/* <Suspense>
+                <DynamicSearch />
+              </Suspense> */}
+            </div>
           </div>
-        </div>
+        </Popover>
       </nav>
     </div>
   );
