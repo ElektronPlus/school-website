@@ -1,31 +1,49 @@
-import Seo from 'components/seo';
+import { NextSeo } from 'next-seo';
 import ArticlesGrid from 'components/article/grid';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import {
   GetCategoriesSlugsDocument,
-  GetCategoriesSlugsQuery,
   GetBlogPageDocument,
   GetBlogPageQuery,
-  GetCategoryPageQuery,
-  GetCategoryPageDocument,
+  GetCategoryArticlesBySlugQuery,
+  GetCategoryArticlesBySlugDocument,
   GetTranslationsDocument,
   GetTranslationsQuery,
+  GetCategoriesSlugsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 
-function Category({ categoryArticlesData, blogPageData, translationsData}: { categoryArticlesData: GetCategoryPageQuery; blogPageData: GetBlogPageQuery; translationsData: GetTranslationsQuery }) {
-  const { name, articles } = categoryArticlesData.categories.data[0].attributes;
-  const { previewMaxCharacters } = blogPageData.blog.data.attributes.categorySection;
+function Category({
+  categoryArticlesData,
+  blogPageData,
+  translationsData,
+}: {
+  categoryArticlesData: GetCategoryArticlesBySlugQuery;
+  blogPageData: GetBlogPageQuery;
+  translationsData: GetTranslationsQuery;
+}) {
+  const { name, articles, seo } =
+    categoryArticlesData.categories.data[0].attributes;
+  const { previewMaxCharacters } =
+    blogPageData.blog.data.attributes.categorySection;
   const { articleReadMore } = translationsData.translation.data.attributes;
-
 
   return (
     <>
-      {/* <Seo seo={seo} /> */}
+      <NextSeo
+        title={name}
+        description={seo?.metaDescription}
+        noindex={seo?.preventIndexing}
+      />
       <div>
         <div>
-          <ArticlesGrid articles={articles} sectionHeader={name} cardMaxCharacters={previewMaxCharacters} readMore={articleReadMore} />
+          <ArticlesGrid
+            articles={articles}
+            sectionHeader={name}
+            cardMaxCharacters={previewMaxCharacters}
+            readMore={articleReadMore}
+          />
         </div>
       </div>
     </>
@@ -50,23 +68,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const blogPageData: GetBlogPageQuery = (
     await client.query({
-      query: GetBlogPageDocument
+      query: GetBlogPageDocument,
     })
-  ).data
+  ).data;
 
-  const categoryArticlesData: GetCategoryPageQuery = (
+  const categoryArticlesData: GetCategoryArticlesBySlugQuery = (
     await client.query({
-      query: GetCategoryPageDocument,
-      variables: { slug: params.slug, entriesPerPage: blogPageData.blog.data.attributes.categorySection.entriesPerPage },
+      query: GetCategoryArticlesBySlugDocument,
+      variables: {
+        slug: params.slug,
+        entriesPerPage:
+          blogPageData.blog.data.attributes.categorySection.entriesPerPage,
+      },
     })
   ).data;
 
   const translationsData: GetTranslationsQuery = (
     await client.query({
-      query: GetTranslationsDocument
+      query: GetTranslationsDocument,
     })
-  ).data
-
+  ).data;
 
   return {
     props: {

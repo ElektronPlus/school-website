@@ -1,7 +1,10 @@
-query GetCategoryPage($entriesPerPage: Int, $slug: String) {
+query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
 	categories(filters: { slug: { eq: $slug } }) {
 		data {
 			attributes {
+				seo {
+					...seo
+				}
 				name
 				articles(
 					sort: "createdAt:desc"
@@ -48,8 +51,6 @@ query GetCategoryPage($entriesPerPage: Int, $slug: String) {
 fragment seo on ComponentSharedSeo {
 	metaDescription
 	preventIndexing
-	structuredData
-	keywords
 }
 
 fragment author on WriterEntity {

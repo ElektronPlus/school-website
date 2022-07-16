@@ -1,31 +1,38 @@
 import ArticlesGrid from 'components/article/grid';
-import Seo from 'components/seo';
 import {
   GetHomePageQuery,
   GetArticlesDocument,
   GetArticlesQuery,
   GetHomePageDocument,
   GetTranslationsQuery,
-  GetTranslationsDocument
+  GetTranslationsDocument,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
+import { NextSeo } from 'next-seo';
 
 export default function Home({
   articlesData,
   homePageData,
-  translationsData
+  translationsData,
 }: {
   articlesData: GetArticlesQuery;
   homePageData: GetHomePageQuery;
   translationsData: GetTranslationsQuery;
 }) {
   const { articles } = articlesData;
-  const { header, previewMaxCharacters } = homePageData.homepage.data.attributes.articlesSection
-  const { articleReadMore, paginationNextPage } = translationsData.translation.data.attributes;
+  const { header, previewMaxCharacters } =
+    homePageData.homepage.data.attributes.articlesSection;
+  const { articleReadMore, paginationNextPage } =
+    translationsData.translation.data.attributes;
 
   return (
     <>
-      <Seo seo={homePageData.homepage.data.attributes.seo} />
+      <NextSeo
+        description={
+          homePageData.homepage.data?.attributes?.seo?.metaDescription
+        }
+        noindex={homePageData.homepage.data?.attributes?.seo?.preventIndexing}
+      />
       <div>
         <div>
           <ArticlesGrid
@@ -59,9 +66,9 @@ export async function getStaticProps() {
 
   const translationsData: GetTranslationsQuery = (
     await client.query({
-      query: GetTranslationsDocument
+      query: GetTranslationsDocument,
     })
-  ).data
+  ).data;
 
   return {
     props: {

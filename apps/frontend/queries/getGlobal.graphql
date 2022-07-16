@@ -5,42 +5,40 @@ query getGlobal {
 			attributes {
 				siteName
 				siteDescription
+				shareImage {
+					data {
+						...image
+					}
+				}
 				createdAt
 				updatedAt
 				background {
 					data {
-						attributes {
-							updatedAt
-							alternativeText
-							width
-							height
-							url
-						}
+						...image
 					}
 				}
 				favicon {
 					data {
-						attributes {
-							updatedAt
-							alternativeText
-							width
-							height
-							url
-						}
+						...image
 					}
 				}
 				logo {
 					data {
-						attributes {
-							updatedAt
-							alternativeText
-							width
-							height
-							url
-						}
+						...image
 					}
 				}
 			}
 		}
+	}
+}
+
+fragment image on UploadFileEntity {
+	attributes {
+		alternativeText
+		width
+		height
+		placeholder
+		updatedAt
+		url
 	}
 }

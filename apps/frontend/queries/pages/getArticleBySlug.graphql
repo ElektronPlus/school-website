@@ -1,16 +1,13 @@
-query getArticles($articlesPerPage: Int) {
-	articles(sort: "createdAt:desc", pagination: { limit: $articlesPerPage }) {
+query GetArticleBySlug($slug: String) {
+	articles(filters: { slug: { eq: $slug } }) {
 		data {
-			id
 			attributes {
 				title
 				content
 				slug
-				image {
-					data {
-						...image
-					}
-				}
+				createdAt
+				publishedAt
+				updatedAt
 				category {
 					data {
 						attributes {
@@ -19,16 +16,18 @@ query getArticles($articlesPerPage: Int) {
 						}
 					}
 				}
+				seo {
+					...seo
+				}
 				author {
 					data {
 						...author
 					}
 				}
-				createdAt
-				updatedAt
-				publishedAt
-				seo {
-					...seo
+				image {
+					data {
+						...image
+					}
 				}
 			}
 		}

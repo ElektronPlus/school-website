@@ -16,6 +16,7 @@
     "@sentry/nextjs": "^7.3.0",
     "isomorphic-dompurify": "^0.20.0",
     "next": "^12.2.0",
+    "next-seo": "^5.4.0",
     "qs": "^6.10.3",
     "react": "18.1.0",
     "react-accessible-headings": "^4.2.0",

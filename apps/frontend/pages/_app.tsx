@@ -5,32 +5,75 @@ import { createContext } from 'react';
 import { getStrapiMedia } from '../services/media';
 import Layout from '../components/layout';
 import type { AppProps } from 'next/app';
-import { GetAlertDocument, GetAlertQuery, GetFooterDocument, GetFooterQuery, GetGlobalDocument, GetGlobalQuery } from '../generated/graphql';
+import {
+  GetAlertDocument,
+  GetAlertQuery,
+  GetFooterDocument,
+  GetFooterQuery,
+  GetGlobalDocument,
+  GetGlobalQuery,
+} from '../generated/graphql';
 import client from '../lib/apolloClient';
 import { fetchAPI } from '../services/api';
 import { theme } from '../lib/chakraUi';
 import { ChakraProvider } from '@chakra-ui/react';
+import { DefaultSeo } from 'next-seo';
 
 export const GlobalContext = createContext({});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { globalData, navigationRes, footerData, footerLinksRes, alertData }: {globalData: GetGlobalQuery, navigationRes: any, footerData: GetFooterQuery, footerLinksRes: any, alertData: GetAlertQuery} = pageProps;
+  const {
+    globalData,
+    navigationRes,
+    footerData,
+    footerLinksRes,
+    alertData,
+  }: {
+    globalData: GetGlobalQuery;
+    navigationRes: any;
+    footerData: GetFooterQuery;
+    footerLinksRes: any;
+    alertData: GetAlertQuery;
+  } = pageProps;
+
+  const { attributes } = globalData.global.data;
 
   return (
     <>
       <Head>
-        <link
-          rel="shortcut icon"
-          href={getStrapiMedia(globalData.global.data.attributes.favicon)}
-        />
+        <link rel="shortcut icon" href={getStrapiMedia(attributes.favicon)} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <GlobalContext.Provider value={globalData.global.data.attributes}>
-        <ChakraProvider theme={theme}>
-          <Layout background={globalData.global.data.attributes.background} footerData={footerData} footerLinks={footerLinksRes} navigationRes={navigationRes} alertData={alertData} headerImgSrc={getStrapiMedia(globalData.global.data.attributes.logo)} headerAlternativeText={globalData.global.data.attributes.logo.data.attributes.alternativeText}>
-            <Component {...pageProps} />
-          </Layout>
-        </ChakraProvider>
-      </GlobalContext.Provider>
+      <DefaultSeo
+        openGraph={{
+          images: [
+            {
+              url: getStrapiMedia(attributes.shareImage),
+              width: attributes.shareImage.data.attributes.width,
+              height: attributes.shareImage.data.attributes.height,
+              alt: attributes.shareImage.data.attributes.alternativeText,
+            },
+          ],
+        }}
+        description={attributes.siteDescription}
+        titleTemplate={`%s | ${attributes.siteName}`}
+        defaultTitle={attributes.siteName}
+      />
+      <ChakraProvider theme={theme}>
+        <Layout
+          background={attributes.background}
+          footerData={footerData}
+          footerLinks={footerLinksRes}
+          navigationRes={navigationRes}
+          alertData={alertData}
+          headerImgSrc={getStrapiMedia(attributes.logo)}
+          headerAlternativeText={
+            attributes.logo.data.attributes.alternativeText
+          }
+        >
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
     </>
   );
 }
@@ -44,8 +87,8 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
   });
 
   const footerLinksRes = await fetchAPI('/navigation/render/footerColumns', {
-    type: 'tree'
-  })
+    type: 'tree',
+  });
 
   const footerData: GetFooterQuery = (
     await client.query({ query: GetFooterDocument })
@@ -61,6 +104,12 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 
   return {
     ...appProps,
-    pageProps: { globalData, navigationRes, footerData, footerLinksRes, alertData },
+    pageProps: {
+      globalData,
+      navigationRes,
+      footerData,
+      footerLinksRes,
+      alertData,
+    },
   };
 };

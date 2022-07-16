@@ -22,6 +22,4 @@ fragment articlesSection on ComponentArticlesArticlesSection {
 fragment seo on ComponentSharedSeo {
 	metaDescription
 	preventIndexing
-	structuredData
-	keywords
 }
