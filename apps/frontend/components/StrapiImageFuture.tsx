@@ -1,9 +1,9 @@
 import { getStrapiMedia } from '../services/media';
-import NextImage, { ImageProps } from 'next/image';
+import NextImage, { ImageProps } from 'next/future/image';
 import { UploadFileEntityResponse } from '../generated/graphql';
 import { PartialDeep } from 'type-fest';
 
-export function StrapiImage({
+export function StrapiImageFuture({
   image,
   imageProps,
 }: {
@@ -20,13 +20,8 @@ export function StrapiImage({
 
   const { alternativeText, width, height, placeholder } = image.data.attributes;
 
-  const defaultImageProps: PartialDeep<ImageProps> = {
-    layout: 'responsive',
-    objectFit: 'contain',
-  };
 
   const imagePropsWithDefaults = {
-    ...defaultImageProps,
     ...imageProps,
   };
 
@@ -34,13 +29,11 @@ export function StrapiImage({
     ? { placeholder: 'blur', blurDataURL: placeholder }
     : null;
 
-  // according to the next.js docs, layout fill shouldn't have size props
-  const sizeProps =
-    imagePropsWithDefaults.layout === 'fill' ? null : { width, height };
 
   return (
     <NextImage
-      {...sizeProps}
+      width={width}
+      height={height}
       src={getStrapiMedia(image)}
       alt={alternativeText || ''}
       {...imagePropsWithDefaults}

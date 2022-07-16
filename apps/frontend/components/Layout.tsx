@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
 import Footer from 'components/footer/Footer';
 import Navigation from 'components/navigation/Navigation';
-import StrapiImage from 'components/StrapiImage';
-import { GetAlertQuery, GetFooterQuery } from 'generated/graphql';
+import { StrapiImage } from 'components/StrapiImage';
+import { GetAlertQuery, GetFooterQuery, UploadFileEntityResponse } from 'generated/graphql';
+import type {PartialDeep} from 'type-fest';
 
 export default function Layout({
   children,
@@ -11,8 +12,7 @@ export default function Layout({
   footerLinks,
   background,
   alertData,
-  headerImgSrc,
-  headerAlternativeText,
+  header
 }: {
   children: React.ReactNode;
   navigationRes: object;
@@ -20,8 +20,7 @@ export default function Layout({
   footerLinks: object[];
   background: object;
   alertData: GetAlertQuery;
-  headerImgSrc: string;
-  headerAlternativeText?: string;
+  header: PartialDeep<UploadFileEntityResponse>;
 }) {
   return (
     <>
@@ -44,8 +43,7 @@ export default function Layout({
         />
       </div>
       <Navigation
-        headerImgSrc={headerImgSrc}
-        headerAlternativeText={headerAlternativeText}
+        header={header}
         navigationRes={navigationRes}
         alertData={alertData}
       />

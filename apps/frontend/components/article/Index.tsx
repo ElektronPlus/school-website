@@ -1,5 +1,5 @@
 import { ArticleEntity } from 'generated/graphql';
-import StrapiImage from '../StrapiImage';
+import { StrapiImage } from '../StrapiImage';
 import { css } from '@emotion/react';
 import { getCategoryPathBySlug } from 'services/utils';
 import { ArticleAuthorCard } from 'components/article/Author';

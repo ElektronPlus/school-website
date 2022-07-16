@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
 import { Header } from 'components/navigation/Header';
-import { GetAlertQuery } from 'generated/graphql';
+import { GetAlertQuery, UploadFileEntityResponse } from 'generated/graphql';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
@@ -30,7 +30,7 @@ function getLinks({ navigationRes }) {
           css={css`
             max-width: 100%;
             list-style-type: none;
-            text-align: center;
+            padding: 12px;
           `}
           key={item.uiRouterKey}
         >
@@ -44,18 +44,16 @@ function getLinks({ navigationRes }) {
 }
 
 export default function Navigation({
-  headerImgSrc,
-  headerAlternativeText,
+  header,
   navigationRes,
   alertData,
 }: {
   navigationRes: object;
-  headerImgSrc: string;
-  headerAlternativeText?: string;
+  header: UploadFileEntityResponse;
   alertData: GetAlertQuery;
 }) {
   return (
-    <nav
+    <div
       css={{
         position: 'sticky',
         zIndex: 10,
@@ -70,7 +68,7 @@ export default function Navigation({
           message={alertData.alert.data.attributes.message}
         />
       )}
-      <div
+      <nav
         css={css`
           border-bottom: #d9d9d9 1px solid;
           margin-bottom: 50px;
@@ -81,13 +79,17 @@ export default function Navigation({
             padding: 16px;
             max-width: 1280px;
             margin: auto;
+            display: grid;
+            gap: 32px;
             @media only screen and (min-width: 768px) {
-              display: flex;
+              display: grid;
+              grid-template-columns: 1fr 2fr;
               align-items: center;
               gap: 16px;
             }
           `}
         >
+          <div></div>
           <header
             css={css`
               width: 100%;
@@ -96,18 +98,25 @@ export default function Navigation({
             <Link href="/" passHref>
               <a>
                 <Header
-                  src={headerImgSrc}
-                  alternativeText={headerAlternativeText}
+                  header={header}
                 />
               </a>
             </Link>
           </header>
-          {getLinks({ navigationRes })}
-          <Suspense>
-            <DynamicSearch />
-          </Suspense>
+          <div
+            css={css`
+              @media only screen and (min-width: 768px) {
+                display: flex;
+              }
+            `}
+          >
+            {getLinks({ navigationRes })}
+            <Suspense>
+              <DynamicSearch />
+            </Suspense>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }

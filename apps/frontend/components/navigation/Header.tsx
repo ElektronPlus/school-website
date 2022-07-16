@@ -1,13 +1,13 @@
-import Image from 'next/image';
+import { UploadFileEntityResponse } from 'generated/graphql';
+import { StrapiImageFuture } from 'components/StrapiImageFuture';
 import { H } from 'react-accessible-headings';
 
 export function Header({
-  src,
-  alternativeText = 'Logo',
+  header
 }: {
-  src: string;
-  alternativeText?: string;
+  header: UploadFileEntityResponse;
 }) {
+
   return (
     <H
       css={{
@@ -17,14 +17,7 @@ export function Header({
         display: 'block',
       }}
     >
-      <Image
-        objectFit="contain"
-        layout="fill"
-        sizes="16rem"
-        priority
-        alt={alternativeText}
-        src={src}
-      ></Image>
+      <StrapiImageFuture image={header} imageProps={{priority: true, sizes: "400px", style: {width: "auto", height: "2rem"} }}/>
     </H>
   );
 }

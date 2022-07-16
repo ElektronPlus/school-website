@@ -66,10 +66,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           footerLinks={footerLinksRes}
           navigationRes={navigationRes}
           alertData={alertData}
-          headerImgSrc={getStrapiMedia(attributes.logo)}
-          headerAlternativeText={
-            attributes.logo.data.attributes.alternativeText
-          }
+          header={attributes.logo}
         >
           <Component {...pageProps} />
         </Layout>
