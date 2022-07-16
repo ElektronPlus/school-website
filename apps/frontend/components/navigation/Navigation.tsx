@@ -5,6 +5,7 @@ import { GetAlertQuery, UploadFileEntityResponse } from 'generated/graphql';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import { PartialDeep } from 'type-fest';
 
 const DynamicSearch = dynamic(() => import('components/Search'), {
   suspense: true,
@@ -49,7 +50,7 @@ export default function Navigation({
   alertData,
 }: {
   navigationRes: object;
-  header: UploadFileEntityResponse;
+  header: PartialDeep<UploadFileEntityResponse>;
   alertData: GetAlertQuery;
 }) {
   return (

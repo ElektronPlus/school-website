@@ -25,6 +25,11 @@ const moduleExports = {
     loader: 'default',
     domains: [process.env.NEXT_PUBLIC_STRAPI_API_URL],
   },
+  experimental: {
+    images: {
+      allowFutureImage: true
+    }
+  },
   env: {
     NEXT_PUBLIC_MEILISEARCH_INSTANCE_URL: process.env.MEILI_HOST,
   },

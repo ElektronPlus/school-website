@@ -7,7 +7,7 @@ export function StrapiImageFuture({
   image,
   imageProps,
 }: {
-  image: UploadFileEntityResponse;
+  image: PartialDeep<UploadFileEntityResponse>;
   imageProps?: PartialDeep<ImageProps>;
 }) {
   if (image.data === null) {

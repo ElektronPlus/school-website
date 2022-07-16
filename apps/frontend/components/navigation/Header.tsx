@@ -1,11 +1,12 @@
 import { UploadFileEntityResponse } from 'generated/graphql';
 import { StrapiImageFuture } from 'components/StrapiImageFuture';
 import { H } from 'react-accessible-headings';
+import { PartialDeep } from 'type-fest';
 
 export function Header({
   header
 }: {
-  header: UploadFileEntityResponse;
+  header: PartialDeep<UploadFileEntityResponse>;
 }) {
 
   return (
