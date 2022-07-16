@@ -9,6 +9,7 @@ import { ArticleContent } from 'components/article/Content';
 import { Level } from 'react-accessible-headings';
 import { getStrapiMedia } from 'services/media';
 import styled from '@emotion/styled';
+import { PartialDeep } from 'type-fest';
 
 function Article({
   article,
@@ -17,7 +18,7 @@ function Article({
   cardMaxCharacters = 500,
   isPriority = false,
 }: {
-  article: ArticleEntity;
+  article: PartialDeep<ArticleEntity>;
   isSingleArticlePage: boolean;
   readMore?: string;
   cardMaxCharacters?: number;
