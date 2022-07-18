@@ -1,13 +1,25 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
-import { GetAlertQuery, UploadFileEntityResponse, Maybe, NavigationItem } from 'generated/graphql';
+import {
+  GetAlertQuery,
+  UploadFileEntityResponse,
+  Maybe,
+  NavigationItem,
+} from 'generated/graphql';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { PartialDeep } from 'type-fest';
-import { TabletAndBelow } from 'components/utils/responsive';
+import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
 
 const DynamicMobileMenu = dynamic(
   () => import('components/navigation/MobileMenu'),
+  {
+    suspense: true,
+  }
+);
+
+const DynamicDesktopMenu = dynamic(
+  () => import('components/navigation/DesktopMenu'),
   {
     suspense: true,
   }
@@ -38,12 +50,16 @@ export default function Navigation({
           margin-bottom: 50px;
         `}
       >
-        <TabletAndBelow
-        >
+        <TabletAndBelow>
           <Suspense>
             <DynamicMobileMenu navigationRes={navigationRes} header={header} />
           </Suspense>
         </TabletAndBelow>
+        <DesktopContainer>
+          <Suspense>
+            <DynamicDesktopMenu navigationRes={navigationRes} header={header}/>
+          </Suspense>
+        </DesktopContainer>
 
         {alertData.alert.data.attributes.isVisible && (
           <Alert
