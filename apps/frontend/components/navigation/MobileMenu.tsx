@@ -125,7 +125,7 @@ export default function MobileMenu({
             padding: '16px',
           }}
         >
-          <div css={{ display: 'flex' }}>
+          <div css={{ display: 'flex', justifyContent: "space-between" }}>
             <Header header={header} />
             <Popover.Button>
               {open ? (
