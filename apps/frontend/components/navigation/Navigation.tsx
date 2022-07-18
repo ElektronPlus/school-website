@@ -1,13 +1,9 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
-import { Header } from 'components/navigation/Header';
-import { GetAlertQuery, UploadFileEntityResponse } from 'generated/graphql';
-import Link from 'next/link';
+import { GetAlertQuery, UploadFileEntityResponse, Maybe, NavigationItem } from 'generated/graphql';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { PartialDeep } from 'type-fest';
-import { MdMenu } from 'react-icons/md';
-import { Popover } from '@headlessui/react';
 import { TabletAndBelow } from 'components/utils/responsive';
 
 const DynamicMobileMenu = dynamic(
@@ -22,7 +18,7 @@ export default function Navigation({
   navigationRes,
   alertData,
 }: {
-  navigationRes: object;
+  navigationRes: Array<Maybe<NavigationItem>>;
   header: PartialDeep<UploadFileEntityResponse>;
   alertData: GetAlertQuery;
 }) {
@@ -43,11 +39,6 @@ export default function Navigation({
         `}
       >
         <TabletAndBelow
-          css={css`
-            @media (min-width: 1279px) {
-              display: none !important;
-            }
-          `}
         >
           <Suspense>
             <DynamicMobileMenu navigationRes={navigationRes} header={header} />
