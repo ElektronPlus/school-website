@@ -12,7 +12,9 @@ import {
   GetFooterDocument,
   GetFooterQuery,
   GetGlobalDocument,
-  GetGlobalQuery
+  GetGlobalQuery,
+  Maybe,
+  NavigationItem
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 import { theme } from 'lib/chakraUi';
@@ -30,9 +32,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     alertData,
   }: {
     globalData: GetGlobalQuery;
-    navigationRes: any;
+    navigationRes: Array<Maybe<NavigationItem>>;
     footerData: GetFooterQuery;
-    footerLinksRes: any;
+    footerLinksRes: Array<Maybe<NavigationItem>>;
     alertData: GetAlertQuery;
   } = pageProps;
 
