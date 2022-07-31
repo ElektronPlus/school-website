@@ -17,9 +17,17 @@ function DesktopMenuPopoverPanel({ items }: { items: NavigationItem[] }) {
         position: 'absolute',
         margin: "auto",
         width: "75%",
-        backgroundColor: "#ffffff",
         borderRadius: "8px",
-        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)"
+        backgroundColor: "#ffffff87",
+        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)",
+        '&:before': {
+          content: '""',
+          zIndex: -1,
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          backdropFilter: "blur(48px)",
+        }
       }}
     >
       <ul css={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", maxWidth: "1280px", padding: "32px"}}>
