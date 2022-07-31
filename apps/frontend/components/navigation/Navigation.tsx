@@ -6,24 +6,10 @@ import {
   Maybe,
   NavigationItem,
 } from 'generated/graphql';
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 import { PartialDeep } from 'type-fest';
 import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
-
-const DynamicMobileMenu = dynamic(
-  () => import('components/navigation/MobileMenu'),
-  {
-    suspense: true,
-  }
-);
-
-const DynamicDesktopMenu = dynamic(
-  () => import('components/navigation/DesktopMenu'),
-  {
-    suspense: true,
-  }
-);
+import { MobileMenu } from 'components/navigation/MobileMenu';
+import { DesktopMenu } from 'components/navigation/DesktopMenu';
 
 export default function Navigation({
   header,
@@ -51,14 +37,10 @@ export default function Navigation({
         `}
       >
         <TabletAndBelow>
-          <Suspense>
-            <DynamicMobileMenu navigationRes={navigationRes} header={header} />
-          </Suspense>
+            <MobileMenu navigationRes={navigationRes} header={header} />
         </TabletAndBelow>
         <DesktopContainer>
-          <Suspense>
-            <DynamicDesktopMenu navigationRes={navigationRes} header={header}/>
-          </Suspense>
+            <DesktopMenu navigationRes={navigationRes} header={header}/>
         </DesktopContainer>
 
         {alertData.alert.data.attributes.isVisible && (

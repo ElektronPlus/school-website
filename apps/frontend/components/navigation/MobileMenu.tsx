@@ -108,7 +108,7 @@ export function SeeMore({ text, path }: { text: string; path: string }) {
   );
 }
 
-export default function MobileMenu({
+export function MobileMenu({
   header,
   navigationRes,
 }: {
