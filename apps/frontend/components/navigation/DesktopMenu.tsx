@@ -7,6 +7,8 @@ import { PartialDeep } from 'type-fest';
 import { Header } from 'components/navigation/Header';
 import Link from 'next/link';
 import { Popover } from '@headlessui/react';
+import { MdExpandMore } from 'react-icons/md';
+import { ExpandButton } from './ExpandButton';
 
 function DesktopMenuPopoverPanel({ items }: { items: NavigationItem[] }) {
   return (
@@ -18,16 +20,8 @@ function DesktopMenuPopoverPanel({ items }: { items: NavigationItem[] }) {
         margin: "auto",
         width: "75%",
         borderRadius: "8px",
-        backgroundColor: "#ffffff87",
-        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)",
-        '&:before': {
-          content: '""',
-          zIndex: -1,
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          backdropFilter: "blur(48px)",
-        }
+        backgroundColor: "#ffffff",
+        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)"
       }}
     >
       <ul css={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", maxWidth: "1280px", padding: "32px"}}>
@@ -49,10 +43,23 @@ function DesktopMenuLink({ item }: { item: NavigationItem }) {
     <li>
       <Link href={item.path} passHref>
         <Popover>
-          <Popover.Button>
-            <a>{item.title}</a>
+        {({ open }) => (
+          <>
+          <Popover.Button
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              gap: '4px'
+            }}
+          >
+            <span>{item.title}</span>
+            <ExpandButton open={open}/>
           </Popover.Button>
           <DesktopMenuPopoverPanel items={item.items} />
+          </>
+        )}
         </Popover>
       </Link>
     </li>

@@ -11,6 +11,7 @@ import { MdClose } from 'react-icons/md';
 import { H, Level } from 'react-accessible-headings';
 import Search from 'components/Search';
 import { Header } from './Header';
+import { ExpandButton } from './ExpandButton';
 
 export function MobileMenuLinks({
   navigationRes,
@@ -39,11 +40,7 @@ export function MobileMenuLinks({
                 }}
               >
                 <H>{item.title}</H>
-                <MdExpandMore
-                  css={{
-                    fontSize: '1.5rem',
-                    transform: `rotate(${open ? 180 : 0}deg)`,
-                  }} />
+                <ExpandButton open={open} scale={1.5}/>
               </Disclosure.Button>
               <Disclosure.Panel>
                 <ul
