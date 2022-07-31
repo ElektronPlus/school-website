@@ -9,7 +9,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const images = process.env.NEXT_PUBLIC_STRAPI_API_URL | "strapi.elektronplus.pl"
+const images = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? "strapi.elektronplus.pl"
 
 const moduleExports = {
   reactStrictMode: true,
