@@ -1,0 +1,64 @@
+query getArticles($articlesPerPage: Int) {
+  articles(sort: "createdAt:desc", pagination: { limit: $articlesPerPage }) {
+    data {
+      id
+      attributes {
+        title
+        content
+        slug
+        image {
+          data {
+            ...image
+          }
+        }
+        category {
+          data {
+            attributes {
+              name
+              slug
+            }
+          }
+        }
+        author {
+          data {
+            ...author
+          }
+        }
+        createdAt
+        updatedAt
+        publishedAt
+        seo {
+          ...seo
+        }
+      }
+    }
+  }
+}
+
+fragment seo on ComponentSharedSeo {
+  metaDescription
+  preventIndexing
+}
+
+fragment author on WriterEntity {
+  attributes {
+    name
+    description
+    picture {
+      data {
+        ...image
+      }
+    }
+  }
+}
+
+fragment image on UploadFileEntity {
+  attributes {
+    alternativeText
+    width
+    height
+    placeholder
+    updatedAt
+    url
+  }
+}

@@ -1,0 +1,10 @@
+query getArticlesSlugs {
+  articles {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
+}

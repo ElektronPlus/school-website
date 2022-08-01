@@ -1,0 +1,10 @@
+query getCategoriesSlugs {
+  categories {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
+}

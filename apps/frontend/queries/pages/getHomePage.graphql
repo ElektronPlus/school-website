@@ -1,0 +1,25 @@
+query getHomePage {
+  homepage {
+    data {
+      attributes {
+        seo {
+          ...seo
+        }
+        articlesSection {
+          ...articlesSection
+        }
+      }
+    }
+  }
+}
+
+fragment articlesSection on ComponentArticlesArticlesSection {
+  header
+  entriesPerPage
+  previewMaxCharacters
+}
+
+fragment seo on ComponentSharedSeo {
+  metaDescription
+  preventIndexing
+}

@@ -1,0 +1,77 @@
+query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
+  categories(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        seo {
+          ...seo
+        }
+        name
+        articles(
+          sort: "createdAt:desc"
+          pagination: { limit: $entriesPerPage }
+        ) {
+          data {
+            id
+            attributes {
+              title
+              content
+              slug
+              image {
+                data {
+                  ...image
+                }
+              }
+              category {
+                data {
+                  attributes {
+                    name
+                    slug
+                  }
+                }
+              }
+              author {
+                data {
+                  ...author
+                }
+              }
+              createdAt
+              updatedAt
+              publishedAt
+              seo {
+                ...seo
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment seo on ComponentSharedSeo {
+  metaDescription
+  preventIndexing
+}
+
+fragment author on WriterEntity {
+  attributes {
+    name
+    description
+    picture {
+      data {
+        ...image
+      }
+    }
+  }
+}
+
+fragment image on UploadFileEntity {
+  attributes {
+    alternativeText
+    width
+    height
+    placeholder
+    updatedAt
+    url
+  }
+}

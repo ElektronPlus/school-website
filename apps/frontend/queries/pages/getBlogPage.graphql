@@ -1,0 +1,20 @@
+query getBlogPage {
+  blog {
+    data {
+      attributes {
+        articlesSection {
+          ...articleSectionComponent
+        }
+        categorySection {
+          ...articleSectionComponent
+        }
+      }
+    }
+  }
+}
+
+fragment articleSectionComponent on ComponentArticlesArticlesSection {
+  entriesPerPage
+  header
+  previewMaxCharacters
+}

@@ -1,0 +1,63 @@
+query GetArticleBySlug($slug: String) {
+  articles(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        title
+        content
+        slug
+        createdAt
+        publishedAt
+        updatedAt
+        category {
+          data {
+            attributes {
+              name
+              slug
+            }
+          }
+        }
+        seo {
+          ...seo
+        }
+        author {
+          data {
+            ...author
+          }
+        }
+        image {
+          data {
+            ...image
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment seo on ComponentSharedSeo {
+  metaDescription
+  preventIndexing
+}
+
+fragment author on WriterEntity {
+  attributes {
+    name
+    description
+    picture {
+      data {
+        ...image
+      }
+    }
+  }
+}
+
+fragment image on UploadFileEntity {
+  attributes {
+    alternativeText
+    width
+    height
+    placeholder
+    updatedAt
+    url
+  }
+}

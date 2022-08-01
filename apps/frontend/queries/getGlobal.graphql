@@ -1,0 +1,44 @@
+query getGlobal {
+  global {
+    data {
+      id
+      attributes {
+        siteName
+        siteDescription
+        shareImage {
+          data {
+            ...image
+          }
+        }
+        createdAt
+        updatedAt
+        background {
+          data {
+            ...image
+          }
+        }
+        favicon {
+          data {
+            ...image
+          }
+        }
+        logo {
+          data {
+            ...image
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment image on UploadFileEntity {
+  attributes {
+    alternativeText
+    width
+    height
+    placeholder
+    updatedAt
+    url
+  }
+}

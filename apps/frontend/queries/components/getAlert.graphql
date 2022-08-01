@@ -1,0 +1,11 @@
+query getAlert {
+  alert {
+    data {
+      attributes {
+        message
+        link
+        isVisible
+      }
+    }
+  }
+}
