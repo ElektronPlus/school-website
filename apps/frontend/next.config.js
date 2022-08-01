@@ -9,6 +9,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const images = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? "strapi.elektronplus.pl"
+
 const moduleExports = {
   reactStrictMode: true,
   compiler: {
@@ -23,7 +25,12 @@ const moduleExports = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 604800,
     loader: 'default',
-    domains: [process.env.NEXT_PUBLIC_STRAPI_API_URL],
+    domains: [images],
+  },
+  experimental: {
+    images: {
+      allowFutureImage: true
+    }
   },
   env: {
     NEXT_PUBLIC_MEILISEARCH_INSTANCE_URL: process.env.MEILI_HOST,

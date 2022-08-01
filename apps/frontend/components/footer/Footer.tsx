@@ -13,7 +13,7 @@ import { css } from '@emotion/react';
 import { PoweredByVercel } from 'components/footer/PoweredByVercel';
 import { SocialMediaIcon } from 'components/footer/SocialMediaIcon';
 import { TemplateAuthors } from 'components/footer/TemplateAuthors';
-import { GetFooterQuery } from 'generated/graphql';
+import { GetFooterQuery, Maybe, NavigationItem } from 'generated/graphql';
 import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
 import { H, Level } from 'react-accessible-headings';
@@ -25,7 +25,7 @@ export default function Footer({
   footerLinks,
 }: {
   footerData: GetFooterQuery;
-  footerLinks: any;
+  footerLinks: Array<Maybe<NavigationItem>>;
 }) {
   return (
     <footer className={styles.footer}>

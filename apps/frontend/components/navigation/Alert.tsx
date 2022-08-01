@@ -24,7 +24,7 @@ export function Alert({
       css={{
         padding: '8px',
         textAlign: 'center',
-        borderBottom: '#00000075 2px dashed',
+        borderTop: '#00000075 2px dashed',
         fontWeight: 700,
       }}
     >

@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
+    "@headlessui/react": "^1.6.6",
     "@meilisearch/instant-meilisearch": "^0.7.1",
+    "@radix-ui/react-navigation-menu": "^0.1.3-rc.46",
     "@sentry/nextjs": "^7.3.0",
     "isomorphic-dompurify": "^0.20.0",
     "next": "^12.2.0",
     "next-seo": "^5.4.0",
+    "prettier": "^2.7.1",
     "qs": "^6.10.3",
     "react": "18.1.0",
     "react-accessible-headings": "^4.2.0",
@@ -44,6 +47,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-storybook": "^0.5.13",
     "react-icons": "^4.4.0",
+    "type-fest": "^2.16.0",
     "typescript": "^4.6.4",
     "webpack": "^5.72.1"
   }

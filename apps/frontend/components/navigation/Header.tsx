@@ -1,30 +1,37 @@
-import Image from 'next/image';
-import { H } from 'react-accessible-headings';
+import { UploadFileEntityResponse } from 'generated/graphql';
+import { StrapiImageFuture } from 'components/StrapiImageFuture';
+import { H, Level } from 'react-accessible-headings';
+import { PartialDeep } from 'type-fest';
+import Link from 'next/link';
 
 export function Header({
-  src,
-  alternativeText = 'Logo',
+  header,
 }: {
-  src: string;
-  alternativeText?: string;
+  header: PartialDeep<UploadFileEntityResponse>;
 }) {
   return (
-    <H
-      css={{
-        position: 'relative',
-        width: '100%',
-        height: '2rem',
-        display: 'block',
-      }}
-    >
-      <Image
-        objectFit="contain"
-        layout="fill"
-        sizes="16rem"
-        priority
-        alt={alternativeText}
-        src={src}
-      ></Image>
-    </H>
+      <header css={{ width: '100%' }}>
+        <Link href="/" passHref>
+          <a>
+            <H
+              css={{
+                position: 'relative',
+                width: '100%',
+                height: '2rem',
+                display: 'block',
+              }}
+            >
+              <StrapiImageFuture
+                image={header}
+                imageProps={{
+                  priority: true,
+                  sizes: '400px',
+                  style: { width: 'auto', height: '2rem' },
+                }}
+              />
+            </H>
+          </a>
+        </Link>
+      </header>
   );
 }

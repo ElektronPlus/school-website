@@ -1,61 +1,27 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
-import { Header } from 'components/navigation/Header';
-import { GetAlertQuery } from 'generated/graphql';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
-
-const DynamicSearch = dynamic(() => import('components/Search'), {
-  suspense: true,
-});
-
-function getLinks({ navigationRes }) {
-  return (
-    <ul
-      css={css`
-        padding: 0;
-        width: 100%;
-        margin: 0;
-        @media only screen and (min-width: 768px) {
-          display: flex;
-          align-items: center;
-          align-content: space-between;
-          gap: 32px;
-        }
-      `}
-    >
-      {navigationRes.map((item) => (
-        <li
-          css={css`
-            max-width: 100%;
-            list-style-type: none;
-            text-align: center;
-          `}
-          key={item.uiRouterKey}
-        >
-          <Link passHref href={item.path}>
-            <a>{item.title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
+import {
+  GetAlertQuery,
+  UploadFileEntityResponse,
+  Maybe,
+  NavigationItem,
+} from 'generated/graphql';
+import { PartialDeep } from 'type-fest';
+import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
+import { MobileMenu } from 'components/navigation/MobileMenu';
+import { DesktopMenu } from 'components/navigation/DesktopMenu';
 
 export default function Navigation({
-  headerImgSrc,
-  headerAlternativeText,
+  header,
   navigationRes,
   alertData,
 }: {
-  navigationRes: object;
-  headerImgSrc: string;
-  headerAlternativeText?: string;
+  navigationRes: Array<Maybe<NavigationItem>>;
+  header: PartialDeep<UploadFileEntityResponse>;
   alertData: GetAlertQuery;
 }) {
   return (
-    <nav
+    <div
       css={{
         position: 'sticky',
         zIndex: 10,
@@ -64,50 +30,26 @@ export default function Navigation({
         backgroundColor: '#ffffffcc',
       }}
     >
-      {alertData.alert.data.attributes.isVisible && (
-        <Alert
-          link={alertData.alert.data.attributes.link}
-          message={alertData.alert.data.attributes.message}
-        />
-      )}
-      <div
+      <nav
         css={css`
           border-bottom: #d9d9d9 1px solid;
           margin-bottom: 50px;
         `}
       >
-        <div
-          css={css`
-            padding: 16px;
-            max-width: 1280px;
-            margin: auto;
-            @media only screen and (min-width: 768px) {
-              display: flex;
-              align-items: center;
-              gap: 16px;
-            }
-          `}
-        >
-          <header
-            css={css`
-              width: 100%;
-            `}
-          >
-            <Link href="/" passHref>
-              <a>
-                <Header
-                  src={headerImgSrc}
-                  alternativeText={headerAlternativeText}
-                />
-              </a>
-            </Link>
-          </header>
-          {getLinks({ navigationRes })}
-          <Suspense>
-            <DynamicSearch />
-          </Suspense>
-        </div>
-      </div>
-    </nav>
+        <TabletAndBelow>
+            <MobileMenu navigationRes={navigationRes} header={header} />
+        </TabletAndBelow>
+        <DesktopContainer>
+            <DesktopMenu navigationRes={navigationRes} header={header}/>
+        </DesktopContainer>
+
+        {alertData.alert.data.attributes.isVisible && (
+          <Alert
+            link={alertData.alert.data.attributes.link}
+            message={alertData.alert.data.attributes.message}
+          />
+        )}
+      </nav>
+    </div>
   );
 }
