@@ -8,7 +8,7 @@ WORKDIR /opt/
 
 COPY ./package.json ./package-lock.json ./
 ENV PATH /opt/node_modules/.bin:$PATH
-RUN ["npm", "ci"]
+RUN ["npm", "install", "--legacy-peer-deeps"]
 WORKDIR /opt/app
 COPY ./ .
 
