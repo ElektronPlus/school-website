@@ -4,21 +4,23 @@
   "info": {
     "singularName": "translation",
     "pluralName": "translations",
-    "displayName": "Translation"
+    "displayName": "Translation",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "paginationNextPage": {
       "type": "string",
       "default": "Next Page",
-      "required": false
+      "required": true
     },
     "articleReadMore": {
       "type": "string",
-      "default": "Read More"
+      "default": "Read More",
+      "required": true
     }
   }
 }

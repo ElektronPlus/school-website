@@ -13,13 +13,6 @@
       "maxLength": 160,
       "minLength": 50
     },
-    "keywords": {
-      "type": "text",
-      "regex": "[^,]+"
-    },
-    "structuredData": {
-      "type": "json"
-    },
     "preventIndexing": {
       "type": "boolean",
       "default": false

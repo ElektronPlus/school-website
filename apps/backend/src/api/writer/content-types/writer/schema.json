@@ -15,7 +15,8 @@
   },
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "picture": {
       "type": "media",
@@ -45,7 +46,7 @@
     "description": {
       "type": "string",
       "unique": false,
-      "required": false
+      "required": true
     }
   }
 }
