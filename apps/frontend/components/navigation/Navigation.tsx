@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
-import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
-import { MobileMenu } from 'components/navigation/MobileMenu';
 import { DesktopMenu } from 'components/navigation/DesktopMenu';
+import { MobileMenu } from 'components/navigation/MobileMenu';
+import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
 
 export default function Navigation() {
   return (

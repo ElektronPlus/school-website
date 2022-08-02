@@ -1,9 +1,5 @@
+import { DocumentNode } from '@apollo/client';
 import Layout from 'components/Layout';
-import { DefaultSeo } from 'next-seo';
-import type { AppProps } from 'next/app';
-import App, { AppContext } from 'next/app';
-import Head from 'next/head';
-import { createContext } from 'react';
 import {
   GetAlertDocument,
   GetAlertQuery,
@@ -13,16 +9,16 @@ import {
   GetGlobalQuery,
   GetNavigationDocument,
   GetNavigationQuery,
-  Maybe,
-  NavigationItem,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
-import { theme } from 'lib/chakraUi';
-import { fetchAPI } from 'services/api';
-import 'styles/globals.css';
-import { DocumentNode } from '@apollo/client';
 import mapObject from 'map-obj-async';
+import { DefaultSeo } from 'next-seo';
+import type { AppProps } from 'next/app';
+import App, { AppContext } from 'next/app';
+import Head from 'next/head';
+import { createContext } from 'react';
 import { getStrapiMedia } from 'services/media';
+import 'styles/globals.css';
 
 interface GlobalContextInterface {
   menuLinks: GetNavigationQuery;
@@ -37,7 +33,7 @@ export const GlobalContext = createContext<GlobalContextInterface | null>(null);
 export default function MyApp({ Component, pageProps }: AppProps) {
   const globalContext: GlobalContextInterface = pageProps.globalData;
 
-  const attributes = globalContext.global.global.data.attributes
+  const attributes = globalContext.global.global.data.attributes;
 
   return (
     <>

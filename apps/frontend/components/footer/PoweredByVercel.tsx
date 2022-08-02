@@ -17,7 +17,7 @@ export function PoweredByVercel() {
       href="https://vercel.com/?utm_source=ElektronPlus&utm_campaign=oss"
       passHref
     >
-      <a css={{margin: "auto"}}>
+      <a css={{ margin: 'auto' }}>
         <svg
           width="212"
           height="44"

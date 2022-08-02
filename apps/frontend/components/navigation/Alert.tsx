@@ -18,7 +18,7 @@ function Content({ message, link }: { message: string; link: string | null }) {
 export function Alert() {
   const context = useContext(GlobalContext);
 
-  const alert = context.alert.alert.data.attributes
+  const alert = context.alert.alert.data.attributes;
 
   if (!alert.isVisible) {
     return null;

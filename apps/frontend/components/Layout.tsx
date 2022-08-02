@@ -2,16 +2,8 @@ import { css } from '@emotion/react';
 import Footer from 'components/footer/Footer';
 import Navigation from 'components/navigation/Navigation';
 import { StrapiImage } from 'components/StrapiImage';
-import {
-  GetAlertQuery,
-  GetFooterQuery,
-  Maybe,
-  UploadFileEntityResponse,
-  NavigationItem,
-} from 'generated/graphql';
 import { GlobalContext } from 'pages/_app';
 import { useContext } from 'react';
-import type { PartialDeep } from 'type-fest';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const context = useContext(GlobalContext);

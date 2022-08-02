@@ -15,12 +15,13 @@ body {
 
 * {
   border-width: 0;
-    border-style: solid;
-    box-sizing: border-box;
+  border-style: solid;
+  box-sizing: border-box;
 }
 
-
-a { color: inherit;}
+a {
+  color: inherit;
+}
 
 p {
   margin: 0;

@@ -1,12 +1,11 @@
 import { Disclosure, Popover } from '@headlessui/react';
-import { MdArrowForward, MdExpandMore, MdMenu } from 'react-icons/md';
 import Link from 'next/link';
-import { MdClose } from 'react-icons/md';
-import { H, Level } from 'react-accessible-headings';
-import { Header } from './Header';
-import { ExpandButton } from './ExpandButton';
 import { GlobalContext } from 'pages/_app';
 import { useContext } from 'react';
+import { H, Level } from 'react-accessible-headings';
+import { MdArrowForward, MdClose, MdMenu } from 'react-icons/md';
+import { ExpandButton } from './ExpandButton';
+import { Header } from './Header';
 
 export function MobileMenuLinks() {
   const context = useContext(GlobalContext);
@@ -35,7 +34,7 @@ export function MobileMenuLinks() {
                 }}
               >
                 <H>{item.title}</H>
-                <ExpandButton open={open} scale={1.5}/>
+                <ExpandButton open={open} scale={1.5} />
               </Disclosure.Button>
               <Disclosure.Panel>
                 <ul
@@ -50,7 +49,8 @@ export function MobileMenuLinks() {
                     <ChildItem
                       key={child.uiRouterKey}
                       title={child.title}
-                      path={child.path} />
+                      path={child.path}
+                    />
                   ))}
                   <SeeMore path={item.path} text="Zobacz więcej" />
                 </ul>
@@ -62,7 +62,6 @@ export function MobileMenuLinks() {
     </ul>
   );
 }
-
 
 export function ChildItem({ title, path }: { title: string; path: string }) {
   return (
@@ -111,7 +110,7 @@ export function MobileMenu() {
             padding: '16px',
           }}
         >
-          <div css={{ display: 'flex', justifyContent: "space-between" }}>
+          <div css={{ display: 'flex', justifyContent: 'space-between' }}>
             <Header />
             <Popover.Button>
               {open ? (
