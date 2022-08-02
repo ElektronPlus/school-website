@@ -1,6 +1,7 @@
 import { Popover } from '@headlessui/react';
 import { Header } from 'components/navigation/Header';
 import { MaterialSymbol } from 'components/utils/materialSymbols';
+import { NavigationLink } from 'components/utils/NavigationLink';
 import { NavigationItem } from 'generated/graphql';
 import Link from 'next/link';
 import { GlobalContext } from 'pages/_app';
@@ -8,13 +9,6 @@ import { useContext } from 'react';
 import { PartialDeep } from 'type-fest';
 import { ExpandButton } from './ExpandButton';
 
-function DesktopMenuLinkIcon() {
-  return (
-    <div>
-      <MaterialSymbol name={'apps'} />
-    </div>
-  );
-}
 
 function DesktopMenuPopoverPanel({
   items,
@@ -49,12 +43,7 @@ function DesktopMenuPopoverPanel({
               key={item.uiRouterKey}
               css={{ listStyleType: 'none', color: 'rgb(0 0 0 / 0.75)' }}
             >
-              <Link href={item.uiRouterKey}>
-                <a css={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <DesktopMenuLinkIcon />
-                  <span>{item.title}</span>
-                </a>
-              </Link>
+              <NavigationLink navigationItem={item}/>
             </li>
           ))}
         </ul>
