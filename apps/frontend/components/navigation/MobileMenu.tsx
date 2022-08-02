@@ -1,9 +1,12 @@
 import { Disclosure, Popover } from '@headlessui/react';
+import { NavigationLink } from 'components/utils/NavigationLink';
+import { NavigationItem } from 'generated/graphql';
 import Link from 'next/link';
 import { GlobalContext } from 'pages/_app';
 import { useContext } from 'react';
 import { H, Level } from 'react-accessible-headings';
 import { MdArrowForward, MdClose, MdMenu } from 'react-icons/md';
+import { PartialDeep } from 'type-fest';
 import { ExpandButton } from './ExpandButton';
 import { Header } from './Header';
 
@@ -33,7 +36,7 @@ export function MobileMenuLinks() {
                   fontSize: '1.15rem',
                 }}
               >
-                <H>{item.title}</H>
+                <H><NavigationLink navigationItem={item} /></H>
                 <ExpandButton open={open} scale={1.5} />
               </Disclosure.Button>
               <Disclosure.Panel>
@@ -48,8 +51,7 @@ export function MobileMenuLinks() {
                   {item.items.map((child) => (
                     <ChildItem
                       key={child.uiRouterKey}
-                      title={child.title}
-                      path={child.path}
+                      item={child}
                     />
                   ))}
                   <SeeMore path={item.path} text="Zobacz więcej" />
@@ -63,12 +65,10 @@ export function MobileMenuLinks() {
   );
 }
 
-export function ChildItem({ title, path }: { title: string; path: string }) {
+export function ChildItem({item}: {item: PartialDeep<NavigationItem>}) {
   return (
     <li css={{ listStyleType: 'none' }}>
-      <Link href={path} passHref>
-        <a>{title}</a>
-      </Link>
+      <NavigationLink navigationItem={item} />
     </li>
   );
 }

@@ -3,22 +3,40 @@ import { NavigationItem } from 'generated/graphql';
 import Link from 'next/link';
 import { PartialDeep } from 'type-fest';
 
+function Content({ icon, title }: { icon: string; title: string }) {
+  return (
+    <span
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+      }}
+    >
+      {icon && <MaterialSymbol name={icon} />}
+      <span>{title}</span>
+    </span>
+  );
+}
+
 /* strapi-plugin-navigation */
 export function NavigationLink({
   navigationItem,
-  scale = 1,
+  isLink = true,
 }: {
   navigationItem: PartialDeep<NavigationItem>;
-  scale?: number;
+  isLink?: boolean;
 }) {
   const { title, path, icon } = navigationItem;
 
-  return (
-    <Link href={path} passHref>
-      <a css={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: `${scale}rem` }}>
-        {icon && <MaterialSymbol name={icon} />}
-        <span>{title}</span>
-      </a>
-    </Link>
-  );
+  if (isLink) {
+    return (
+      <Link href={path} passHref>
+        <a>
+          <Content icon={icon} title={title} />
+        </a>
+      </Link>
+    );
+  } else {
+    <Content icon={icon} title={title} />;
+  }
 }

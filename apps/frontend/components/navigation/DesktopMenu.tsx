@@ -68,7 +68,7 @@ function DesktopMenuLink({ item }: { item: PartialDeep<NavigationItem> }) {
                   gap: '4px',
                 }}
               >
-                <span>{item.title}</span>
+                <NavigationLink navigationItem={item}/>
                 <ExpandButton open={open} />
               </Popover.Button>
               <DesktopMenuPopoverPanel items={item.items} />
