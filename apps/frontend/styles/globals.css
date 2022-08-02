@@ -4,6 +4,38 @@
   --border: #d7d7d7;
 }
 
+html {
+  line-height: 1.5;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+* {
+  border-width: 0;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+
+a { color: inherit;}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
 h1,
 h2,
 h3,
@@ -12,12 +44,18 @@ h5,
 h6,
 bold,
 strong {
+  margin: 0;
   color: var(--text-primary);
 }
 
 a {
   text-decoration: none;
-  color: var(--text-secondary);
+}
+
+button {
+  background-color: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .wrapper {

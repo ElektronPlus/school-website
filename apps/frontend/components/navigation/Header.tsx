@@ -1,14 +1,14 @@
-import { UploadFileEntityResponse } from 'generated/graphql';
 import { StrapiImageFuture } from 'components/StrapiImageFuture';
 import { H, Level } from 'react-accessible-headings';
-import { PartialDeep } from 'type-fest';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { GlobalContext } from 'pages/_app';
 
-export function Header({
-  header,
-}: {
-  header: PartialDeep<UploadFileEntityResponse>;
-}) {
+export function Header() {
+  const context = useContext(GlobalContext);
+
+  const logo = context.global.global.data.attributes.logo
+
   return (
       <header css={{ width: '100%' }}>
         <Link href="/" passHref>
@@ -22,7 +22,7 @@ export function Header({
               }}
             >
               <StrapiImageFuture
-                image={header}
+                image={logo}
                 imageProps={{
                   priority: true,
                   sizes: '400px',

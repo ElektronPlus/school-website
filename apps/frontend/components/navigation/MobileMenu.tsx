@@ -1,26 +1,21 @@
 import { Disclosure, Popover } from '@headlessui/react';
-import {
-  NavigationItem,
-  UploadFileEntityResponse,
-  Maybe,
-} from 'generated/graphql';
 import { MdArrowForward, MdExpandMore, MdMenu } from 'react-icons/md';
-import { PartialDeep } from 'type-fest';
 import Link from 'next/link';
 import { MdClose } from 'react-icons/md';
 import { H, Level } from 'react-accessible-headings';
-import Search from 'components/Search';
 import { Header } from './Header';
 import { ExpandButton } from './ExpandButton';
+import { GlobalContext } from 'pages/_app';
+import { useContext } from 'react';
 
-export function MobileMenuLinks({
-  navigationRes,
-}: {
-  navigationRes: Array<Maybe<NavigationItem>>;
-}) {
+export function MobileMenuLinks() {
+  const context = useContext(GlobalContext);
+
+  const menuLinks = context.menuLinks.renderNavigation;
+
   return (
     <ul css={{ display: 'grid' }}>
-      {navigationRes.map((item) => (
+      {menuLinks.map((item) => (
         <Disclosure
           as="li"
           key={item.uiRouterKey}
@@ -105,13 +100,7 @@ export function SeeMore({ text, path }: { text: string; path: string }) {
   );
 }
 
-export function MobileMenu({
-  header,
-  navigationRes,
-}: {
-  navigationRes: Array<Maybe<NavigationItem>>;
-  header: PartialDeep<UploadFileEntityResponse>;
-}) {
+export function MobileMenu() {
   return (
     <Popover>
       {({ open }) => (
@@ -123,7 +112,7 @@ export function MobileMenu({
           }}
         >
           <div css={{ display: 'flex', justifyContent: "space-between" }}>
-            <Header header={header} />
+            <Header />
             <Popover.Button>
               {open ? (
                 <MdClose aria-label="menu" css={{ fontSize: '2rem' }} />
@@ -145,7 +134,7 @@ export function MobileMenu({
                   {/* <div css={{ padding: '8px 0' }}>
                     <Search />
                   </div> */}
-                  {MobileMenuLinks({ navigationRes })}
+                  <MobileMenuLinks />
                 </Popover.Panel>
               </div>
             </Level>

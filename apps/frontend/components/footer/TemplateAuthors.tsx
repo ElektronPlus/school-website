@@ -15,7 +15,7 @@ export function TemplateAuthors() {
       {authors.map((author) => {
         return (
           <Link key={author.link} passHref href={author.link}>
-            <a key={author.link}>{author.name}&nbsp;</a>
+            <a>{author.name}&nbsp;</a>
           </Link>
         );
       })}

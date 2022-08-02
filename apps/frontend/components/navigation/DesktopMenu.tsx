@@ -9,36 +9,62 @@ import Link from 'next/link';
 import { Popover } from '@headlessui/react';
 import { MdExpandMore } from 'react-icons/md';
 import { ExpandButton } from './ExpandButton';
+import { MaterialSymbol } from 'components/utils/materialSymbols';
+import { GlobalContext } from 'pages/_app';
+import { useContext } from 'react';
 
-function DesktopMenuPopoverPanel({ items }: { items: NavigationItem[] }) {
+function DesktopMenuLinkIcon() {
   return (
     <div>
-    <Popover.Panel
-      css={{
-        inset: "72px 0 auto 0px",
-        position: 'absolute',
-        margin: "auto",
-        width: "75%",
-        borderRadius: "8px",
-        backgroundColor: "#ffffff",
-        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)"
-      }}
-    >
-      <ul css={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px", maxWidth: "1280px", padding: "32px"}}>
-        {items.map((item) => (
-          <li key={item.uiRouterKey} css={{listStyleType: "none", color: "rgb(0 0 0 / 0.75)"}}>
-            <Link href={item.uiRouterKey}>
-              <a>{item.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </Popover.Panel>
+      <MaterialSymbol name={'apps'} />
     </div>
   );
 }
 
-function DesktopMenuLink({ item }: { item: NavigationItem }) {
+function DesktopMenuPopoverPanel({ items }: { items: PartialDeep<NavigationItem[]> }) {
+  return (
+    <div>
+      <Popover.Panel
+        css={{
+          inset: '72px 0 auto 0px',
+          position: 'absolute',
+          margin: 'auto',
+          width: '75%',
+          borderRadius: '8px',
+          backgroundColor: '#ffffff',
+          boxShadow:
+            '0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)',
+        }}
+      >
+        <ul
+          css={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            gap: '16px',
+            maxWidth: '1280px',
+            padding: '32px',
+          }}
+        >
+          {items.map((item) => (
+            <li
+              key={item.uiRouterKey}
+              css={{ listStyleType: 'none', color: 'rgb(0 0 0 / 0.75)' }}
+            >
+                <Link href={item.uiRouterKey}>
+                  <a css={{display: "flex", alignItems: "center", gap: "16px"}}>
+                    <DesktopMenuLinkIcon />
+                    <span>{item.title}</span>
+                  </a>
+                </Link>
+            </li>
+          ))}
+        </ul>
+      </Popover.Panel>
+    </div>
+  );
+}
+
+function DesktopMenuLink({ item }: { item: PartialDeep<NavigationItem> }) {
   return (
     <li>
       <Link href={item.path} passHref>
@@ -66,27 +92,22 @@ function DesktopMenuLink({ item }: { item: NavigationItem }) {
   );
 }
 
-function DesktopMenuLinks({
-  navigationRes,
-}: {
-  navigationRes: Array<Maybe<NavigationItem>>;
-}) {
+function DesktopMenuLinks() {
+  const context = useContext(GlobalContext);
+
+  const menuLinks = context.menuLinks.renderNavigation
+
+
   return (
     <ul css={{ display: 'flex', listStyleType: 'none', gap: '24px', margin: "auto"}}>
-      {navigationRes.map((item) => (
+      {menuLinks.map((item) => (
         <DesktopMenuLink item={item} key={item.uiRouterKey} />
       ))}
     </ul>
   );
 }
 
-export function DesktopMenu({
-  header,
-  navigationRes,
-}: {
-  navigationRes: Array<Maybe<NavigationItem>>;
-  header: PartialDeep<UploadFileEntityResponse>;
-}) {
+export function DesktopMenu() {
   return (
     <div
       css={{
@@ -98,8 +119,8 @@ export function DesktopMenu({
         justifyContent: 'space-around',
       }}
     >
-      <Header header={header} />
-      <DesktopMenuLinks navigationRes={navigationRes} />
+      <Header />
+      <DesktopMenuLinks />
     </div>
   );
 }

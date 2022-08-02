@@ -1,25 +1,10 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
-import {
-  GetAlertQuery,
-  UploadFileEntityResponse,
-  Maybe,
-  NavigationItem,
-} from 'generated/graphql';
-import { PartialDeep } from 'type-fest';
 import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
 import { MobileMenu } from 'components/navigation/MobileMenu';
 import { DesktopMenu } from 'components/navigation/DesktopMenu';
 
-export default function Navigation({
-  header,
-  navigationRes,
-  alertData,
-}: {
-  navigationRes: Array<Maybe<NavigationItem>>;
-  header: PartialDeep<UploadFileEntityResponse>;
-  alertData: GetAlertQuery;
-}) {
+export default function Navigation() {
   return (
     <div
       css={{
@@ -37,18 +22,12 @@ export default function Navigation({
         `}
       >
         <TabletAndBelow>
-            <MobileMenu navigationRes={navigationRes} header={header} />
+          <MobileMenu />
         </TabletAndBelow>
         <DesktopContainer>
-            <DesktopMenu navigationRes={navigationRes} header={header}/>
+          <DesktopMenu />
         </DesktopContainer>
-
-        {alertData.alert.data.attributes.isVisible && (
-          <Alert
-            link={alertData.alert.data.attributes.link}
-            message={alertData.alert.data.attributes.message}
-          />
-        )}
+        <Alert />
       </nav>
     </div>
   );

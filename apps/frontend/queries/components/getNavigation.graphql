@@ -1,4 +1,4 @@
-query GetMenuNavigation($navigationIdOrSlug: String!) {
+query GetNavigation($navigationIdOrSlug: String!) {
 	renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
 		...item
 		items {
