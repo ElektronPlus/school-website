@@ -1,4 +1,4 @@
-import { MaterialSymbol } from 'components/utils/materialSymbols';
+import { MaterialSymbol } from 'components/utils/symbols/MaterialSymbol';
 import { NavigationItem } from 'generated/graphql';
 import Link from 'next/link';
 import { PartialDeep } from 'type-fest';

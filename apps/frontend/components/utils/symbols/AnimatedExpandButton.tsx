@@ -1,6 +1,6 @@
-import { MdExpandMore } from 'react-icons/md';
+import { MaterialSymbol } from "components/utils/symbols/MaterialSymbol";
 
-export function ExpandButton({
+export function AnimatedExpandButton({
   open,
   scale = 1,
 }: {
@@ -8,11 +8,12 @@ export function ExpandButton({
   scale?: number;
 }) {
   return (
-    <MdExpandMore
+    <MaterialSymbol
       css={{
         fontSize: `${scale}rem`,
         transform: `rotate(${open ? 180 : 0}deg)`,
       }}
+      name="expand_more"
     />
   );
 }

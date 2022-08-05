@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Alert } from 'components/navigation/Alert';
-import { DesktopMenu } from 'components/navigation/DesktopMenu';
-import { MobileMenu } from 'components/navigation/MobileMenu';
+import { DesktopMenu } from 'components/navigation/menu/desktop/DesktopMenu';
+import { MobileMenu } from 'components/navigation/menu/mobile/MobileMenu';
 import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
 
 export default function Navigation() {
