@@ -21,7 +21,7 @@ export function ParentLink({
         gap: '4px',
       }}
     >
-      <NavigationLink navigationItem={item} />
+      <NavigationLink navigationItem={item} isLink={false} />
       <AnimatedExpandButton open={open} />
     </Popover.Button>
   );

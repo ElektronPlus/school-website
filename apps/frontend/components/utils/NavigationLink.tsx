@@ -5,15 +5,27 @@ import { PartialDeep } from 'type-fest';
 
 function Content({ icon, title }: { icon: string; title: string }) {
   return (
+    // https://stackoverflow.com/questions/11078509/how-to-increase-the-clickable-area-of-a-a-tag-button
     <span
       css={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
+        display: 'inline-block',
+        position: 'relative',
+        padding: '16px 10px',
+        margin: '-16px -10px',
+        cursor: 'pointer'
       }}
     >
-      {icon && <MaterialSymbol name={icon} />}
-      <span>{title}</span>
+      <span
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          cursor: 'pointer',
+        }}
+      >
+        {icon && <MaterialSymbol name={icon} />}
+        <span>{title}</span>
+      </span>
     </span>
   );
 }
@@ -37,6 +49,6 @@ export function NavigationLink({
       </Link>
     );
   } else {
-    <Content icon={icon} title={title} />;
+    return <Content icon={icon} title={title} />;
   }
 }
