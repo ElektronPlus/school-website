@@ -16,7 +16,7 @@ export function PopoverLinks({ items }: { items: PartialDeep<NavigationItem[]> }
       {items.map((item) => (
         <li
           key={item.uiRouterKey}
-          css={{ listStyleType: 'none', color: 'rgb(0 0 0 / 0.75)' }}
+          css={{ listStyleType: 'none'}}
         >
           <NavigationLink navigationItem={item} />
         </li>

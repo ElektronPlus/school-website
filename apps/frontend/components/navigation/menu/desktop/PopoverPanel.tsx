@@ -3,6 +3,7 @@ import { NavigationItem } from 'generated/graphql';
 import { PartialDeep } from 'type-fest';
 import { SeeMore } from 'components/navigation/menu/shared/SeeMore';
 import { PopoverLinks } from 'components/navigation/menu/desktop/PopoverLinks';
+import { useTheme } from '@emotion/react';
 
 export function DesktopMenuPopoverPanel({
   items,
@@ -11,6 +12,8 @@ export function DesktopMenuPopoverPanel({
   items: PartialDeep<NavigationItem[]>;
   parent: PartialDeep<NavigationItem>;
 }) {
+  const theme = useTheme();
+
   return (
     <div>
       <Popover.Panel
@@ -19,10 +22,11 @@ export function DesktopMenuPopoverPanel({
           position: 'absolute',
           margin: 'auto',
           width: '60%',
+          color: theme.color.text.secondary.hexa(),
           borderRadius: '8px',
+          border: `1px solid ${theme.color.border.withShadow.hexa()}`,
           backgroundColor: '#ffffff',
-          boxShadow:
-            '0 10px 15px -3px rgb(0 0 0 / 15%), 0 4px 6px -2px rgb(0 0 0 / 10%)',
+          boxShadow: `1px 1px 20px 8px ${theme.color.shadow.hexa()}`,
         }}
       >
         <PopoverLinks items={items} />

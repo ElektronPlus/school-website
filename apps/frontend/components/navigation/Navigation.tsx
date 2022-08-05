@@ -23,11 +23,11 @@ export default function Navigation() {
     window.addEventListener('scroll', handleWindowScroll);
   });
 
-  const scrolledNav = css`background-color: ${theme.color.background.transculent.hexa()};, backdrop-filter: blur(48px) saturate(5);`;
+  const scrolledNav = css`background-color: ${theme.color.background.transculent.hexa()}; backdrop-filter: blur(48px) saturate(5);`;
 
   return (
     <div
-      css={[{ position: 'sticky', top: 0, zIndex: 100, transition: '0.6s cubic-bezier(0.22, 0.61, 0.36, 1)' }, isWindowScrolled && scrolledNav]}
+      css={[{ position: 'sticky', top: 0, zIndex: 100, transition: '0.3s cubic-bezier(0.22, 0.61, 0.36, 1)' }, isWindowScrolled && scrolledNav]}
     >
       <nav
         css={{
