@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react';
-import { SeeMore } from 'components/navigation/menu/SeeMore';
+import { SeeMore } from 'components/navigation/menu/shared/SeeMore';
 import { NavigationItem } from 'generated/graphql';
 import { PartialDeep } from 'type-fest';
 import { ChildLink } from './ChildLink';

@@ -1,7 +1,7 @@
 import { Popover } from '@headlessui/react';
 import { NavigationItem } from 'generated/graphql';
 import { PartialDeep } from 'type-fest';
-import { SeeMore } from 'components/navigation/menu/SeeMore';
+import { SeeMore } from 'components/navigation/menu/shared/SeeMore';
 import { PopoverLinks } from 'components/navigation/menu/desktop/PopoverLinks';
 
 export function DesktopMenuPopoverPanel({

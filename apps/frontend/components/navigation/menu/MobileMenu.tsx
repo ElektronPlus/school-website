@@ -1,8 +1,8 @@
 import { Popover } from '@headlessui/react';
 import { AnimatedMenuButton } from 'components/utils/symbols/AnimatedMenuButton';
 import { Level } from 'react-accessible-headings';
-import { Header } from '../../Header';
-import { PopoverPanel } from './PopoverPanel';
+import { Header } from '../Header';
+import { PopoverPanel } from './mobile/PopoverPanel';
 
 export function MobileMenu() {
   return (
