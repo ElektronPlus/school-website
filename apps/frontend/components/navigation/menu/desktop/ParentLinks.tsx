@@ -1,6 +1,7 @@
 import { GlobalContext } from 'pages/_app';
 import { useContext } from 'react';
 import { MenuLink } from 'components/navigation/menu/desktop/MenuLink';
+import { Popover } from '@headlessui/react';
 
 export function ParentLinks() {
   const context = useContext(GlobalContext);
@@ -16,9 +17,11 @@ export function ParentLinks() {
         margin: 'auto',
       }}
     >
-      {menuLinks.map((item) => (
-        <MenuLink item={item} key={item.uiRouterKey} />
-      ))}
+      <Popover.Group>
+        {menuLinks.map((item) => (
+          <MenuLink item={item} key={item.uiRouterKey} />
+        ))}
+      </Popover.Group>
     </ul>
   );
 }
