@@ -1,10 +1,23 @@
 import '@emotion/react'
+import Color from '@types/color'
 
 declare module '@emotion/react' {
   export interface Theme {
     color: {
-      primary: string
-      text: string
+      primary: Color
+      text: {
+        primary: Color
+        secondary: Color
+      }
+      background: {
+        primary: Color
+        transculent: Color
+      }
+      shadow: Color
+      border: {
+        primary: Color
+        withShadow: Color
+      }
     }
   }
 }
