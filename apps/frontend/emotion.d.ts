@@ -8,6 +8,7 @@ declare module '@emotion/react' {
       text: {
         primary: Color
         secondary: Color
+        light: Color
       }
       background: {
         primary: Color
