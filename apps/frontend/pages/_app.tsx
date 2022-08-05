@@ -9,6 +9,8 @@ import {
   GetGlobalQuery,
   GetNavigationDocument,
   GetNavigationQuery,
+  GetTranslationsDocument,
+  GetTranslationsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 import mapObject from 'map-obj-async';
@@ -26,6 +28,7 @@ interface GlobalContextInterface {
   footerContent: GetFooterQuery;
   global: GetGlobalQuery;
   alert: GetAlertQuery;
+  translations: GetTranslationsQuery;
 }
 
 export const GlobalContext = createContext<GlobalContextInterface | null>(null);
@@ -95,6 +98,9 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
     alert: {
       query: GetAlertDocument,
     },
+    translations: {
+      query: GetTranslationsDocument,
+    }
   };
 
   const globalData = await mapObject(queries, async (key, parameters) => {

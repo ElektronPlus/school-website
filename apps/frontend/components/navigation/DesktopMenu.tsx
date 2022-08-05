@@ -1,19 +1,52 @@
 import { Popover } from '@headlessui/react';
+import { ExpandButton } from 'components/navigation/ExpandButton';
 import { Header } from 'components/navigation/Header';
-import { MaterialSymbol } from 'components/utils/materialSymbols';
 import { NavigationLink } from 'components/utils/NavigationLink';
 import { NavigationItem } from 'generated/graphql';
 import Link from 'next/link';
 import { GlobalContext } from 'pages/_app';
 import { useContext } from 'react';
+import { MdArrowForward } from 'react-icons/md';
 import { PartialDeep } from 'type-fest';
-import { ExpandButton } from './ExpandButton';
 
+export function SeeMore({ path }: { path: string }) {
+  const context = useContext(GlobalContext);
+
+  const { navigationSeeMore } = context.translations.translation.data.attributes
+
+  return (
+    <li
+      css={{
+        listStyleType: 'none',
+        margin: '32px',
+        padding: '32px 32px 0 32px',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        borderTop: "1px solid rgb(0 0 0 / 10%)"
+      }}
+    >
+      <Link href={path} passHref>
+        <a
+          css={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            fontWeight: '500',
+          }}
+        >
+          {navigationSeeMore} <MdArrowForward css={{ fontSize: '1.25rem' }} />
+        </a>
+      </Link>
+    </li>
+  );
+}
 
 function DesktopMenuPopoverPanel({
   items,
+  parent
 }: {
   items: PartialDeep<NavigationItem[]>;
+  parent: PartialDeep<NavigationItem>;
 }) {
   return (
     <div>
@@ -22,7 +55,7 @@ function DesktopMenuPopoverPanel({
           inset: '72px 0 auto 0px',
           position: 'absolute',
           margin: 'auto',
-          width: '75%',
+          width: '60%',
           borderRadius: '8px',
           backgroundColor: '#ffffff',
           boxShadow:
@@ -35,7 +68,7 @@ function DesktopMenuPopoverPanel({
             gridTemplateColumns: '1fr 1fr 1fr',
             gap: '16px',
             maxWidth: '1280px',
-            padding: '32px',
+            padding: '32px 32px 0 32px',
           }}
         >
           {items.map((item) => (
@@ -43,10 +76,11 @@ function DesktopMenuPopoverPanel({
               key={item.uiRouterKey}
               css={{ listStyleType: 'none', color: 'rgb(0 0 0 / 0.75)' }}
             >
-              <NavigationLink navigationItem={item}/>
+              <NavigationLink navigationItem={item} />
             </li>
           ))}
         </ul>
+        <SeeMore path={parent.path} />
       </Popover.Panel>
     </div>
   );
@@ -71,7 +105,7 @@ function DesktopMenuLink({ item }: { item: PartialDeep<NavigationItem> }) {
                 <NavigationLink navigationItem={item}/>
                 <ExpandButton open={open} />
               </Popover.Button>
-              <DesktopMenuPopoverPanel items={item.items} />
+              <DesktopMenuPopoverPanel items={item.items} parent={item} />
             </>
           )}
         </Popover>

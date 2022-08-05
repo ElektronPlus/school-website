@@ -1,16 +1,10 @@
-import * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -239,6 +233,7 @@ export type Category = {
   url_path_id?: Maybe<Scalars['String']>;
 };
 
+
 export type CategoryArticlesArgs = {
   filters?: InputMaybe<ArticleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
@@ -382,7 +377,7 @@ export type DateTimeFilterInput = {
 
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Facebook = 'Facebook',
-  Twitter = 'Twitter',
+  Twitter = 'Twitter'
 }
 
 export enum Enum_Global_Language {
@@ -569,7 +564,7 @@ export enum Enum_Global_Language {
   Yo = 'yo',
   Za = 'za',
   Zh = 'zh',
-  Zu = 'zu',
+  Zu = 'zu'
 }
 
 export type FileInfoInput = {
@@ -630,30 +625,7 @@ export type FooterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph =
-  | Alert
-  | Article
-  | AwesomeHelpHelp
-  | Blog
-  | Category
-  | ComponentArticlesArticlesSection
-  | ComponentSharedMetaSocial
-  | ComponentSharedSeo
-  | Footer
-  | Global
-  | Homepage
-  | PublisherAction
-  | SocialMedia
-  | Substitusion
-  | Translation
-  | UploadFile
-  | UploadFolder
-  | UrlAliasPath
-  | UrlAliasPattern
-  | UsersPermissionsPermission
-  | UsersPermissionsRole
-  | UsersPermissionsUser
-  | Writer;
+export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -863,121 +835,151 @@ export type Mutation = {
   upload: UploadFileEntityResponse;
 };
 
+
 export type MutationCreateArticleArgs = {
   data: ArticleInput;
 };
+
 
 export type MutationCreateAwesomeHelpHelpArgs = {
   data: AwesomeHelpHelpInput;
 };
 
+
 export type MutationCreateCategoryArgs = {
   data: CategoryInput;
 };
+
 
 export type MutationCreatePublisherActionArgs = {
   data: PublisherActionInput;
 };
 
+
 export type MutationCreateSocialMediaArgs = {
   data: SocialMediaInput;
 };
+
 
 export type MutationCreateSubstitusionArgs = {
   data: SubstitusionInput;
 };
 
+
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
 };
+
 
 export type MutationCreateUploadFolderArgs = {
   data: UploadFolderInput;
 };
 
+
 export type MutationCreateUrlAliasPathArgs = {
   data: UrlAliasPathInput;
 };
+
 
 export type MutationCreateUrlAliasPatternArgs = {
   data: UrlAliasPatternInput;
 };
 
+
 export type MutationCreateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
 };
+
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
 };
 
+
 export type MutationCreateWriterArgs = {
   data: WriterInput;
 };
+
 
 export type MutationDeleteArticleArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteAwesomeHelpHelpArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteCategoryArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeletePublisherActionArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteSocialMediaArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteSubstitusionArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteUploadFileArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteUploadFolderArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteUrlAliasPathArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteUrlAliasPatternArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteUsersPermissionsRoleArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteUsersPermissionsUserArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteWriterArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationEmailConfirmationArgs = {
   confirmation: Scalars['String'];
 };
+
 
 export type MutationForgotPasswordArgs = {
   email: Scalars['String'];
 };
 
+
 export type MutationLoginArgs = {
   input: UsersPermissionsLoginInput;
 };
+
 
 export type MutationMultipleUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
@@ -986,13 +988,16 @@ export type MutationMultipleUploadArgs = {
   refId?: InputMaybe<Scalars['ID']>;
 };
 
+
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
 };
 
+
 export type MutationRemoveFileArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationResetPasswordArgs = {
   code: Scalars['String'];
@@ -1000,99 +1005,120 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
+
 export type MutationUpdateAlertArgs = {
   data: AlertInput;
 };
+
 
 export type MutationUpdateArticleArgs = {
   data: ArticleInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateAwesomeHelpHelpArgs = {
   data: AwesomeHelpHelpInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateBlogArgs = {
   data: BlogInput;
 };
+
 
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
 };
 
+
 export type MutationUpdateFooterArgs = {
   data: FooterInput;
 };
+
 
 export type MutationUpdateGlobalArgs = {
   data: GlobalInput;
 };
 
+
 export type MutationUpdateHomepageArgs = {
   data: HomepageInput;
 };
+
 
 export type MutationUpdatePublisherActionArgs = {
   data: PublisherActionInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateSocialMediaArgs = {
   data: SocialMediaInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateSubstitusionArgs = {
   data: SubstitusionInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateTranslationArgs = {
   data: TranslationInput;
 };
+
 
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateUploadFolderArgs = {
   data: UploadFolderInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateUrlAliasPathArgs = {
   data: UrlAliasPathInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateUrlAliasPatternArgs = {
   data: UrlAliasPatternInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateWriterArgs = {
   data: WriterInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
@@ -1143,7 +1169,7 @@ export type NavigationItemRelatedData = {
 export enum NavigationRenderType {
   Flat = 'FLAT',
   Rfr = 'RFR',
-  Tree = 'TREE',
+  Tree = 'TREE'
 }
 
 export type Pagination = {
@@ -1163,7 +1189,7 @@ export type PaginationArg = {
 
 export enum PublicationState {
   Live = 'LIVE',
-  Preview = 'PREVIEW',
+  Preview = 'PREVIEW'
 }
 
 export type PublisherAction = {
@@ -1252,9 +1278,11 @@ export type Query = {
   writers?: Maybe<WriterEntityResponseCollection>;
 };
 
+
 export type QueryArticleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryArticlesArgs = {
   filters?: InputMaybe<ArticleFiltersInput>;
@@ -1263,9 +1291,11 @@ export type QueryArticlesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryAwesomeHelpHelpArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryAwesomeHelpHelpsArgs = {
   filters?: InputMaybe<AwesomeHelpHelpFiltersInput>;
@@ -1273,25 +1303,30 @@ export type QueryAwesomeHelpHelpsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryCategoriesArgs = {
   filters?: InputMaybe<CategoryFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryCategoryArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+
 export type QueryPublisherActionArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryPublisherActionsArgs = {
   filters?: InputMaybe<PublisherActionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type QueryRenderNavigationArgs = {
   menuOnly?: InputMaybe<Scalars['Boolean']>;
@@ -1300,6 +1335,7 @@ export type QueryRenderNavigationArgs = {
   type?: InputMaybe<NavigationRenderType>;
 };
 
+
 export type QueryRenderNavigationChildArgs = {
   childUiKey: Scalars['String'];
   id: Scalars['String'];
@@ -1307,9 +1343,11 @@ export type QueryRenderNavigationChildArgs = {
   type?: InputMaybe<NavigationRenderType>;
 };
 
+
 export type QuerySocialMediaArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QuerySocialMediasArgs = {
   filters?: InputMaybe<SocialMediaFiltersInput>;
@@ -1317,9 +1355,11 @@ export type QuerySocialMediasArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QuerySubstitusionArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QuerySubstitusionsArgs = {
   filters?: InputMaybe<SubstitusionFiltersInput>;
@@ -1328,9 +1368,11 @@ export type QuerySubstitusionsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -1338,9 +1380,11 @@ export type QueryUploadFilesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUploadFolderArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUploadFoldersArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>;
@@ -1348,9 +1392,11 @@ export type QueryUploadFoldersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUrlAliasPathArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUrlAliasPathsArgs = {
   filters?: InputMaybe<UrlAliasPathFiltersInput>;
@@ -1358,9 +1404,11 @@ export type QueryUrlAliasPathsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUrlAliasPatternArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUrlAliasPatternsArgs = {
   filters?: InputMaybe<UrlAliasPatternFiltersInput>;
@@ -1368,9 +1416,11 @@ export type QueryUrlAliasPatternsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUsersPermissionsRoleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUsersPermissionsRolesArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
@@ -1378,9 +1428,11 @@ export type QueryUsersPermissionsRolesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUsersPermissionsUserArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -1388,9 +1440,11 @@ export type QueryUsersPermissionsUsersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryWriterArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryWritersArgs = {
   filters?: InputMaybe<WriterFiltersInput>;
@@ -1533,6 +1587,7 @@ export type Translation = {
   __typename?: 'Translation';
   articleReadMore: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
+  navigationSeeMore: Scalars['String'];
   paginationNextPage: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
@@ -1551,6 +1606,7 @@ export type TranslationEntityResponse = {
 
 export type TranslationInput = {
   articleReadMore?: InputMaybe<Scalars['String']>;
+  navigationSeeMore?: InputMaybe<Scalars['String']>;
   paginationNextPage?: InputMaybe<Scalars['String']>;
   url_path_id?: InputMaybe<Scalars['String']>;
 };
@@ -1657,11 +1713,13 @@ export type UploadFolder = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
+
 export type UploadFolderChildrenArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type UploadFolderFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -1901,11 +1959,13 @@ export type UsersPermissionsRole = {
   users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
+
 export type UsersPermissionsRolePermissionsArgs = {
   filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type UsersPermissionsRoleUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -2037,12 +2097,14 @@ export type Writer = {
   url_path_id?: Maybe<Scalars['String']>;
 };
 
+
 export type WriterArticlesArgs = {
   filters?: InputMaybe<ArticleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type WriterSubstitusionsArgs = {
   filters?: InputMaybe<SubstitusionFiltersInput>;
@@ -2093,644 +2155,153 @@ export type WriterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type GetAlertQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAlertQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetAlertQuery = {
-  __typename?: 'Query';
-  alert?: {
-    __typename?: 'AlertEntityResponse';
-    data?: {
-      __typename?: 'AlertEntity';
-      attributes?: {
-        __typename?: 'Alert';
-        message?: string | null;
-        link?: string | null;
-        isVisible: boolean;
-      } | null;
-    } | null;
-  } | null;
-};
 
-export type GetFooterQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', message?: string | null, link?: string | null, isVisible: boolean } | null } | null } | null };
 
-export type GetFooterQuery = {
-  __typename?: 'Query';
-  footer?: {
-    __typename?: 'FooterEntityResponse';
-    data?: {
-      __typename?: 'FooterEntity';
-      attributes?: {
-        __typename?: 'Footer';
-        copyright?: string | null;
-        showVercelBadge: boolean;
-        email?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  socialMedias?: {
-    __typename?: 'SocialMediaEntityResponseCollection';
-    data: Array<{
-      __typename?: 'SocialMediaEntity';
-      attributes?: {
-        __typename?: 'SocialMedia';
-        iconSlug: string;
-        showInFooter: boolean;
-        link: string;
-      } | null;
-    }>;
-  } | null;
-};
+export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean, email?: string | null } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
 
 export type GetNavigationQueryVariables = Exact<{
   navigationIdOrSlug: Scalars['String'];
 }>;
 
-export type GetNavigationQuery = {
-  __typename?: 'Query';
-  renderNavigation: Array<{
-    __typename?: 'NavigationItem';
-    title: string;
-    path?: string | null;
-    uiRouterKey: string;
-    icon?: string | null;
-    items?: Array<{
-      __typename?: 'NavigationItem';
-      title: string;
-      path?: string | null;
-      uiRouterKey: string;
-      icon?: string | null;
-    } | null> | null;
-  } | null>;
-};
 
-export type ItemFragment = {
-  __typename?: 'NavigationItem';
-  title: string;
-  path?: string | null;
-  uiRouterKey: string;
-  icon?: string | null;
-};
+export type GetNavigationQuery = { __typename?: 'Query', renderNavigation: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null, items?: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null } | null> | null } | null> };
+
+export type ItemFragment = { __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null };
 
 export type GetArticlesQueryVariables = Exact<{
   articlesPerPage?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type GetArticlesQuery = {
-  __typename?: 'Query';
-  articles?: {
-    __typename?: 'ArticleEntityResponseCollection';
-    data: Array<{
-      __typename?: 'ArticleEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'Article';
-        title: string;
-        content: string;
-        slug: string;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        publishedAt?: any | null;
-        image?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: {
-              __typename?: 'UploadFile';
-              alternativeText?: string | null;
-              width?: number | null;
-              height?: number | null;
-              placeholder?: string | null;
-              updatedAt?: any | null;
-              url: string;
-            } | null;
-          } | null;
-        } | null;
-        category?: {
-          __typename?: 'CategoryEntityResponse';
-          data?: {
-            __typename?: 'CategoryEntity';
-            attributes?: {
-              __typename?: 'Category';
-              name: string;
-              slug: string;
-            } | null;
-          } | null;
-        } | null;
-        author?: {
-          __typename?: 'WriterEntityResponse';
-          data?: {
-            __typename?: 'WriterEntity';
-            attributes?: {
-              __typename?: 'Writer';
-              name: string;
-              description: string;
-              picture?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    alternativeText?: string | null;
-                    width?: number | null;
-                    height?: number | null;
-                    placeholder?: string | null;
-                    updatedAt?: any | null;
-                    url: string;
-                  } | null;
-                } | null;
-              } | null;
-            } | null;
-          } | null;
-        } | null;
-        seo?: {
-          __typename?: 'ComponentSharedSeo';
-          metaDescription?: string | null;
-          preventIndexing?: boolean | null;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-};
 
-export type SeoFragment = {
-  __typename?: 'ComponentSharedSeo';
-  metaDescription?: string | null;
-  preventIndexing?: boolean | null;
-};
+export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null };
 
-export type AuthorFragment = {
-  __typename?: 'WriterEntity';
-  attributes?: {
-    __typename?: 'Writer';
-    name: string;
-    description: string;
-    picture?: {
-      __typename?: 'UploadFileEntityResponse';
-      data?: {
-        __typename?: 'UploadFileEntity';
-        attributes?: {
-          __typename?: 'UploadFile';
-          alternativeText?: string | null;
-          width?: number | null;
-          height?: number | null;
-          placeholder?: string | null;
-          updatedAt?: any | null;
-          url: string;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-};
+export type SeoFragment = { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null };
 
-export type ImageFragment = {
-  __typename?: 'UploadFileEntity';
-  attributes?: {
-    __typename?: 'UploadFile';
-    alternativeText?: string | null;
-    width?: number | null;
-    height?: number | null;
-    placeholder?: string | null;
-    updatedAt?: any | null;
-    url: string;
-  } | null;
-};
+export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null };
 
-export type GetGlobalQueryVariables = Exact<{ [key: string]: never }>;
+export type ImageFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null };
 
-export type GetGlobalQuery = {
-  __typename?: 'Query';
-  global?: {
-    __typename?: 'GlobalEntityResponse';
-    data?: {
-      __typename?: 'GlobalEntity';
-      id?: string | null;
-      attributes?: {
-        __typename?: 'Global';
-        siteName: string;
-        siteDescription: string;
-        createdAt?: any | null;
-        updatedAt?: any | null;
-        shareImage?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: {
-              __typename?: 'UploadFile';
-              alternativeText?: string | null;
-              width?: number | null;
-              height?: number | null;
-              placeholder?: string | null;
-              updatedAt?: any | null;
-              url: string;
-            } | null;
-          } | null;
-        } | null;
-        background?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: {
-              __typename?: 'UploadFile';
-              alternativeText?: string | null;
-              width?: number | null;
-              height?: number | null;
-              placeholder?: string | null;
-              updatedAt?: any | null;
-              url: string;
-            } | null;
-          } | null;
-        } | null;
-        favicon?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: {
-              __typename?: 'UploadFile';
-              alternativeText?: string | null;
-              width?: number | null;
-              height?: number | null;
-              placeholder?: string | null;
-              updatedAt?: any | null;
-              url: string;
-            } | null;
-          } | null;
-        } | null;
-        logo?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: {
-              __typename?: 'UploadFile';
-              alternativeText?: string | null;
-              width?: number | null;
-              height?: number | null;
-              placeholder?: string | null;
-              updatedAt?: any | null;
-              url: string;
-            } | null;
-          } | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-};
+export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetTranslationsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetTranslationsQuery = {
-  __typename?: 'Query';
-  translation?: {
-    __typename?: 'TranslationEntityResponse';
-    data?: {
-      __typename?: 'TranslationEntity';
-      attributes?: {
-        __typename?: 'Translation';
-        articleReadMore: string;
-        paginationNextPage: string;
-      } | null;
-    } | null;
-  } | null;
-};
+export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, siteDescription: string, createdAt?: any | null, updatedAt?: any | null, shareImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null };
+
+export type GetTranslationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTranslationsQuery = { __typename?: 'Query', translation?: { __typename?: 'TranslationEntityResponse', data?: { __typename?: 'TranslationEntity', attributes?: { __typename?: 'Translation', articleReadMore: string, paginationNextPage: string, navigationSeeMore: string } | null } | null } | null };
 
 export type GetCategoryArticlesBySlugQueryVariables = Exact<{
   entriesPerPage?: InputMaybe<Scalars['Int']>;
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
-export type GetCategoryArticlesBySlugQuery = {
-  __typename?: 'Query';
-  categories?: {
-    __typename?: 'CategoryEntityResponseCollection';
-    data: Array<{
-      __typename?: 'CategoryEntity';
-      attributes?: {
-        __typename?: 'Category';
-        name: string;
-        seo?: {
-          __typename?: 'ComponentSharedSeo';
-          metaDescription?: string | null;
-          preventIndexing?: boolean | null;
-        } | null;
-        articles?: {
-          __typename?: 'ArticleRelationResponseCollection';
-          data: Array<{
-            __typename?: 'ArticleEntity';
-            id?: string | null;
-            attributes?: {
-              __typename?: 'Article';
-              title: string;
-              content: string;
-              slug: string;
-              createdAt?: any | null;
-              updatedAt?: any | null;
-              publishedAt?: any | null;
-              image?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    alternativeText?: string | null;
-                    width?: number | null;
-                    height?: number | null;
-                    placeholder?: string | null;
-                    updatedAt?: any | null;
-                    url: string;
-                  } | null;
-                } | null;
-              } | null;
-              category?: {
-                __typename?: 'CategoryEntityResponse';
-                data?: {
-                  __typename?: 'CategoryEntity';
-                  attributes?: {
-                    __typename?: 'Category';
-                    name: string;
-                    slug: string;
-                  } | null;
-                } | null;
-              } | null;
-              author?: {
-                __typename?: 'WriterEntityResponse';
-                data?: {
-                  __typename?: 'WriterEntity';
-                  attributes?: {
-                    __typename?: 'Writer';
-                    name: string;
-                    description: string;
-                    picture?: {
-                      __typename?: 'UploadFileEntityResponse';
-                      data?: {
-                        __typename?: 'UploadFileEntity';
-                        attributes?: {
-                          __typename?: 'UploadFile';
-                          alternativeText?: string | null;
-                          width?: number | null;
-                          height?: number | null;
-                          placeholder?: string | null;
-                          updatedAt?: any | null;
-                          url: string;
-                        } | null;
-                      } | null;
-                    } | null;
-                  } | null;
-                } | null;
-              } | null;
-              seo?: {
-                __typename?: 'ComponentSharedSeo';
-                metaDescription?: string | null;
-                preventIndexing?: boolean | null;
-              } | null;
-            } | null;
-          }>;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-};
+
+export type GetCategoryArticlesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
 
 export type GetArticleBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
-export type GetArticleBySlugQuery = {
-  __typename?: 'Query';
-  articles?: {
-    __typename?: 'ArticleEntityResponseCollection';
-    data: Array<{
-      __typename?: 'ArticleEntity';
-      attributes?: {
-        __typename?: 'Article';
-        title: string;
-        content: string;
-        slug: string;
-        createdAt?: any | null;
-        publishedAt?: any | null;
-        updatedAt?: any | null;
-        category?: {
-          __typename?: 'CategoryEntityResponse';
-          data?: {
-            __typename?: 'CategoryEntity';
-            attributes?: {
-              __typename?: 'Category';
-              name: string;
-              slug: string;
-            } | null;
-          } | null;
-        } | null;
-        seo?: {
-          __typename?: 'ComponentSharedSeo';
-          metaDescription?: string | null;
-          preventIndexing?: boolean | null;
-        } | null;
-        author?: {
-          __typename?: 'WriterEntityResponse';
-          data?: {
-            __typename?: 'WriterEntity';
-            attributes?: {
-              __typename?: 'Writer';
-              name: string;
-              description: string;
-              picture?: {
-                __typename?: 'UploadFileEntityResponse';
-                data?: {
-                  __typename?: 'UploadFileEntity';
-                  attributes?: {
-                    __typename?: 'UploadFile';
-                    alternativeText?: string | null;
-                    width?: number | null;
-                    height?: number | null;
-                    placeholder?: string | null;
-                    updatedAt?: any | null;
-                    url: string;
-                  } | null;
-                } | null;
-              } | null;
-            } | null;
-          } | null;
-        } | null;
-        image?: {
-          __typename?: 'UploadFileEntityResponse';
-          data?: {
-            __typename?: 'UploadFileEntity';
-            attributes?: {
-              __typename?: 'UploadFile';
-              alternativeText?: string | null;
-              width?: number | null;
-              height?: number | null;
-              placeholder?: string | null;
-              updatedAt?: any | null;
-              url: string;
-            } | null;
-          } | null;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-};
 
-export type GetBlogPageQueryVariables = Exact<{ [key: string]: never }>;
+export type GetArticleBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null }> } | null };
 
-export type GetBlogPageQuery = {
-  __typename?: 'Query';
-  blog?: {
-    __typename?: 'BlogEntityResponse';
-    data?: {
-      __typename?: 'BlogEntity';
-      attributes?: {
-        __typename?: 'Blog';
-        articlesSection: {
-          __typename?: 'ComponentArticlesArticlesSection';
-          entriesPerPage: number;
-          header: string;
-          previewMaxCharacters?: number | null;
-        };
-        categorySection?: {
-          __typename?: 'ComponentArticlesArticlesSection';
-          entriesPerPage: number;
-          header: string;
-          previewMaxCharacters?: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-};
+export type GetBlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type ArticleSectionComponentFragment = {
-  __typename?: 'ComponentArticlesArticlesSection';
-  entriesPerPage: number;
-  header: string;
-  previewMaxCharacters?: number | null;
-};
 
-export type GetHomePageQueryVariables = Exact<{ [key: string]: never }>;
+export type GetBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'BlogEntityResponse', data?: { __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', articlesSection: { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null }, categorySection?: { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null } | null } | null } | null } | null };
 
-export type GetHomePageQuery = {
-  __typename?: 'Query';
-  homepage?: {
-    __typename?: 'HomepageEntityResponse';
-    data?: {
-      __typename?: 'HomepageEntity';
-      attributes?: {
-        __typename?: 'Homepage';
-        seo?: {
-          __typename?: 'ComponentSharedSeo';
-          metaDescription?: string | null;
-          preventIndexing?: boolean | null;
-        } | null;
-        articlesSection?: {
-          __typename?: 'ComponentArticlesArticlesSection';
-          header: string;
-          entriesPerPage: number;
-          previewMaxCharacters?: number | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-};
+export type ArticleSectionComponentFragment = { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null };
 
-export type ArticlesSectionFragment = {
-  __typename?: 'ComponentArticlesArticlesSection';
-  header: string;
-  entriesPerPage: number;
-  previewMaxCharacters?: number | null;
-};
+export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type GetArticlesSlugsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetArticlesSlugsQuery = {
-  __typename?: 'Query';
-  articles?: {
-    __typename?: 'ArticleEntityResponseCollection';
-    data: Array<{
-      __typename?: 'ArticleEntity';
-      id?: string | null;
-      attributes?: { __typename?: 'Article'; slug: string } | null;
-    }>;
-  } | null;
-};
+export type GetHomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', attributes?: { __typename?: 'Homepage', seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, articlesSection?: { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null } | null } | null } | null } | null };
 
-export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never }>;
+export type ArticlesSectionFragment = { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null };
 
-export type GetCategoriesSlugsQuery = {
-  __typename?: 'Query';
-  categories?: {
-    __typename?: 'CategoryEntityResponseCollection';
-    data: Array<{
-      __typename?: 'CategoryEntity';
-      id?: string | null;
-      attributes?: { __typename?: 'Category'; slug: string } | null;
-    }>;
-  } | null;
-};
+export type GetArticlesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetArticlesSlugsQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string } | null }> } | null };
+
+export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
 
 export const ItemFragmentDoc = gql`
-  fragment item on NavigationItem {
-    title
-    path
-    uiRouterKey
-    icon
-  }
-`;
+    fragment item on NavigationItem {
+  title
+  path
+  uiRouterKey
+  icon
+}
+    `;
 export const SeoFragmentDoc = gql`
-  fragment seo on ComponentSharedSeo {
-    metaDescription
-    preventIndexing
-  }
-`;
+    fragment seo on ComponentSharedSeo {
+  metaDescription
+  preventIndexing
+}
+    `;
 export const ImageFragmentDoc = gql`
-  fragment image on UploadFileEntity {
-    attributes {
-      alternativeText
-      width
-      height
-      placeholder
-      updatedAt
-      url
-    }
+    fragment image on UploadFileEntity {
+  attributes {
+    alternativeText
+    width
+    height
+    placeholder
+    updatedAt
+    url
   }
-`;
+}
+    `;
 export const AuthorFragmentDoc = gql`
-  fragment author on WriterEntity {
-    attributes {
-      name
-      description
-      picture {
-        data {
-          ...image
-        }
-      }
-    }
-  }
-  ${ImageFragmentDoc}
-`;
-export const ArticleSectionComponentFragmentDoc = gql`
-  fragment articleSectionComponent on ComponentArticlesArticlesSection {
-    entriesPerPage
-    header
-    previewMaxCharacters
-  }
-`;
-export const ArticlesSectionFragmentDoc = gql`
-  fragment articlesSection on ComponentArticlesArticlesSection {
-    header
-    entriesPerPage
-    previewMaxCharacters
-  }
-`;
-export const GetAlertDocument = gql`
-  query getAlert {
-    alert {
+    fragment author on WriterEntity {
+  attributes {
+    name
+    description
+    picture {
       data {
-        attributes {
-          message
-          link
-          isVisible
-        }
+        ...image
       }
     }
   }
-`;
+}
+    ${ImageFragmentDoc}`;
+export const ArticleSectionComponentFragmentDoc = gql`
+    fragment articleSectionComponent on ComponentArticlesArticlesSection {
+  entriesPerPage
+  header
+  previewMaxCharacters
+}
+    `;
+export const ArticlesSectionFragmentDoc = gql`
+    fragment articlesSection on ComponentArticlesArticlesSection {
+  header
+  entriesPerPage
+  previewMaxCharacters
+}
+    `;
+export const GetAlertDocument = gql`
+    query getAlert {
+  alert {
+    data {
+      attributes {
+        message
+        link
+        isVisible
+      }
+    }
+  }
+}
+    `;
 
 /**
  * __useGetAlertQuery__
@@ -2747,57 +2318,39 @@ export const GetAlertDocument = gql`
  *   },
  * });
  */
-export function useGetAlertQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetAlertQuery, GetAlertQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetAlertQuery, GetAlertQueryVariables>(
-    GetAlertDocument,
-    options
-  );
-}
-export function useGetAlertLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetAlertQuery,
-    GetAlertQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetAlertQuery, GetAlertQueryVariables>(
-    GetAlertDocument,
-    options
-  );
-}
-export type GetAlertQueryHookResult = ReturnType<typeof useGetAlertQuery>;
-export type GetAlertLazyQueryHookResult = ReturnType<
-  typeof useGetAlertLazyQuery
->;
-export type GetAlertQueryResult = Apollo.QueryResult<
-  GetAlertQuery,
-  GetAlertQueryVariables
->;
-export const GetFooterDocument = gql`
-  query getFooter {
-    footer {
-      data {
-        attributes {
-          copyright
-          showVercelBadge
-          email
-        }
+export function useGetAlertQuery(baseOptions?: Apollo.QueryHookOptions<GetAlertQuery, GetAlertQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAlertQuery, GetAlertQueryVariables>(GetAlertDocument, options);
       }
-    }
-    socialMedias {
-      data {
-        attributes {
-          iconSlug
-          showInFooter
-          link
+export function useGetAlertLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAlertQuery, GetAlertQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAlertQuery, GetAlertQueryVariables>(GetAlertDocument, options);
         }
+export type GetAlertQueryHookResult = ReturnType<typeof useGetAlertQuery>;
+export type GetAlertLazyQueryHookResult = ReturnType<typeof useGetAlertLazyQuery>;
+export type GetAlertQueryResult = Apollo.QueryResult<GetAlertQuery, GetAlertQueryVariables>;
+export const GetFooterDocument = gql`
+    query getFooter {
+  footer {
+    data {
+      attributes {
+        copyright
+        showVercelBadge
+        email
       }
     }
   }
-`;
+  socialMedias {
+    data {
+      attributes {
+        iconSlug
+        showInFooter
+        link
+      }
+    }
+  }
+}
+    `;
 
 /**
  * __useGetFooterQuery__
@@ -2814,46 +2367,27 @@ export const GetFooterDocument = gql`
  *   },
  * });
  */
-export function useGetFooterQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetFooterQuery, GetFooterQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetFooterQuery, GetFooterQueryVariables>(
-    GetFooterDocument,
-    options
-  );
-}
-export function useGetFooterLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetFooterQuery,
-    GetFooterQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetFooterQuery, GetFooterQueryVariables>(
-    GetFooterDocument,
-    options
-  );
-}
-export type GetFooterQueryHookResult = ReturnType<typeof useGetFooterQuery>;
-export type GetFooterLazyQueryHookResult = ReturnType<
-  typeof useGetFooterLazyQuery
->;
-export type GetFooterQueryResult = Apollo.QueryResult<
-  GetFooterQuery,
-  GetFooterQueryVariables
->;
-export const GetNavigationDocument = gql`
-  query GetNavigation($navigationIdOrSlug: String!) {
-    renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
-      ...item
-      items {
-        ...item
+export function useGetFooterQuery(baseOptions?: Apollo.QueryHookOptions<GetFooterQuery, GetFooterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFooterQuery, GetFooterQueryVariables>(GetFooterDocument, options);
       }
+export function useGetFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFooterQuery, GetFooterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFooterQuery, GetFooterQueryVariables>(GetFooterDocument, options);
+        }
+export type GetFooterQueryHookResult = ReturnType<typeof useGetFooterQuery>;
+export type GetFooterLazyQueryHookResult = ReturnType<typeof useGetFooterLazyQuery>;
+export type GetFooterQueryResult = Apollo.QueryResult<GetFooterQuery, GetFooterQueryVariables>;
+export const GetNavigationDocument = gql`
+    query GetNavigation($navigationIdOrSlug: String!) {
+  renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
+    ...item
+    items {
+      ...item
     }
   }
-  ${ItemFragmentDoc}
-`;
+}
+    ${ItemFragmentDoc}`;
 
 /**
  * __useGetNavigationQuery__
@@ -2871,81 +2405,57 @@ export const GetNavigationDocument = gql`
  *   },
  * });
  */
-export function useGetNavigationQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    GetNavigationQuery,
-    GetNavigationQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetNavigationQuery, GetNavigationQueryVariables>(
-    GetNavigationDocument,
-    options
-  );
-}
-export function useGetNavigationLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetNavigationQuery,
-    GetNavigationQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetNavigationQuery, GetNavigationQueryVariables>(
-    GetNavigationDocument,
-    options
-  );
-}
-export type GetNavigationQueryHookResult = ReturnType<
-  typeof useGetNavigationQuery
->;
-export type GetNavigationLazyQueryHookResult = ReturnType<
-  typeof useGetNavigationLazyQuery
->;
-export type GetNavigationQueryResult = Apollo.QueryResult<
-  GetNavigationQuery,
-  GetNavigationQueryVariables
->;
+export function useGetNavigationQuery(baseOptions: Apollo.QueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
+      }
+export function useGetNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
+        }
+export type GetNavigationQueryHookResult = ReturnType<typeof useGetNavigationQuery>;
+export type GetNavigationLazyQueryHookResult = ReturnType<typeof useGetNavigationLazyQuery>;
+export type GetNavigationQueryResult = Apollo.QueryResult<GetNavigationQuery, GetNavigationQueryVariables>;
 export const GetArticlesDocument = gql`
-  query getArticles($articlesPerPage: Int) {
-    articles(sort: "createdAt:desc", pagination: { limit: $articlesPerPage }) {
-      data {
-        id
-        attributes {
-          title
-          content
-          slug
-          image {
-            data {
-              ...image
+    query getArticles($articlesPerPage: Int) {
+  articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
+    data {
+      id
+      attributes {
+        title
+        content
+        slug
+        image {
+          data {
+            ...image
+          }
+        }
+        category {
+          data {
+            attributes {
+              name
+              slug
             }
           }
-          category {
-            data {
-              attributes {
-                name
-                slug
-              }
-            }
+        }
+        author {
+          data {
+            ...author
           }
-          author {
-            data {
-              ...author
-            }
-          }
-          createdAt
-          updatedAt
-          publishedAt
-          seo {
-            ...seo
-          }
+        }
+        createdAt
+        updatedAt
+        publishedAt
+        seo {
+          ...seo
         }
       }
     }
   }
-  ${ImageFragmentDoc}
-  ${AuthorFragmentDoc}
-  ${SeoFragmentDoc}
-`;
+}
+    ${ImageFragmentDoc}
+${AuthorFragmentDoc}
+${SeoFragmentDoc}`;
 
 /**
  * __useGetArticlesQuery__
@@ -2963,74 +2473,52 @@ export const GetArticlesDocument = gql`
  *   },
  * });
  */
-export function useGetArticlesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetArticlesQuery,
-    GetArticlesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetArticlesQuery, GetArticlesQueryVariables>(
-    GetArticlesDocument,
-    options
-  );
-}
-export function useGetArticlesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetArticlesQuery,
-    GetArticlesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetArticlesQuery, GetArticlesQueryVariables>(
-    GetArticlesDocument,
-    options
-  );
-}
+export function useGetArticlesQuery(baseOptions?: Apollo.QueryHookOptions<GetArticlesQuery, GetArticlesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetArticlesQuery, GetArticlesQueryVariables>(GetArticlesDocument, options);
+      }
+export function useGetArticlesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticlesQuery, GetArticlesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetArticlesQuery, GetArticlesQueryVariables>(GetArticlesDocument, options);
+        }
 export type GetArticlesQueryHookResult = ReturnType<typeof useGetArticlesQuery>;
-export type GetArticlesLazyQueryHookResult = ReturnType<
-  typeof useGetArticlesLazyQuery
->;
-export type GetArticlesQueryResult = Apollo.QueryResult<
-  GetArticlesQuery,
-  GetArticlesQueryVariables
->;
+export type GetArticlesLazyQueryHookResult = ReturnType<typeof useGetArticlesLazyQuery>;
+export type GetArticlesQueryResult = Apollo.QueryResult<GetArticlesQuery, GetArticlesQueryVariables>;
 export const GetGlobalDocument = gql`
-  query getGlobal {
-    global {
-      data {
-        id
-        attributes {
-          siteName
-          siteDescription
-          shareImage {
-            data {
-              ...image
-            }
+    query getGlobal {
+  global {
+    data {
+      id
+      attributes {
+        siteName
+        siteDescription
+        shareImage {
+          data {
+            ...image
           }
-          createdAt
-          updatedAt
-          background {
-            data {
-              ...image
-            }
+        }
+        createdAt
+        updatedAt
+        background {
+          data {
+            ...image
           }
-          favicon {
-            data {
-              ...image
-            }
+        }
+        favicon {
+          data {
+            ...image
           }
-          logo {
-            data {
-              ...image
-            }
+        }
+        logo {
+          data {
+            ...image
           }
         }
       }
     }
   }
-  ${ImageFragmentDoc}
-`;
+}
+    ${ImageFragmentDoc}`;
 
 /**
  * __useGetGlobalQuery__
@@ -3047,47 +2535,30 @@ export const GetGlobalDocument = gql`
  *   },
  * });
  */
-export function useGetGlobalQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetGlobalQuery, GetGlobalQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetGlobalQuery, GetGlobalQueryVariables>(
-    GetGlobalDocument,
-    options
-  );
-}
-export function useGetGlobalLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetGlobalQuery,
-    GetGlobalQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetGlobalQuery, GetGlobalQueryVariables>(
-    GetGlobalDocument,
-    options
-  );
-}
-export type GetGlobalQueryHookResult = ReturnType<typeof useGetGlobalQuery>;
-export type GetGlobalLazyQueryHookResult = ReturnType<
-  typeof useGetGlobalLazyQuery
->;
-export type GetGlobalQueryResult = Apollo.QueryResult<
-  GetGlobalQuery,
-  GetGlobalQueryVariables
->;
-export const GetTranslationsDocument = gql`
-  query getTranslations {
-    translation {
-      data {
-        attributes {
-          articleReadMore
-          paginationNextPage
+export function useGetGlobalQuery(baseOptions?: Apollo.QueryHookOptions<GetGlobalQuery, GetGlobalQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetGlobalQuery, GetGlobalQueryVariables>(GetGlobalDocument, options);
+      }
+export function useGetGlobalLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetGlobalQuery, GetGlobalQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetGlobalQuery, GetGlobalQueryVariables>(GetGlobalDocument, options);
         }
+export type GetGlobalQueryHookResult = ReturnType<typeof useGetGlobalQuery>;
+export type GetGlobalLazyQueryHookResult = ReturnType<typeof useGetGlobalLazyQuery>;
+export type GetGlobalQueryResult = Apollo.QueryResult<GetGlobalQuery, GetGlobalQueryVariables>;
+export const GetTranslationsDocument = gql`
+    query getTranslations {
+  translation {
+    data {
+      attributes {
+        articleReadMore
+        paginationNextPage
+        navigationSeeMore
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetTranslationsQuery__
@@ -3104,83 +2575,56 @@ export const GetTranslationsDocument = gql`
  *   },
  * });
  */
-export function useGetTranslationsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetTranslationsQuery,
-    GetTranslationsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetTranslationsQuery, GetTranslationsQueryVariables>(
-    GetTranslationsDocument,
-    options
-  );
-}
-export function useGetTranslationsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetTranslationsQuery,
-    GetTranslationsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetTranslationsQuery,
-    GetTranslationsQueryVariables
-  >(GetTranslationsDocument, options);
-}
-export type GetTranslationsQueryHookResult = ReturnType<
-  typeof useGetTranslationsQuery
->;
-export type GetTranslationsLazyQueryHookResult = ReturnType<
-  typeof useGetTranslationsLazyQuery
->;
-export type GetTranslationsQueryResult = Apollo.QueryResult<
-  GetTranslationsQuery,
-  GetTranslationsQueryVariables
->;
+export function useGetTranslationsQuery(baseOptions?: Apollo.QueryHookOptions<GetTranslationsQuery, GetTranslationsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTranslationsQuery, GetTranslationsQueryVariables>(GetTranslationsDocument, options);
+      }
+export function useGetTranslationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTranslationsQuery, GetTranslationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTranslationsQuery, GetTranslationsQueryVariables>(GetTranslationsDocument, options);
+        }
+export type GetTranslationsQueryHookResult = ReturnType<typeof useGetTranslationsQuery>;
+export type GetTranslationsLazyQueryHookResult = ReturnType<typeof useGetTranslationsLazyQuery>;
+export type GetTranslationsQueryResult = Apollo.QueryResult<GetTranslationsQuery, GetTranslationsQueryVariables>;
 export const GetCategoryArticlesBySlugDocument = gql`
-  query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
-    categories(filters: { slug: { eq: $slug } }) {
-      data {
-        attributes {
-          seo {
-            ...seo
-          }
-          name
-          articles(
-            sort: "createdAt:desc"
-            pagination: { limit: $entriesPerPage }
-          ) {
-            data {
-              id
-              attributes {
-                title
-                content
-                slug
-                image {
-                  data {
-                    ...image
+    query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
+  categories(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        seo {
+          ...seo
+        }
+        name
+        articles(sort: "createdAt:desc", pagination: {limit: $entriesPerPage}) {
+          data {
+            id
+            attributes {
+              title
+              content
+              slug
+              image {
+                data {
+                  ...image
+                }
+              }
+              category {
+                data {
+                  attributes {
+                    name
+                    slug
                   }
                 }
-                category {
-                  data {
-                    attributes {
-                      name
-                      slug
-                    }
-                  }
+              }
+              author {
+                data {
+                  ...author
                 }
-                author {
-                  data {
-                    ...author
-                  }
-                }
-                createdAt
-                updatedAt
-                publishedAt
-                seo {
-                  ...seo
-                }
+              }
+              createdAt
+              updatedAt
+              publishedAt
+              seo {
+                ...seo
               }
             }
           }
@@ -3188,10 +2632,10 @@ export const GetCategoryArticlesBySlugDocument = gql`
       }
     }
   }
-  ${SeoFragmentDoc}
-  ${ImageFragmentDoc}
-  ${AuthorFragmentDoc}
-`;
+}
+    ${SeoFragmentDoc}
+${ImageFragmentDoc}
+${AuthorFragmentDoc}`;
 
 /**
  * __useGetCategoryArticlesBySlugQuery__
@@ -3210,80 +2654,56 @@ export const GetCategoryArticlesBySlugDocument = gql`
  *   },
  * });
  */
-export function useGetCategoryArticlesBySlugQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetCategoryArticlesBySlugQuery,
-    GetCategoryArticlesBySlugQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetCategoryArticlesBySlugQuery,
-    GetCategoryArticlesBySlugQueryVariables
-  >(GetCategoryArticlesBySlugDocument, options);
-}
-export function useGetCategoryArticlesBySlugLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetCategoryArticlesBySlugQuery,
-    GetCategoryArticlesBySlugQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetCategoryArticlesBySlugQuery,
-    GetCategoryArticlesBySlugQueryVariables
-  >(GetCategoryArticlesBySlugDocument, options);
-}
-export type GetCategoryArticlesBySlugQueryHookResult = ReturnType<
-  typeof useGetCategoryArticlesBySlugQuery
->;
-export type GetCategoryArticlesBySlugLazyQueryHookResult = ReturnType<
-  typeof useGetCategoryArticlesBySlugLazyQuery
->;
-export type GetCategoryArticlesBySlugQueryResult = Apollo.QueryResult<
-  GetCategoryArticlesBySlugQuery,
-  GetCategoryArticlesBySlugQueryVariables
->;
+export function useGetCategoryArticlesBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>(GetCategoryArticlesBySlugDocument, options);
+      }
+export function useGetCategoryArticlesBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>(GetCategoryArticlesBySlugDocument, options);
+        }
+export type GetCategoryArticlesBySlugQueryHookResult = ReturnType<typeof useGetCategoryArticlesBySlugQuery>;
+export type GetCategoryArticlesBySlugLazyQueryHookResult = ReturnType<typeof useGetCategoryArticlesBySlugLazyQuery>;
+export type GetCategoryArticlesBySlugQueryResult = Apollo.QueryResult<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>;
 export const GetArticleBySlugDocument = gql`
-  query GetArticleBySlug($slug: String) {
-    articles(filters: { slug: { eq: $slug } }) {
-      data {
-        attributes {
-          title
-          content
-          slug
-          createdAt
-          publishedAt
-          updatedAt
-          category {
-            data {
-              attributes {
-                name
-                slug
-              }
+    query GetArticleBySlug($slug: String) {
+  articles(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        title
+        content
+        slug
+        createdAt
+        publishedAt
+        updatedAt
+        category {
+          data {
+            attributes {
+              name
+              slug
             }
           }
-          seo {
-            ...seo
+        }
+        seo {
+          ...seo
+        }
+        author {
+          data {
+            ...author
           }
-          author {
-            data {
-              ...author
-            }
-          }
-          image {
-            data {
-              ...image
-            }
+        }
+        image {
+          data {
+            ...image
           }
         }
       }
     }
   }
-  ${SeoFragmentDoc}
-  ${AuthorFragmentDoc}
-  ${ImageFragmentDoc}
-`;
+}
+    ${SeoFragmentDoc}
+${AuthorFragmentDoc}
+${ImageFragmentDoc}`;
 
 /**
  * __useGetArticleBySlugQuery__
@@ -3301,57 +2721,33 @@ export const GetArticleBySlugDocument = gql`
  *   },
  * });
  */
-export function useGetArticleBySlugQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetArticleBySlugQuery,
-    GetArticleBySlugQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(
-    GetArticleBySlugDocument,
-    options
-  );
-}
-export function useGetArticleBySlugLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetArticleBySlugQuery,
-    GetArticleBySlugQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetArticleBySlugQuery,
-    GetArticleBySlugQueryVariables
-  >(GetArticleBySlugDocument, options);
-}
-export type GetArticleBySlugQueryHookResult = ReturnType<
-  typeof useGetArticleBySlugQuery
->;
-export type GetArticleBySlugLazyQueryHookResult = ReturnType<
-  typeof useGetArticleBySlugLazyQuery
->;
-export type GetArticleBySlugQueryResult = Apollo.QueryResult<
-  GetArticleBySlugQuery,
-  GetArticleBySlugQueryVariables
->;
+export function useGetArticleBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(GetArticleBySlugDocument, options);
+      }
+export function useGetArticleBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(GetArticleBySlugDocument, options);
+        }
+export type GetArticleBySlugQueryHookResult = ReturnType<typeof useGetArticleBySlugQuery>;
+export type GetArticleBySlugLazyQueryHookResult = ReturnType<typeof useGetArticleBySlugLazyQuery>;
+export type GetArticleBySlugQueryResult = Apollo.QueryResult<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>;
 export const GetBlogPageDocument = gql`
-  query getBlogPage {
-    blog {
-      data {
-        attributes {
-          articlesSection {
-            ...articleSectionComponent
-          }
-          categorySection {
-            ...articleSectionComponent
-          }
+    query getBlogPage {
+  blog {
+    data {
+      attributes {
+        articlesSection {
+          ...articleSectionComponent
+        }
+        categorySection {
+          ...articleSectionComponent
         }
       }
     }
   }
-  ${ArticleSectionComponentFragmentDoc}
-`;
+}
+    ${ArticleSectionComponentFragmentDoc}`;
 
 /**
  * __useGetBlogPageQuery__
@@ -3368,56 +2764,34 @@ export const GetBlogPageDocument = gql`
  *   },
  * });
  */
-export function useGetBlogPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetBlogPageQuery,
-    GetBlogPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetBlogPageQuery, GetBlogPageQueryVariables>(
-    GetBlogPageDocument,
-    options
-  );
-}
-export function useGetBlogPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetBlogPageQuery,
-    GetBlogPageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetBlogPageQuery, GetBlogPageQueryVariables>(
-    GetBlogPageDocument,
-    options
-  );
-}
+export function useGetBlogPageQuery(baseOptions?: Apollo.QueryHookOptions<GetBlogPageQuery, GetBlogPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetBlogPageQuery, GetBlogPageQueryVariables>(GetBlogPageDocument, options);
+      }
+export function useGetBlogPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBlogPageQuery, GetBlogPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetBlogPageQuery, GetBlogPageQueryVariables>(GetBlogPageDocument, options);
+        }
 export type GetBlogPageQueryHookResult = ReturnType<typeof useGetBlogPageQuery>;
-export type GetBlogPageLazyQueryHookResult = ReturnType<
-  typeof useGetBlogPageLazyQuery
->;
-export type GetBlogPageQueryResult = Apollo.QueryResult<
-  GetBlogPageQuery,
-  GetBlogPageQueryVariables
->;
+export type GetBlogPageLazyQueryHookResult = ReturnType<typeof useGetBlogPageLazyQuery>;
+export type GetBlogPageQueryResult = Apollo.QueryResult<GetBlogPageQuery, GetBlogPageQueryVariables>;
 export const GetHomePageDocument = gql`
-  query getHomePage {
-    homepage {
-      data {
-        attributes {
-          seo {
-            ...seo
-          }
-          articlesSection {
-            ...articlesSection
-          }
+    query getHomePage {
+  homepage {
+    data {
+      attributes {
+        seo {
+          ...seo
+        }
+        articlesSection {
+          ...articlesSection
         }
       }
     }
   }
-  ${SeoFragmentDoc}
-  ${ArticlesSectionFragmentDoc}
-`;
+}
+    ${SeoFragmentDoc}
+${ArticlesSectionFragmentDoc}`;
 
 /**
  * __useGetHomePageQuery__
@@ -3434,50 +2808,29 @@ export const GetHomePageDocument = gql`
  *   },
  * });
  */
-export function useGetHomePageQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetHomePageQuery,
-    GetHomePageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetHomePageQuery, GetHomePageQueryVariables>(
-    GetHomePageDocument,
-    options
-  );
-}
-export function useGetHomePageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetHomePageQuery,
-    GetHomePageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetHomePageQuery, GetHomePageQueryVariables>(
-    GetHomePageDocument,
-    options
-  );
-}
-export type GetHomePageQueryHookResult = ReturnType<typeof useGetHomePageQuery>;
-export type GetHomePageLazyQueryHookResult = ReturnType<
-  typeof useGetHomePageLazyQuery
->;
-export type GetHomePageQueryResult = Apollo.QueryResult<
-  GetHomePageQuery,
-  GetHomePageQueryVariables
->;
-export const GetArticlesSlugsDocument = gql`
-  query getArticlesSlugs {
-    articles {
-      data {
-        id
-        attributes {
-          slug
+export function useGetHomePageQuery(baseOptions?: Apollo.QueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
+      }
+export function useGetHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
         }
+export type GetHomePageQueryHookResult = ReturnType<typeof useGetHomePageQuery>;
+export type GetHomePageLazyQueryHookResult = ReturnType<typeof useGetHomePageLazyQuery>;
+export type GetHomePageQueryResult = Apollo.QueryResult<GetHomePageQuery, GetHomePageQueryVariables>;
+export const GetArticlesSlugsDocument = gql`
+    query getArticlesSlugs {
+  articles {
+    data {
+      id
+      attributes {
+        slug
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetArticlesSlugsQuery__
@@ -3494,52 +2847,29 @@ export const GetArticlesSlugsDocument = gql`
  *   },
  * });
  */
-export function useGetArticlesSlugsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetArticlesSlugsQuery,
-    GetArticlesSlugsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>(
-    GetArticlesSlugsDocument,
-    options
-  );
-}
-export function useGetArticlesSlugsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetArticlesSlugsQuery,
-    GetArticlesSlugsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetArticlesSlugsQuery,
-    GetArticlesSlugsQueryVariables
-  >(GetArticlesSlugsDocument, options);
-}
-export type GetArticlesSlugsQueryHookResult = ReturnType<
-  typeof useGetArticlesSlugsQuery
->;
-export type GetArticlesSlugsLazyQueryHookResult = ReturnType<
-  typeof useGetArticlesSlugsLazyQuery
->;
-export type GetArticlesSlugsQueryResult = Apollo.QueryResult<
-  GetArticlesSlugsQuery,
-  GetArticlesSlugsQueryVariables
->;
-export const GetCategoriesSlugsDocument = gql`
-  query getCategoriesSlugs {
-    categories {
-      data {
-        id
-        attributes {
-          slug
+export function useGetArticlesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>(GetArticlesSlugsDocument, options);
+      }
+export function useGetArticlesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>(GetArticlesSlugsDocument, options);
         }
+export type GetArticlesSlugsQueryHookResult = ReturnType<typeof useGetArticlesSlugsQuery>;
+export type GetArticlesSlugsLazyQueryHookResult = ReturnType<typeof useGetArticlesSlugsLazyQuery>;
+export type GetArticlesSlugsQueryResult = Apollo.QueryResult<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>;
+export const GetCategoriesSlugsDocument = gql`
+    query getCategoriesSlugs {
+  categories {
+    data {
+      id
+      attributes {
+        slug
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetCategoriesSlugsQuery__
@@ -3556,37 +2886,14 @@ export const GetCategoriesSlugsDocument = gql`
  *   },
  * });
  */
-export function useGetCategoriesSlugsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetCategoriesSlugsQuery,
-    GetCategoriesSlugsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetCategoriesSlugsQuery,
-    GetCategoriesSlugsQueryVariables
-  >(GetCategoriesSlugsDocument, options);
-}
-export function useGetCategoriesSlugsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetCategoriesSlugsQuery,
-    GetCategoriesSlugsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetCategoriesSlugsQuery,
-    GetCategoriesSlugsQueryVariables
-  >(GetCategoriesSlugsDocument, options);
-}
-export type GetCategoriesSlugsQueryHookResult = ReturnType<
-  typeof useGetCategoriesSlugsQuery
->;
-export type GetCategoriesSlugsLazyQueryHookResult = ReturnType<
-  typeof useGetCategoriesSlugsLazyQuery
->;
-export type GetCategoriesSlugsQueryResult = Apollo.QueryResult<
-  GetCategoriesSlugsQuery,
-  GetCategoriesSlugsQueryVariables
->;
+export function useGetCategoriesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>(GetCategoriesSlugsDocument, options);
+      }
+export function useGetCategoriesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>(GetCategoriesSlugsDocument, options);
+        }
+export type GetCategoriesSlugsQueryHookResult = ReturnType<typeof useGetCategoriesSlugsQuery>;
+export type GetCategoriesSlugsLazyQueryHookResult = ReturnType<typeof useGetCategoriesSlugsLazyQuery>;
+export type GetCategoriesSlugsQueryResult = Apollo.QueryResult<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>;
