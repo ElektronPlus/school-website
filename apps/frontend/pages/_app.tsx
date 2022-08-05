@@ -1,4 +1,5 @@
 import { DocumentNode } from '@apollo/client';
+import { ThemeProvider } from '@emotion/react';
 import Layout from 'components/Layout';
 import {
   GetAlertDocument,
@@ -21,6 +22,7 @@ import Head from 'next/head';
 import { createContext } from 'react';
 import { getStrapiMedia } from 'services/media';
 import 'styles/globals.css';
+import { theme } from 'lib/emotion';
 
 interface GlobalContextInterface {
   menuLinks: GetNavigationQuery;
@@ -60,9 +62,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         defaultTitle={attributes.siteName}
       />
       <GlobalContext.Provider value={globalContext}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </GlobalContext.Provider>
     </>
   );
@@ -100,7 +104,7 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
     },
     translations: {
       query: GetTranslationsDocument,
-    }
+    },
   };
 
   const globalData = await mapObject(queries, async (key, parameters) => {
