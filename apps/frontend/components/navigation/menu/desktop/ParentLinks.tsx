@@ -9,19 +9,18 @@ export function ParentLinks() {
   const menuLinks = context.menuLinks.renderNavigation;
 
   return (
-    <ul
+    <Popover.Group
       css={{
         display: 'flex',
         listStyleType: 'none',
         gap: '24px',
         margin: 'auto',
       }}
+      as="li"
     >
-      <Popover.Group>
         {menuLinks.map((item) => (
           <MenuLink item={item} key={item.uiRouterKey} />
         ))}
-      </Popover.Group>
-    </ul>
+    </Popover.Group>
   );
 }
