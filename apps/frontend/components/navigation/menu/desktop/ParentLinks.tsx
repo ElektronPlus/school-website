@@ -16,7 +16,7 @@ export function ParentLinks() {
         gap: '24px',
         margin: 'auto',
       }}
-      as="li"
+      as="ul"
     >
         {menuLinks.map((item) => (
           <MenuLink item={item} key={item.uiRouterKey} />
