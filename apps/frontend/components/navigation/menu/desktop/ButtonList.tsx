@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { MenuLink } from 'components/navigation/menu/desktop/MenuLink';
 import { Popover } from '@headlessui/react';
 
-export function ParentLinks() {
+export function ButtonList() {
   const context = useContext(GlobalContext);
 
   const menuLinks = context.menuLinks.renderNavigation;

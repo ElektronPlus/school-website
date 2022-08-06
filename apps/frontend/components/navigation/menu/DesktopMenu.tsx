@@ -1,5 +1,5 @@
 import { Header } from 'components/navigation/Header';
-import { ParentLinks } from 'components/navigation/menu/desktop/ParentLinks';
+import { ButtonList } from 'components/navigation/menu/desktop/ButtonList';
 
 export function DesktopMenu() {
   return (
@@ -14,7 +14,7 @@ export function DesktopMenu() {
       }}
     >
       <Header />
-      <ParentLinks />
+      <ButtonList />
     </div>
   );
 }

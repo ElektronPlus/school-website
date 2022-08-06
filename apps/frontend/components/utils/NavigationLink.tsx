@@ -10,8 +10,8 @@ function Content({ icon, title }: { icon: string; title: string }) {
       css={{
         display: 'inline-block',
         position: 'relative',
-        padding: '16px 10px',
-        margin: '-16px -10px',
+        padding: '32px 0',
+        margin: '-32px 0',
         cursor: 'pointer'
       }}
     >
