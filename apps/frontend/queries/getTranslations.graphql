@@ -4,6 +4,7 @@ query getTranslations {
       attributes {
         articleReadMore
         paginationNextPage
+				navigationSeeMore
       }
     }
   }

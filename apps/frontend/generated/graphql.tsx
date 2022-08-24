@@ -204,6 +204,7 @@ export type BooleanFilterInput = {
   containsi?: InputMaybe<Scalars['Boolean']>;
   endsWith?: InputMaybe<Scalars['Boolean']>;
   eq?: InputMaybe<Scalars['Boolean']>;
+  eqi?: InputMaybe<Scalars['Boolean']>;
   gt?: InputMaybe<Scalars['Boolean']>;
   gte?: InputMaybe<Scalars['Boolean']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
@@ -333,6 +334,7 @@ export type DateFilterInput = {
   containsi?: InputMaybe<Scalars['Date']>;
   endsWith?: InputMaybe<Scalars['Date']>;
   eq?: InputMaybe<Scalars['Date']>;
+  eqi?: InputMaybe<Scalars['Date']>;
   gt?: InputMaybe<Scalars['Date']>;
   gte?: InputMaybe<Scalars['Date']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
@@ -356,6 +358,7 @@ export type DateTimeFilterInput = {
   containsi?: InputMaybe<Scalars['DateTime']>;
   endsWith?: InputMaybe<Scalars['DateTime']>;
   eq?: InputMaybe<Scalars['DateTime']>;
+  eqi?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
   gte?: InputMaybe<Scalars['DateTime']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -577,6 +580,7 @@ export type FloatFilterInput = {
   containsi?: InputMaybe<Scalars['Float']>;
   endsWith?: InputMaybe<Scalars['Float']>;
   eq?: InputMaybe<Scalars['Float']>;
+  eqi?: InputMaybe<Scalars['Float']>;
   gt?: InputMaybe<Scalars['Float']>;
   gte?: InputMaybe<Scalars['Float']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -621,7 +625,7 @@ export type FooterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -692,6 +696,7 @@ export type IdFilterInput = {
   containsi?: InputMaybe<Scalars['ID']>;
   endsWith?: InputMaybe<Scalars['ID']>;
   eq?: InputMaybe<Scalars['ID']>;
+  eqi?: InputMaybe<Scalars['ID']>;
   gt?: InputMaybe<Scalars['ID']>;
   gte?: InputMaybe<Scalars['ID']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -715,6 +720,7 @@ export type IntFilterInput = {
   containsi?: InputMaybe<Scalars['Int']>;
   endsWith?: InputMaybe<Scalars['Int']>;
   eq?: InputMaybe<Scalars['Int']>;
+  eqi?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
   gte?: InputMaybe<Scalars['Int']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
@@ -738,6 +744,7 @@ export type JsonFilterInput = {
   containsi?: InputMaybe<Scalars['JSON']>;
   endsWith?: InputMaybe<Scalars['JSON']>;
   eq?: InputMaybe<Scalars['JSON']>;
+  eqi?: InputMaybe<Scalars['JSON']>;
   gt?: InputMaybe<Scalars['JSON']>;
   gte?: InputMaybe<Scalars['JSON']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
@@ -763,6 +770,7 @@ export type Mutation = {
   createSocialMedia?: Maybe<SocialMediaEntityResponse>;
   createSubstitusion?: Maybe<SubstitusionEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
+  createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   createUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   createUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Create a new role */
@@ -783,6 +791,7 @@ export type Mutation = {
   deleteSubstitusion?: Maybe<SubstitusionEntityResponse>;
   deleteTranslation?: Maybe<TranslationEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
+  deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   deleteUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   deleteUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Delete an existing role */
@@ -815,6 +824,7 @@ export type Mutation = {
   updateSubstitusion?: Maybe<SubstitusionEntityResponse>;
   updateTranslation?: Maybe<TranslationEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
+  updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   updateUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   updateUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Update an existing role */
@@ -858,6 +868,11 @@ export type MutationCreateSubstitusionArgs = {
 
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
+};
+
+
+export type MutationCreateUploadFolderArgs = {
+  data: UploadFolderInput;
 };
 
 
@@ -917,6 +932,11 @@ export type MutationDeleteSubstitusionArgs = {
 
 
 export type MutationDeleteUploadFileArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteUploadFolderArgs = {
   id: Scalars['ID'];
 };
 
@@ -1064,6 +1084,12 @@ export type MutationUpdateUploadFileArgs = {
 };
 
 
+export type MutationUpdateUploadFolderArgs = {
+  data: UploadFolderInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateUrlAliasPathArgs = {
   data: UrlAliasPathInput;
   id: Scalars['ID'];
@@ -1104,12 +1130,12 @@ export type MutationUploadArgs = {
 
 export type NavigationItem = {
   __typename?: 'NavigationItem';
-  audience?: Maybe<Array<Maybe<Scalars['String']>>>;
   createdAt?: Maybe<Scalars['String']>;
   createdBy?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['String']>;
   created_by?: Maybe<Scalars['String']>;
   externalPath?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   items?: Maybe<Array<Maybe<NavigationItem>>>;
   master?: Maybe<Scalars['Int']>;
@@ -1117,7 +1143,7 @@ export type NavigationItem = {
   order: Scalars['Int'];
   parent?: Maybe<NavigationItem>;
   path?: Maybe<Scalars['String']>;
-  related?: Maybe<NavigationRelated>;
+  related?: Maybe<NavigationItemRelatedData>;
   title: Scalars['String'];
   type: Scalars['String'];
   uiRouterKey: Scalars['String'];
@@ -1127,11 +1153,17 @@ export type NavigationItem = {
   updated_by?: Maybe<Scalars['String']>;
 };
 
-export type NavigationRelated = {
-  __typename?: 'NavigationRelated';
+export type NavigationItemRelated = {
+  __typename?: 'NavigationItemRelated';
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+};
+
+export type NavigationItemRelatedData = {
+  __typename?: 'NavigationItemRelatedData';
+  attributes?: Maybe<NavigationItemRelated>;
+  id: Scalars['Int'];
 };
 
 export enum NavigationRenderType {
@@ -1232,6 +1264,8 @@ export type Query = {
   translation?: Maybe<TranslationEntityResponse>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  uploadFolder?: Maybe<UploadFolderEntityResponse>;
+  uploadFolders?: Maybe<UploadFolderEntityResponseCollection>;
   urlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   urlAliasPaths?: Maybe<UrlAliasPathEntityResponseCollection>;
   urlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
@@ -1342,6 +1376,18 @@ export type QueryUploadFileArgs = {
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryUploadFolderArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryUploadFoldersArgs = {
+  filters?: InputMaybe<UploadFolderFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -1465,6 +1511,7 @@ export type StringFilterInput = {
   containsi?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
+  eqi?: InputMaybe<Scalars['String']>;
   gt?: InputMaybe<Scalars['String']>;
   gte?: InputMaybe<Scalars['String']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1540,6 +1587,7 @@ export type Translation = {
   __typename?: 'Translation';
   articleReadMore: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
+  navigationSeeMore: Scalars['String'];
   paginationNextPage: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
@@ -1558,6 +1606,7 @@ export type TranslationEntityResponse = {
 
 export type TranslationInput = {
   articleReadMore?: InputMaybe<Scalars['String']>;
+  navigationSeeMore?: InputMaybe<Scalars['String']>;
   paginationNextPage?: InputMaybe<Scalars['String']>;
   url_path_id?: InputMaybe<Scalars['String']>;
 };
@@ -1607,6 +1656,8 @@ export type UploadFileFiltersInput = {
   caption?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
+  folder?: InputMaybe<UploadFolderFiltersInput>;
+  folderPath?: InputMaybe<StringFilterInput>;
   formats?: InputMaybe<JsonFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
@@ -1629,6 +1680,8 @@ export type UploadFileInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   ext?: InputMaybe<Scalars['String']>;
+  folder?: InputMaybe<Scalars['ID']>;
+  folderPath?: InputMaybe<Scalars['String']>;
   formats?: InputMaybe<Scalars['JSON']>;
   hash?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Int']>;
@@ -1643,13 +1696,90 @@ export type UploadFileInput = {
   width?: InputMaybe<Scalars['Int']>;
 };
 
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection';
+  data: Array<UploadFileEntity>;
+};
+
+export type UploadFolder = {
+  __typename?: 'UploadFolder';
+  children?: Maybe<UploadFolderRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  files?: Maybe<UploadFileRelationResponseCollection>;
+  name: Scalars['String'];
+  parent?: Maybe<UploadFolderEntityResponse>;
+  path: Scalars['String'];
+  pathId: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type UploadFolderChildrenArgs = {
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type UploadFolderFilesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type UploadFolderEntity = {
+  __typename?: 'UploadFolderEntity';
+  attributes?: Maybe<UploadFolder>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UploadFolderEntityResponse = {
+  __typename?: 'UploadFolderEntityResponse';
+  data?: Maybe<UploadFolderEntity>;
+};
+
+export type UploadFolderEntityResponseCollection = {
+  __typename?: 'UploadFolderEntityResponseCollection';
+  data: Array<UploadFolderEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UploadFolderFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  children?: InputMaybe<UploadFolderFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  files?: InputMaybe<UploadFileFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFolderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  parent?: InputMaybe<UploadFolderFiltersInput>;
+  path?: InputMaybe<StringFilterInput>;
+  pathId?: InputMaybe<IntFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type UploadFolderInput = {
+  children?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  files?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  name?: InputMaybe<Scalars['String']>;
+  parent?: InputMaybe<Scalars['ID']>;
+  path?: InputMaybe<Scalars['String']>;
+  pathId?: InputMaybe<Scalars['Int']>;
+};
+
+export type UploadFolderRelationResponseCollection = {
+  __typename?: 'UploadFolderRelationResponseCollection';
+  data: Array<UploadFolderEntity>;
+};
+
 export type UrlAliasPath = {
   __typename?: 'UrlAliasPath';
   contenttype: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   generated?: Maybe<Scalars['Boolean']>;
-  path: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path: Scalars['String'];
 };
 
 export type UrlAliasPathEntity = {
@@ -1677,14 +1807,14 @@ export type UrlAliasPathFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<UrlAliasPathFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UrlAliasPathFiltersInput>>>;
-  path?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path?: InputMaybe<StringFilterInput>;
 };
 
 export type UrlAliasPathInput = {
   contenttype?: InputMaybe<Scalars['String']>;
   generated?: InputMaybe<Scalars['Boolean']>;
-  path?: InputMaybe<Scalars['String']>;
+  url_path?: InputMaybe<Scalars['String']>;
 };
 
 export type UrlAliasPattern = {
@@ -2035,6 +2165,15 @@ export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean, email?: string | null } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
 
+export type GetNavigationQueryVariables = Exact<{
+  navigationIdOrSlug: Scalars['String'];
+}>;
+
+
+export type GetNavigationQuery = { __typename?: 'Query', renderNavigation: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null, items?: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null } | null> | null } | null> };
+
+export type ItemFragment = { __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null };
+
 export type GetArticlesQueryVariables = Exact<{
   articlesPerPage?: InputMaybe<Scalars['Int']>;
 }>;
@@ -2056,7 +2195,7 @@ export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'Gl
 export type GetTranslationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTranslationsQuery = { __typename?: 'Query', translation?: { __typename?: 'TranslationEntityResponse', data?: { __typename?: 'TranslationEntity', attributes?: { __typename?: 'Translation', articleReadMore: string, paginationNextPage: string } | null } | null } | null };
+export type GetTranslationsQuery = { __typename?: 'Query', translation?: { __typename?: 'TranslationEntityResponse', data?: { __typename?: 'TranslationEntity', attributes?: { __typename?: 'Translation', articleReadMore: string, paginationNextPage: string, navigationSeeMore: string } | null } | null } | null };
 
 export type GetCategoryArticlesBySlugQueryVariables = Exact<{
   entriesPerPage?: InputMaybe<Scalars['Int']>;
@@ -2097,6 +2236,14 @@ export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
 
+export const ItemFragmentDoc = gql`
+    fragment item on NavigationItem {
+  title
+  path
+  uiRouterKey
+  icon
+}
+    `;
 export const SeoFragmentDoc = gql`
     fragment seo on ComponentSharedSeo {
   metaDescription
@@ -2231,6 +2378,44 @@ export function useGetFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetFooterQueryHookResult = ReturnType<typeof useGetFooterQuery>;
 export type GetFooterLazyQueryHookResult = ReturnType<typeof useGetFooterLazyQuery>;
 export type GetFooterQueryResult = Apollo.QueryResult<GetFooterQuery, GetFooterQueryVariables>;
+export const GetNavigationDocument = gql`
+    query GetNavigation($navigationIdOrSlug: String!) {
+  renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
+    ...item
+    items {
+      ...item
+    }
+  }
+}
+    ${ItemFragmentDoc}`;
+
+/**
+ * __useGetNavigationQuery__
+ *
+ * To run a query within a React component, call `useGetNavigationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetNavigationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetNavigationQuery({
+ *   variables: {
+ *      navigationIdOrSlug: // value for 'navigationIdOrSlug'
+ *   },
+ * });
+ */
+export function useGetNavigationQuery(baseOptions: Apollo.QueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
+      }
+export function useGetNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
+        }
+export type GetNavigationQueryHookResult = ReturnType<typeof useGetNavigationQuery>;
+export type GetNavigationLazyQueryHookResult = ReturnType<typeof useGetNavigationLazyQuery>;
+export type GetNavigationQueryResult = Apollo.QueryResult<GetNavigationQuery, GetNavigationQueryVariables>;
 export const GetArticlesDocument = gql`
     query getArticles($articlesPerPage: Int) {
   articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
@@ -2368,6 +2553,7 @@ export const GetTranslationsDocument = gql`
       attributes {
         articleReadMore
         paginationNextPage
+        navigationSeeMore
       }
     }
   }

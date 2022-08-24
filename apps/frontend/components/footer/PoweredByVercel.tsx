@@ -1,12 +1,23 @@
 import Link from 'next/link';
+import { GlobalContext } from 'pages/_app';
+import { useContext } from 'react';
 
 export function PoweredByVercel() {
+  const context = useContext(GlobalContext);
+
+  const showVercelBadge =
+    context.footerContent.footer.data.attributes.showVercelBadge;
+
+  if (!showVercelBadge) {
+    return null;
+  }
+
   return (
     <Link
       href="https://vercel.com/?utm_source=ElektronPlus&utm_campaign=oss"
       passHref
     >
-      <a>
+      <a css={{ margin: 'auto' }}>
         <svg
           width="212"
           height="44"
