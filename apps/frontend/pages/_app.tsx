@@ -46,7 +46,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href={getStrapiMedia(attributes.favicon)} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <DefaultSeo
+      {/* <DefaultSeo
         openGraph={{
           images: [
             {
@@ -60,7 +60,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         description={attributes.siteDescription}
         titleTemplate={`%s | ${attributes.siteName}`}
         defaultTitle={attributes.siteName}
-      />
+      /> */}
       <GlobalContext.Provider value={globalContext}>
         <ThemeProvider theme={theme}>
           <Layout>
