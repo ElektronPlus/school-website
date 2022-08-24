@@ -20,7 +20,6 @@ export function StrapiImageFuture({
 
   const { alternativeText, width, height, placeholder } = image.data.attributes;
 
-
   const imagePropsWithDefaults = {
     ...imageProps,
   };
@@ -28,7 +27,6 @@ export function StrapiImageFuture({
   const blurProps = placeholder
     ? { placeholder: 'blur', blurDataURL: placeholder }
     : null;
-
 
   return (
     <NextImage

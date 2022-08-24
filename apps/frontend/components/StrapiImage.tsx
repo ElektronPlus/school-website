@@ -1,13 +1,13 @@
-import { getStrapiMedia } from '../services/media';
 import NextImage, { ImageProps } from 'next/image';
-import { UploadFileEntityResponse } from '../generated/graphql';
 import { PartialDeep } from 'type-fest';
+import { UploadFileEntityResponse } from '../generated/graphql';
+import { getStrapiMedia } from '../services/media';
 
 export function StrapiImage({
   image,
   imageProps,
 }: {
-  image: UploadFileEntityResponse;
+  image: PartialDeep<UploadFileEntityResponse>;
   imageProps?: PartialDeep<ImageProps>;
 }) {
   if (image.data === null) {

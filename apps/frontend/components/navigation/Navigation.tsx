@@ -1,54 +1,47 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Alert } from 'components/navigation/Alert';
-import {
-  GetAlertQuery,
-  UploadFileEntityResponse,
-  Maybe,
-  NavigationItem,
-} from 'generated/graphql';
-import { PartialDeep } from 'type-fest';
+import { DesktopMenu } from 'components/navigation/menu/DesktopMenu';
+import { MobileMenu } from 'components/navigation/menu/MobileMenu';
 import { DesktopContainer, TabletAndBelow } from 'components/utils/responsive';
-import { MobileMenu } from 'components/navigation/MobileMenu';
-import { DesktopMenu } from 'components/navigation/DesktopMenu';
+import { useEffect, useState } from 'react';
 
-export default function Navigation({
-  header,
-  navigationRes,
-  alertData,
-}: {
-  navigationRes: Array<Maybe<NavigationItem>>;
-  header: PartialDeep<UploadFileEntityResponse>;
-  alertData: GetAlertQuery;
-}) {
+export default function Navigation() {
+  const theme = useTheme();
+
+  const [isWindowScrolled, setIsWindowScrolled] = useState(false);
+
+  function handleWindowScroll() {
+    if (window.scrollY > 0) {
+      setIsWindowScrolled(true);
+    } else {
+      setIsWindowScrolled(false);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleWindowScroll);
+  });
+
+  const scrolledNav = css`background-color: ${theme.color.background.transculent.hexa()}; backdrop-filter: blur(48px) saturate(5);`;
+
   return (
     <div
-      css={{
-        position: 'sticky',
-        zIndex: 10,
-        top: 0,
-        backdropFilter: 'blur(48px) saturate(5)',
-        backgroundColor: '#ffffffcc',
-      }}
+      css={[{ position: 'sticky', top: 0, zIndex: 100, transition: '0.3s cubic-bezier(0.22, 0.61, 0.36, 1)' }, isWindowScrolled && scrolledNav]}
     >
       <nav
-        css={css`
-          border-bottom: #d9d9d9 1px solid;
-          margin-bottom: 50px;
-        `}
+        css={{
+          borderBottom: `${theme.color.border.primary} 1px solid`,
+          marginBottom: '50px',
+        }}
       >
         <TabletAndBelow>
-            <MobileMenu navigationRes={navigationRes} header={header} />
+          <MobileMenu />
         </TabletAndBelow>
         <DesktopContainer>
-            <DesktopMenu navigationRes={navigationRes} header={header}/>
+          <DesktopMenu />
         </DesktopContainer>
-
-        {alertData.alert.data.attributes.isVisible && (
-          <Alert
-            link={alertData.alert.data.attributes.link}
-            message={alertData.alert.data.attributes.message}
-          />
-        )}
+        <Alert />
       </nav>
     </div>
   );

@@ -1,7 +1,37 @@
-:root {
-  --text-primary: rgba(0, 0, 0, 0.85);
-  --text-secondary: rgba(0, 0, 0, 0.58);
-  --border: #d7d7d7;
+
+html {
+  line-height: 1.5;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 h1,
@@ -12,12 +42,17 @@ h5,
 h6,
 bold,
 strong {
-  color: var(--text-primary);
+  margin: 0;
 }
 
 a {
   text-decoration: none;
-  color: var(--text-secondary);
+}
+
+button {
+  background-color: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .wrapper {
@@ -31,7 +66,6 @@ a {
 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
-  color: var(--text-secondary);
   margin: 0;
 }
 

@@ -1,0 +1,15 @@
+query GetNavigation($navigationIdOrSlug: String!) {
+  renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
+    ...item
+    items {
+      ...item
+    }
+  }
+}
+
+fragment item on NavigationItem {
+  title
+  path
+  uiRouterKey
+  icon
+}

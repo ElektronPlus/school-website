@@ -1,12 +1,12 @@
+import { css } from '@emotion/react';
+import { H, Level } from 'react-accessible-headings';
+import Masonry from 'react-masonry-css';
 import {
   GetArticlesQuery,
   GetCategoriesBySlugQuery,
 } from '../../generated/graphql';
-import Article from './Index';
 import styles from './grid.module.css';
-import Masonry from 'react-masonry-css';
-import { css } from '@emotion/react';
-import { Level, H } from 'react-accessible-headings';
+import Article from './Index';
 
 type Articles =
   | GetArticlesQuery['articles']
