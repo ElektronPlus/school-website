@@ -633,7 +633,7 @@ export type FooterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | Page | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -772,6 +772,7 @@ export type Mutation = {
   createArticle?: Maybe<ArticleEntityResponse>;
   createAwesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
+  createPage?: Maybe<PageEntityResponse>;
   createPublisherAction?: Maybe<PublisherActionEntityResponse>;
   createSocialMedia?: Maybe<SocialMediaEntityResponse>;
   createSubstitusion?: Maybe<SubstitusionEntityResponse>;
@@ -792,6 +793,7 @@ export type Mutation = {
   deleteFooter?: Maybe<FooterEntityResponse>;
   deleteGlobal?: Maybe<GlobalEntityResponse>;
   deleteHomepage?: Maybe<HomepageEntityResponse>;
+  deletePage?: Maybe<PageEntityResponse>;
   deletePublisherAction?: Maybe<PublisherActionEntityResponse>;
   deleteSocialMedia?: Maybe<SocialMediaEntityResponse>;
   deleteSubstitusion?: Maybe<SubstitusionEntityResponse>;
@@ -825,6 +827,7 @@ export type Mutation = {
   updateFooter?: Maybe<FooterEntityResponse>;
   updateGlobal?: Maybe<GlobalEntityResponse>;
   updateHomepage?: Maybe<HomepageEntityResponse>;
+  updatePage?: Maybe<PageEntityResponse>;
   updatePublisherAction?: Maybe<PublisherActionEntityResponse>;
   updateSocialMedia?: Maybe<SocialMediaEntityResponse>;
   updateSubstitusion?: Maybe<SubstitusionEntityResponse>;
@@ -861,6 +864,11 @@ export type MutationCreateAwesomeHelpHelpArgs = {
 
 export type MutationCreateCategoryArgs = {
   data: CategoryInput;
+};
+
+
+export type MutationCreatePageArgs = {
+  data: PageInput;
 };
 
 
@@ -925,6 +933,11 @@ export type MutationDeleteAwesomeHelpHelpArgs = {
 
 
 export type MutationDeleteCategoryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeletePageArgs = {
   id: Scalars['ID'];
 };
 
@@ -1068,6 +1081,12 @@ export type MutationUpdateHomepageArgs = {
 };
 
 
+export type MutationUpdatePageArgs = {
+  data: PageInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdatePublisherActionArgs = {
   data: PublisherActionInput;
   id: Scalars['ID'];
@@ -1185,6 +1204,56 @@ export enum NavigationRenderType {
   Tree = 'TREE'
 }
 
+export type Page = {
+  __typename?: 'Page';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
+};
+
+export type PageEntity = {
+  __typename?: 'PageEntity';
+  attributes?: Maybe<Page>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PageEntityResponse = {
+  __typename?: 'PageEntityResponse';
+  data?: Maybe<PageEntity>;
+};
+
+export type PageEntityResponseCollection = {
+  __typename?: 'PageEntityResponseCollection';
+  data: Array<PageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<PageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
+};
+
+export type PageInput = {
+  content?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
+};
+
 export type Pagination = {
   __typename?: 'Pagination';
   page: Scalars['Int'];
@@ -1266,6 +1335,8 @@ export type Query = {
   global?: Maybe<GlobalEntityResponse>;
   homepage?: Maybe<HomepageEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
+  page?: Maybe<PageEntityResponse>;
+  pages?: Maybe<PageEntityResponseCollection>;
   publisherAction?: Maybe<PublisherActionEntityResponse>;
   publisherActions?: Maybe<PublisherActionEntityResponseCollection>;
   renderNavigation: Array<Maybe<NavigationItem>>;
@@ -1331,6 +1402,19 @@ export type QueryCategoriesArgs = {
 
 export type QueryCategoryArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryPageArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -2249,6 +2333,13 @@ export type GetHomePageQuery = { __typename?: 'Query', homepage?: { __typename?:
 
 export type ArticlesSectionFragment = { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null };
 
+export type GetPageBySlugQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetPageBySlugQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', title?: string | null, content?: string | null, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null } | null }> } | null };
+
 export type GetArticlesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2258,6 +2349,11 @@ export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
+
+export type GetPagesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPagesSlugsQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', slug: string } | null }> } | null };
 
 export const ItemFragmentDoc = gql`
     fragment item on NavigationItem {
@@ -2835,6 +2931,50 @@ export function useGetHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetHomePageQueryHookResult = ReturnType<typeof useGetHomePageQuery>;
 export type GetHomePageLazyQueryHookResult = ReturnType<typeof useGetHomePageLazyQuery>;
 export type GetHomePageQueryResult = Apollo.QueryResult<GetHomePageQuery, GetHomePageQueryVariables>;
+export const GetPageBySlugDocument = gql`
+    query GetPageBySlug($slug: String) {
+  pages(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        title
+        content
+        slug
+        createdAt
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPageBySlugQuery__
+ *
+ * To run a query within a React component, call `useGetPageBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPageBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPageBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetPageBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetPageBySlugQuery, GetPageBySlugQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPageBySlugQuery, GetPageBySlugQueryVariables>(GetPageBySlugDocument, options);
+      }
+export function useGetPageBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPageBySlugQuery, GetPageBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPageBySlugQuery, GetPageBySlugQueryVariables>(GetPageBySlugDocument, options);
+        }
+export type GetPageBySlugQueryHookResult = ReturnType<typeof useGetPageBySlugQuery>;
+export type GetPageBySlugLazyQueryHookResult = ReturnType<typeof useGetPageBySlugLazyQuery>;
+export type GetPageBySlugQueryResult = Apollo.QueryResult<GetPageBySlugQuery, GetPageBySlugQueryVariables>;
 export const GetArticlesSlugsDocument = gql`
     query getArticlesSlugs {
   articles {
@@ -2913,3 +3053,42 @@ export function useGetCategoriesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetCategoriesSlugsQueryHookResult = ReturnType<typeof useGetCategoriesSlugsQuery>;
 export type GetCategoriesSlugsLazyQueryHookResult = ReturnType<typeof useGetCategoriesSlugsLazyQuery>;
 export type GetCategoriesSlugsQueryResult = Apollo.QueryResult<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>;
+export const GetPagesSlugsDocument = gql`
+    query getPagesSlugs {
+  pages {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPagesSlugsQuery__
+ *
+ * To run a query within a React component, call `useGetPagesSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPagesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPagesSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetPagesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<GetPagesSlugsQuery, GetPagesSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPagesSlugsQuery, GetPagesSlugsQueryVariables>(GetPagesSlugsDocument, options);
+      }
+export function useGetPagesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPagesSlugsQuery, GetPagesSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPagesSlugsQuery, GetPagesSlugsQueryVariables>(GetPagesSlugsDocument, options);
+        }
+export type GetPagesSlugsQueryHookResult = ReturnType<typeof useGetPagesSlugsQuery>;
+export type GetPagesSlugsLazyQueryHookResult = ReturnType<typeof useGetPagesSlugsLazyQuery>;
+export type GetPagesSlugsQueryResult = Apollo.QueryResult<GetPagesSlugsQuery, GetPagesSlugsQueryVariables>;

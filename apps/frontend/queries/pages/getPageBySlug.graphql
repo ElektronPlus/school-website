@@ -1,0 +1,14 @@
+query GetPageBySlug($slug: String) {
+  pages(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        title
+        content
+        slug
+        createdAt
+        publishedAt
+        updatedAt
+      }
+    }
+  }
+}

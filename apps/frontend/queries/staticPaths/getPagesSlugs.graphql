@@ -1,0 +1,10 @@
+query getPagesSlugs {
+  pages {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
+}
