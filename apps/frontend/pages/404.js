@@ -3,7 +3,7 @@ import styles from '../styles/404.module.css'
 
 export default function Custom404() {
   return (
-    <div className={styles.papiez}>
+    <div className={styles.main_section}>
 
       <h1 className={styles.one}><b>404.</b></h1>
 
