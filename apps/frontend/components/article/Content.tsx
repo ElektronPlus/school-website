@@ -1,7 +1,7 @@
-import { css, useTheme } from '@emotion/react';
-import { ArticleReadMore } from 'components/article/ReadMore';
+import { css } from '@emotion/react';
 import DOMPurify from 'isomorphic-dompurify';
 import { getArticlePathBySlug } from 'services/utils';
+import { ArticleReadMore } from 'components/article/ReadMore';
 
 export function ArticleContent({
   content,
@@ -33,19 +33,17 @@ export function ArticleContent({
   }
 
   // disable styling on the preview of the article
-  const forbiddenAttrs = isSingleArticlePage ? [] : ['style'];
-  const forbiddenTags = isSingleArticlePage ? [] : ['strong'];
-
-  const theme = useTheme();
+  const forbiddenTags = isSingleArticlePage ? [] : ['style'];
 
   return (
     <>
       <div
-        css={{color: theme.color.text.secondary.hexa()}}
+        css={css`
+          color: #718096;
+        `}
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(article.content, {
-            FORBID_ATTR: forbiddenAttrs,
-            FORBID_TAGS: forbiddenTags,
+            FORBID_ATTR: forbiddenTags,
           }),
         }}
       />

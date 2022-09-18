@@ -174,7 +174,6 @@ export type Blog = {
   articlesSection: ComponentArticlesArticlesSection;
   categorySection?: Maybe<ComponentArticlesArticlesSection>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
   seo?: Maybe<ComponentSharedSeo>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
@@ -194,7 +193,6 @@ export type BlogEntityResponse = {
 export type BlogInput = {
   articlesSection?: InputMaybe<ComponentArticlesArticlesSectionInput>;
   categorySection?: InputMaybe<ComponentArticlesArticlesSectionInput>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
   url_path_id?: InputMaybe<Scalars['String']>;
 };
@@ -206,7 +204,6 @@ export type BooleanFilterInput = {
   containsi?: InputMaybe<Scalars['Boolean']>;
   endsWith?: InputMaybe<Scalars['Boolean']>;
   eq?: InputMaybe<Scalars['Boolean']>;
-  eqi?: InputMaybe<Scalars['Boolean']>;
   gt?: InputMaybe<Scalars['Boolean']>;
   gte?: InputMaybe<Scalars['Boolean']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
@@ -311,28 +308,22 @@ export type ComponentSharedMetaSocial = {
 export type ComponentSharedSeo = {
   __typename?: 'ComponentSharedSeo';
   id: Scalars['ID'];
-  keywords?: Maybe<Scalars['String']>;
   metaDescription?: Maybe<Scalars['String']>;
   preventIndexing?: Maybe<Scalars['Boolean']>;
-  structuredData?: Maybe<Scalars['JSON']>;
 };
 
 export type ComponentSharedSeoFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
-  keywords?: InputMaybe<StringFilterInput>;
   metaDescription?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentSharedSeoFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
   preventIndexing?: InputMaybe<BooleanFilterInput>;
-  structuredData?: InputMaybe<JsonFilterInput>;
 };
 
 export type ComponentSharedSeoInput = {
   id?: InputMaybe<Scalars['ID']>;
-  keywords?: InputMaybe<Scalars['String']>;
   metaDescription?: InputMaybe<Scalars['String']>;
   preventIndexing?: InputMaybe<Scalars['Boolean']>;
-  structuredData?: InputMaybe<Scalars['JSON']>;
 };
 
 export type DateFilterInput = {
@@ -342,7 +333,6 @@ export type DateFilterInput = {
   containsi?: InputMaybe<Scalars['Date']>;
   endsWith?: InputMaybe<Scalars['Date']>;
   eq?: InputMaybe<Scalars['Date']>;
-  eqi?: InputMaybe<Scalars['Date']>;
   gt?: InputMaybe<Scalars['Date']>;
   gte?: InputMaybe<Scalars['Date']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
@@ -366,7 +356,6 @@ export type DateTimeFilterInput = {
   containsi?: InputMaybe<Scalars['DateTime']>;
   endsWith?: InputMaybe<Scalars['DateTime']>;
   eq?: InputMaybe<Scalars['DateTime']>;
-  eqi?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
   gte?: InputMaybe<Scalars['DateTime']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -588,7 +577,6 @@ export type FloatFilterInput = {
   containsi?: InputMaybe<Scalars['Float']>;
   endsWith?: InputMaybe<Scalars['Float']>;
   eq?: InputMaybe<Scalars['Float']>;
-  eqi?: InputMaybe<Scalars['Float']>;
   gt?: InputMaybe<Scalars['Float']>;
   gte?: InputMaybe<Scalars['Float']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -633,7 +621,7 @@ export type FooterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -642,6 +630,8 @@ export type Global = {
   favicon?: Maybe<UploadFileEntityResponse>;
   language: Enum_Global_Language;
   logo?: Maybe<UploadFileEntityResponse>;
+  shareImage?: Maybe<UploadFileEntityResponse>;
+  siteDescription: Scalars['String'];
   siteName: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
@@ -663,6 +653,8 @@ export type GlobalInput = {
   favicon?: InputMaybe<Scalars['ID']>;
   language?: InputMaybe<Enum_Global_Language>;
   logo?: InputMaybe<Scalars['ID']>;
+  shareImage?: InputMaybe<Scalars['ID']>;
+  siteDescription?: InputMaybe<Scalars['String']>;
   siteName?: InputMaybe<Scalars['String']>;
   url_path_id?: InputMaybe<Scalars['String']>;
 };
@@ -700,7 +692,6 @@ export type IdFilterInput = {
   containsi?: InputMaybe<Scalars['ID']>;
   endsWith?: InputMaybe<Scalars['ID']>;
   eq?: InputMaybe<Scalars['ID']>;
-  eqi?: InputMaybe<Scalars['ID']>;
   gt?: InputMaybe<Scalars['ID']>;
   gte?: InputMaybe<Scalars['ID']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -724,7 +715,6 @@ export type IntFilterInput = {
   containsi?: InputMaybe<Scalars['Int']>;
   endsWith?: InputMaybe<Scalars['Int']>;
   eq?: InputMaybe<Scalars['Int']>;
-  eqi?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
   gte?: InputMaybe<Scalars['Int']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
@@ -748,7 +738,6 @@ export type JsonFilterInput = {
   containsi?: InputMaybe<Scalars['JSON']>;
   endsWith?: InputMaybe<Scalars['JSON']>;
   eq?: InputMaybe<Scalars['JSON']>;
-  eqi?: InputMaybe<Scalars['JSON']>;
   gt?: InputMaybe<Scalars['JSON']>;
   gte?: InputMaybe<Scalars['JSON']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
@@ -767,8 +756,6 @@ export type JsonFilterInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  /** Change user password. Confirm with the current password. */
-  changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createArticle?: Maybe<ArticleEntityResponse>;
   createAwesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
@@ -776,7 +763,6 @@ export type Mutation = {
   createSocialMedia?: Maybe<SocialMediaEntityResponse>;
   createSubstitusion?: Maybe<SubstitusionEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
-  createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   createUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   createUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Create a new role */
@@ -797,7 +783,6 @@ export type Mutation = {
   deleteSubstitusion?: Maybe<SubstitusionEntityResponse>;
   deleteTranslation?: Maybe<TranslationEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
-  deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   deleteUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   deleteUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Delete an existing role */
@@ -830,7 +815,6 @@ export type Mutation = {
   updateSubstitusion?: Maybe<SubstitusionEntityResponse>;
   updateTranslation?: Maybe<TranslationEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
-  updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   updateUrlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   updateUrlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
   /** Update an existing role */
@@ -839,13 +823,6 @@ export type Mutation = {
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   updateWriter?: Maybe<WriterEntityResponse>;
   upload: UploadFileEntityResponse;
-};
-
-
-export type MutationChangePasswordArgs = {
-  currentPassword: Scalars['String'];
-  password: Scalars['String'];
-  passwordConfirmation: Scalars['String'];
 };
 
 
@@ -881,11 +858,6 @@ export type MutationCreateSubstitusionArgs = {
 
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
-};
-
-
-export type MutationCreateUploadFolderArgs = {
-  data: UploadFolderInput;
 };
 
 
@@ -945,11 +917,6 @@ export type MutationDeleteSubstitusionArgs = {
 
 
 export type MutationDeleteUploadFileArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationDeleteUploadFolderArgs = {
   id: Scalars['ID'];
 };
 
@@ -1097,12 +1064,6 @@ export type MutationUpdateUploadFileArgs = {
 };
 
 
-export type MutationUpdateUploadFolderArgs = {
-  data: UploadFolderInput;
-  id: Scalars['ID'];
-};
-
-
 export type MutationUpdateUrlAliasPathArgs = {
   data: UrlAliasPathInput;
   id: Scalars['ID'];
@@ -1143,12 +1104,12 @@ export type MutationUploadArgs = {
 
 export type NavigationItem = {
   __typename?: 'NavigationItem';
+  audience?: Maybe<Array<Maybe<Scalars['String']>>>;
   createdAt?: Maybe<Scalars['String']>;
   createdBy?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['String']>;
   created_by?: Maybe<Scalars['String']>;
   externalPath?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   items?: Maybe<Array<Maybe<NavigationItem>>>;
   master?: Maybe<Scalars['Int']>;
@@ -1156,7 +1117,7 @@ export type NavigationItem = {
   order: Scalars['Int'];
   parent?: Maybe<NavigationItem>;
   path?: Maybe<Scalars['String']>;
-  related?: Maybe<NavigationItemRelatedData>;
+  related?: Maybe<NavigationRelated>;
   title: Scalars['String'];
   type: Scalars['String'];
   uiRouterKey: Scalars['String'];
@@ -1166,17 +1127,11 @@ export type NavigationItem = {
   updated_by?: Maybe<Scalars['String']>;
 };
 
-export type NavigationItemRelated = {
-  __typename?: 'NavigationItemRelated';
+export type NavigationRelated = {
+  __typename?: 'NavigationRelated';
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-};
-
-export type NavigationItemRelatedData = {
-  __typename?: 'NavigationItemRelatedData';
-  attributes?: Maybe<NavigationItemRelated>;
-  id: Scalars['Int'];
 };
 
 export enum NavigationRenderType {
@@ -1277,8 +1232,6 @@ export type Query = {
   translation?: Maybe<TranslationEntityResponse>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
-  uploadFolder?: Maybe<UploadFolderEntityResponse>;
-  uploadFolders?: Maybe<UploadFolderEntityResponseCollection>;
   urlAliasPath?: Maybe<UrlAliasPathEntityResponse>;
   urlAliasPaths?: Maybe<UrlAliasPathEntityResponseCollection>;
   urlAliasPattern?: Maybe<UrlAliasPatternEntityResponse>;
@@ -1314,11 +1267,6 @@ export type QueryAwesomeHelpHelpsArgs = {
   filters?: InputMaybe<AwesomeHelpHelpFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryBlogArgs = {
-  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -1387,11 +1335,6 @@ export type QuerySubstitusionsArgs = {
 };
 
 
-export type QueryTranslationArgs = {
-  publicationState?: InputMaybe<PublicationState>;
-};
-
-
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1399,18 +1342,6 @@ export type QueryUploadFileArgs = {
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryUploadFolderArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryUploadFoldersArgs = {
-  filters?: InputMaybe<UploadFolderFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -1534,7 +1465,6 @@ export type StringFilterInput = {
   containsi?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
-  eqi?: InputMaybe<Scalars['String']>;
   gt?: InputMaybe<Scalars['String']>;
   gte?: InputMaybe<Scalars['String']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -1608,10 +1538,9 @@ export type SubstitusionRelationResponseCollection = {
 
 export type Translation = {
   __typename?: 'Translation';
-  articleReadMore?: Maybe<Scalars['String']>;
+  articleReadMore: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  paginationNextPage?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
+  paginationNextPage: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
 };
@@ -1630,7 +1559,6 @@ export type TranslationEntityResponse = {
 export type TranslationInput = {
   articleReadMore?: InputMaybe<Scalars['String']>;
   paginationNextPage?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
@@ -1679,8 +1607,6 @@ export type UploadFileFiltersInput = {
   caption?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
-  folder?: InputMaybe<UploadFolderFiltersInput>;
-  folderPath?: InputMaybe<StringFilterInput>;
   formats?: InputMaybe<JsonFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
@@ -1703,8 +1629,6 @@ export type UploadFileInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   ext?: InputMaybe<Scalars['String']>;
-  folder?: InputMaybe<Scalars['ID']>;
-  folderPath?: InputMaybe<Scalars['String']>;
   formats?: InputMaybe<Scalars['JSON']>;
   hash?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Int']>;
@@ -1719,90 +1643,13 @@ export type UploadFileInput = {
   width?: InputMaybe<Scalars['Int']>;
 };
 
-export type UploadFileRelationResponseCollection = {
-  __typename?: 'UploadFileRelationResponseCollection';
-  data: Array<UploadFileEntity>;
-};
-
-export type UploadFolder = {
-  __typename?: 'UploadFolder';
-  children?: Maybe<UploadFolderRelationResponseCollection>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  files?: Maybe<UploadFileRelationResponseCollection>;
-  name: Scalars['String'];
-  parent?: Maybe<UploadFolderEntityResponse>;
-  path: Scalars['String'];
-  pathId: Scalars['Int'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type UploadFolderChildrenArgs = {
-  filters?: InputMaybe<UploadFolderFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type UploadFolderFilesArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type UploadFolderEntity = {
-  __typename?: 'UploadFolderEntity';
-  attributes?: Maybe<UploadFolder>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type UploadFolderEntityResponse = {
-  __typename?: 'UploadFolderEntityResponse';
-  data?: Maybe<UploadFolderEntity>;
-};
-
-export type UploadFolderEntityResponseCollection = {
-  __typename?: 'UploadFolderEntityResponseCollection';
-  data: Array<UploadFolderEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type UploadFolderFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
-  children?: InputMaybe<UploadFolderFiltersInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  files?: InputMaybe<UploadFileFiltersInput>;
-  id?: InputMaybe<IdFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<UploadFolderFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
-  parent?: InputMaybe<UploadFolderFiltersInput>;
-  path?: InputMaybe<StringFilterInput>;
-  pathId?: InputMaybe<IntFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type UploadFolderInput = {
-  children?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  files?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  name?: InputMaybe<Scalars['String']>;
-  parent?: InputMaybe<Scalars['ID']>;
-  path?: InputMaybe<Scalars['String']>;
-  pathId?: InputMaybe<Scalars['Int']>;
-};
-
-export type UploadFolderRelationResponseCollection = {
-  __typename?: 'UploadFolderRelationResponseCollection';
-  data: Array<UploadFolderEntity>;
-};
-
 export type UrlAliasPath = {
   __typename?: 'UrlAliasPath';
   contenttype: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   generated?: Maybe<Scalars['Boolean']>;
+  path: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
-  url_path: Scalars['String'];
 };
 
 export type UrlAliasPathEntity = {
@@ -1830,14 +1677,14 @@ export type UrlAliasPathFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<UrlAliasPathFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UrlAliasPathFiltersInput>>>;
+  path?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
-  url_path?: InputMaybe<StringFilterInput>;
 };
 
 export type UrlAliasPathInput = {
   contenttype?: InputMaybe<Scalars['String']>;
   generated?: InputMaybe<Scalars['Boolean']>;
-  url_path?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']>;
 };
 
 export type UrlAliasPattern = {
@@ -2111,9 +1958,9 @@ export type Writer = {
   __typename?: 'Writer';
   articles?: Maybe<ArticleRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
   email?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   picture?: Maybe<UploadFileEntityResponse>;
   substitusions?: Maybe<SubstitusionRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -2188,37 +2035,28 @@ export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean, email?: string | null } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
 
-export type GetNavigationQueryVariables = Exact<{
-  navigationIdOrSlug: Scalars['String'];
-}>;
-
-
-export type GetNavigationQuery = { __typename?: 'Query', renderNavigation: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null, items?: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null } | null> | null } | null> };
-
-export type ItemFragment = { __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null };
-
 export type GetArticlesQueryVariables = Exact<{
   articlesPerPage?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null };
+export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null };
 
 export type SeoFragment = { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null };
 
-export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null };
+export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null };
 
 export type ImageFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null };
 
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null };
+export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, siteDescription: string, createdAt?: any | null, updatedAt?: any | null, shareImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null };
 
 export type GetTranslationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTranslationsQuery = { __typename?: 'Query', translation?: { __typename?: 'TranslationEntityResponse', data?: { __typename?: 'TranslationEntity', attributes?: { __typename?: 'Translation', articleReadMore?: string | null, paginationNextPage?: string | null } | null } | null } | null };
+export type GetTranslationsQuery = { __typename?: 'Query', translation?: { __typename?: 'TranslationEntityResponse', data?: { __typename?: 'TranslationEntity', attributes?: { __typename?: 'Translation', articleReadMore: string, paginationNextPage: string } | null } | null } | null };
 
 export type GetCategoryArticlesBySlugQueryVariables = Exact<{
   entriesPerPage?: InputMaybe<Scalars['Int']>;
@@ -2226,14 +2064,14 @@ export type GetCategoryArticlesBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetCategoryArticlesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
+export type GetCategoryArticlesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
 
 export type GetArticleBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetArticleBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null }> } | null };
+export type GetArticleBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name: string, description: string, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null }> } | null };
 
 export type GetBlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2259,14 +2097,6 @@ export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
 
-export const ItemFragmentDoc = gql`
-    fragment item on NavigationItem {
-  title
-  path
-  uiRouterKey
-  icon
-}
-    `;
 export const SeoFragmentDoc = gql`
     fragment seo on ComponentSharedSeo {
   metaDescription
@@ -2401,44 +2231,6 @@ export function useGetFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type GetFooterQueryHookResult = ReturnType<typeof useGetFooterQuery>;
 export type GetFooterLazyQueryHookResult = ReturnType<typeof useGetFooterLazyQuery>;
 export type GetFooterQueryResult = Apollo.QueryResult<GetFooterQuery, GetFooterQueryVariables>;
-export const GetNavigationDocument = gql`
-    query GetNavigation($navigationIdOrSlug: String!) {
-  renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
-    ...item
-    items {
-      ...item
-    }
-  }
-}
-    ${ItemFragmentDoc}`;
-
-/**
- * __useGetNavigationQuery__
- *
- * To run a query within a React component, call `useGetNavigationQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetNavigationQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetNavigationQuery({
- *   variables: {
- *      navigationIdOrSlug: // value for 'navigationIdOrSlug'
- *   },
- * });
- */
-export function useGetNavigationQuery(baseOptions: Apollo.QueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
-      }
-export function useGetNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
-        }
-export type GetNavigationQueryHookResult = ReturnType<typeof useGetNavigationQuery>;
-export type GetNavigationLazyQueryHookResult = ReturnType<typeof useGetNavigationLazyQuery>;
-export type GetNavigationQueryResult = Apollo.QueryResult<GetNavigationQuery, GetNavigationQueryVariables>;
 export const GetArticlesDocument = gql`
     query getArticles($articlesPerPage: Int) {
   articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
@@ -2514,6 +2306,12 @@ export const GetGlobalDocument = gql`
       id
       attributes {
         siteName
+        siteDescription
+        shareImage {
+          data {
+            ...image
+          }
+        }
         createdAt
         updatedAt
         background {

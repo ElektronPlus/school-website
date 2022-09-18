@@ -1,16 +1,29 @@
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import Footer from 'components/footer/Footer';
 import Navigation from 'components/navigation/Navigation';
 import { StrapiImage } from 'components/StrapiImage';
-import { GlobalContext } from 'pages/_app';
-import { useContext } from 'react';
+import { GetAlertQuery, GetFooterQuery, Maybe, UploadFileEntityResponse, NavigationItem } from 'generated/graphql';
+import type {PartialDeep} from 'type-fest';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const context = useContext(GlobalContext);
-  const theme = useTheme();
-
+export default function Layout({
+  children,
+  navigationRes,
+  footerData,
+  footerLinks,
+  background,
+  alertData,
+  header
+}: {
+  children: React.ReactNode;
+  navigationRes: Array<Maybe<NavigationItem>>;
+  footerData: GetFooterQuery;
+  footerLinks: Array<Maybe<NavigationItem>>;
+  background: object;
+  alertData: GetAlertQuery;
+  header: PartialDeep<UploadFileEntityResponse>;
+}) {
   return (
-    <div css={{color: theme.color.text.primary.hexa()}}>
+    <>
       <div
         css={css`
           z-index: -1;
@@ -20,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         `}
       >
         <StrapiImage
-          image={context.global.global.data.attributes.background}
+          image={background}
           imageProps={{
             layout: 'fill',
             objectFit: 'cover',
@@ -29,11 +42,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }}
         />
       </div>
-      <Navigation />
+      <Navigation
+        header={header}
+        navigationRes={navigationRes}
+        alertData={alertData}
+      />
       <div className="wrapper">
         <main>{children}</main>
       </div>
-      <Footer />
-    </div>
+      <Footer footerData={footerData} footerLinks={footerLinks} />
+    </>
   );
 }

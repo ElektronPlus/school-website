@@ -1,7 +1,6 @@
 {
   "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
-    "react/no-children-prop": "off",
-    "react/display-name": "off"
+    "react/no-children-prop": "off"
   }
 }

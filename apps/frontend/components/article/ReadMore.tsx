@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 
 export function ArticleReadMore({
   text,
@@ -8,8 +8,6 @@ export function ArticleReadMore({
   text: string;
   path: string;
 }) {
-  const theme = useTheme();
-
   return (
     <div
       css={css`
@@ -20,7 +18,13 @@ export function ArticleReadMore({
     >
       <Link href={path} passHref>
         <a
-          css={{color: theme.color.text.light.hexa(), fontWeight: '700', '&:hover': {textDecoration: 'underline'}}}
+          css={css`
+            color: #4299e1;
+            font-weight: 500;
+            &:hover {
+              text-decoration: underline;
+            }
+          `}
         >
           {text}
         </a>
