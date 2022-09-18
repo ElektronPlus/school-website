@@ -1,11 +1,6 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { DocumentNode } from '@apollo/client';
+import { ThemeProvider } from '@emotion/react';
 import Layout from 'components/Layout';
-import { DefaultSeo } from 'next-seo';
-import type { AppProps } from 'next/app';
-import App, { AppContext } from 'next/app';
-import Head from 'next/head';
-import { createContext } from 'react';
-import { getStrapiMedia } from 'services/media';
 import {
   GetAlertDocument,
   GetAlertQuery,
@@ -13,32 +8,37 @@ import {
   GetFooterQuery,
   GetGlobalDocument,
   GetGlobalQuery,
-  Maybe,
-  NavigationItem
+  GetNavigationDocument,
+  GetNavigationQuery,
+  GetTranslationsDocument,
+  GetTranslationsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
-import { theme } from 'lib/chakraUi';
-import { fetchAPI } from 'services/api';
+import mapObject from 'map-obj-async';
+import { DefaultSeo } from 'next-seo';
+import type { AppProps } from 'next/app';
+import App, { AppContext } from 'next/app';
+import Head from 'next/head';
+import { createContext } from 'react';
+import { getStrapiMedia } from 'services/media';
 import 'styles/globals.css';
+import { theme } from 'lib/emotion';
 
-export const GlobalContext = createContext({});
+interface GlobalContextInterface {
+  menuLinks: GetNavigationQuery;
+  footerLinks: GetNavigationQuery;
+  footerContent: GetFooterQuery;
+  global: GetGlobalQuery;
+  alert: GetAlertQuery;
+  translations: GetTranslationsQuery;
+}
+
+export const GlobalContext = createContext<GlobalContextInterface | null>(null);
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const {
-    globalData,
-    navigationRes,
-    footerData,
-    footerLinksRes,
-    alertData,
-  }: {
-    globalData: GetGlobalQuery;
-    navigationRes: Array<Maybe<NavigationItem>>;
-    footerData: GetFooterQuery;
-    footerLinksRes: Array<Maybe<NavigationItem>>;
-    alertData: GetAlertQuery;
-  } = pageProps;
+  const globalContext: GlobalContextInterface = pageProps.globalData;
 
-  const { attributes } = globalData.global.data;
+  const attributes = globalContext.global.global.data.attributes;
 
   return (
     <>
@@ -46,7 +46,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href={getStrapiMedia(attributes.favicon)} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <DefaultSeo
+      {/* <DefaultSeo
         openGraph={{
           images: [
             {
@@ -60,19 +60,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         description={attributes.siteDescription}
         titleTemplate={`%s | ${attributes.siteName}`}
         defaultTitle={attributes.siteName}
-      />
-      <ChakraProvider theme={theme}>
-        <Layout
-          background={attributes.background}
-          footerData={footerData}
-          footerLinks={footerLinksRes}
-          navigationRes={navigationRes}
-          alertData={alertData}
-          header={attributes.logo}
-        >
-          <Component {...pageProps} />
-        </Layout>
-      </ChakraProvider>
+      /> */}
+      <GlobalContext.Provider value={globalContext}>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </GlobalContext.Provider>
     </>
   );
 }
@@ -80,35 +75,49 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 MyApp.getInitialProps = async (ctx: AppContext) => {
   const appProps = await App.getInitialProps(ctx);
 
-  // Navigation requires additional configuration to use GraphQL API, so we use REST API to fetch it
-  const navigationRes = await fetchAPI('/navigation/render/main-navigation', {
-    type: 'tree',
+  interface Query {
+    query: DocumentNode;
+    variables?: object;
+  }
+
+  const queries: Record<string, Query> = {
+    menuLinks: {
+      query: GetNavigationDocument,
+      variables: {
+        navigationIdOrSlug: 'menu',
+      },
+    },
+    footerLinks: {
+      query: GetNavigationDocument,
+      variables: {
+        navigationIdOrSlug: 'footer',
+      },
+    },
+    footerContent: {
+      query: GetFooterDocument,
+    },
+    global: {
+      query: GetGlobalDocument,
+    },
+    alert: {
+      query: GetAlertDocument,
+    },
+    translations: {
+      query: GetTranslationsDocument,
+    },
+  };
+
+  const globalData = await mapObject(queries, async (key, parameters) => {
+    const { query, variables } = parameters;
+    const result = (await client.query({ query, variables })).data;
+
+    return [key, result];
   });
-
-  const footerLinksRes = await fetchAPI('/navigation/render/footerColumns', {
-    type: 'tree',
-  });
-
-  const footerData: GetFooterQuery = (
-    await client.query({ query: GetFooterDocument })
-  ).data;
-
-  const globalData: GetGlobalQuery = (
-    await client.query({ query: GetGlobalDocument })
-  ).data;
-
-  const alertData: GetAlertQuery = (
-    await client.query({ query: GetAlertDocument })
-  ).data;
 
   return {
     ...appProps,
     pageProps: {
       globalData,
-      navigationRes,
-      footerData,
-      footerLinksRes,
-      alertData,
     },
   };
 };

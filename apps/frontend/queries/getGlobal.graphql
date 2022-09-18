@@ -4,12 +4,6 @@ query getGlobal {
       id
       attributes {
         siteName
-        siteDescription
-        shareImage {
-          data {
-            ...image
-          }
-        }
         createdAt
         updatedAt
         background {

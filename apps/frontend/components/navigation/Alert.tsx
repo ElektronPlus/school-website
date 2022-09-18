@@ -1,4 +1,8 @@
+import { useTheme } from '@emotion/react';
+import link from 'next/link';
 import Link from 'next/link';
+import { GlobalContext } from 'pages/_app';
+import { useContext } from 'react';
 
 function Content({ message, link }: { message: string; link: string | null }) {
   if (link) {
@@ -12,23 +16,26 @@ function Content({ message, link }: { message: string; link: string | null }) {
   return <>{message}</>;
 }
 
-export function Alert({
-  message,
-  link,
-}: {
-  message: string;
-  link: string | null;
-}) {
+export function Alert() {
+  const context = useContext(GlobalContext);
+  const theme = useTheme();
+
+  const alert = context.alert.alert.data.attributes;
+
+  if (!alert.isVisible) {
+    return null;
+  }
+
   return (
     <div
       css={{
         padding: '8px',
         textAlign: 'center',
-        borderTop: '#00000075 2px dashed',
+        borderTop: `${theme.color.border.primary.hexa()} 1px solid`,
         fontWeight: 700,
       }}
     >
-      <Content message={message} link={link} />
+      <Content message={alert.message} link={alert.link} />
     </div>
   );
 }
