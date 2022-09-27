@@ -1,62 +1,80 @@
+import {
+  Box,
+  Container,
+  Flex,
+  List,
+  ListItem,
+  SimpleGrid,
+  Stack,
+  Text,
+  useColorModeValue
+} from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { PoweredByVercel } from 'components/footer/PoweredByVercel';
 import { SocialMediaIcon } from 'components/footer/SocialMediaIcon';
 import { TemplateAuthors } from 'components/footer/TemplateAuthors';
+import { GetFooterQuery, Maybe, NavigationItem } from 'generated/graphql';
 import DOMPurify from 'isomorphic-dompurify';
 import Link from 'next/link';
-import { GlobalContext } from 'pages/_app';
-import { useContext } from 'react';
 import { H, Level } from 'react-accessible-headings';
 import { MdMail } from 'react-icons/md';
+import styles from './footer.module.css';
 
-export default function Footer() {
-  const context = useContext(GlobalContext);
-
+export default function Footer({
+  footerData,
+  footerLinks,
+}: {
+  footerData: GetFooterQuery;
+  footerLinks: Array<Maybe<NavigationItem>>;
+}) {
   return (
-    <footer css={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+    <footer className={styles.footer}>
       <Level>
-        <div
-          css={{ width: '100%', backgroundColor: '#F7FAFC', color: '#2D3748' }}
+        <Box
+          width={'full'}
+          bg={useColorModeValue('gray.50', 'gray.900')}
+          color={useColorModeValue('gray.700', 'gray.200')}
         >
-          <div
-            css={{
-              width: '100%',
-              padding: '10px 0',
-              display: 'flex',
-              flexDirection: 'column',
-              maxWidth: '60ch',
-              margin: 'auto',
-            }}
-          >
-            <div css={{ padding: '16px' }}>
-              <Copyright />
-            </div>
+          <Wave />
+          <Container width={'full'} as={Stack} py={10}>
+            <Container p={4}>
+              <Copyright footerData={footerData} />
+            </Container>
 
             <HorizontalLine />
-            <div
-              css={{
-                display: 'flex',
-                maxWidth: '100%',
-                padding: '16px 0',
-                flexDirection: 'column',
-              }}
+            <Container
+              as={Stack}
+              maxW={'full'}
+              py={4}
+              direction={'column'}
+              spacing={4}
+              justify={{ md: 'space-between' }}
+              align={'center'}
             >
-              <div css={{ display: 'flex', flexDirection: 'column' }}>
-                <SocialButtonsList />
-              </div>
-            </div>
-            <Columns />
-          </div>
-          <div css={{ padding: '16px' }}>
+              <Stack direction={'column'} spacing={6}>
+                <SocialButtonsList footerData={footerData} />
+              </Stack>
+            </Container>
+            <SimpleGrid
+              columns={{ base: 1, sm: 2 }}
+              justifyItems={{ sm: 'center' }}
+              spacing={8}
+            >
+              <Columns footerLinks={footerLinks} />
+            </SimpleGrid>
+          </Container>
+          <Container p={4}>
             <HorizontalLine />
-            <p css={{ textAlign: 'center', padding: '8px' }}>
+            <Text textAlign={'center'} py={5} m={4} fontSize={'md'}>
               <TemplateAuthors />
-            </p>
-            <div css={{ display: 'flex', padding: '16px' }}>
-              <PoweredByVercel />
-            </div>
-          </div>
-        </div>
+            </Text>
+            <Flex justifyContent={'center'}>
+              {footerData.footer.data.attributes.showVercelBadge && (
+                <PoweredByVercel />
+              )}
+            </Flex>
+          </Container>
+        </Box>
       </Level>
     </footer>
   );
@@ -65,25 +83,20 @@ export default function Footer() {
 function ListHeader({ children }: { children: React.ReactNode }) {
   return (
     <H
-      css={{
-        fontWeight: 500,
-        fontSize: '1.25rem',
-      }}
+      css={css`
+        font-weight: 500;
+        font-size: 1.25rem;
+      `}
     >
       {children}
     </H>
   );
 }
 
-function SocialButtonsList() {
-  const context = useContext(GlobalContext);
-
-  const socialMedias = context.footerContent.socialMedias.data;
-  const email = context.footerContent.footer.data.attributes.email;
-
+function SocialButtonsList({ footerData }: { footerData: GetFooterQuery }) {
   return (
-    <ul css={{ display: 'flex', gap: '16px', margin: 'auto' }}>
-      {socialMedias.map((socialMedia) => {
+    <List display={'flex'}>
+      {footerData.socialMedias.data.map((socialMedia) => {
         const { iconSlug, showInFooter, link } = socialMedia.attributes;
 
         if (!showInFooter) {
@@ -91,7 +104,7 @@ function SocialButtonsList() {
         }
 
         return (
-          <li css={{ padding: '4px', listStyleType: 'none' }} key={iconSlug}>
+          <ListItem p={4} listStyleType={'none'} key={iconSlug}>
             <SocialMediaIcon href={link} label={iconSlug}>
               <img
                 width="24px"
@@ -100,84 +113,85 @@ function SocialButtonsList() {
                 src={`https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/${iconSlug}.svg`}
               />
             </SocialMediaIcon>
-          </li>
+          </ListItem>
         );
       })}
-      <li css={{ padding: '4px', listStyleType: 'none' }} key="email">
-        <SocialMediaIcon href={`mailto:${email}`} label="email">
+      <ListItem p={4} listStyleType={'none'} key="email">
+        <SocialMediaIcon
+          href={`mailto:${footerData.footer.data.attributes.email}`}
+          label="email"
+        >
           <MdMail
-            css={{
-              width: '24px',
-              height: '24px',
-              color: 'black',
-            }}
+            css={css`
+              width: 24px;
+              height: 24px;
+              color: black;
+            `}
           />
         </SocialMediaIcon>
-      </li>
-    </ul>
+      </ListItem>
+    </List>
+  );
+}
+
+function Wave() {
+  return (
+    <Box maxHeight={250}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#FFFFFF"
+          fillOpacity="1"
+          d="M0,96L60,112C120,128,240,160,360,176C480,192,600,192,720,181.3C840,171,960,149,1080,144C1200,139,1320,149,1380,154.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+        ></path>
+      </svg>
+    </Box>
   );
 }
 
 function HorizontalLine() {
-  return <div css={{ borderTop: '1px solid #E2E8F0' }} />;
+  return (
+    <Box
+      borderTopWidth={1}
+      borderStyle={'solid'}
+      borderColor={useColorModeValue('gray.200', 'gray.700')}
+    />
+  );
 }
 
-function Copyright() {
-  const context = useContext(GlobalContext);
-
-  const copyright = context.footerContent.footer.data.attributes.copyright;
-
+function Copyright({ footerData }: { footerData: GetFooterQuery }) {
   return (
     <div
-      css={{
-        color: '#718096',
-      }}
+      css={css`
+        color: #718096;
+      `}
       dangerouslySetInnerHTML={{
-        __html: DOMPurify.sanitize(copyright),
+        __html: DOMPurify.sanitize(footerData.footer.data.attributes.copyright),
       }}
     />
   );
 }
 
-function Columns() {
-  const context = useContext(GlobalContext);
-  const footerLinks = context.footerLinks.renderNavigation;
-
-  return (
-    <div
-      css={css`
-        padding: 16px;
-        @media (min-width: 1000px) {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-        }
-      `}
-    >
-      {footerLinks.map((column) => {
-        return (
-          <div key={column.uiRouterKey}>
-            <ListHeader>{column.title}</ListHeader>
-            <ul css={{ margin: 0, padding: 0 }}>
-              {column.items.map((item) => (
-                <ColumnLink key={item.uiRouterKey} link={item} />
-              ))}
-            </ul>
-          </div>
-        );
-      })}
-    </div>
-  );
+function Columns({ footerLinks }) {
+  return footerLinks.map((column) => {
+    return (
+      <Stack key={column.uiRouterKey}>
+        <ListHeader>{column.title}</ListHeader>
+        <List>
+          {column.items.map((item) => {
+            return <ColumnLink key={item.uiRouterKey} link={item} />;
+          })}
+        </List>
+      </Stack>
+    );
+  });
 }
 
 function ColumnLink({ link }) {
   return (
-    <li
-      css={{ color: '#718096', listStyleType: 'none', padding: '4px' }}
-      key={link.uiRouterKey}
-    >
+    <ListItem py={1} color={'gray.500'} key={link.uiRouterKey}>
       <Link key={link.uiRouterKey} href={link.path} passHref>
         <a key={link.uiRouterKey}>{link.title}</a>
       </Link>
-    </li>
+    </ListItem>
   );
 }

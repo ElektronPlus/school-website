@@ -1,11 +1,11 @@
 import ArticlesGrid from 'components/article/Grid';
 import {
+  GetHomePageQuery,
   GetArticlesDocument,
   GetArticlesQuery,
   GetHomePageDocument,
-  GetHomePageQuery,
-  GetTranslationsDocument,
   GetTranslationsQuery,
+  GetTranslationsDocument,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 import { NextSeo } from 'next-seo';
