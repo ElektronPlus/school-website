@@ -5,7 +5,7 @@ export default function Custom404() {
   return (
     <div className={styles.wrapper}>
 
-      <h1 className={styles.mainH}><b>404.</b></h1>
+      <h1 className={styles.header}><b>404.</b></h1>
 
       <a className={styles.properText}>Może szukałeś czegoś innego? Sprawdź to:</a>
 
