@@ -13,15 +13,15 @@ export default function Custom404() {
 
       <ul className={styles.listmenu}>
         <li>
-          <a className={styles.mainref} href="/">Strona Główna</a>
+          <a className={styles.reflinks} href="/">Strona Główna</a>
         </li>
 
         <li>
-          <a className={styles.news} href="/news">Aktualności</a>
+          <a className={styles.reflinks} href="/news">Aktualności</a>
         </li>
 
         <li>
-          <a className={styles.about} href="/about">O nas</a>
+          <a className={styles.reflinks} href="/about">O nas</a>
         </li>
       </ul>
 
