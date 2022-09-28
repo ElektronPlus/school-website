@@ -1,5 +1,5 @@
 import link from 'next/link'
-import styles from '../styles/404.module.css'
+import styles from '404.module.css'
 
 export default function Custom404() {
   return (
