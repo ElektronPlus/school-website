@@ -1,4 +1,4 @@
-import link from 'next/link'
+import Link from 'next/link'
 import styles from '404.module.css'
 
 export default function Custom404() {
@@ -13,15 +13,21 @@ export default function Custom404() {
 
       <ul className={styles.listmenu}>
         <li>
-          <a className={styles.reflinks} href="/">Strona Główna</a>
+          <Link href="/">
+          <a className={styles.reflinks}>Strona Główna</a>
+          </Link>
         </li>
 
         <li>
-          <a className={styles.reflinks} href="/news">Aktualności</a>
+          <Link href="/news">
+          <a className={styles.reflinks}>Aktualności</a>
+          </Link>
         </li>
 
         <li>
-          <a className={styles.reflinks} href="/about">O nas</a>
+          <Link href="/about">
+          <a className={styles.reflinks}>O nas</a>
+          </Link>
         </li>
       </ul>
 
