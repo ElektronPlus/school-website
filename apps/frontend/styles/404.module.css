@@ -1,0 +1,27 @@
+.wrapper {
+    text-align: center;
+}
+.header {
+    font-size: 4.688rem;
+    border-bottom: 20px;
+}
+.properText {
+    font-size: 1.25rem;
+}
+.listmenu {
+    display: grid;
+    gap: 12px;
+}
+.reflinks {
+    font-size: 1.25rem;
+    border-bottom: 1px solid rgb(204, 200, 200);
+}
+
+.listmenu {
+    list-style: none;
+}
+.divlist {
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+}
