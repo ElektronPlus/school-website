@@ -4,8 +4,9 @@ import styles from './404.module.css';
 
 export default function Custom404() {
   return (
-    <div className={styles.wrapper}>
     <Level>
+    <div className={styles.wrapper}>
+
       <H className={styles.header}><b>404.</b></H>
 
       <a className={styles.properText}>Może szukałeś czegoś innego? Sprawdź to:</a>
@@ -33,8 +34,7 @@ export default function Custom404() {
       </ul>
 
       </div>
-      </Level>
     </div>
-
+    </Level>
   )
 }
