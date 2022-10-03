@@ -16,11 +16,7 @@ export default function Custom404() {
       <ul className={styles.listmenu}>
         <li>
           <Link href="/" passHref>
-<<<<<<< HEAD
           <a className={styles.menuElement}>Strona Główna</a>
-=======
-          <a className={styles.menu_element}>Strona główna</a>
->>>>>>> b719c4e3c4a5e52ae68f6adbb4edcb5e2981dd49
           </Link>
         </li>
 
@@ -41,8 +37,4 @@ export default function Custom404() {
     </div>
     </Level>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b719c4e3c4a5e52ae68f6adbb4edcb5e2981dd49
