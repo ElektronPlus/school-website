@@ -1,0 +1,11 @@
+query getErrorPage {
+	page404{
+		data{
+			attributes{
+				title
+				description
+				links
+			}
+		}
+	}
+}
