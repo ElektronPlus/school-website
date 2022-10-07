@@ -3,7 +3,7 @@ import Link from 'next/link';
 export function TemplateAuthors() {
   const authors = [
     { name: 'Jan Szymański,', link: 'https://github.com/konhi' },
-    { name: 'Krystian Wybranowski +', link: 'https://github.com/wybran' },
+    { name: 'Krystian Wybranowski,', link: 'https://github.com/wybran' },
     { name: 'Bartosz Maciejewski +', link: 'https://github.com/bkmac511'},
     {
       name: 'Contributors = ❤✏',
