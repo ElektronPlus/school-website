@@ -633,7 +633,7 @@ export type FooterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
+export type GenericMorph = Alert | Article | AwesomeHelpHelp | Blog | Category | ComponentArticlesArticlesSection | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Global | Homepage | Page | Page404 | PublisherAction | SocialMedia | Substitusion | Translation | UploadFile | UploadFolder | UrlAliasPath | UrlAliasPattern | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Writer;
 
 export type Global = {
   __typename?: 'Global';
@@ -772,6 +772,7 @@ export type Mutation = {
   createArticle?: Maybe<ArticleEntityResponse>;
   createAwesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
+  createPage?: Maybe<PageEntityResponse>;
   createPublisherAction?: Maybe<PublisherActionEntityResponse>;
   createSocialMedia?: Maybe<SocialMediaEntityResponse>;
   createSubstitusion?: Maybe<SubstitusionEntityResponse>;
@@ -792,6 +793,8 @@ export type Mutation = {
   deleteFooter?: Maybe<FooterEntityResponse>;
   deleteGlobal?: Maybe<GlobalEntityResponse>;
   deleteHomepage?: Maybe<HomepageEntityResponse>;
+  deletePage?: Maybe<PageEntityResponse>;
+  deletePage404?: Maybe<Page404EntityResponse>;
   deletePublisherAction?: Maybe<PublisherActionEntityResponse>;
   deleteSocialMedia?: Maybe<SocialMediaEntityResponse>;
   deleteSubstitusion?: Maybe<SubstitusionEntityResponse>;
@@ -825,6 +828,8 @@ export type Mutation = {
   updateFooter?: Maybe<FooterEntityResponse>;
   updateGlobal?: Maybe<GlobalEntityResponse>;
   updateHomepage?: Maybe<HomepageEntityResponse>;
+  updatePage?: Maybe<PageEntityResponse>;
+  updatePage404?: Maybe<Page404EntityResponse>;
   updatePublisherAction?: Maybe<PublisherActionEntityResponse>;
   updateSocialMedia?: Maybe<SocialMediaEntityResponse>;
   updateSubstitusion?: Maybe<SubstitusionEntityResponse>;
@@ -861,6 +866,11 @@ export type MutationCreateAwesomeHelpHelpArgs = {
 
 export type MutationCreateCategoryArgs = {
   data: CategoryInput;
+};
+
+
+export type MutationCreatePageArgs = {
+  data: PageInput;
 };
 
 
@@ -925,6 +935,11 @@ export type MutationDeleteAwesomeHelpHelpArgs = {
 
 
 export type MutationDeleteCategoryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeletePageArgs = {
   id: Scalars['ID'];
 };
 
@@ -1068,6 +1083,17 @@ export type MutationUpdateHomepageArgs = {
 };
 
 
+export type MutationUpdatePageArgs = {
+  data: PageInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdatePage404Args = {
+  data: Page404Input;
+};
+
+
 export type MutationUpdatePublisherActionArgs = {
   data: PublisherActionInput;
   id: Scalars['ID'];
@@ -1185,6 +1211,84 @@ export enum NavigationRenderType {
   Tree = 'TREE'
 }
 
+export type Page = {
+  __typename?: 'Page';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
+};
+
+export type Page404 = {
+  __typename?: 'Page404';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  links?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url_path_id?: Maybe<Scalars['String']>;
+};
+
+export type Page404Entity = {
+  __typename?: 'Page404Entity';
+  attributes?: Maybe<Page404>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type Page404EntityResponse = {
+  __typename?: 'Page404EntityResponse';
+  data?: Maybe<Page404Entity>;
+};
+
+export type Page404Input = {
+  description?: InputMaybe<Scalars['String']>;
+  links?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
+};
+
+export type PageEntity = {
+  __typename?: 'PageEntity';
+  attributes?: Maybe<Page>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PageEntityResponse = {
+  __typename?: 'PageEntityResponse';
+  data?: Maybe<PageEntity>;
+};
+
+export type PageEntityResponseCollection = {
+  __typename?: 'PageEntityResponseCollection';
+  data: Array<PageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<PageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url_path_id?: InputMaybe<StringFilterInput>;
+};
+
+export type PageInput = {
+  content?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  url_path_id?: InputMaybe<Scalars['String']>;
+};
+
 export type Pagination = {
   __typename?: 'Pagination';
   page: Scalars['Int'];
@@ -1266,6 +1370,9 @@ export type Query = {
   global?: Maybe<GlobalEntityResponse>;
   homepage?: Maybe<HomepageEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
+  page?: Maybe<PageEntityResponse>;
+  page404?: Maybe<Page404EntityResponse>;
+  pages?: Maybe<PageEntityResponseCollection>;
   publisherAction?: Maybe<PublisherActionEntityResponse>;
   publisherActions?: Maybe<PublisherActionEntityResponseCollection>;
   renderNavigation: Array<Maybe<NavigationItem>>;
@@ -1331,6 +1438,19 @@ export type QueryCategoriesArgs = {
 
 export type QueryCategoryArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryPageArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -2210,6 +2330,11 @@ export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typ
 
 export type ImageFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null };
 
+export type GetErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetErrorPageQuery = { __typename?: 'Query', page404?: { __typename?: 'Page404EntityResponse', data?: { __typename?: 'Page404Entity', attributes?: { __typename?: 'Page404', title?: string | null, description?: string | null, links?: string | null } | null } | null } | null };
+
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2507,6 +2632,46 @@ export function useGetArticlesLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetArticlesQueryHookResult = ReturnType<typeof useGetArticlesQuery>;
 export type GetArticlesLazyQueryHookResult = ReturnType<typeof useGetArticlesLazyQuery>;
 export type GetArticlesQueryResult = Apollo.QueryResult<GetArticlesQuery, GetArticlesQueryVariables>;
+export const GetErrorPageDocument = gql`
+    query getErrorPage {
+  page404 {
+    data {
+      attributes {
+        title
+        description
+        links
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetErrorPageQuery__
+ *
+ * To run a query within a React component, call `useGetErrorPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetErrorPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetErrorPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetErrorPageQuery(baseOptions?: Apollo.QueryHookOptions<GetErrorPageQuery, GetErrorPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetErrorPageQuery, GetErrorPageQueryVariables>(GetErrorPageDocument, options);
+      }
+export function useGetErrorPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetErrorPageQuery, GetErrorPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetErrorPageQuery, GetErrorPageQueryVariables>(GetErrorPageDocument, options);
+        }
+export type GetErrorPageQueryHookResult = ReturnType<typeof useGetErrorPageQuery>;
+export type GetErrorPageLazyQueryHookResult = ReturnType<typeof useGetErrorPageLazyQuery>;
+export type GetErrorPageQueryResult = Apollo.QueryResult<GetErrorPageQuery, GetErrorPageQueryVariables>;
 export const GetGlobalDocument = gql`
     query getGlobal {
   global {
