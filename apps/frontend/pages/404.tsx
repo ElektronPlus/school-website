@@ -1,40 +1,49 @@
+import DOMPurify from 'isomorphic-dompurify';
+import {
+  GetArticleBySlugQuery,
+  GetArticleBySlugDocument,
+  GetErrorPageQuery,
+  GetErrorPageDocument,
+} from 'generated/graphql';
+import client from 'lib/apolloClient';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import {Level , H} from 'react-accessible-headings';
+import { Level, H } from 'react-accessible-headings';
 import styles from './404.module.css';
 
-export default function Custom404() {
+export default function Custom404({
+  errorData,
+}: {
+  errorData: GetErrorPageQuery;
+}) {
+  const { title, description, links } = errorData.page404.data.attributes;
   return (
     <Level>
-    <div className={styles.wrapper}>
+      <div className={styles.wrapper}>
+        <H className={styles.header}>
+          <b>{title}</b>
+        </H>
 
-      <H className={styles.header}><b>404.</b></H>
-
-      <a className={styles.properText}>Może szukałeś czegoś innego? Sprawdź to:</a>
-
-      <div className={styles.divlist}>
-
-      <ul className={styles.listmenu}>
-        <li>
-          <Link href="/" passHref>
-          <a className={styles.menuElement}>Strona Główna</a>
-          </Link>
-        </li>
-
-        <li>
-          <Link href="/news" passHref>
-          <a className={styles.menuElement}>Aktualności</a>
-          </Link>
-        </li>
-
-        <li>
-          <Link href="/about" passHref>
-          <a className={styles.menuElement}>O nas</a>
-          </Link>
-        </li>
-      </ul>
-
+        <a className={styles.properText}>{description}</a>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(links),
+          }}
+        />
       </div>
-    </div>
     </Level>
-  )
+  );
 }
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const errorData: GetErrorPageQuery = (
+    await client.query({
+      query: GetErrorPageDocument,
+    })
+  ).data;
+
+  return {
+    props: { errorData },
+    revalidate: 1,
+  };
+};
