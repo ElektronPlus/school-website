@@ -19,12 +19,12 @@ export default function Custom404({
   const { title, description, links } = errorData.page404.data.attributes;
   return (
     <Level>
-      <div css={{textAlign: "center" }}>
-        <H css={{fontSize: "4.688rem", borderBottom: "20px" }}>
+      <div css={{ textAlign: 'center' }}>
+        <H css={{ fontSize: '4.688rem', borderBottom: '20px' }}>
           <b>{title}</b>
         </H>
 
-        <p css={{ fontSize: "1.25rem" }}>{description}</p>
+        <p css={{ fontSize: '1.25rem' }}>{description}</p>
         <div
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(links),
