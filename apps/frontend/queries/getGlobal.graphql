@@ -8,31 +8,26 @@ query getGlobal {
         updatedAt
         background {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
         favicon {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
         logo {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
       }
     }
-  }
-}
-
-fragment image on UploadFileEntity {
-  attributes {
-    alternativeText
-    width
-    height
-    placeholder
-    updatedAt
-    url
   }
 }

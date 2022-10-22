@@ -1,0 +1,6 @@
+fragment NavigationItem on NavigationItem {
+  title
+  path
+  uiRouterKey
+  icon
+}

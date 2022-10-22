@@ -1,20 +1,17 @@
 import { NextSeo } from 'next-seo';
 import Article from 'components/article/Index';
 import {
-  GetArticleBySlugDocument,
-  GetArticleBySlugQuery,
-  GetArticlesSlugsDocument,
-  GetArticlesSlugsQuery,
+  FetchBlogEntriesSlugsDocument,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, InferGetStaticPropsType } from 'next';
 import { getStrapiMedia } from 'services/media';
+import { FetchBlogBySlugDocument, FetchBlogBySlugQuery } from "generated/graphql";
+import { FetchBlogEntriesSlugsQuery } from "../../generated/graphql";
 
 export default function ArticlePage({
   articleData,
-}: {
-  articleData: GetArticleBySlugQuery;
-}) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { title, seo, publishedAt, updatedAt, category, image, slug } =
     articleData.articles.data[0].attributes;
 
@@ -57,9 +54,9 @@ export default function ArticlePage({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articleSlugsData: GetArticlesSlugsQuery = (
+  const articleSlugsData: FetchBlogEntriesSlugsQuery = (
     await client.query({
-      query: GetArticlesSlugsDocument,
+      query: FetchBlogEntriesSlugsDocument,
     })
   ).data;
 
@@ -73,13 +70,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const articleData: GetArticleBySlugQuery = (
+export const getStaticProps = async ({ params }) => {
+  const articleData: FetchBlogBySlugQuery = (
     await client.query({
       variables: {
         slug: params.slug,
       },
-      query: GetArticleBySlugDocument,
+      query: FetchBlogBySlugDocument,
     })
   ).data;
 

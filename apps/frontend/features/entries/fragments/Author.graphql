@@ -1,0 +1,13 @@
+fragment Author on WriterEntity {
+  attributes {
+    name
+    description
+    picture {
+      data {
+        attributes {
+          ...Image
+        }
+      }
+    }
+  }
+}

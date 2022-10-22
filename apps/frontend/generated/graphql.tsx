@@ -1228,7 +1228,6 @@ export type Page404 = {
   __typename?: 'Page404';
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
-  links?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
@@ -1247,7 +1246,6 @@ export type Page404EntityResponse = {
 
 export type Page404Input = {
   description?: InputMaybe<Scalars['String']>;
-  links?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   url_path_id?: InputMaybe<Scalars['String']>;
 };
@@ -2307,114 +2305,162 @@ export type WriterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
-export type PageFragment = { __typename?: 'Page', content?: string | null, slug: string, title?: string | null, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null };
+export type FetchErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type FetchPageQueryVariables = Exact<{
-  slug: Scalars['String'];
+
+export type FetchErrorPageQuery = { __typename?: 'Query', page404?: { __typename?: 'Page404EntityResponse', data?: { __typename?: 'Page404Entity', attributes?: { __typename?: 'Page404', title: string, description?: string | null } | null } | null } | null };
+
+export type FetchBlogBySlugQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type FetchPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', content?: string | null, slug: string, title?: string | null, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null } | null }> } | null };
+export type FetchBlogBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null } | null }> } | null };
 
-export type FetchPagesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type FetchPagesSlugsQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', slug: string } | null }> } | null };
-
-export type SeoFragment = { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null };
-
-export type GetAlertQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', message?: string | null, link?: string | null, isVisible: boolean } | null } | null } | null };
-
-export type GetFooterQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean, email?: string | null } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
-
-export type GetNavigationQueryVariables = Exact<{
-  navigationIdOrSlug: Scalars['String'];
-}>;
-
-
-export type GetNavigationQuery = { __typename?: 'Query', renderNavigation: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null, items?: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null } | null> | null } | null> };
-
-export type ItemFragment = { __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null };
-
-export type GetArticlesQueryVariables = Exact<{
+export type FetchBlogEntriesQueryVariables = Exact<{
   articlesPerPage?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null } | null }> } | null };
+export type FetchBlogEntriesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null } | null }> } | null };
 
-export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null };
+export type FetchBlogEntriesOfCategoryQueryVariables = Exact<{
+  entriesPerPage?: InputMaybe<Scalars['Int']>;
+  slug?: InputMaybe<Scalars['String']>;
+}>;
 
-export type ImageFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null };
 
-export type GetErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
+export type FetchBlogEntriesOfCategoryQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
+
+export type FetchBlogEntriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetErrorPageQuery = { __typename?: 'Query', page404?: { __typename?: 'Page404EntityResponse', data?: { __typename?: 'Page404Entity', attributes?: { __typename?: 'Page404', title: string, description?: string | null, links?: string | null } | null } | null } | null };
+export type FetchBlogEntriesSlugsQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string } | null }> } | null };
+
+export type FetchBlogPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'BlogEntityResponse', data?: { __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', articlesSection: { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null }, categorySection?: { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null } | null } | null } | null } | null };
+
+export type ArticleSectionComponentFragment = { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null };
+
+export type FetchCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
+
+export type InfoFragment = { __typename?: 'Page', content?: string | null, slug: string, title?: string | null, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null };
+
+export type FetchInfoQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type FetchInfoQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', content?: string | null, slug: string, title?: string | null, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null } | null }> } | null };
+
+export type FetchInfoSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchInfoSlugsQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', slug: string } | null }> } | null };
+
+export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null } | null };
+
+export type NavigationItemFragment = { __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null };
+
+export type FetchHomepageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchHomepageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', attributes?: { __typename?: 'Homepage', seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, articlesSection?: { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null } | null } | null } | null } | null };
+
+export type ArticlesSectionFragment = { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null };
+
+export type ImageFragment = { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string };
+
+export type FetchAlertQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', message?: string | null, link?: string | null, isVisible: boolean } | null } | null } | null };
+
+export type FetchFooterQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', copyright?: string | null, showVercelBadge: boolean, email?: string | null } | null } | null } | null, socialMedias?: { __typename?: 'SocialMediaEntityResponseCollection', data: Array<{ __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', iconSlug: string, showInFooter: boolean, link: string } | null }> } | null };
+
+export type FetchNavigationQueryVariables = Exact<{
+  navigationIdOrSlug: Scalars['String'];
+}>;
+
+
+export type FetchNavigationQuery = { __typename?: 'Query', renderNavigation: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null, items?: Array<{ __typename?: 'NavigationItem', title: string, path?: string | null, uiRouterKey: string, icon?: string | null } | null> | null } | null> };
+
+export type SeoFragment = { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null };
 
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null };
+export type GetGlobalQuery = { __typename?: 'Query', global?: { __typename?: 'GlobalEntityResponse', data?: { __typename?: 'GlobalEntity', id?: string | null, attributes?: { __typename?: 'Global', siteName: string, createdAt?: any | null, updatedAt?: any | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null, favicon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string, hash: string } | null } | null } | null } | null } | null } | null };
 
 export type GetTranslationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetTranslationsQuery = { __typename?: 'Query', translation?: { __typename?: 'TranslationEntityResponse', data?: { __typename?: 'TranslationEntity', attributes?: { __typename?: 'Translation', articleReadMore?: string | null, paginationNextPage?: string | null } | null } | null } | null };
 
-export type GetCategoryArticlesBySlugQueryVariables = Exact<{
-  entriesPerPage?: InputMaybe<Scalars['Int']>;
-  slug?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type GetCategoryArticlesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
-
-export type GetArticleBySlugQueryVariables = Exact<{
-  slug?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type GetArticleBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null }> } | null };
-
-export type GetBlogPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetBlogPageQuery = { __typename?: 'Query', blog?: { __typename?: 'BlogEntityResponse', data?: { __typename?: 'BlogEntity', attributes?: { __typename?: 'Blog', articlesSection: { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null }, categorySection?: { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null } | null } | null } | null } | null };
-
-export type ArticleSectionComponentFragment = { __typename?: 'ComponentArticlesArticlesSection', entriesPerPage: number, header: string, previewMaxCharacters?: number | null };
-
-export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetHomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', attributes?: { __typename?: 'Homepage', seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, articlesSection?: { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null } | null } | null } | null } | null };
-
-export type ArticlesSectionFragment = { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null };
-
-export type GetArticlesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetArticlesSlugsQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string } | null }> } | null };
-
-export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
-
-export const PageFragmentDoc = gql`
-    fragment Page on Page {
+export const ArticleSectionComponentFragmentDoc = gql`
+    fragment articleSectionComponent on ComponentArticlesArticlesSection {
+  entriesPerPage
+  header
+  previewMaxCharacters
+}
+    `;
+export const InfoFragmentDoc = gql`
+    fragment Info on Page {
   content
   slug
   title
   createdAt
   publishedAt
   updatedAt
+}
+    `;
+export const ImageFragmentDoc = gql`
+    fragment Image on UploadFile {
+  alternativeText
+  width
+  height
+  placeholder
+  updatedAt
+  url
+  hash
+}
+    `;
+export const AuthorFragmentDoc = gql`
+    fragment Author on WriterEntity {
+  attributes {
+    name
+    description
+    picture {
+      data {
+        attributes {
+          ...Image
+        }
+      }
+    }
+  }
+}
+    ${ImageFragmentDoc}`;
+export const NavigationItemFragmentDoc = gql`
+    fragment NavigationItem on NavigationItem {
+  title
+  path
+  uiRouterKey
+  icon
+}
+    `;
+export const ArticlesSectionFragmentDoc = gql`
+    fragment articlesSection on ComponentArticlesArticlesSection {
+  header
+  entriesPerPage
+  previewMaxCharacters
 }
     `;
 export const SeoFragmentDoc = gql`
@@ -2425,94 +2471,427 @@ export const SeoFragmentDoc = gql`
   preventIndexing
 }
     `;
-export const ItemFragmentDoc = gql`
-    fragment item on NavigationItem {
-  title
-  path
-  uiRouterKey
-  icon
-}
-    `;
-export const ImageFragmentDoc = gql`
-    fragment image on UploadFileEntity {
-  attributes {
-    alternativeText
-    width
-    height
-    placeholder
-    updatedAt
-    url
-  }
-}
-    `;
-export const AuthorFragmentDoc = gql`
-    fragment author on WriterEntity {
-  attributes {
-    name
-    description
-    picture {
-      data {
-        ...image
-      }
-    }
-  }
-}
-    ${ImageFragmentDoc}`;
-export const ArticleSectionComponentFragmentDoc = gql`
-    fragment articleSectionComponent on ComponentArticlesArticlesSection {
-  entriesPerPage
-  header
-  previewMaxCharacters
-}
-    `;
-export const ArticlesSectionFragmentDoc = gql`
-    fragment articlesSection on ComponentArticlesArticlesSection {
-  header
-  entriesPerPage
-  previewMaxCharacters
-}
-    `;
-export const FetchPageDocument = gql`
-    query FetchPage($slug: String!) {
-  pages(filters: {slug: {eq: $slug}}) {
+export const FetchErrorPageDocument = gql`
+    query FetchErrorPage {
+  page404 {
     data {
       attributes {
-        ...Page
+        title
+        description
       }
     }
   }
 }
-    ${PageFragmentDoc}`;
+    `;
 
 /**
- * __useFetchPageQuery__
+ * __useFetchErrorPageQuery__
  *
- * To run a query within a React component, call `useFetchPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useFetchPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchErrorPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchErrorPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFetchPageQuery({
+ * const { data, loading, error } = useFetchErrorPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchErrorPageQuery(baseOptions?: Apollo.QueryHookOptions<FetchErrorPageQuery, FetchErrorPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchErrorPageQuery, FetchErrorPageQueryVariables>(FetchErrorPageDocument, options);
+      }
+export function useFetchErrorPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchErrorPageQuery, FetchErrorPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchErrorPageQuery, FetchErrorPageQueryVariables>(FetchErrorPageDocument, options);
+        }
+export type FetchErrorPageQueryHookResult = ReturnType<typeof useFetchErrorPageQuery>;
+export type FetchErrorPageLazyQueryHookResult = ReturnType<typeof useFetchErrorPageLazyQuery>;
+export type FetchErrorPageQueryResult = Apollo.QueryResult<FetchErrorPageQuery, FetchErrorPageQueryVariables>;
+export const FetchBlogBySlugDocument = gql`
+    query FetchBlogBySlug($slug: String) {
+  articles(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        title
+        content
+        slug
+        createdAt
+        publishedAt
+        updatedAt
+        category {
+          data {
+            attributes {
+              name
+              slug
+            }
+          }
+        }
+        seo {
+          ...Seo
+        }
+        author {
+          data {
+            ...Author
+          }
+        }
+        image {
+          data {
+            attributes {
+              ...Image
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${SeoFragmentDoc}
+${AuthorFragmentDoc}
+${ImageFragmentDoc}`;
+
+/**
+ * __useFetchBlogBySlugQuery__
+ *
+ * To run a query within a React component, call `useFetchBlogBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchBlogBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchBlogBySlugQuery({
  *   variables: {
  *      slug: // value for 'slug'
  *   },
  * });
  */
-export function useFetchPageQuery(baseOptions: Apollo.QueryHookOptions<FetchPageQuery, FetchPageQueryVariables>) {
+export function useFetchBlogBySlugQuery(baseOptions?: Apollo.QueryHookOptions<FetchBlogBySlugQuery, FetchBlogBySlugQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FetchPageQuery, FetchPageQueryVariables>(FetchPageDocument, options);
+        return Apollo.useQuery<FetchBlogBySlugQuery, FetchBlogBySlugQueryVariables>(FetchBlogBySlugDocument, options);
       }
-export function useFetchPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchPageQuery, FetchPageQueryVariables>) {
+export function useFetchBlogBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchBlogBySlugQuery, FetchBlogBySlugQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FetchPageQuery, FetchPageQueryVariables>(FetchPageDocument, options);
+          return Apollo.useLazyQuery<FetchBlogBySlugQuery, FetchBlogBySlugQueryVariables>(FetchBlogBySlugDocument, options);
         }
-export type FetchPageQueryHookResult = ReturnType<typeof useFetchPageQuery>;
-export type FetchPageLazyQueryHookResult = ReturnType<typeof useFetchPageLazyQuery>;
-export type FetchPageQueryResult = Apollo.QueryResult<FetchPageQuery, FetchPageQueryVariables>;
-export const FetchPagesSlugsDocument = gql`
-    query FetchPagesSlugs {
+export type FetchBlogBySlugQueryHookResult = ReturnType<typeof useFetchBlogBySlugQuery>;
+export type FetchBlogBySlugLazyQueryHookResult = ReturnType<typeof useFetchBlogBySlugLazyQuery>;
+export type FetchBlogBySlugQueryResult = Apollo.QueryResult<FetchBlogBySlugQuery, FetchBlogBySlugQueryVariables>;
+export const FetchBlogEntriesDocument = gql`
+    query FetchBlogEntries($articlesPerPage: Int) {
+  articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
+    data {
+      id
+      attributes {
+        title
+        content
+        slug
+        image {
+          data {
+            attributes {
+              ...Image
+            }
+          }
+        }
+        category {
+          data {
+            attributes {
+              name
+              slug
+            }
+          }
+        }
+        author {
+          data {
+            ...Author
+          }
+        }
+        createdAt
+        updatedAt
+        publishedAt
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+}
+    ${ImageFragmentDoc}
+${AuthorFragmentDoc}
+${SeoFragmentDoc}`;
+
+/**
+ * __useFetchBlogEntriesQuery__
+ *
+ * To run a query within a React component, call `useFetchBlogEntriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchBlogEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchBlogEntriesQuery({
+ *   variables: {
+ *      articlesPerPage: // value for 'articlesPerPage'
+ *   },
+ * });
+ */
+export function useFetchBlogEntriesQuery(baseOptions?: Apollo.QueryHookOptions<FetchBlogEntriesQuery, FetchBlogEntriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchBlogEntriesQuery, FetchBlogEntriesQueryVariables>(FetchBlogEntriesDocument, options);
+      }
+export function useFetchBlogEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchBlogEntriesQuery, FetchBlogEntriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchBlogEntriesQuery, FetchBlogEntriesQueryVariables>(FetchBlogEntriesDocument, options);
+        }
+export type FetchBlogEntriesQueryHookResult = ReturnType<typeof useFetchBlogEntriesQuery>;
+export type FetchBlogEntriesLazyQueryHookResult = ReturnType<typeof useFetchBlogEntriesLazyQuery>;
+export type FetchBlogEntriesQueryResult = Apollo.QueryResult<FetchBlogEntriesQuery, FetchBlogEntriesQueryVariables>;
+export const FetchBlogEntriesOfCategoryDocument = gql`
+    query FetchBlogEntriesOfCategory($entriesPerPage: Int, $slug: String) {
+  categories(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        seo {
+          ...Seo
+        }
+        name
+        articles(sort: "createdAt:desc", pagination: {limit: $entriesPerPage}) {
+          data {
+            id
+            attributes {
+              title
+              content
+              slug
+              image {
+                data {
+                  attributes {
+                    ...Image
+                  }
+                }
+              }
+              category {
+                data {
+                  attributes {
+                    name
+                    slug
+                  }
+                }
+              }
+              author {
+                data {
+                  ...Author
+                }
+              }
+              createdAt
+              updatedAt
+              publishedAt
+              seo {
+                ...Seo
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${SeoFragmentDoc}
+${ImageFragmentDoc}
+${AuthorFragmentDoc}`;
+
+/**
+ * __useFetchBlogEntriesOfCategoryQuery__
+ *
+ * To run a query within a React component, call `useFetchBlogEntriesOfCategoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchBlogEntriesOfCategoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchBlogEntriesOfCategoryQuery({
+ *   variables: {
+ *      entriesPerPage: // value for 'entriesPerPage'
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useFetchBlogEntriesOfCategoryQuery(baseOptions?: Apollo.QueryHookOptions<FetchBlogEntriesOfCategoryQuery, FetchBlogEntriesOfCategoryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchBlogEntriesOfCategoryQuery, FetchBlogEntriesOfCategoryQueryVariables>(FetchBlogEntriesOfCategoryDocument, options);
+      }
+export function useFetchBlogEntriesOfCategoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchBlogEntriesOfCategoryQuery, FetchBlogEntriesOfCategoryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchBlogEntriesOfCategoryQuery, FetchBlogEntriesOfCategoryQueryVariables>(FetchBlogEntriesOfCategoryDocument, options);
+        }
+export type FetchBlogEntriesOfCategoryQueryHookResult = ReturnType<typeof useFetchBlogEntriesOfCategoryQuery>;
+export type FetchBlogEntriesOfCategoryLazyQueryHookResult = ReturnType<typeof useFetchBlogEntriesOfCategoryLazyQuery>;
+export type FetchBlogEntriesOfCategoryQueryResult = Apollo.QueryResult<FetchBlogEntriesOfCategoryQuery, FetchBlogEntriesOfCategoryQueryVariables>;
+export const FetchBlogEntriesSlugsDocument = gql`
+    query FetchBlogEntriesSlugs {
+  articles {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFetchBlogEntriesSlugsQuery__
+ *
+ * To run a query within a React component, call `useFetchBlogEntriesSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchBlogEntriesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchBlogEntriesSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchBlogEntriesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<FetchBlogEntriesSlugsQuery, FetchBlogEntriesSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchBlogEntriesSlugsQuery, FetchBlogEntriesSlugsQueryVariables>(FetchBlogEntriesSlugsDocument, options);
+      }
+export function useFetchBlogEntriesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchBlogEntriesSlugsQuery, FetchBlogEntriesSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchBlogEntriesSlugsQuery, FetchBlogEntriesSlugsQueryVariables>(FetchBlogEntriesSlugsDocument, options);
+        }
+export type FetchBlogEntriesSlugsQueryHookResult = ReturnType<typeof useFetchBlogEntriesSlugsQuery>;
+export type FetchBlogEntriesSlugsLazyQueryHookResult = ReturnType<typeof useFetchBlogEntriesSlugsLazyQuery>;
+export type FetchBlogEntriesSlugsQueryResult = Apollo.QueryResult<FetchBlogEntriesSlugsQuery, FetchBlogEntriesSlugsQueryVariables>;
+export const FetchBlogPageDocument = gql`
+    query FetchBlogPage {
+  blog {
+    data {
+      attributes {
+        articlesSection {
+          ...articleSectionComponent
+        }
+        categorySection {
+          ...articleSectionComponent
+        }
+      }
+    }
+  }
+}
+    ${ArticleSectionComponentFragmentDoc}`;
+
+/**
+ * __useFetchBlogPageQuery__
+ *
+ * To run a query within a React component, call `useFetchBlogPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchBlogPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchBlogPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchBlogPageQuery(baseOptions?: Apollo.QueryHookOptions<FetchBlogPageQuery, FetchBlogPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchBlogPageQuery, FetchBlogPageQueryVariables>(FetchBlogPageDocument, options);
+      }
+export function useFetchBlogPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchBlogPageQuery, FetchBlogPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchBlogPageQuery, FetchBlogPageQueryVariables>(FetchBlogPageDocument, options);
+        }
+export type FetchBlogPageQueryHookResult = ReturnType<typeof useFetchBlogPageQuery>;
+export type FetchBlogPageLazyQueryHookResult = ReturnType<typeof useFetchBlogPageLazyQuery>;
+export type FetchBlogPageQueryResult = Apollo.QueryResult<FetchBlogPageQuery, FetchBlogPageQueryVariables>;
+export const FetchCategoriesSlugsDocument = gql`
+    query FetchCategoriesSlugs {
+  categories {
+    data {
+      id
+      attributes {
+        slug
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFetchCategoriesSlugsQuery__
+ *
+ * To run a query within a React component, call `useFetchCategoriesSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchCategoriesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchCategoriesSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchCategoriesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<FetchCategoriesSlugsQuery, FetchCategoriesSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchCategoriesSlugsQuery, FetchCategoriesSlugsQueryVariables>(FetchCategoriesSlugsDocument, options);
+      }
+export function useFetchCategoriesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchCategoriesSlugsQuery, FetchCategoriesSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchCategoriesSlugsQuery, FetchCategoriesSlugsQueryVariables>(FetchCategoriesSlugsDocument, options);
+        }
+export type FetchCategoriesSlugsQueryHookResult = ReturnType<typeof useFetchCategoriesSlugsQuery>;
+export type FetchCategoriesSlugsLazyQueryHookResult = ReturnType<typeof useFetchCategoriesSlugsLazyQuery>;
+export type FetchCategoriesSlugsQueryResult = Apollo.QueryResult<FetchCategoriesSlugsQuery, FetchCategoriesSlugsQueryVariables>;
+export const FetchInfoDocument = gql`
+    query FetchInfo($slug: String!) {
+  pages(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        ...Info
+      }
+    }
+  }
+}
+    ${InfoFragmentDoc}`;
+
+/**
+ * __useFetchInfoQuery__
+ *
+ * To run a query within a React component, call `useFetchInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchInfoQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useFetchInfoQuery(baseOptions: Apollo.QueryHookOptions<FetchInfoQuery, FetchInfoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchInfoQuery, FetchInfoQueryVariables>(FetchInfoDocument, options);
+      }
+export function useFetchInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchInfoQuery, FetchInfoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchInfoQuery, FetchInfoQueryVariables>(FetchInfoDocument, options);
+        }
+export type FetchInfoQueryHookResult = ReturnType<typeof useFetchInfoQuery>;
+export type FetchInfoLazyQueryHookResult = ReturnType<typeof useFetchInfoLazyQuery>;
+export type FetchInfoQueryResult = Apollo.QueryResult<FetchInfoQuery, FetchInfoQueryVariables>;
+export const FetchInfoSlugsDocument = gql`
+    query FetchInfoSlugs {
   pages {
     data {
       attributes {
@@ -2524,33 +2903,77 @@ export const FetchPagesSlugsDocument = gql`
     `;
 
 /**
- * __useFetchPagesSlugsQuery__
+ * __useFetchInfoSlugsQuery__
  *
- * To run a query within a React component, call `useFetchPagesSlugsQuery` and pass it any options that fit your needs.
- * When your component renders, `useFetchPagesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchInfoSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchInfoSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFetchPagesSlugsQuery({
+ * const { data, loading, error } = useFetchInfoSlugsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useFetchPagesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>) {
+export function useFetchInfoSlugsQuery(baseOptions?: Apollo.QueryHookOptions<FetchInfoSlugsQuery, FetchInfoSlugsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>(FetchPagesSlugsDocument, options);
+        return Apollo.useQuery<FetchInfoSlugsQuery, FetchInfoSlugsQueryVariables>(FetchInfoSlugsDocument, options);
       }
-export function useFetchPagesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>) {
+export function useFetchInfoSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchInfoSlugsQuery, FetchInfoSlugsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>(FetchPagesSlugsDocument, options);
+          return Apollo.useLazyQuery<FetchInfoSlugsQuery, FetchInfoSlugsQueryVariables>(FetchInfoSlugsDocument, options);
         }
-export type FetchPagesSlugsQueryHookResult = ReturnType<typeof useFetchPagesSlugsQuery>;
-export type FetchPagesSlugsLazyQueryHookResult = ReturnType<typeof useFetchPagesSlugsLazyQuery>;
-export type FetchPagesSlugsQueryResult = Apollo.QueryResult<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>;
-export const GetAlertDocument = gql`
-    query getAlert {
+export type FetchInfoSlugsQueryHookResult = ReturnType<typeof useFetchInfoSlugsQuery>;
+export type FetchInfoSlugsLazyQueryHookResult = ReturnType<typeof useFetchInfoSlugsLazyQuery>;
+export type FetchInfoSlugsQueryResult = Apollo.QueryResult<FetchInfoSlugsQuery, FetchInfoSlugsQueryVariables>;
+export const FetchHomepageDocument = gql`
+    query FetchHomepage {
+  homepage {
+    data {
+      attributes {
+        seo {
+          ...Seo
+        }
+        articlesSection {
+          ...articlesSection
+        }
+      }
+    }
+  }
+}
+    ${SeoFragmentDoc}
+${ArticlesSectionFragmentDoc}`;
+
+/**
+ * __useFetchHomepageQuery__
+ *
+ * To run a query within a React component, call `useFetchHomepageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchHomepageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchHomepageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchHomepageQuery(baseOptions?: Apollo.QueryHookOptions<FetchHomepageQuery, FetchHomepageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchHomepageQuery, FetchHomepageQueryVariables>(FetchHomepageDocument, options);
+      }
+export function useFetchHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchHomepageQuery, FetchHomepageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchHomepageQuery, FetchHomepageQueryVariables>(FetchHomepageDocument, options);
+        }
+export type FetchHomepageQueryHookResult = ReturnType<typeof useFetchHomepageQuery>;
+export type FetchHomepageLazyQueryHookResult = ReturnType<typeof useFetchHomepageLazyQuery>;
+export type FetchHomepageQueryResult = Apollo.QueryResult<FetchHomepageQuery, FetchHomepageQueryVariables>;
+export const FetchAlertDocument = gql`
+    query FetchAlert {
   alert {
     data {
       attributes {
@@ -2564,33 +2987,33 @@ export const GetAlertDocument = gql`
     `;
 
 /**
- * __useGetAlertQuery__
+ * __useFetchAlertQuery__
  *
- * To run a query within a React component, call `useGetAlertQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetAlertQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchAlertQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchAlertQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetAlertQuery({
+ * const { data, loading, error } = useFetchAlertQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetAlertQuery(baseOptions?: Apollo.QueryHookOptions<GetAlertQuery, GetAlertQueryVariables>) {
+export function useFetchAlertQuery(baseOptions?: Apollo.QueryHookOptions<FetchAlertQuery, FetchAlertQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAlertQuery, GetAlertQueryVariables>(GetAlertDocument, options);
+        return Apollo.useQuery<FetchAlertQuery, FetchAlertQueryVariables>(FetchAlertDocument, options);
       }
-export function useGetAlertLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAlertQuery, GetAlertQueryVariables>) {
+export function useFetchAlertLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchAlertQuery, FetchAlertQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAlertQuery, GetAlertQueryVariables>(GetAlertDocument, options);
+          return Apollo.useLazyQuery<FetchAlertQuery, FetchAlertQueryVariables>(FetchAlertDocument, options);
         }
-export type GetAlertQueryHookResult = ReturnType<typeof useGetAlertQuery>;
-export type GetAlertLazyQueryHookResult = ReturnType<typeof useGetAlertLazyQuery>;
-export type GetAlertQueryResult = Apollo.QueryResult<GetAlertQuery, GetAlertQueryVariables>;
-export const GetFooterDocument = gql`
-    query getFooter {
+export type FetchAlertQueryHookResult = ReturnType<typeof useFetchAlertQuery>;
+export type FetchAlertLazyQueryHookResult = ReturnType<typeof useFetchAlertLazyQuery>;
+export type FetchAlertQueryResult = Apollo.QueryResult<FetchAlertQuery, FetchAlertQueryVariables>;
+export const FetchFooterDocument = gql`
+    query FetchFooter {
   footer {
     data {
       attributes {
@@ -2613,177 +3036,69 @@ export const GetFooterDocument = gql`
     `;
 
 /**
- * __useGetFooterQuery__
+ * __useFetchFooterQuery__
  *
- * To run a query within a React component, call `useGetFooterQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetFooterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchFooterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchFooterQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetFooterQuery({
+ * const { data, loading, error } = useFetchFooterQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetFooterQuery(baseOptions?: Apollo.QueryHookOptions<GetFooterQuery, GetFooterQueryVariables>) {
+export function useFetchFooterQuery(baseOptions?: Apollo.QueryHookOptions<FetchFooterQuery, FetchFooterQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetFooterQuery, GetFooterQueryVariables>(GetFooterDocument, options);
+        return Apollo.useQuery<FetchFooterQuery, FetchFooterQueryVariables>(FetchFooterDocument, options);
       }
-export function useGetFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFooterQuery, GetFooterQueryVariables>) {
+export function useFetchFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchFooterQuery, FetchFooterQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetFooterQuery, GetFooterQueryVariables>(GetFooterDocument, options);
+          return Apollo.useLazyQuery<FetchFooterQuery, FetchFooterQueryVariables>(FetchFooterDocument, options);
         }
-export type GetFooterQueryHookResult = ReturnType<typeof useGetFooterQuery>;
-export type GetFooterLazyQueryHookResult = ReturnType<typeof useGetFooterLazyQuery>;
-export type GetFooterQueryResult = Apollo.QueryResult<GetFooterQuery, GetFooterQueryVariables>;
-export const GetNavigationDocument = gql`
-    query GetNavigation($navigationIdOrSlug: String!) {
+export type FetchFooterQueryHookResult = ReturnType<typeof useFetchFooterQuery>;
+export type FetchFooterLazyQueryHookResult = ReturnType<typeof useFetchFooterLazyQuery>;
+export type FetchFooterQueryResult = Apollo.QueryResult<FetchFooterQuery, FetchFooterQueryVariables>;
+export const FetchNavigationDocument = gql`
+    query FetchNavigation($navigationIdOrSlug: String!) {
   renderNavigation(navigationIdOrSlug: $navigationIdOrSlug, type: TREE) {
-    ...item
+    ...NavigationItem
     items {
-      ...item
+      ...NavigationItem
     }
   }
 }
-    ${ItemFragmentDoc}`;
+    ${NavigationItemFragmentDoc}`;
 
 /**
- * __useGetNavigationQuery__
+ * __useFetchNavigationQuery__
  *
- * To run a query within a React component, call `useGetNavigationQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetNavigationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchNavigationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchNavigationQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetNavigationQuery({
+ * const { data, loading, error } = useFetchNavigationQuery({
  *   variables: {
  *      navigationIdOrSlug: // value for 'navigationIdOrSlug'
  *   },
  * });
  */
-export function useGetNavigationQuery(baseOptions: Apollo.QueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
+export function useFetchNavigationQuery(baseOptions: Apollo.QueryHookOptions<FetchNavigationQuery, FetchNavigationQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
+        return Apollo.useQuery<FetchNavigationQuery, FetchNavigationQueryVariables>(FetchNavigationDocument, options);
       }
-export function useGetNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetNavigationQuery, GetNavigationQueryVariables>) {
+export function useFetchNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchNavigationQuery, FetchNavigationQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetNavigationQuery, GetNavigationQueryVariables>(GetNavigationDocument, options);
+          return Apollo.useLazyQuery<FetchNavigationQuery, FetchNavigationQueryVariables>(FetchNavigationDocument, options);
         }
-export type GetNavigationQueryHookResult = ReturnType<typeof useGetNavigationQuery>;
-export type GetNavigationLazyQueryHookResult = ReturnType<typeof useGetNavigationLazyQuery>;
-export type GetNavigationQueryResult = Apollo.QueryResult<GetNavigationQuery, GetNavigationQueryVariables>;
-export const GetArticlesDocument = gql`
-    query getArticles($articlesPerPage: Int) {
-  articles(sort: "createdAt:desc", pagination: {limit: $articlesPerPage}) {
-    data {
-      id
-      attributes {
-        title
-        content
-        slug
-        image {
-          data {
-            ...image
-          }
-        }
-        category {
-          data {
-            attributes {
-              name
-              slug
-            }
-          }
-        }
-        author {
-          data {
-            ...author
-          }
-        }
-        createdAt
-        updatedAt
-        publishedAt
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
-}
-    ${ImageFragmentDoc}
-${AuthorFragmentDoc}
-${SeoFragmentDoc}`;
-
-/**
- * __useGetArticlesQuery__
- *
- * To run a query within a React component, call `useGetArticlesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetArticlesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetArticlesQuery({
- *   variables: {
- *      articlesPerPage: // value for 'articlesPerPage'
- *   },
- * });
- */
-export function useGetArticlesQuery(baseOptions?: Apollo.QueryHookOptions<GetArticlesQuery, GetArticlesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetArticlesQuery, GetArticlesQueryVariables>(GetArticlesDocument, options);
-      }
-export function useGetArticlesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticlesQuery, GetArticlesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetArticlesQuery, GetArticlesQueryVariables>(GetArticlesDocument, options);
-        }
-export type GetArticlesQueryHookResult = ReturnType<typeof useGetArticlesQuery>;
-export type GetArticlesLazyQueryHookResult = ReturnType<typeof useGetArticlesLazyQuery>;
-export type GetArticlesQueryResult = Apollo.QueryResult<GetArticlesQuery, GetArticlesQueryVariables>;
-export const GetErrorPageDocument = gql`
-    query getErrorPage {
-  page404 {
-    data {
-      attributes {
-        title
-        description
-        links
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useGetErrorPageQuery__
- *
- * To run a query within a React component, call `useGetErrorPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetErrorPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetErrorPageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetErrorPageQuery(baseOptions?: Apollo.QueryHookOptions<GetErrorPageQuery, GetErrorPageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetErrorPageQuery, GetErrorPageQueryVariables>(GetErrorPageDocument, options);
-      }
-export function useGetErrorPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetErrorPageQuery, GetErrorPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetErrorPageQuery, GetErrorPageQueryVariables>(GetErrorPageDocument, options);
-        }
-export type GetErrorPageQueryHookResult = ReturnType<typeof useGetErrorPageQuery>;
-export type GetErrorPageLazyQueryHookResult = ReturnType<typeof useGetErrorPageLazyQuery>;
-export type GetErrorPageQueryResult = Apollo.QueryResult<GetErrorPageQuery, GetErrorPageQueryVariables>;
+export type FetchNavigationQueryHookResult = ReturnType<typeof useFetchNavigationQuery>;
+export type FetchNavigationLazyQueryHookResult = ReturnType<typeof useFetchNavigationLazyQuery>;
+export type FetchNavigationQueryResult = Apollo.QueryResult<FetchNavigationQuery, FetchNavigationQueryVariables>;
 export const GetGlobalDocument = gql`
     query getGlobal {
   global {
@@ -2795,17 +3110,23 @@ export const GetGlobalDocument = gql`
         updatedAt
         background {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
         favicon {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
         logo {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
       }
@@ -2879,314 +3200,3 @@ export function useGetTranslationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetTranslationsQueryHookResult = ReturnType<typeof useGetTranslationsQuery>;
 export type GetTranslationsLazyQueryHookResult = ReturnType<typeof useGetTranslationsLazyQuery>;
 export type GetTranslationsQueryResult = Apollo.QueryResult<GetTranslationsQuery, GetTranslationsQueryVariables>;
-export const GetCategoryArticlesBySlugDocument = gql`
-    query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
-  categories(filters: {slug: {eq: $slug}}) {
-    data {
-      attributes {
-        seo {
-          ...Seo
-        }
-        name
-        articles(sort: "createdAt:desc", pagination: {limit: $entriesPerPage}) {
-          data {
-            id
-            attributes {
-              title
-              content
-              slug
-              image {
-                data {
-                  ...image
-                }
-              }
-              category {
-                data {
-                  attributes {
-                    name
-                    slug
-                  }
-                }
-              }
-              author {
-                data {
-                  ...author
-                }
-              }
-              createdAt
-              updatedAt
-              publishedAt
-              seo {
-                ...Seo
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-    ${SeoFragmentDoc}
-${ImageFragmentDoc}
-${AuthorFragmentDoc}`;
-
-/**
- * __useGetCategoryArticlesBySlugQuery__
- *
- * To run a query within a React component, call `useGetCategoryArticlesBySlugQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCategoryArticlesBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetCategoryArticlesBySlugQuery({
- *   variables: {
- *      entriesPerPage: // value for 'entriesPerPage'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useGetCategoryArticlesBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>(GetCategoryArticlesBySlugDocument, options);
-      }
-export function useGetCategoryArticlesBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>(GetCategoryArticlesBySlugDocument, options);
-        }
-export type GetCategoryArticlesBySlugQueryHookResult = ReturnType<typeof useGetCategoryArticlesBySlugQuery>;
-export type GetCategoryArticlesBySlugLazyQueryHookResult = ReturnType<typeof useGetCategoryArticlesBySlugLazyQuery>;
-export type GetCategoryArticlesBySlugQueryResult = Apollo.QueryResult<GetCategoryArticlesBySlugQuery, GetCategoryArticlesBySlugQueryVariables>;
-export const GetArticleBySlugDocument = gql`
-    query GetArticleBySlug($slug: String) {
-  articles(filters: {slug: {eq: $slug}}) {
-    data {
-      attributes {
-        title
-        content
-        slug
-        createdAt
-        publishedAt
-        updatedAt
-        category {
-          data {
-            attributes {
-              name
-              slug
-            }
-          }
-        }
-        seo {
-          ...Seo
-        }
-        author {
-          data {
-            ...author
-          }
-        }
-        image {
-          data {
-            ...image
-          }
-        }
-      }
-    }
-  }
-}
-    ${SeoFragmentDoc}
-${AuthorFragmentDoc}
-${ImageFragmentDoc}`;
-
-/**
- * __useGetArticleBySlugQuery__
- *
- * To run a query within a React component, call `useGetArticleBySlugQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetArticleBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetArticleBySlugQuery({
- *   variables: {
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useGetArticleBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(GetArticleBySlugDocument, options);
-      }
-export function useGetArticleBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>(GetArticleBySlugDocument, options);
-        }
-export type GetArticleBySlugQueryHookResult = ReturnType<typeof useGetArticleBySlugQuery>;
-export type GetArticleBySlugLazyQueryHookResult = ReturnType<typeof useGetArticleBySlugLazyQuery>;
-export type GetArticleBySlugQueryResult = Apollo.QueryResult<GetArticleBySlugQuery, GetArticleBySlugQueryVariables>;
-export const GetBlogPageDocument = gql`
-    query getBlogPage {
-  blog {
-    data {
-      attributes {
-        articlesSection {
-          ...articleSectionComponent
-        }
-        categorySection {
-          ...articleSectionComponent
-        }
-      }
-    }
-  }
-}
-    ${ArticleSectionComponentFragmentDoc}`;
-
-/**
- * __useGetBlogPageQuery__
- *
- * To run a query within a React component, call `useGetBlogPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBlogPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetBlogPageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetBlogPageQuery(baseOptions?: Apollo.QueryHookOptions<GetBlogPageQuery, GetBlogPageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetBlogPageQuery, GetBlogPageQueryVariables>(GetBlogPageDocument, options);
-      }
-export function useGetBlogPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBlogPageQuery, GetBlogPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetBlogPageQuery, GetBlogPageQueryVariables>(GetBlogPageDocument, options);
-        }
-export type GetBlogPageQueryHookResult = ReturnType<typeof useGetBlogPageQuery>;
-export type GetBlogPageLazyQueryHookResult = ReturnType<typeof useGetBlogPageLazyQuery>;
-export type GetBlogPageQueryResult = Apollo.QueryResult<GetBlogPageQuery, GetBlogPageQueryVariables>;
-export const GetHomePageDocument = gql`
-    query getHomePage {
-  homepage {
-    data {
-      attributes {
-        seo {
-          ...Seo
-        }
-        articlesSection {
-          ...articlesSection
-        }
-      }
-    }
-  }
-}
-    ${SeoFragmentDoc}
-${ArticlesSectionFragmentDoc}`;
-
-/**
- * __useGetHomePageQuery__
- *
- * To run a query within a React component, call `useGetHomePageQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetHomePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetHomePageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetHomePageQuery(baseOptions?: Apollo.QueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
-      }
-export function useGetHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetHomePageQuery, GetHomePageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetHomePageQuery, GetHomePageQueryVariables>(GetHomePageDocument, options);
-        }
-export type GetHomePageQueryHookResult = ReturnType<typeof useGetHomePageQuery>;
-export type GetHomePageLazyQueryHookResult = ReturnType<typeof useGetHomePageLazyQuery>;
-export type GetHomePageQueryResult = Apollo.QueryResult<GetHomePageQuery, GetHomePageQueryVariables>;
-export const GetArticlesSlugsDocument = gql`
-    query getArticlesSlugs {
-  articles {
-    data {
-      id
-      attributes {
-        slug
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useGetArticlesSlugsQuery__
- *
- * To run a query within a React component, call `useGetArticlesSlugsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetArticlesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetArticlesSlugsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetArticlesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>(GetArticlesSlugsDocument, options);
-      }
-export function useGetArticlesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>(GetArticlesSlugsDocument, options);
-        }
-export type GetArticlesSlugsQueryHookResult = ReturnType<typeof useGetArticlesSlugsQuery>;
-export type GetArticlesSlugsLazyQueryHookResult = ReturnType<typeof useGetArticlesSlugsLazyQuery>;
-export type GetArticlesSlugsQueryResult = Apollo.QueryResult<GetArticlesSlugsQuery, GetArticlesSlugsQueryVariables>;
-export const GetCategoriesSlugsDocument = gql`
-    query getCategoriesSlugs {
-  categories {
-    data {
-      id
-      attributes {
-        slug
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useGetCategoriesSlugsQuery__
- *
- * To run a query within a React component, call `useGetCategoriesSlugsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetCategoriesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetCategoriesSlugsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetCategoriesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>(GetCategoriesSlugsDocument, options);
-      }
-export function useGetCategoriesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>(GetCategoriesSlugsDocument, options);
-        }
-export type GetCategoriesSlugsQueryHookResult = ReturnType<typeof useGetCategoriesSlugsQuery>;
-export type GetCategoriesSlugsLazyQueryHookResult = ReturnType<typeof useGetCategoriesSlugsLazyQuery>;
-export type GetCategoriesSlugsQueryResult = Apollo.QueryResult<GetCategoriesSlugsQuery, GetCategoriesSlugsQueryVariables>;

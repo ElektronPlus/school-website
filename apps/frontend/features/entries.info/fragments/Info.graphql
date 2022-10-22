@@ -1,4 +1,4 @@
-fragment Page on Page {
+fragment Info on Page {
   content
   slug
   title

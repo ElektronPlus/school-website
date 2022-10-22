@@ -1,24 +1,20 @@
 import ArticlesGrid from 'components/article/Grid';
 import {
-  GetArticlesDocument,
-  GetArticlesQuery,
-  GetHomePageDocument,
-  GetHomePageQuery,
+  FetchBlogEntriesDocument,
+  FetchBlogEntriesQuery,
   GetTranslationsDocument,
   GetTranslationsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
 import { NextSeo } from 'next-seo';
+import { InferGetStaticPropsType } from 'next/types';
+import { FetchHomepageQuery, FetchHomepageDocument } from "generated/graphql";
 
 export default function Home({
   articlesData,
   homePageData,
   translationsData,
-}: {
-  articlesData: GetArticlesQuery;
-  homePageData: GetHomePageQuery;
-  translationsData: GetTranslationsQuery;
-}) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { articles } = articlesData;
   const { header, previewMaxCharacters } =
     homePageData.homepage.data.attributes.articlesSection;
@@ -48,15 +44,15 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const homePageData: GetHomePageQuery = (
+  const homePageData: FetchHomepageQuery = (
     await client.query({
-      query: GetHomePageDocument,
+      query: FetchHomepageDocument,
     })
   ).data;
 
-  const articlesData: GetArticlesQuery = (
+  const articlesData: FetchBlogEntriesQuery = (
     await client.query({
-      query: GetArticlesDocument,
+      query: FetchBlogEntriesDocument,
       variables: {
         articlesPerPage:
           homePageData.homepage.data.attributes.articlesSection.entriesPerPage,

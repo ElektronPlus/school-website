@@ -1,4 +1,4 @@
-query getFooter {
+query FetchFooter {
   footer {
     data {
       attributes {

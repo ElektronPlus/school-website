@@ -1,4 +1,4 @@
-query getHomePage {
+query FetchHomepage {
   homepage {
     data {
       attributes {

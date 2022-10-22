@@ -1,0 +1,10 @@
+query FetchErrorPage {
+  page404 {
+    data {
+      attributes {
+        title
+        description
+      }
+    }
+  }
+}

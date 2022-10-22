@@ -1,4 +1,4 @@
-query FetchPagesSlugs {
+query FetchInfoSlugs {
   pages {
     data {
       attributes {

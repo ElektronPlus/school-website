@@ -1,4 +1,4 @@
-query getArticles($articlesPerPage: Int) {
+query FetchBlogEntries($articlesPerPage: Int) {
   articles(sort: "createdAt:desc", pagination: { limit: $articlesPerPage }) {
     data {
       id
@@ -8,7 +8,9 @@ query getArticles($articlesPerPage: Int) {
         slug
         image {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
         category {
@@ -21,7 +23,7 @@ query getArticles($articlesPerPage: Int) {
         }
         author {
           data {
-            ...author
+            ...Author
           }
         }
         createdAt
@@ -32,28 +34,5 @@ query getArticles($articlesPerPage: Int) {
         }
       }
     }
-  }
-}
-
-fragment author on WriterEntity {
-  attributes {
-    name
-    description
-    picture {
-      data {
-        ...image
-      }
-    }
-  }
-}
-
-fragment image on UploadFileEntity {
-  attributes {
-    alternativeText
-    width
-    height
-    placeholder
-    updatedAt
-    url
   }
 }
