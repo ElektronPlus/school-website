@@ -1,4 +1,4 @@
-query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
+query FetchBlogEntriesOfCategory($entriesPerPage: Int, $slug: String) {
   categories(filters: { slug: { eq: $slug } }) {
     data {
       attributes {
@@ -18,7 +18,9 @@ query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
               slug
               image {
                 data {
-                  ...image
+                  attributes {
+                    ...Image
+                  }
                 }
               }
               category {
@@ -31,7 +33,7 @@ query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
               }
               author {
                 data {
-                  ...author
+                  ...Author
                 }
               }
               createdAt
@@ -45,28 +47,5 @@ query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
         }
       }
     }
-  }
-}
-
-fragment author on WriterEntity {
-  attributes {
-    name
-    description
-    picture {
-      data {
-        ...image
-      }
-    }
-  }
-}
-
-fragment image on UploadFileEntity {
-  attributes {
-    alternativeText
-    width
-    height
-    placeholder
-    updatedAt
-    url
   }
 }

@@ -1,24 +1,17 @@
-import DOMPurify from 'isomorphic-dompurify';
 import {
-  GetArticleBySlugQuery,
-  GetArticleBySlugDocument,
-  GetErrorPageQuery,
-  GetErrorPageDocument,
+  FetchErrorPageQuery,
+  FetchErrorPageDocument,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
-import { GetStaticProps } from 'next';
-import Link from 'next/link';
+import { InferGetStaticPropsType } from 'next';
 import { Level, H } from 'react-accessible-headings';
-import styles from './404.module.css';
 import { Button } from 'components/Button';
 import { useTheme } from '@emotion/react';
 
 export default function Custom404({
   errorData,
-}: {
-  errorData: GetErrorPageQuery;
-}) {
-  const { title, description, links } = errorData.page404.data.attributes;
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { title, description } = errorData.page404.data.attributes;
 
   const theme = useTheme();
 
@@ -44,10 +37,10 @@ export default function Custom404({
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const errorData: GetErrorPageQuery = (
+export const getStaticProps = async () => {
+  const errorData: FetchErrorPageQuery = (
     await client.query({
-      query: GetErrorPageDocument,
+      query: FetchErrorPageDocument,
     })
   ).data;
 

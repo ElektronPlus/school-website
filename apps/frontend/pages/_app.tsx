@@ -2,14 +2,14 @@ import { DocumentNode } from '@apollo/client';
 import { ThemeProvider } from '@emotion/react';
 import Layout from 'components/Layout';
 import {
-  GetAlertDocument,
-  GetAlertQuery,
-  GetFooterDocument,
-  GetFooterQuery,
+  FetchAlertQuery,
+  FetchAlertDocument,
+  FetchFooterDocument,
+  FetchFooterQuery,
+  FetchNavigationDocument,
+  FetchNavigationQuery,
   GetGlobalDocument,
   GetGlobalQuery,
-  GetNavigationDocument,
-  GetNavigationQuery,
   GetTranslationsDocument,
   GetTranslationsQuery,
 } from 'generated/graphql';
@@ -25,11 +25,11 @@ import 'styles/globals.css';
 import { theme } from 'lib/emotion';
 
 interface GlobalContextInterface {
-  menuLinks: GetNavigationQuery;
-  footerLinks: GetNavigationQuery;
-  footerContent: GetFooterQuery;
+  menuLinks: FetchNavigationQuery;
+  footerLinks: FetchNavigationQuery;
+  footerContent: FetchFooterQuery;
   global: GetGlobalQuery;
-  alert: GetAlertQuery;
+  alert: FetchAlertQuery;
   translations: GetTranslationsQuery;
 }
 
@@ -82,25 +82,25 @@ MyApp.getInitialProps = async (ctx: AppContext) => {
 
   const queries: Record<string, Query> = {
     menuLinks: {
-      query: GetNavigationDocument,
+      query: FetchNavigationDocument,
       variables: {
         navigationIdOrSlug: 'menu',
       },
     },
     footerLinks: {
-      query: GetNavigationDocument,
+      query: FetchNavigationDocument,
       variables: {
         navigationIdOrSlug: 'footer',
       },
     },
     footerContent: {
-      query: GetFooterDocument,
+      query: FetchFooterDocument,
     },
     global: {
       query: GetGlobalDocument,
     },
     alert: {
-      query: GetAlertDocument,
+      query: FetchAlertDocument,
     },
     translations: {
       query: GetTranslationsDocument,

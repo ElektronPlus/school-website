@@ -1,28 +1,19 @@
 import { NextSeo } from 'next-seo';
 import ArticlesGrid from 'components/article/Grid';
 
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, InferGetStaticPropsType } from 'next';
 import {
-  GetCategoriesSlugsDocument,
-  GetBlogPageDocument,
-  GetBlogPageQuery,
-  GetCategoryArticlesBySlugQuery,
-  GetCategoryArticlesBySlugDocument,
   GetTranslationsDocument,
   GetTranslationsQuery,
-  GetCategoriesSlugsQuery,
 } from 'generated/graphql';
 import client from 'lib/apolloClient';
+import { FetchBlogPageQuery, FetchBlogPageDocument, FetchBlogEntriesOfCategoryQuery, FetchBlogEntriesOfCategoryDocument, FetchCategoriesSlugsQuery, FetchCategoriesSlugsDocument } from "../../generated/graphql";
 
 function Category({
   categoryArticlesData,
   blogPageData,
   translationsData,
-}: {
-  categoryArticlesData: GetCategoryArticlesBySlugQuery;
-  blogPageData: GetBlogPageQuery;
-  translationsData: GetTranslationsQuery;
-}) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { name, articles, seo } =
     categoryArticlesData.categories.data[0].attributes;
   const { previewMaxCharacters } =
@@ -51,8 +42,8 @@ function Category({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoriesSlugsData: GetCategoriesSlugsQuery = (
-    await client.query({ query: GetCategoriesSlugsDocument })
+  const categoriesSlugsData: FetchCategoriesSlugsQuery = (
+    await client.query({ query: FetchCategoriesSlugsDocument })
   ).data;
 
   return {
@@ -65,16 +56,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const blogPageData: GetBlogPageQuery = (
+export const getStaticProps = async ({ params }) => {
+  const blogPageData: FetchBlogPageQuery = (
     await client.query({
-      query: GetBlogPageDocument,
+      query: FetchBlogPageDocument,
     })
   ).data;
 
-  const categoryArticlesData: GetCategoryArticlesBySlugQuery = (
+  const categoryArticlesData: FetchBlogEntriesOfCategoryQuery = (
     await client.query({
-      query: GetCategoryArticlesBySlugDocument,
+      query: FetchBlogEntriesOfCategoryDocument,
       variables: {
         slug: params.slug,
         entriesPerPage:

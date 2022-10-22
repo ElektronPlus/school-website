@@ -1,5 +1,5 @@
-query getArticlesSlugs {
-  articles {
+query FetchCategoriesSlugs {
+  categories {
     data {
       id
       attributes {

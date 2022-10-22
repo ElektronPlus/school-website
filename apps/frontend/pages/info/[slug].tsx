@@ -1,23 +1,13 @@
 import client from 'lib/apolloClient';
-import { GetStaticPaths, GetStaticProps } from 'next/types';
 import DOMPurify from 'isomorphic-dompurify';
-import {
-  Page,
-  FetchPagesSlugsQuery,
-  FetchPagesSlugsDocument,
-  FetchPageDocument,
-  FetchPageQuery,
-} from 'generated/graphql';
 import { Seo } from 'features/seo/components/Seo';
 import { EntryTitle } from 'components/entry/Title';
 import { EntryContent } from 'components/entry/Content';
 import { EntryDetails } from 'components/entry/Details';
+import { FetchInfoDocument, FetchInfoQuery, FetchInfoSlugsQuery, FetchInfoSlugsDocument } from "generated/graphql";
+import { GetStaticPaths, InferGetStaticPropsType } from 'next/types';
 
-type InfoPageProps = {
-  page: Page;
-};
-
-export default function InfoPage({ page }: InfoPageProps) {
+export default function InfoPage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Seo description={page.content} title={page.title} />
@@ -39,9 +29,9 @@ export default function InfoPage({ page }: InfoPageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data: FetchPagesSlugsQuery = (
+  const data: FetchInfoSlugsQuery = (
     await client.query({
-      query: FetchPagesSlugsDocument,
+      query: FetchInfoSlugsDocument,
     })
   ).data;
 
@@ -53,13 +43,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data: FetchPageQuery = (
+export const getStaticProps = async ({ params }) => {
+  const data: FetchInfoQuery = (
     await client.query({
       variables: {
         slug: params.slug,
       },
-      query: FetchPageDocument,
+      query: FetchInfoDocument,
     })
   ).data;
 

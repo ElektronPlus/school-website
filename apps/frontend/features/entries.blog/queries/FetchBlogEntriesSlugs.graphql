@@ -1,5 +1,5 @@
-query getCategoriesSlugs {
-  categories {
+query FetchBlogEntriesSlugs {
+  articles {
     data {
       id
       attributes {

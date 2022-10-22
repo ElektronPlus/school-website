@@ -1,4 +1,4 @@
-query GetArticleBySlug($slug: String) {
+query FetchBlogBySlug($slug: String) {
   articles(filters: { slug: { eq: $slug } }) {
     data {
       attributes {
@@ -21,38 +21,17 @@ query GetArticleBySlug($slug: String) {
         }
         author {
           data {
-            ...author
+            ...Author
           }
         }
         image {
           data {
-            ...image
+            attributes {
+              ...Image
+            }
           }
         }
       }
     }
-  }
-}
-
-fragment author on WriterEntity {
-  attributes {
-    name
-    description
-    picture {
-      data {
-        ...image
-      }
-    }
-  }
-}
-
-fragment image on UploadFileEntity {
-  attributes {
-    alternativeText
-    width
-    height
-    placeholder
-    updatedAt
-    url
   }
 }

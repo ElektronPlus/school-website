@@ -1,4 +1,4 @@
-query getBlogPage {
+query FetchBlogPage {
   blog {
     data {
       attributes {

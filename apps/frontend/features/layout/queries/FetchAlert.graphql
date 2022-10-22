@@ -1,4 +1,4 @@
-query getAlert {
+query FetchAlert {
   alert {
     data {
       attributes {
