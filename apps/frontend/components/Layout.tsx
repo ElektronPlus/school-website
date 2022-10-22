@@ -17,6 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           width: 100%;
           height: 25%;
           position: absolute;
+          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 50%, transparent 100%);
         `}
       >
         <StrapiImage
