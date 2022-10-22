@@ -24,24 +24,20 @@ function AuthorDescription({ content }: { content: string }) {
 }
 
 function AuthorName({ content }: { content: string }) {
-  if (content !== null) {
-    return (
-      <>
-        <H
-          css={css`
-            font-size: 1.25rem;
-          `}
-        >
-          {content}
-        </H>
-      </>
-    );
+  if (content === null) {
+    return null;
   }
 
-  return null;
+  return (
+    <H
+      css={{fontSize: "1.25rem"}}
+    >
+      {content}
+    </H>
+  );
 }
 
-export function ArticleAuthorCard({
+export function EntryAuthor({
   authorName,
   authorDescription,
   authorPictureUrl,
@@ -52,17 +48,15 @@ export function ArticleAuthorCard({
 }) {
   return (
     <div
-      css={css`
-        padding-top: 32px;
-        margin: auto;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        border-top: 1px solid #e5e5e5;
-        margin-top: 32px;
-        width: 100%;
-      `}
+      css={{
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        borderTop: "1px solid #e5e5e5",
+        marginTop: "32px",
+        width: "100%",
+      }}
     >
       <Level>
         <div>

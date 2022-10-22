@@ -3,7 +3,7 @@ query getHomePage {
     data {
       attributes {
         seo {
-          ...seo
+          ...Seo
         }
         articlesSection {
           ...articlesSection
@@ -17,9 +17,4 @@ fragment articlesSection on ComponentArticlesArticlesSection {
   header
   entriesPerPage
   previewMaxCharacters
-}
-
-fragment seo on ComponentSharedSeo {
-  metaDescription
-  preventIndexing
 }
