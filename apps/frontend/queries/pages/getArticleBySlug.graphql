@@ -17,7 +17,7 @@ query GetArticleBySlug($slug: String) {
           }
         }
         seo {
-          ...seo
+          ...Seo
         }
         author {
           data {
@@ -32,11 +32,6 @@ query GetArticleBySlug($slug: String) {
       }
     }
   }
-}
-
-fragment seo on ComponentSharedSeo {
-  metaDescription
-  preventIndexing
 }
 
 fragment author on WriterEntity {

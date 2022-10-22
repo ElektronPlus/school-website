@@ -3,7 +3,7 @@ query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
     data {
       attributes {
         seo {
-          ...seo
+          ...Seo
         }
         name
         articles(
@@ -38,7 +38,7 @@ query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
               updatedAt
               publishedAt
               seo {
-                ...seo
+                ...Seo
               }
             }
           }
@@ -46,11 +46,6 @@ query GetCategoryArticlesBySlug($entriesPerPage: Int, $slug: String) {
       }
     }
   }
-}
-
-fragment seo on ComponentSharedSeo {
-  metaDescription
-  preventIndexing
 }
 
 fragment author on WriterEntity {

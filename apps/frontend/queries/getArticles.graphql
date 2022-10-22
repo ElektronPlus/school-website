@@ -28,16 +28,11 @@ query getArticles($articlesPerPage: Int) {
         updatedAt
         publishedAt
         seo {
-          ...seo
+          ...Seo
         }
       }
     }
   }
-}
-
-fragment seo on ComponentSharedSeo {
-  metaDescription
-  preventIndexing
 }
 
 fragment author on WriterEntity {

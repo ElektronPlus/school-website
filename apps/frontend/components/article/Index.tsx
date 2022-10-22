@@ -2,9 +2,9 @@ import { ArticleEntity } from 'generated/graphql';
 import { StrapiImage } from '../StrapiImage';
 import { css } from '@emotion/react';
 import { getCategoryPathBySlug } from 'services/utils';
-import { ArticleAuthorCard } from 'components/article/Author';
+import { EntryAuthor } from 'components/entry/Author';
 import { ArticleTitle } from 'components/article/Title';
-import { ArticleDetails } from 'components/article/Details';
+import { EntryDetails } from 'components/entry/Details';
 import { ArticleContent } from 'components/article/Content';
 import { Level } from 'react-accessible-headings';
 import { getStrapiMedia } from 'services/media';
@@ -119,7 +119,7 @@ function Article({
               >
                 <NarrowWrapperIfSingleArticlePage>
                   <CenterIfSingleArticlePage>
-                    <ArticleDetails
+                    <EntryDetails
                       publishedAt={publishedAt}
                       categoryName={categoryName}
                       categoryPath={categoryPath}
@@ -139,7 +139,7 @@ function Article({
                     cardMaxCharacters={cardMaxCharacters}
                   />
                   {isSingleArticlePage && authorName && (
-                    <ArticleAuthorCard
+                    <EntryAuthor
                       authorName={authorName}
                       authorDescription={authorDescription}
                       authorPictureUrl={authorPictureUrl}

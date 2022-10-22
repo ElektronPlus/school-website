@@ -1215,7 +1215,9 @@ export type Page = {
   __typename?: 'Page';
   content?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
+  image?: Maybe<UploadFileEntityResponse>;
   publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentSharedSeo>;
   slug: Scalars['String'];
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1227,7 +1229,7 @@ export type Page404 = {
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   links?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   url_path_id?: Maybe<Scalars['String']>;
 };
@@ -1275,6 +1277,7 @@ export type PageFiltersInput = {
   not?: InputMaybe<PageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1283,7 +1286,9 @@ export type PageFiltersInput = {
 
 export type PageInput = {
   content?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['ID']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
   url_path_id?: InputMaybe<Scalars['String']>;
@@ -1729,7 +1734,9 @@ export type SubstitusionRelationResponseCollection = {
 export type Translation = {
   __typename?: 'Translation';
   articleReadMore?: Maybe<Scalars['String']>;
+  contactUs: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
+  goBackHome?: Maybe<Scalars['String']>;
   paginationNextPage?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -1749,6 +1756,8 @@ export type TranslationEntityResponse = {
 
 export type TranslationInput = {
   articleReadMore?: InputMaybe<Scalars['String']>;
+  contactUs?: InputMaybe<Scalars['String']>;
+  goBackHome?: InputMaybe<Scalars['String']>;
   paginationNextPage?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   url_path_id?: InputMaybe<Scalars['String']>;
@@ -2298,6 +2307,22 @@ export type WriterInput = {
   url_path_id?: InputMaybe<Scalars['String']>;
 };
 
+export type PageFragment = { __typename?: 'Page', content?: string | null, slug: string, title?: string | null, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null };
+
+export type FetchPageQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type FetchPageQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', content?: string | null, slug: string, title?: string | null, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null } | null }> } | null };
+
+export type FetchPagesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchPagesSlugsQuery = { __typename?: 'Query', pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', slug: string } | null }> } | null };
+
+export type SeoFragment = { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null };
+
 export type GetAlertQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2322,9 +2347,7 @@ export type GetArticlesQueryVariables = Exact<{
 }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null };
-
-export type SeoFragment = { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null };
+export type GetArticlesQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null } | null }> } | null };
 
 export type AuthorFragment = { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null };
 
@@ -2333,7 +2356,7 @@ export type ImageFragment = { __typename?: 'UploadFileEntity', attributes?: { __
 export type GetErrorPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetErrorPageQuery = { __typename?: 'Query', page404?: { __typename?: 'Page404EntityResponse', data?: { __typename?: 'Page404Entity', attributes?: { __typename?: 'Page404', title?: string | null, description?: string | null, links?: string | null } | null } | null } | null };
+export type GetErrorPageQuery = { __typename?: 'Query', page404?: { __typename?: 'Page404EntityResponse', data?: { __typename?: 'Page404Entity', attributes?: { __typename?: 'Page404', title: string, description?: string | null, links?: string | null } | null } | null } | null };
 
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2351,14 +2374,14 @@ export type GetCategoryArticlesBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetCategoryArticlesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
+export type GetCategoryArticlesBySlugQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, articles?: { __typename?: 'ArticleRelationResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, updatedAt?: any | null, publishedAt?: any | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null } | null }> } | null } | null }> } | null };
 
 export type GetArticleBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetArticleBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null }> } | null };
+export type GetArticleBySlugQuery = { __typename?: 'Query', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', attributes?: { __typename?: 'Article', title: string, content: string, slug: string, createdAt?: any | null, publishedAt?: any | null, updatedAt?: any | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string, slug: string } | null } | null } | null, seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, author?: { __typename?: 'WriterEntityResponse', data?: { __typename?: 'WriterEntity', attributes?: { __typename?: 'Writer', name?: string | null, description?: string | null, picture?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, width?: number | null, height?: number | null, placeholder?: string | null, updatedAt?: any | null, url: string } | null } | null } | null } | null }> } | null };
 
 export type GetBlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2370,7 +2393,7 @@ export type ArticleSectionComponentFragment = { __typename?: 'ComponentArticlesA
 export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetHomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', attributes?: { __typename?: 'Homepage', seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, preventIndexing?: boolean | null } | null, articlesSection?: { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null } | null } | null } | null } | null };
+export type GetHomePageQuery = { __typename?: 'Query', homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', attributes?: { __typename?: 'Homepage', seo?: { __typename?: 'ComponentSharedSeo', metaDescription?: string | null, keywords?: string | null, structuredData?: any | null, preventIndexing?: boolean | null } | null, articlesSection?: { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null } | null } | null } | null } | null };
 
 export type ArticlesSectionFragment = { __typename?: 'ComponentArticlesArticlesSection', header: string, entriesPerPage: number, previewMaxCharacters?: number | null };
 
@@ -2384,18 +2407,30 @@ export type GetCategoriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCategoriesSlugsQuery = { __typename?: 'Query', categories?: { __typename?: 'CategoryEntityResponseCollection', data: Array<{ __typename?: 'CategoryEntity', id?: string | null, attributes?: { __typename?: 'Category', slug: string } | null }> } | null };
 
+export const PageFragmentDoc = gql`
+    fragment Page on Page {
+  content
+  slug
+  title
+  createdAt
+  publishedAt
+  updatedAt
+}
+    `;
+export const SeoFragmentDoc = gql`
+    fragment Seo on ComponentSharedSeo {
+  metaDescription
+  keywords
+  structuredData
+  preventIndexing
+}
+    `;
 export const ItemFragmentDoc = gql`
     fragment item on NavigationItem {
   title
   path
   uiRouterKey
   icon
-}
-    `;
-export const SeoFragmentDoc = gql`
-    fragment seo on ComponentSharedSeo {
-  metaDescription
-  preventIndexing
 }
     `;
 export const ImageFragmentDoc = gql`
@@ -2437,6 +2472,83 @@ export const ArticlesSectionFragmentDoc = gql`
   previewMaxCharacters
 }
     `;
+export const FetchPageDocument = gql`
+    query FetchPage($slug: String!) {
+  pages(filters: {slug: {eq: $slug}}) {
+    data {
+      attributes {
+        ...Page
+      }
+    }
+  }
+}
+    ${PageFragmentDoc}`;
+
+/**
+ * __useFetchPageQuery__
+ *
+ * To run a query within a React component, call `useFetchPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchPageQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useFetchPageQuery(baseOptions: Apollo.QueryHookOptions<FetchPageQuery, FetchPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchPageQuery, FetchPageQueryVariables>(FetchPageDocument, options);
+      }
+export function useFetchPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchPageQuery, FetchPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchPageQuery, FetchPageQueryVariables>(FetchPageDocument, options);
+        }
+export type FetchPageQueryHookResult = ReturnType<typeof useFetchPageQuery>;
+export type FetchPageLazyQueryHookResult = ReturnType<typeof useFetchPageLazyQuery>;
+export type FetchPageQueryResult = Apollo.QueryResult<FetchPageQuery, FetchPageQueryVariables>;
+export const FetchPagesSlugsDocument = gql`
+    query FetchPagesSlugs {
+  pages {
+    data {
+      attributes {
+        slug
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFetchPagesSlugsQuery__
+ *
+ * To run a query within a React component, call `useFetchPagesSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchPagesSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchPagesSlugsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchPagesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>(FetchPagesSlugsDocument, options);
+      }
+export function useFetchPagesSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>(FetchPagesSlugsDocument, options);
+        }
+export type FetchPagesSlugsQueryHookResult = ReturnType<typeof useFetchPagesSlugsQuery>;
+export type FetchPagesSlugsLazyQueryHookResult = ReturnType<typeof useFetchPagesSlugsLazyQuery>;
+export type FetchPagesSlugsQueryResult = Apollo.QueryResult<FetchPagesSlugsQuery, FetchPagesSlugsQueryVariables>;
 export const GetAlertDocument = gql`
     query getAlert {
   alert {
@@ -2595,7 +2707,7 @@ export const GetArticlesDocument = gql`
         updatedAt
         publishedAt
         seo {
-          ...seo
+          ...Seo
         }
       }
     }
@@ -2773,7 +2885,7 @@ export const GetCategoryArticlesBySlugDocument = gql`
     data {
       attributes {
         seo {
-          ...seo
+          ...Seo
         }
         name
         articles(sort: "createdAt:desc", pagination: {limit: $entriesPerPage}) {
@@ -2805,7 +2917,7 @@ export const GetCategoryArticlesBySlugDocument = gql`
               updatedAt
               publishedAt
               seo {
-                ...seo
+                ...Seo
               }
             }
           }
@@ -2866,7 +2978,7 @@ export const GetArticleBySlugDocument = gql`
           }
         }
         seo {
-          ...seo
+          ...Seo
         }
         author {
           data {
@@ -2962,7 +3074,7 @@ export const GetHomePageDocument = gql`
     data {
       attributes {
         seo {
-          ...seo
+          ...Seo
         }
         articlesSection {
           ...articlesSection

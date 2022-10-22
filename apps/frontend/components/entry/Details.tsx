@@ -1,12 +1,25 @@
 import { css, useTheme } from '@emotion/react';
-import { ArticleCategory } from './Category';
-import { ArticleDate } from './Date';
+import { ArticleCategory } from '../article/Category';
 
-export function ArticleDetails({
+function EntryDate({ publishedAt }) {
+  const date = new Date(publishedAt);
+
+  return (
+    <time dateTime={publishedAt} suppressHydrationWarning>
+      {`${date.toLocaleString(undefined, {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })}, ${date.getHours()}:${date.getMinutes()}`}
+    </time>
+  );
+}
+
+
+export function EntryDetails({
   publishedAt,
   categoryName = null,
   categoryPath = null,
-  isSingleArticlePage = false,
 }) {
   const theme = useTheme();
   return (
@@ -14,11 +27,13 @@ export function ArticleDetails({
       css={{
         letterSpacing: '1.1px',
         fontSize: '0.85rem',
+        textAlign: "center",
+        margin: "auto",
         color: theme.color.text.light.hexa(),
         textTransform: 'uppercase',
       }}
     >
-      <ArticleDate publishedAt={publishedAt} />
+      <EntryDate publishedAt={publishedAt} />
       {categoryName !== null && categoryPath !== null && (
         <>
           &nbsp;&bull;&nbsp;
