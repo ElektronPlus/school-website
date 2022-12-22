@@ -18,10 +18,14 @@
     "@strapi/strapi": "4.5.4",
     "better-sqlite3": "7.4.6",
     "koa": "^2.14.1",
+    "mime-types": "^2.1.35",
     "react": "^18.2.0",
     "react-is": "^18.2.0",
+    "sharp": "^0.31.3",
     "strapi-plugin-navigation": "^2.2.2",
-    "webpack": "^5.75.0"
+    "strapi-plugin-placeholder": "^4.3.6",
+    "webpack": "^5.75.0",
+    "yup": "^0.32.11"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
