@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_seos",
+  "info": {
+    "displayName": "SEO",
+    "icon": "asterisk"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "maxLength": 160,
+      "default": "metaDescription"
+    }
+  }
+}

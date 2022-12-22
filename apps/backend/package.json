@@ -10,11 +10,17 @@
   },
   "dependencies": {
     "@babel/core": "^7.20.7",
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.5",
+    "@strapi/plugin-color-picker": "^4.5.4",
+    "@strapi/plugin-graphql": "^4.5.4",
     "@strapi/plugin-i18n": "4.5.4",
     "@strapi/plugin-users-permissions": "4.5.4",
     "@strapi/strapi": "4.5.4",
     "better-sqlite3": "7.4.6",
+    "koa": "^2.14.1",
+    "react": "^18.2.0",
     "react-is": "^18.2.0",
+    "strapi-plugin-navigation": "^2.2.2",
     "webpack": "^5.75.0"
   },
   "engines": {
