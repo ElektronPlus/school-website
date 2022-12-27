@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
@@ -33,5 +34,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

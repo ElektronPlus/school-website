@@ -5,6 +5,7 @@ gh repo clone ElektronPlus/school-website
 ```
 
 ## Development
+
 ```sh
 
 ### Run Front-end
@@ -24,4 +25,4 @@ cd backend/cms
 bash generate-secrets.sh
 pnpm install
 pnpm dev
-````
+```

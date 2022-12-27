@@ -1,0 +1,11 @@
+fragment AuthorMinimal on Author {
+  name
+  avatar {
+    data {
+      attributes {
+        ...Image
+      }
+    }
+  }
+  description
+}

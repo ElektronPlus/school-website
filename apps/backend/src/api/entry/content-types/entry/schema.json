@@ -35,12 +35,6 @@
       "targetField": "title",
       "required": true
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "entries"
-    },
     "author": {
       "type": "relation",
       "relation": "manyToOne",
@@ -58,7 +52,14 @@
         "blog",
         "info"
       ],
-      "default": "blog"
+      "default": "blog",
+      "required": true
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "entry"
     }
   }
 }

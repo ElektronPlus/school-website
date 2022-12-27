@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { Heading } from "components/Heading";
+import type { ReactNode } from "react";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -6,9 +7,12 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang={process.env.NEXT_PUBLIC_LANG}>
       <head />
-      <body>{children}</body>
+      <body>
+        <Heading as="h1">CKZIU Elektronik</Heading>
+        {children}
+      </body>
     </html>
   );
 }
