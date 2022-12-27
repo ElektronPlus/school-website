@@ -1,11 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { AuthorMinimalFragmentDoc } from '../fragments/AuthorMinimal.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1574,10 +1577,47 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type SeoFragment = { __typename?: 'ComponentSharedSeo', description?: string | null };
+export type FetchAuthorsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export const SeoFragmentDoc = gql`
-    fragment SEO on ComponentSharedSeo {
-  description
+
+export type FetchAuthorsQuery = { __typename?: 'Query', authors?: { __typename?: 'AuthorEntityResponseCollection', data: Array<{ __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null }> } | null };
+
+
+export const FetchAuthorsDocument = gql`
+    query FetchAuthors {
+  authors {
+    data {
+      attributes {
+        ...AuthorMinimal
+      }
+    }
+  }
 }
-    `;
+    ${AuthorMinimalFragmentDoc}`;
+
+/**
+ * __useFetchAuthorsQuery__
+ *
+ * To run a query within a React component, call `useFetchAuthorsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchAuthorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchAuthorsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchAuthorsQuery(baseOptions?: Apollo.QueryHookOptions<FetchAuthorsQuery, FetchAuthorsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchAuthorsQuery, FetchAuthorsQueryVariables>(FetchAuthorsDocument, options);
+      }
+export function useFetchAuthorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchAuthorsQuery, FetchAuthorsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchAuthorsQuery, FetchAuthorsQueryVariables>(FetchAuthorsDocument, options);
+        }
+export type FetchAuthorsQueryHookResult = ReturnType<typeof useFetchAuthorsQuery>;
+export type FetchAuthorsLazyQueryHookResult = ReturnType<typeof useFetchAuthorsLazyQuery>;
+export type FetchAuthorsQueryResult = Apollo.QueryResult<FetchAuthorsQuery, FetchAuthorsQueryVariables>;

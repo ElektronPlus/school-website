@@ -1,0 +1,9 @@
+query FetchAuthors {
+  authors {
+    data {
+      attributes {
+        ...AuthorMinimal
+      }
+    }
+  }
+}

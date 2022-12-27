@@ -15,7 +15,7 @@ export const AuthorDetails = ({ author }: AuthorProps) => {
       {avatar?.data?.attributes && (
         <Image image={avatar?.data?.attributes} width="64" height="64" sizes="64px" alt="" />
       )}
-      <Link href={`author/${slug}`}>
+      <Link href={`/@/${slug}`}>
         <Heading id="author" as="h2">
           {name}
         </Heading>

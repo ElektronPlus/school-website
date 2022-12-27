@@ -14,7 +14,7 @@ const Pagination = dynamic(() => import("features/pagination/components/Paginati
 
 interface PageProps {
   params: { slug: string; type: Enum_Entry_Type };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: { page?: string; };
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
@@ -29,7 +29,7 @@ export default async function Page({ params, searchParams }: PageProps) {
     },
   });
 
-  const pageCount = data.entries?.meta.pagination.pageCount ?? 0;
+  const pageCount = data.entries?.meta.pagination.pageCount as number;
 
   return (
     <>

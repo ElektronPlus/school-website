@@ -1,6 +1,7 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { EntryFragmentDoc } from '../../entries/fragments/Entry.generated';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1574,10 +1575,19 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type SeoFragment = { __typename?: 'ComponentSharedSeo', description?: string | null };
+export type TagWithEntriesFragment = { __typename?: 'Tag', name?: string | null, description?: string | null, slug?: string | null, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Types.Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
 
-export const SeoFragmentDoc = gql`
-    fragment SEO on ComponentSharedSeo {
+export const TagWithEntriesFragmentDoc = gql`
+    fragment TagWithEntries on Tag {
+  name
   description
+  entries {
+    data {
+      attributes {
+        ...Entry
+      }
+    }
+  }
+  slug
 }
-    `;
+    ${EntryFragmentDoc}`;

@@ -22,7 +22,7 @@ const Pagination = ({ page, pageCount, pathname }: PaginationProps) => {
           Poprzednia strona
         </Link>
       )}
-      {pageCount >= page && (
+      {pageCount > page && (
         <Link
           href={{
             pathname,

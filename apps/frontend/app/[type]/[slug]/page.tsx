@@ -11,18 +11,18 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  const { data: blogEntry } = await client.query<FetchEntryQuery>({
+  const { data } = await client.query<FetchEntryQuery>({
     query: FetchEntryDocument,
     variables: {
       slug: params.slug,
     },
   });
 
-  if (!blogEntry.entries?.data[0].attributes) {
+  if (!data.entries?.data[0].attributes) {
     throw Error;
   }
 
-  return <Entry entry={blogEntry.entries?.data[0].attributes} />;
+  return <Entry entry={data.entries?.data[0].attributes} />;
 }
 
 export async function generateStaticParams() {

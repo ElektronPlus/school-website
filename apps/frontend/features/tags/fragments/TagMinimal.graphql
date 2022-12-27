@@ -1,4 +1,5 @@
 fragment TagMinimimal on Tag {
   name
   slug
+  description
 }

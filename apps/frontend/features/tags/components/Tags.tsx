@@ -1,5 +1,4 @@
 import { TagEntity } from "fragments/Image.generated";
-import Link from "next/link";
 import { Fragment } from "react";
 
 interface TagsProps {
@@ -14,7 +13,7 @@ export const Tags = ({ tags }: TagsProps) => {
           tag && (
             <Fragment key={tag.slug}>
               {index > 0 && " • "}
-              <Link href={`tag/${tag.slug}`}>{tag.name}</Link>
+              {tag.name}
             </Fragment>
           ),
       )}

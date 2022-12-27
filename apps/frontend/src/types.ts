@@ -1139,10 +1139,18 @@ export type Tag = {
   __typename?: 'Tag';
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
-  entry?: Maybe<EntryEntityResponse>;
+  entries?: Maybe<EntryRelationResponseCollection>;
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type TagEntriesArgs = {
+  filters?: InputMaybe<EntryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type TagEntity = {
@@ -1166,7 +1174,7 @@ export type TagFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
-  entry?: InputMaybe<EntryFiltersInput>;
+  entries?: InputMaybe<EntryFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<TagFiltersInput>;
@@ -1177,7 +1185,7 @@ export type TagFiltersInput = {
 
 export type TagInput = {
   description?: InputMaybe<Scalars['String']>;
-  entry?: InputMaybe<Scalars['ID']>;
+  entries?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
 };
@@ -1565,7 +1573,19 @@ export type UsersPermissionsUserRelationResponseCollection = {
 
 export type AuthorMinimalFragment = { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null };
 
-export type EntryFragment = { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null };
+export type FetchAuthorQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type FetchAuthorQuery = { __typename?: 'Query', authors?: { __typename?: 'AuthorEntityResponseCollection', data: Array<{ __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null }> } | null };
+
+export type FetchAuthorsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchAuthorsQuery = { __typename?: 'Query', authors?: { __typename?: 'AuthorEntityResponseCollection', data: Array<{ __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null }> } | null };
+
+export type EntryFragment = { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null };
 
 export type FetchEntriesQueryVariables = Exact<{
   pageSize: Scalars['Int'];
@@ -1574,7 +1594,7 @@ export type FetchEntriesQueryVariables = Exact<{
 }>;
 
 
-export type FetchEntriesQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', pageCount: number } } } | null };
+export type FetchEntriesQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', pageCount: number } } } | null };
 
 export type FetchEntriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1586,13 +1606,15 @@ export type FetchEntryQueryVariables = Exact<{
 }>;
 
 
-export type FetchEntryQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
+export type FetchEntryQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
 
 export type PaginationFragment = { __typename?: 'Pagination', pageCount: number };
 
 export type SeoFragment = { __typename?: 'ComponentSharedSeo', description?: string | null };
 
-export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null };
+export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null };
+
+export type TagWithEntriesFragment = { __typename?: 'Tag', name?: string | null, description?: string | null, slug?: string | null, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
 
 export type ImageFragment = { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null };
 

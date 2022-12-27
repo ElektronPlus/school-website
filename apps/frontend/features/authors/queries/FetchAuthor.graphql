@@ -1,0 +1,9 @@
+query FetchAuthor($slug: String!) {
+  authors(filters: { slug: { eq: $slug}}) {
+    data {
+      attributes {
+        ...AuthorMinimal
+      }
+    }
+  }
+}

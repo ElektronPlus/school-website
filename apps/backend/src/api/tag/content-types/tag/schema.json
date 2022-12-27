@@ -18,15 +18,15 @@
     "description": {
       "type": "string"
     },
-    "entry": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::entry.entry",
-      "inversedBy": "tags"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "entries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::entry.entry",
+      "inversedBy": "tags"
     }
   }
 }

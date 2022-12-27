@@ -1,0 +1,12 @@
+fragment TagWithEntries on Tag {
+  name
+  description
+  entries {
+    data {
+      attributes {
+        ...Entry
+      }
+    }
+  }
+  slug
+}
