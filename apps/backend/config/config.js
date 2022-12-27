@@ -8,4 +8,10 @@ module.exports = ({ env }) => ({
       size: 10,
     },
   },
+  navigation: {
+    enabled: true,
+    gql: {
+      navigationItemRelated: ['Entry'],
+  },
+  }
 });
