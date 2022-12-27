@@ -1,8 +1,15 @@
+import * as Types from '../../../src/types';
+
+import { gql } from '@apollo/client';
+import { EntryFragmentDoc } from '../fragments/Entry.generated';
+import { PaginationFragmentDoc } from '../../pagination/fragments/Pagination.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1563,81 +1570,63 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type AuthorMinimalFragment = { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null };
-
-export type EntryFragment = { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null };
-
-export type FetchEntriesQueryVariables = Exact<{
-  pageSize: Scalars['Int'];
-  page: Scalars['Int'];
-  type: Scalars['String'];
+export type FetchEntriesQueryVariables = Types.Exact<{
+  pageSize: Types.Scalars['Int'];
+  page: Types.Scalars['Int'];
+  type: Types.Scalars['String'];
 }>;
 
 
-export type FetchEntriesQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', pageCount: number } } } | null };
-
-export type FetchEntriesSlugsQueryVariables = Exact<{
-  type: Scalars['String'];
-}>;
+export type FetchEntriesQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Types.Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', pageCount: number } } } | null };
 
 
-export type FetchEntriesSlugsQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', slug: string } | null }> } | null };
-
-export type FetchEntryQueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
-
-
-export type FetchEntryQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
-
-export type PaginationFragment = { __typename?: 'Pagination', pageCount: number };
-
-export type SeoFragment = { __typename?: 'ComponentSharedSeo', description?: string | null };
-
-export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null };
-
-export type ImageFragment = { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null };
-
-
-      export type PossibleTypesResultData = {
-  "possibleTypes": {
-    "GenericMorph": [
-      "Author",
-      "ComponentSharedSeo",
-      "Entry",
-      "I18NLocale",
-      "NavigationAudience",
-      "NavigationNavigation",
-      "NavigationNavigationItem",
-      "NavigationNavigationsItemsRelated",
-      "Tag",
-      "UploadFile",
-      "UploadFolder",
-      "UsersPermissionsPermission",
-      "UsersPermissionsRole",
-      "UsersPermissionsUser"
-    ]
+export const FetchEntriesDocument = gql`
+    query FetchEntries($pageSize: Int!, $page: Int!, $type: String!) {
+  entries(
+    filters: {type: {eq: $type}}
+    pagination: {pageSize: $pageSize, page: $page}
+  ) {
+    data {
+      attributes {
+        ...Entry
+      }
+    }
+    meta {
+      pagination {
+        ...Pagination
+      }
+    }
   }
-};
-      const result: PossibleTypesResultData = {
-  "possibleTypes": {
-    "GenericMorph": [
-      "Author",
-      "ComponentSharedSeo",
-      "Entry",
-      "I18NLocale",
-      "NavigationAudience",
-      "NavigationNavigation",
-      "NavigationNavigationItem",
-      "NavigationNavigationsItemsRelated",
-      "Tag",
-      "UploadFile",
-      "UploadFolder",
-      "UsersPermissionsPermission",
-      "UsersPermissionsRole",
-      "UsersPermissionsUser"
-    ]
-  }
-};
-      export default result;
-    
+}
+    ${EntryFragmentDoc}
+${PaginationFragmentDoc}`;
+
+/**
+ * __useFetchEntriesQuery__
+ *
+ * To run a query within a React component, call `useFetchEntriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchEntriesQuery({
+ *   variables: {
+ *      pageSize: // value for 'pageSize'
+ *      page: // value for 'page'
+ *      type: // value for 'type'
+ *   },
+ * });
+ */
+export function useFetchEntriesQuery(baseOptions: Apollo.QueryHookOptions<FetchEntriesQuery, FetchEntriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchEntriesQuery, FetchEntriesQueryVariables>(FetchEntriesDocument, options);
+      }
+export function useFetchEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchEntriesQuery, FetchEntriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchEntriesQuery, FetchEntriesQueryVariables>(FetchEntriesDocument, options);
+        }
+export type FetchEntriesQueryHookResult = ReturnType<typeof useFetchEntriesQuery>;
+export type FetchEntriesLazyQueryHookResult = ReturnType<typeof useFetchEntriesLazyQuery>;
+export type FetchEntriesQueryResult = Apollo.QueryResult<FetchEntriesQuery, FetchEntriesQueryVariables>;

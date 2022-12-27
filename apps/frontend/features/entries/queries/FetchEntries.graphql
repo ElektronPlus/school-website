@@ -1,0 +1,14 @@
+query FetchEntries($pageSize: Int!, $page: Int!, $type: String!) {
+  entries(filters: { type: { eq: $type } }, pagination: { pageSize: $pageSize, page: $page }) {
+    data {
+      attributes {
+        ...Entry
+      }
+    }
+    meta {
+      pagination {
+        ...Pagination
+      }
+    }
+  }
+}

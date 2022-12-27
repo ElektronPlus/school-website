@@ -1,12 +1,12 @@
-import { ReactNode, ElementType } from "react";
+import type { ReactNode, ElementType, HTMLAttributes } from "react";
 
-interface HeadingProps {
+interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   as: ElementType;
-  children: ReactNode
+  children: ReactNode;
 }
 
-export const Heading = ({ as, children }: HeadingProps) => {
+export const Heading = ({ as, children, ...props }: HeadingProps) => {
   const Component = as;
 
-  return <Component>{children}</Component>
-}
+  return <Component {...props}>{children}</Component>;
+};

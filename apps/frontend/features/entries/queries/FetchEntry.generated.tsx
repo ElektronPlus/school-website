@@ -1,12 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
-import { ImageFragmentDoc } from '../../../fragments/Image.generated';
+import { EntryFragmentDoc } from '../fragments/Entry.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -25,7 +27,8 @@ export type Author = {
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   entries?: Maybe<EntryRelationResponseCollection>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -63,6 +66,7 @@ export type AuthorFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AuthorFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AuthorFiltersInput>>>;
+  slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -71,6 +75,7 @@ export type AuthorInput = {
   description?: InputMaybe<Scalars['String']>;
   entries?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type BooleanFilterInput = {
@@ -1564,18 +1569,50 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type AuthorMinimalFragment = { __typename?: 'Author', name?: string | null, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null };
+export type FetchEntryQueryVariables = Types.Exact<{
+  slug: Types.Scalars['String'];
+}>;
 
-export const AuthorMinimalFragmentDoc = gql`
-    fragment AuthorMinimal on Author {
-  name
-  avatar {
+
+export type FetchEntryQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Types.Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
+
+
+export const FetchEntryDocument = gql`
+    query FetchEntry($slug: String!) {
+  entries(filters: {slug: {eq: $slug}}) {
     data {
       attributes {
-        ...Image
+        ...Entry
       }
     }
   }
-  description
 }
-    ${ImageFragmentDoc}`;
+    ${EntryFragmentDoc}`;
+
+/**
+ * __useFetchEntryQuery__
+ *
+ * To run a query within a React component, call `useFetchEntryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchEntryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchEntryQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useFetchEntryQuery(baseOptions: Apollo.QueryHookOptions<FetchEntryQuery, FetchEntryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchEntryQuery, FetchEntryQueryVariables>(FetchEntryDocument, options);
+      }
+export function useFetchEntryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchEntryQuery, FetchEntryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchEntryQuery, FetchEntryQueryVariables>(FetchEntryDocument, options);
+        }
+export type FetchEntryQueryHookResult = ReturnType<typeof useFetchEntryQuery>;
+export type FetchEntryLazyQueryHookResult = ReturnType<typeof useFetchEntryLazyQuery>;
+export type FetchEntryQueryResult = Apollo.QueryResult<FetchEntryQuery, FetchEntryQueryVariables>;

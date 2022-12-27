@@ -1,12 +1,26 @@
 {
-  "extends": ["next/core-web-vitals", "prettier", "plugin:@typescript-eslint/recommended", "plugin:unused-imports/recommended"],
-  "plugins": ["unused-imports", "prettier"],
+  "extends": ["next/core-web-vitals", "prettier", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["unused-imports", "prettier", "eslint-plugin-import-helpers", "no-relative-import-paths"],
   "rules": {
+    "jsx-a11y/alt-text": "off",
     "import/no-unused-modules": "error",
+    "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
       { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "newlinesBetween": "always",
+        "groups": ["module", ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "no-relative-import-paths/no-relative-import-paths": [
+      "error",
+      { "allowSameFolder": false }
     ]
   }
 }

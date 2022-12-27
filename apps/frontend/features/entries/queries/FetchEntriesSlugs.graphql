@@ -1,0 +1,9 @@
+query FetchEntriesSlugs($type: String!) {
+  entries(filters: { type: { eq: $type } }) {
+    data {
+      attributes {
+        slug
+      }
+    }
+  }
+}

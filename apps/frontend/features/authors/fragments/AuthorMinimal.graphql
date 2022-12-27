@@ -1,5 +1,6 @@
 fragment AuthorMinimal on Author {
   name
+  slug
   avatar {
     data {
       attributes {

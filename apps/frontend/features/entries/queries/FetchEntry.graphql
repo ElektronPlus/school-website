@@ -1,0 +1,9 @@
+query FetchEntry($slug: String! ) {
+  entries(filters: { slug: { eq: $slug }}) {
+    data {
+      attributes {
+        ...Entry
+      }
+    }
+  }
+}

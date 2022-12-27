@@ -4,7 +4,8 @@
   "info": {
     "singularName": "author",
     "pluralName": "authors",
-    "displayName": "Author"
+    "displayName": "Author",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -12,14 +13,16 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "description": {
       "type": "string"
@@ -29,6 +32,11 @@
       "relation": "oneToMany",
       "target": "api::entry.entry",
       "mappedBy": "author"
+    },
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
     }
   }
 }

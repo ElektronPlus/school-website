@@ -24,7 +24,8 @@ export type Author = {
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   entries?: Maybe<EntryRelationResponseCollection>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -62,6 +63,7 @@ export type AuthorFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AuthorFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AuthorFiltersInput>>>;
+  slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -70,6 +72,7 @@ export type AuthorInput = {
   description?: InputMaybe<Scalars['String']>;
   entries?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type BooleanFilterInput = {

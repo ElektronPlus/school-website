@@ -2,7 +2,7 @@ import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
 import { TagMinimimalFragmentDoc } from '../../tags/fragments/TagMinimal.generated';
-import { AuthorMinimalFragmentDoc } from '../../authors/fragments/Author.generated';
+import { AuthorMinimalFragmentDoc } from '../../authors/fragments/AuthorMinimal.generated';
 import { ImageFragmentDoc } from '../../../fragments/Image.generated';
 import { SeoFragmentDoc } from '../../seo/fragments/SEO.generated';
 export type Maybe<T> = T | null;
@@ -28,7 +28,8 @@ export type Author = {
   createdAt?: Maybe<Scalars['DateTime']>;
   description?: Maybe<Scalars['String']>;
   entries?: Maybe<EntryRelationResponseCollection>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  slug: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -66,6 +67,7 @@ export type AuthorFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<AuthorFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<AuthorFiltersInput>>>;
+  slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -74,6 +76,7 @@ export type AuthorInput = {
   description?: InputMaybe<Scalars['String']>;
   entries?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type BooleanFilterInput = {
@@ -1567,7 +1570,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type EntryFragment = { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Types.Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name?: string | null, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null };
+export type EntryFragment = { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Types.Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null };
 
 export const EntryFragmentDoc = gql`
     fragment Entry on Entry {
