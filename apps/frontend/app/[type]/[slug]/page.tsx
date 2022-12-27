@@ -6,8 +6,6 @@ import {
 import { FetchEntryQuery, FetchEntryDocument } from "features/entries/queries/FetchEntry.generated";
 import { client } from "lib/apolloClient";
 
-const ENTRY_TYPE = "blog";
-
 interface PageProps {
   params: { slug: string };
 }
@@ -30,17 +28,9 @@ export default async function Page({ params }: PageProps) {
 export async function generateStaticParams() {
   const { data: slugs } = await client.query<FetchEntriesSlugsQuery>({
     query: FetchEntriesSlugsDocument,
-    variables: {
-      type: ENTRY_TYPE,
-    },
   });
 
-
-  return slugs.entries?.data.map(
-    ({ attributes: entry }) =>
-      entry && {
-        type: ENTRY_TYPE,
-        slug: entry.slug,
-      },
-  );
+  return slugs.entries?.data.map(({ attributes: entry }) => ({
+    ...entry,
+  }));
 }

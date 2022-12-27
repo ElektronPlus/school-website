@@ -1576,12 +1576,10 @@ export type FetchEntriesQueryVariables = Exact<{
 
 export type FetchEntriesQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', pageCount: number } } } | null };
 
-export type FetchEntriesSlugsQueryVariables = Exact<{
-  type: Scalars['String'];
-}>;
+export type FetchEntriesSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FetchEntriesSlugsQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', slug: string } | null }> } | null };
+export type FetchEntriesSlugsQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', slug: string, type: Enum_Entry_Type } | null }> } | null };
 
 export type FetchEntryQueryVariables = Exact<{
   slug: Scalars['String'];

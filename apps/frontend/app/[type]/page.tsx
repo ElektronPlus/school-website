@@ -3,6 +3,7 @@ import {
   FetchEntriesDocument,
   FetchEntriesQuery,
 } from "features/entries/queries/FetchEntries.generated";
+import { Enum_Entry_Type } from "features/entries/queries/FetchEntriesSlugs.generated";
 import { ENTRIES_PER_PAGE } from "features/pagination/constants";
 import { client } from "lib/apolloClient";
 import dynamic from "next/dynamic";
@@ -12,38 +13,38 @@ const Pagination = dynamic(() => import("features/pagination/components/Paginati
 });
 
 interface PageProps {
+  params: { slug: string; type: Enum_Entry_Type };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default async function Page({ searchParams }: PageProps) {
+export default async function Page({ params, searchParams }: PageProps) {
   const page = Number(searchParams?.page ?? 1);
 
-  const { data: blogEntries } = await client.query<FetchEntriesQuery>({
+  const { data } = await client.query<FetchEntriesQuery>({
     query: FetchEntriesDocument,
     variables: {
       page,
       pageSize: ENTRIES_PER_PAGE,
-      type: "blog",
+      type: params.type,
     },
   });
 
-  const pageCount = blogEntries.entries?.meta.pagination.pageCount ?? 0;
+  const pageCount = data.entries?.meta.pagination.pageCount ?? 0;
 
   return (
     <>
       <main>
-        {blogEntries.entries?.data.map(
-          ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />
+        {data.entries?.data.map(
+          ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
         )}
-        <Pagination page={page} pageCount={pageCount} pathname="blog" />
+        <Pagination page={page} pageCount={pageCount} pathname={params.type} />
       </main>
     </>
   );
 }
 
-
 export async function generateStaticParams() {
-  return ["blog", "info"].map((type) => {
+  return Object.keys(Enum_Entry_Type).map((type) => {
     return { type };
-  })
+  });
 }

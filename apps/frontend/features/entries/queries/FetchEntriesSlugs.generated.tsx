@@ -1568,20 +1568,19 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type FetchEntriesSlugsQueryVariables = Types.Exact<{
-  type: Types.Scalars['String'];
-}>;
+export type FetchEntriesSlugsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type FetchEntriesSlugsQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', slug: string } | null }> } | null };
+export type FetchEntriesSlugsQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', slug: string, type: Types.Enum_Entry_Type } | null }> } | null };
 
 
 export const FetchEntriesSlugsDocument = gql`
-    query FetchEntriesSlugs($type: String!) {
-  entries(filters: {type: {eq: $type}}) {
+    query FetchEntriesSlugs {
+  entries {
     data {
       attributes {
         slug
+        type
       }
     }
   }
@@ -1600,11 +1599,10 @@ export const FetchEntriesSlugsDocument = gql`
  * @example
  * const { data, loading, error } = useFetchEntriesSlugsQuery({
  *   variables: {
- *      type: // value for 'type'
  *   },
  * });
  */
-export function useFetchEntriesSlugsQuery(baseOptions: Apollo.QueryHookOptions<FetchEntriesSlugsQuery, FetchEntriesSlugsQueryVariables>) {
+export function useFetchEntriesSlugsQuery(baseOptions?: Apollo.QueryHookOptions<FetchEntriesSlugsQuery, FetchEntriesSlugsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<FetchEntriesSlugsQuery, FetchEntriesSlugsQueryVariables>(FetchEntriesSlugsDocument, options);
       }
