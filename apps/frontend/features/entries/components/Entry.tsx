@@ -4,6 +4,7 @@ import { AuthorDetails } from "features/authors/component/AuthorDetails";
 import { Tags } from "features/tags/components/Tags";
 import dynamic from "next/dynamic";
 import { EntryFragment } from "src/types";
+import { transformHtml } from "utils/content";
 
 const UserDateTime = dynamic(() => import("components/DateTime"), {
   loading: () => <p>...</p>,
@@ -26,7 +27,7 @@ export const Entry = ({ entry }: EntryProps) => {
           {tags?.data && <Tags tags={tags.data} />}
           <UserDateTime dateTime={publishedAt} />
         </div>
-        {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
+        {content && <div dangerouslySetInnerHTML={{ __html: transformHtml(content) }} />}
       </main>
       {author?.data?.attributes && <AuthorDetails author={author.data?.attributes} />}
     </>

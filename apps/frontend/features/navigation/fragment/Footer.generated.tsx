@@ -1307,12 +1307,11 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null };
+export type FooterFragment = { __typename?: 'Footer', top?: string | null, bottom?: string | null };
 
-export const TagMinimimalFragmentDoc = gql`
-    fragment TagMinimimal on Tag {
-  name
-  slug
-  description
+export const FooterFragmentDoc = gql`
+    fragment Footer on Footer {
+  top
+  bottom
 }
     `;

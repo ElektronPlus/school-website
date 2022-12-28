@@ -11,7 +11,10 @@ module.exports = ({ env }) => ({
   navigation: {
     enabled: true,
     gql: {
-      navigationItemRelated: ['Entry'],
+      navigationItemRelated: ['Entry', 'Tag', 'UploadFile'],
+    },
   },
-  }
+  graphql: {
+    enabled: true
+  },
 });

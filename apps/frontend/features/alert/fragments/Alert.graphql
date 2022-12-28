@@ -1,0 +1,5 @@
+fragment Alert on Alert {
+  content
+  link
+  isEnabled
+}

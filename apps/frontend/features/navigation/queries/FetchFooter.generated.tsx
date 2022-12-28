@@ -1,11 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { FooterFragmentDoc } from '../fragment/Footer.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1307,12 +1310,47 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null };
+export type FetchFooterQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export const TagMinimimalFragmentDoc = gql`
-    fragment TagMinimimal on Tag {
-  name
-  slug
-  description
+
+export type FetchFooterQuery = { __typename?: 'Query', footer?: { __typename?: 'FooterEntityResponse', data?: { __typename?: 'FooterEntity', attributes?: { __typename?: 'Footer', top?: string | null, bottom?: string | null } | null } | null } | null };
+
+
+export const FetchFooterDocument = gql`
+    query FetchFooter {
+  footer {
+    data {
+      attributes {
+        ...Footer
+      }
+    }
+  }
 }
-    `;
+    ${FooterFragmentDoc}`;
+
+/**
+ * __useFetchFooterQuery__
+ *
+ * To run a query within a React component, call `useFetchFooterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchFooterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchFooterQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchFooterQuery(baseOptions?: Apollo.QueryHookOptions<FetchFooterQuery, FetchFooterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchFooterQuery, FetchFooterQueryVariables>(FetchFooterDocument, options);
+      }
+export function useFetchFooterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchFooterQuery, FetchFooterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchFooterQuery, FetchFooterQueryVariables>(FetchFooterDocument, options);
+        }
+export type FetchFooterQueryHookResult = ReturnType<typeof useFetchFooterQuery>;
+export type FetchFooterLazyQueryHookResult = ReturnType<typeof useFetchFooterLazyQuery>;
+export type FetchFooterQueryResult = Apollo.QueryResult<FetchFooterQuery, FetchFooterQueryVariables>;

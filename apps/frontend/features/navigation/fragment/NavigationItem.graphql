@@ -1,0 +1,10 @@
+fragment NavigationItem on NavigationItem {
+  id
+  title
+  path
+  items {
+    id
+    title
+    path
+  }
+}

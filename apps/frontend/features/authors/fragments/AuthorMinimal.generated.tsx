@@ -15,8 +15,35 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+  I18NLocaleCode: any;
   JSON: any;
   Upload: any;
+};
+
+export type Alert = {
+  __typename?: 'Alert';
+  content?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  isEnabled?: Maybe<Scalars['Boolean']>;
+  link?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type AlertEntity = {
+  __typename?: 'AlertEntity';
+  attributes?: Maybe<Alert>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type AlertEntityResponse = {
+  __typename?: 'AlertEntityResponse';
+  data?: Maybe<AlertEntity>;
+};
+
+export type AlertInput = {
+  content?: InputMaybe<Scalars['String']>;
+  isEnabled?: InputMaybe<Scalars['Boolean']>;
+  link?: InputMaybe<Scalars['String']>;
 };
 
 export type Author = {
@@ -147,12 +174,6 @@ export enum Enum_Entry_Type {
   Info = 'info'
 }
 
-export enum Enum_Navigationnavigationitem_Type {
-  External = 'EXTERNAL',
-  Internal = 'INTERNAL',
-  Wrapper = 'WRAPPER'
-}
-
 export type Entry = {
   __typename?: 'Entry';
   SEO?: Maybe<ComponentSharedSeo>;
@@ -256,7 +277,31 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = Author | ComponentSharedSeo | Entry | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type Footer = {
+  __typename?: 'Footer';
+  bottom?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  top?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type FooterEntity = {
+  __typename?: 'FooterEntity';
+  attributes?: Maybe<Footer>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type FooterEntityResponse = {
+  __typename?: 'FooterEntityResponse';
+  data?: Maybe<FooterEntity>;
+};
+
+export type FooterInput = {
+  bottom?: InputMaybe<Scalars['String']>;
+  top?: InputMaybe<Scalars['String']>;
+};
+
+export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | I18NLocale | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -372,10 +417,6 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAuthor?: Maybe<AuthorEntityResponse>;
   createEntry?: Maybe<EntryEntityResponse>;
-  createNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
-  createNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
-  createNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
-  createNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
   createTag?: Maybe<TagEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -383,12 +424,10 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteAlert?: Maybe<AlertEntityResponse>;
   deleteAuthor?: Maybe<AuthorEntityResponse>;
   deleteEntry?: Maybe<EntryEntityResponse>;
-  deleteNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
-  deleteNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
-  deleteNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
-  deleteNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  deleteFooter?: Maybe<FooterEntityResponse>;
   deleteTag?: Maybe<TagEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -407,13 +446,11 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateAlert?: Maybe<AlertEntityResponse>;
   updateAuthor?: Maybe<AuthorEntityResponse>;
   updateEntry?: Maybe<EntryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
-  updateNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
-  updateNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
-  updateNavigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
-  updateNavigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
+  updateFooter?: Maybe<FooterEntityResponse>;
   updateTag?: Maybe<TagEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -439,26 +476,6 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateEntryArgs = {
   data: EntryInput;
-};
-
-
-export type MutationCreateNavigationAudienceArgs = {
-  data: NavigationAudienceInput;
-};
-
-
-export type MutationCreateNavigationNavigationArgs = {
-  data: NavigationNavigationInput;
-};
-
-
-export type MutationCreateNavigationNavigationItemArgs = {
-  data: NavigationNavigationItemInput;
-};
-
-
-export type MutationCreateNavigationNavigationsItemsRelatedArgs = {
-  data: NavigationNavigationsItemsRelatedInput;
 };
 
 
@@ -493,26 +510,6 @@ export type MutationDeleteAuthorArgs = {
 
 
 export type MutationDeleteEntryArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationDeleteNavigationAudienceArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationDeleteNavigationNavigationArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationDeleteNavigationNavigationItemArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationDeleteNavigationNavigationsItemsRelatedArgs = {
   id: Scalars['ID'];
 };
 
@@ -582,6 +579,11 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateAlertArgs = {
+  data: AlertInput;
+};
+
+
 export type MutationUpdateAuthorArgs = {
   data: AuthorInput;
   id: Scalars['ID'];
@@ -600,27 +602,8 @@ export type MutationUpdateFileInfoArgs = {
 };
 
 
-export type MutationUpdateNavigationAudienceArgs = {
-  data: NavigationAudienceInput;
-  id: Scalars['ID'];
-};
-
-
-export type MutationUpdateNavigationNavigationArgs = {
-  data: NavigationNavigationInput;
-  id: Scalars['ID'];
-};
-
-
-export type MutationUpdateNavigationNavigationItemArgs = {
-  data: NavigationNavigationItemInput;
-  id: Scalars['ID'];
-};
-
-
-export type MutationUpdateNavigationNavigationsItemsRelatedArgs = {
-  data: NavigationNavigationsItemsRelatedInput;
-  id: Scalars['ID'];
+export type MutationUpdateFooterArgs = {
+  data: FooterInput;
 };
 
 
@@ -662,259 +645,44 @@ export type MutationUploadArgs = {
   refId?: InputMaybe<Scalars['ID']>;
 };
 
-export type NavigationAudience = {
-  __typename?: 'NavigationAudience';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  key?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type NavigationAudienceEntity = {
-  __typename?: 'NavigationAudienceEntity';
-  attributes?: Maybe<NavigationAudience>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type NavigationAudienceEntityResponse = {
-  __typename?: 'NavigationAudienceEntityResponse';
-  data?: Maybe<NavigationAudienceEntity>;
-};
-
-export type NavigationAudienceEntityResponseCollection = {
-  __typename?: 'NavigationAudienceEntityResponseCollection';
-  data: Array<NavigationAudienceEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type NavigationAudienceFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<NavigationAudienceFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  key?: InputMaybe<StringFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<NavigationAudienceFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<NavigationAudienceFiltersInput>>>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type NavigationAudienceInput = {
-  key?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
-export type NavigationAudienceRelationResponseCollection = {
-  __typename?: 'NavigationAudienceRelationResponseCollection';
-  data: Array<NavigationAudienceEntity>;
-};
-
-export type NavigationNavigation = {
-  __typename?: 'NavigationNavigation';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  items?: Maybe<NavigationNavigationItemRelationResponseCollection>;
-  localeCode?: Maybe<Scalars['String']>;
-  localizations?: Maybe<NavigationNavigationRelationResponseCollection>;
-  name: Scalars['String'];
-  slug: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  visible?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type NavigationNavigationItemsArgs = {
-  filters?: InputMaybe<NavigationNavigationItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type NavigationNavigationLocalizationsArgs = {
-  filters?: InputMaybe<NavigationNavigationFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type NavigationNavigationEntity = {
-  __typename?: 'NavigationNavigationEntity';
-  attributes?: Maybe<NavigationNavigation>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type NavigationNavigationEntityResponse = {
-  __typename?: 'NavigationNavigationEntityResponse';
-  data?: Maybe<NavigationNavigationEntity>;
-};
-
-export type NavigationNavigationEntityResponseCollection = {
-  __typename?: 'NavigationNavigationEntityResponseCollection';
-  data: Array<NavigationNavigationEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type NavigationNavigationFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<NavigationNavigationFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  items?: InputMaybe<NavigationNavigationItemFiltersInput>;
-  localeCode?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<NavigationNavigationFiltersInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<NavigationNavigationFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<NavigationNavigationFiltersInput>>>;
-  slug?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-  visible?: InputMaybe<BooleanFilterInput>;
-};
-
-export type NavigationNavigationInput = {
-  items?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  localeCode?: InputMaybe<Scalars['String']>;
-  localizations?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  name?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
-  visible?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type NavigationNavigationItem = {
-  __typename?: 'NavigationNavigationItem';
-  additionalFields?: Maybe<Scalars['JSON']>;
-  audience?: Maybe<NavigationAudienceRelationResponseCollection>;
-  collapsed?: Maybe<Scalars['Boolean']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
+export type NavigationItem = {
+  __typename?: 'NavigationItem';
+  createdAt?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['String']>;
   externalPath?: Maybe<Scalars['String']>;
-  master?: Maybe<NavigationNavigationEntityResponse>;
-  menuAttached?: Maybe<Scalars['Boolean']>;
-  order?: Maybe<Scalars['Int']>;
-  parent?: Maybe<NavigationNavigationItemEntityResponse>;
-  path?: Maybe<Scalars['String']>;
-  related?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
-  title: Scalars['String'];
-  type?: Maybe<Enum_Navigationnavigationitem_Type>;
-  uiRouterKey?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type NavigationNavigationItemAudienceArgs = {
-  filters?: InputMaybe<NavigationAudienceFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type NavigationNavigationItemEntity = {
-  __typename?: 'NavigationNavigationItemEntity';
-  attributes?: Maybe<NavigationNavigationItem>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type NavigationNavigationItemEntityResponse = {
-  __typename?: 'NavigationNavigationItemEntityResponse';
-  data?: Maybe<NavigationNavigationItemEntity>;
-};
-
-export type NavigationNavigationItemEntityResponseCollection = {
-  __typename?: 'NavigationNavigationItemEntityResponseCollection';
-  data: Array<NavigationNavigationItemEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type NavigationNavigationItemFiltersInput = {
-  additionalFields?: InputMaybe<JsonFilterInput>;
-  and?: InputMaybe<Array<InputMaybe<NavigationNavigationItemFiltersInput>>>;
-  audience?: InputMaybe<NavigationAudienceFiltersInput>;
-  collapsed?: InputMaybe<BooleanFilterInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  externalPath?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  master?: InputMaybe<NavigationNavigationFiltersInput>;
-  menuAttached?: InputMaybe<BooleanFilterInput>;
-  not?: InputMaybe<NavigationNavigationItemFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<NavigationNavigationItemFiltersInput>>>;
-  order?: InputMaybe<IntFilterInput>;
-  parent?: InputMaybe<NavigationNavigationItemFiltersInput>;
-  path?: InputMaybe<StringFilterInput>;
-  related?: InputMaybe<NavigationNavigationsItemsRelatedFiltersInput>;
-  title?: InputMaybe<StringFilterInput>;
-  type?: InputMaybe<StringFilterInput>;
-  uiRouterKey?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type NavigationNavigationItemInput = {
-  additionalFields?: InputMaybe<Scalars['JSON']>;
-  audience?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  collapsed?: InputMaybe<Scalars['Boolean']>;
-  externalPath?: InputMaybe<Scalars['String']>;
-  master?: InputMaybe<Scalars['ID']>;
-  menuAttached?: InputMaybe<Scalars['Boolean']>;
-  order?: InputMaybe<Scalars['Int']>;
-  parent?: InputMaybe<Scalars['ID']>;
-  path?: InputMaybe<Scalars['String']>;
-  related?: InputMaybe<Scalars['ID']>;
-  title?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Enum_Navigationnavigationitem_Type>;
-  uiRouterKey?: InputMaybe<Scalars['String']>;
-};
-
-export type NavigationNavigationItemRelationResponseCollection = {
-  __typename?: 'NavigationNavigationItemRelationResponseCollection';
-  data: Array<NavigationNavigationItemEntity>;
-};
-
-export type NavigationNavigationRelationResponseCollection = {
-  __typename?: 'NavigationNavigationRelationResponseCollection';
-  data: Array<NavigationNavigationEntity>;
-};
-
-export type NavigationNavigationsItemsRelated = {
-  __typename?: 'NavigationNavigationsItemsRelated';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  field: Scalars['String'];
-  master: Scalars['String'];
+  icon?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  items?: Maybe<Array<Maybe<NavigationItem>>>;
+  master?: Maybe<Scalars['Int']>;
+  menuAttached: Scalars['Boolean'];
   order: Scalars['Int'];
-  related_id: Scalars['String'];
-  related_type: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
+  parent?: Maybe<NavigationItem>;
+  path?: Maybe<Scalars['String']>;
+  related?: Maybe<NavigationItemRelatedData>;
+  title: Scalars['String'];
+  type: Scalars['String'];
+  uiRouterKey: Scalars['String'];
+  updatedAt?: Maybe<Scalars['String']>;
+  updatedBy?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  updated_by?: Maybe<Scalars['String']>;
 };
 
-export type NavigationNavigationsItemsRelatedEntity = {
-  __typename?: 'NavigationNavigationsItemsRelatedEntity';
-  attributes?: Maybe<NavigationNavigationsItemsRelated>;
-  id?: Maybe<Scalars['ID']>;
+export type NavigationItemRelated = Entry | Tag | UploadFile;
+
+export type NavigationItemRelatedData = {
+  __typename?: 'NavigationItemRelatedData';
+  attributes?: Maybe<NavigationItemRelated>;
+  id: Scalars['Int'];
 };
 
-export type NavigationNavigationsItemsRelatedEntityResponse = {
-  __typename?: 'NavigationNavigationsItemsRelatedEntityResponse';
-  data?: Maybe<NavigationNavigationsItemsRelatedEntity>;
-};
-
-export type NavigationNavigationsItemsRelatedEntityResponseCollection = {
-  __typename?: 'NavigationNavigationsItemsRelatedEntityResponseCollection';
-  data: Array<NavigationNavigationsItemsRelatedEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type NavigationNavigationsItemsRelatedFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<NavigationNavigationsItemsRelatedFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  field?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  master?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<NavigationNavigationsItemsRelatedFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<NavigationNavigationsItemsRelatedFiltersInput>>>;
-  order?: InputMaybe<IntFilterInput>;
-  related_id?: InputMaybe<StringFilterInput>;
-  related_type?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type NavigationNavigationsItemsRelatedInput = {
-  field?: InputMaybe<Scalars['String']>;
-  master?: InputMaybe<Scalars['String']>;
-  order?: InputMaybe<Scalars['Int']>;
-  related_id?: InputMaybe<Scalars['String']>;
-  related_type?: InputMaybe<Scalars['String']>;
-};
+export enum NavigationRenderType {
+  Flat = 'FLAT',
+  Rfr = 'RFR',
+  Tree = 'TREE'
+}
 
 export type Pagination = {
   __typename?: 'Pagination';
@@ -938,21 +706,17 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  alert?: Maybe<AlertEntityResponse>;
   author?: Maybe<AuthorEntityResponse>;
   authors?: Maybe<AuthorEntityResponseCollection>;
   entries?: Maybe<EntryEntityResponseCollection>;
   entry?: Maybe<EntryEntityResponse>;
+  footer?: Maybe<FooterEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
-  navigationAudience?: Maybe<NavigationAudienceEntityResponse>;
-  navigationAudiences?: Maybe<NavigationAudienceEntityResponseCollection>;
-  navigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
-  navigationNavigationItem?: Maybe<NavigationNavigationItemEntityResponse>;
-  navigationNavigationItems?: Maybe<NavigationNavigationItemEntityResponseCollection>;
-  navigationNavigations?: Maybe<NavigationNavigationEntityResponseCollection>;
-  navigationNavigationsItemsRelated?: Maybe<NavigationNavigationsItemsRelatedEntityResponse>;
-  navigationNavigationsItemsRelateds?: Maybe<NavigationNavigationsItemsRelatedEntityResponseCollection>;
+  renderNavigation: Array<Maybe<NavigationItem>>;
+  renderNavigationChild: Array<Maybe<NavigationItem>>;
   tag?: Maybe<TagEntityResponse>;
   tags?: Maybe<TagEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -1003,51 +767,20 @@ export type QueryI18NLocalesArgs = {
 };
 
 
-export type QueryNavigationAudienceArgs = {
-  id?: InputMaybe<Scalars['ID']>;
+export type QueryRenderNavigationArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  menuOnly?: InputMaybe<Scalars['Boolean']>;
+  navigationIdOrSlug: Scalars['String'];
+  path?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<NavigationRenderType>;
 };
 
 
-export type QueryNavigationAudiencesArgs = {
-  filters?: InputMaybe<NavigationAudienceFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryNavigationNavigationArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryNavigationNavigationItemArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryNavigationNavigationItemsArgs = {
-  filters?: InputMaybe<NavigationNavigationItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryNavigationNavigationsArgs = {
-  filters?: InputMaybe<NavigationNavigationFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryNavigationNavigationsItemsRelatedArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryNavigationNavigationsItemsRelatedsArgs = {
-  filters?: InputMaybe<NavigationNavigationsItemsRelatedFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+export type QueryRenderNavigationChildArgs = {
+  childUiKey: Scalars['String'];
+  id: Scalars['String'];
+  menuOnly?: InputMaybe<Scalars['Boolean']>;
+  type?: InputMaybe<NavigationRenderType>;
 };
 
 

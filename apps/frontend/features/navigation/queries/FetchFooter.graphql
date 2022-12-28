@@ -1,0 +1,9 @@
+query FetchFooter {
+  footer {
+    data {
+      attributes {
+        ...Footer
+      }
+    }
+  }
+}

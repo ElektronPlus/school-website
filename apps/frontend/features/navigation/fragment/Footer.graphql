@@ -1,0 +1,4 @@
+fragment Footer on Footer {
+  top
+  bottom
+}

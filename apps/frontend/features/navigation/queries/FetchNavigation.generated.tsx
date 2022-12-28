@@ -1,11 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { NavigationItemFragmentDoc } from '../fragment/NavigationItem.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1307,12 +1310,46 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null };
+export type FetchNavigationQueryVariables = Types.Exact<{
+  slug: Types.Scalars['String'];
+}>;
 
-export const TagMinimimalFragmentDoc = gql`
-    fragment TagMinimimal on Tag {
-  name
-  slug
-  description
+
+export type FetchNavigationQuery = { __typename?: 'Query', renderNavigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null } | null> | null } | null> };
+
+
+export const FetchNavigationDocument = gql`
+    query FetchNavigation($slug: String!) {
+  renderNavigation(navigationIdOrSlug: $slug, type: TREE) {
+    ...NavigationItem
+  }
 }
-    `;
+    ${NavigationItemFragmentDoc}`;
+
+/**
+ * __useFetchNavigationQuery__
+ *
+ * To run a query within a React component, call `useFetchNavigationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchNavigationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchNavigationQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useFetchNavigationQuery(baseOptions: Apollo.QueryHookOptions<FetchNavigationQuery, FetchNavigationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchNavigationQuery, FetchNavigationQueryVariables>(FetchNavigationDocument, options);
+      }
+export function useFetchNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchNavigationQuery, FetchNavigationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchNavigationQuery, FetchNavigationQueryVariables>(FetchNavigationDocument, options);
+        }
+export type FetchNavigationQueryHookResult = ReturnType<typeof useFetchNavigationQuery>;
+export type FetchNavigationLazyQueryHookResult = ReturnType<typeof useFetchNavigationLazyQuery>;
+export type FetchNavigationQueryResult = Apollo.QueryResult<FetchNavigationQuery, FetchNavigationQueryVariables>;

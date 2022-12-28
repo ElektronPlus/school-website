@@ -1,0 +1,9 @@
+query FetchAlert {
+  alert {
+    data {
+      attributes {
+        ...Alert
+      }
+    }
+  }
+}

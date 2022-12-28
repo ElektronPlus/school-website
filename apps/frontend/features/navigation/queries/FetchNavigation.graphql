@@ -1,0 +1,5 @@
+query FetchNavigation($slug: String!) {
+  renderNavigation(navigationIdOrSlug: $slug, type: TREE) {
+    ...NavigationItem
+  }
+}

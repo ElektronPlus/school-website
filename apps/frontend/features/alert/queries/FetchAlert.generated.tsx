@@ -1,11 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { AlertFragmentDoc } from '../fragments/Alert.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1307,12 +1310,47 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null };
+export type FetchAlertQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export const TagMinimimalFragmentDoc = gql`
-    fragment TagMinimimal on Tag {
-  name
-  slug
-  description
+
+export type FetchAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', content?: string | null, link?: string | null, isEnabled?: boolean | null } | null } | null } | null };
+
+
+export const FetchAlertDocument = gql`
+    query FetchAlert {
+  alert {
+    data {
+      attributes {
+        ...Alert
+      }
+    }
+  }
 }
-    `;
+    ${AlertFragmentDoc}`;
+
+/**
+ * __useFetchAlertQuery__
+ *
+ * To run a query within a React component, call `useFetchAlertQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchAlertQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchAlertQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchAlertQuery(baseOptions?: Apollo.QueryHookOptions<FetchAlertQuery, FetchAlertQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchAlertQuery, FetchAlertQueryVariables>(FetchAlertDocument, options);
+      }
+export function useFetchAlertLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchAlertQuery, FetchAlertQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchAlertQuery, FetchAlertQueryVariables>(FetchAlertDocument, options);
+        }
+export type FetchAlertQueryHookResult = ReturnType<typeof useFetchAlertQuery>;
+export type FetchAlertLazyQueryHookResult = ReturnType<typeof useFetchAlertLazyQuery>;
+export type FetchAlertQueryResult = Apollo.QueryResult<FetchAlertQuery, FetchAlertQueryVariables>;

@@ -1,4 +1,6 @@
 import { Heading } from "components/Heading";
+import { Alert } from "features/alert/components/Alert";
+import { Footer } from "features/navigation/components/Footer";
 import type { ReactNode } from "react";
 
 interface RootLayoutProps {
@@ -11,7 +13,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body>
         <Heading as="h1">CKZIU Elektronik</Heading>
+        {/* @ts-expect-error Server Component */}
+        <Alert />
         {children}
+        {/* @ts-expect-error Server Component */}
+        <Footer />
       </body>
     </html>
   );
