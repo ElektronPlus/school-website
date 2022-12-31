@@ -1,0 +1,11 @@
+query FetchHomeSeo {
+  home {
+    data {
+      attributes {
+        SEO {
+          ...SEO
+        }
+      }
+    }
+  }
+}

@@ -18,18 +18,22 @@ interface EntryProps {
 export const Entry = ({ entry }: EntryProps) => {
   const { title, content, tags, publishedAt, author, image } = entry;
 
+  console.log(tags?.data);
+
   return (
     <>
       <main>
-        {image?.data?.attributes && <Image image={image.data.attributes} />}
-        <Heading as="h2">{title}</Heading>
-        <div>
-          {tags?.data && <Tags tags={tags.data} />}
-          <UserDateTime dateTime={publishedAt} />
-        </div>
-        {content && <div dangerouslySetInnerHTML={{ __html: transformHtml(content) }} />}
+        <article aria-describedby="title">
+          {image?.data?.attributes && <Image image={image.data.attributes} />}
+          <Heading id="title" as="h2">{title}</Heading>
+          <div>
+            {tags?.data && <Tags tags={tags.data} />}
+            <UserDateTime dateTime={publishedAt} />
+          </div>
+          {content && <div dangerouslySetInnerHTML={{ __html: transformHtml(content) }} />}
+        </article>
+        {author?.data?.attributes && <AuthorDetails author={author.data?.attributes} />}
       </main>
-      {author?.data?.attributes && <AuthorDetails author={author.data?.attributes} />}
     </>
   );
 };

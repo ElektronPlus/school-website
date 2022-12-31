@@ -1,0 +1,4 @@
+fragment Social on Social {
+  icon
+  link
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { t } from "utils/translations";
 
 interface PaginationProps {
   page: number;
@@ -19,7 +20,7 @@ const Pagination = ({ page, pageCount, pathname }: PaginationProps) => {
               page: page - 1,
             },
           }}>
-          Poprzednia strona
+          {t("previousPage")}
         </Link>
       )}
       {pageCount > page && (
@@ -30,7 +31,7 @@ const Pagination = ({ page, pageCount, pathname }: PaginationProps) => {
               page: page + 1,
             },
           }}>
-          Następna strona
+          {t("nextPage")}
         </Link>
       )}
     </>

@@ -1,10 +1,15 @@
+import ellipsize from "ellipsize";
 import { Entry } from "features/entries/components/Entry";
 import {
   FetchEntriesSlugsDocument,
   FetchEntriesSlugsQuery,
 } from "features/entries/queries/FetchEntriesSlugs.generated";
 import { FetchEntryQuery, FetchEntryDocument } from "features/entries/queries/FetchEntry.generated";
+import { Meta } from "features/seo/components/DefaultMeta";
+import { MAXIMUM_META_DESCRIPTION_LENGTH } from "features/seo/constants";
+import { htmlToText } from "html-to-text";
 import { client } from "lib/apolloClient";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: { slug: string };
@@ -18,11 +23,24 @@ export default async function Page({ params }: PageProps) {
     },
   });
 
-  if (!data.entries?.data[0].attributes) {
-    throw Error;
+  const entry = data.entries?.data[0]?.attributes;
+
+  if (!entry) {
+    notFound();
   }
 
-  return <Entry entry={data.entries?.data[0].attributes} />;
+  return (
+    <>
+      <Meta
+        title={entry.title}
+        description={ellipsize(
+          entry.SEO?.description ?? htmlToText(entry.content ?? ""),
+          MAXIMUM_META_DESCRIPTION_LENGTH,
+        )}
+      />
+      <Entry entry={entry} />
+    </>
+  );
 }
 
 export async function generateStaticParams() {

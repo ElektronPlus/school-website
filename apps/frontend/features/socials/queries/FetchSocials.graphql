@@ -1,0 +1,9 @@
+query FetchSocials {
+  socials {
+    data {
+      attributes {
+        ...Social
+      }
+    }
+  }
+}

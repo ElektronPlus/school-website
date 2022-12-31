@@ -300,7 +300,29 @@ export type FooterInput = {
   top?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | I18NLocale | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | Home | I18NLocale | Social | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type Home = {
+  __typename?: 'Home';
+  SEO?: Maybe<ComponentSharedSeo>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type HomeEntity = {
+  __typename?: 'HomeEntity';
+  attributes?: Maybe<Home>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HomeEntityResponse = {
+  __typename?: 'HomeEntityResponse';
+  data?: Maybe<HomeEntity>;
+};
+
+export type HomeInput = {
+  SEO?: InputMaybe<ComponentSharedSeoInput>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -416,6 +438,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAuthor?: Maybe<AuthorEntityResponse>;
   createEntry?: Maybe<EntryEntityResponse>;
+  createSocial?: Maybe<SocialEntityResponse>;
   createTag?: Maybe<TagEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -427,6 +450,8 @@ export type Mutation = {
   deleteAuthor?: Maybe<AuthorEntityResponse>;
   deleteEntry?: Maybe<EntryEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
+  deleteHome?: Maybe<HomeEntityResponse>;
+  deleteSocial?: Maybe<SocialEntityResponse>;
   deleteTag?: Maybe<TagEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -450,6 +475,8 @@ export type Mutation = {
   updateEntry?: Maybe<EntryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
+  updateHome?: Maybe<HomeEntityResponse>;
+  updateSocial?: Maybe<SocialEntityResponse>;
   updateTag?: Maybe<TagEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -475,6 +502,11 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateEntryArgs = {
   data: EntryInput;
+};
+
+
+export type MutationCreateSocialArgs = {
+  data: SocialInput;
 };
 
 
@@ -509,6 +541,11 @@ export type MutationDeleteAuthorArgs = {
 
 
 export type MutationDeleteEntryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSocialArgs = {
   id: Scalars['ID'];
 };
 
@@ -603,6 +640,17 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateFooterArgs = {
   data: FooterInput;
+};
+
+
+export type MutationUpdateHomeArgs = {
+  data: HomeInput;
+};
+
+
+export type MutationUpdateSocialArgs = {
+  data: SocialInput;
+  id: Scalars['ID'];
 };
 
 
@@ -711,11 +759,14 @@ export type Query = {
   entries?: Maybe<EntryEntityResponseCollection>;
   entry?: Maybe<EntryEntityResponse>;
   footer?: Maybe<FooterEntityResponse>;
+  home?: Maybe<HomeEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
   renderNavigation: Array<Maybe<NavigationItem>>;
   renderNavigationChild: Array<Maybe<NavigationItem>>;
+  social?: Maybe<SocialEntityResponse>;
+  socials?: Maybe<SocialEntityResponseCollection>;
   tag?: Maybe<TagEntityResponse>;
   tags?: Maybe<TagEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -783,6 +834,18 @@ export type QueryRenderNavigationChildArgs = {
 };
 
 
+export type QuerySocialArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySocialsArgs = {
+  filters?: InputMaybe<SocialFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryTagArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -845,6 +908,47 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type Social = {
+  __typename?: 'Social';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  icon: Scalars['String'];
+  link: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SocialEntity = {
+  __typename?: 'SocialEntity';
+  attributes?: Maybe<Social>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SocialEntityResponse = {
+  __typename?: 'SocialEntityResponse';
+  data?: Maybe<SocialEntity>;
+};
+
+export type SocialEntityResponseCollection = {
+  __typename?: 'SocialEntityResponseCollection';
+  data: Array<SocialEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SocialFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SocialFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  icon?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  link?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SocialFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SocialFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SocialInput = {
+  icon?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
 };
 
 export type StringFilterInput = {

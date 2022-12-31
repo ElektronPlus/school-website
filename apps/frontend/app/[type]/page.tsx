@@ -5,8 +5,11 @@ import {
 } from "features/entries/queries/FetchEntries.generated";
 import { Enum_Entry_Type } from "features/entries/queries/FetchEntriesSlugs.generated";
 import { ENTRIES_PER_PAGE } from "features/pagination/constants";
+import { Meta } from "features/seo/components/DefaultMeta";
 import { client } from "lib/apolloClient";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import { t } from "utils/translations";
 
 const Pagination = dynamic(() => import("features/pagination/components/Pagination"), {
   loading: () => <p>...</p>,
@@ -14,7 +17,7 @@ const Pagination = dynamic(() => import("features/pagination/components/Paginati
 
 interface PageProps {
   params: { slug: string; type: Enum_Entry_Type };
-  searchParams?: { page?: string; };
+  searchParams?: { page?: string };
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
@@ -29,10 +32,15 @@ export default async function Page({ params, searchParams }: PageProps) {
     },
   });
 
-  const pageCount = data.entries?.meta.pagination.pageCount as number;
+  const pageCount = data.entries?.meta.pagination.pageCount;
+
+  if (!pageCount) {
+    notFound();
+  }
 
   return (
     <>
+    <Meta title={t(params.type)} />
       <main>
         {data.entries?.data.map(
           ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,

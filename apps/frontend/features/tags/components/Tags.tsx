@@ -1,5 +1,6 @@
 import { TagEntity } from "fragments/Image.generated";
 import { Fragment } from "react";
+import { t } from "utils/translations";
 
 interface TagsProps {
   tags?: TagEntity[];
@@ -7,7 +8,8 @@ interface TagsProps {
 
 export const Tags = ({ tags }: TagsProps) => {
   return (
-    <p>
+    <p className="entry__tags">
+      <span className="sr-only">{`${t("tags")}: `}</span>
       {tags?.map(
         ({ attributes: tag }, index) =>
           tag && (

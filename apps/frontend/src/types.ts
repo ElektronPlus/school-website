@@ -297,7 +297,29 @@ export type FooterInput = {
   top?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | I18NLocale | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | Home | I18NLocale | Social | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type Home = {
+  __typename?: 'Home';
+  SEO?: Maybe<ComponentSharedSeo>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type HomeEntity = {
+  __typename?: 'HomeEntity';
+  attributes?: Maybe<Home>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HomeEntityResponse = {
+  __typename?: 'HomeEntityResponse';
+  data?: Maybe<HomeEntity>;
+};
+
+export type HomeInput = {
+  SEO?: InputMaybe<ComponentSharedSeoInput>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -413,6 +435,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAuthor?: Maybe<AuthorEntityResponse>;
   createEntry?: Maybe<EntryEntityResponse>;
+  createSocial?: Maybe<SocialEntityResponse>;
   createTag?: Maybe<TagEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -424,6 +447,8 @@ export type Mutation = {
   deleteAuthor?: Maybe<AuthorEntityResponse>;
   deleteEntry?: Maybe<EntryEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
+  deleteHome?: Maybe<HomeEntityResponse>;
+  deleteSocial?: Maybe<SocialEntityResponse>;
   deleteTag?: Maybe<TagEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -447,6 +472,8 @@ export type Mutation = {
   updateEntry?: Maybe<EntryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
+  updateHome?: Maybe<HomeEntityResponse>;
+  updateSocial?: Maybe<SocialEntityResponse>;
   updateTag?: Maybe<TagEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -472,6 +499,11 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateEntryArgs = {
   data: EntryInput;
+};
+
+
+export type MutationCreateSocialArgs = {
+  data: SocialInput;
 };
 
 
@@ -506,6 +538,11 @@ export type MutationDeleteAuthorArgs = {
 
 
 export type MutationDeleteEntryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSocialArgs = {
   id: Scalars['ID'];
 };
 
@@ -600,6 +637,17 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateFooterArgs = {
   data: FooterInput;
+};
+
+
+export type MutationUpdateHomeArgs = {
+  data: HomeInput;
+};
+
+
+export type MutationUpdateSocialArgs = {
+  data: SocialInput;
+  id: Scalars['ID'];
 };
 
 
@@ -708,11 +756,14 @@ export type Query = {
   entries?: Maybe<EntryEntityResponseCollection>;
   entry?: Maybe<EntryEntityResponse>;
   footer?: Maybe<FooterEntityResponse>;
+  home?: Maybe<HomeEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
   renderNavigation: Array<Maybe<NavigationItem>>;
   renderNavigationChild: Array<Maybe<NavigationItem>>;
+  social?: Maybe<SocialEntityResponse>;
+  socials?: Maybe<SocialEntityResponseCollection>;
   tag?: Maybe<TagEntityResponse>;
   tags?: Maybe<TagEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -780,6 +831,18 @@ export type QueryRenderNavigationChildArgs = {
 };
 
 
+export type QuerySocialArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QuerySocialsArgs = {
+  filters?: InputMaybe<SocialFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryTagArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -842,6 +905,47 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type Social = {
+  __typename?: 'Social';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  icon: Scalars['String'];
+  link: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type SocialEntity = {
+  __typename?: 'SocialEntity';
+  attributes?: Maybe<Social>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SocialEntityResponse = {
+  __typename?: 'SocialEntityResponse';
+  data?: Maybe<SocialEntity>;
+};
+
+export type SocialEntityResponseCollection = {
+  __typename?: 'SocialEntityResponseCollection';
+  data: Array<SocialEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type SocialFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SocialFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  icon?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  link?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SocialFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SocialFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type SocialInput = {
+  icon?: InputMaybe<Scalars['String']>;
+  link?: InputMaybe<Scalars['String']>;
 };
 
 export type StringFilterInput = {
@@ -1368,6 +1472,18 @@ export type PaginationFragment = { __typename?: 'Pagination', pageCount: number 
 
 export type SeoFragment = { __typename?: 'ComponentSharedSeo', description?: string | null };
 
+export type FetchHomeSeoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchHomeSeoQuery = { __typename?: 'Query', home?: { __typename?: 'HomeEntityResponse', data?: { __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null } | null } | null };
+
+export type SocialFragment = { __typename?: 'Social', icon: string, link: string };
+
+export type FetchSocialsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchSocialsQuery = { __typename?: 'Query', socials?: { __typename?: 'SocialEntityResponseCollection', data: Array<{ __typename?: 'SocialEntity', attributes?: { __typename?: 'Social', icon: string, link: string } | null }> } | null };
+
 export type TagMinimimalFragment = { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null };
 
 export type TagWithEntriesFragment = { __typename?: 'Tag', name?: string | null, description?: string | null, slug?: string | null, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
@@ -1383,7 +1499,9 @@ export type ImageFragment = { __typename?: 'UploadFile', width?: number | null, 
       "ComponentSharedSeo",
       "Entry",
       "Footer",
+      "Home",
       "I18NLocale",
+      "Social",
       "Tag",
       "UploadFile",
       "UploadFolder",
@@ -1406,7 +1524,9 @@ export type ImageFragment = { __typename?: 'UploadFile', width?: number | null, 
       "ComponentSharedSeo",
       "Entry",
       "Footer",
+      "Home",
       "I18NLocale",
+      "Social",
       "Tag",
       "UploadFile",
       "UploadFolder",

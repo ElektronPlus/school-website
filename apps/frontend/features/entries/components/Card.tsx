@@ -19,13 +19,13 @@ export const Card = ({ entry }: CardProps) => {
   const { title, image, content, type, slug, tags, publishedAt } = entry;
 
   return (
-    <article>
+    <article aria-describedby={slug}>
       <Link href={`${type}/${slug}`}>
-        <Heading as="h2">{title}</Heading>
+        <Heading as="h2" id={slug}>{title}</Heading>
         {image?.data?.attributes && <Image image={image.data.attributes} />}
       </Link>
       <div>
-        {tags?.data && <Tags tags={tags.data} />}
+        {tags?.data && tags.data.length !== 0 && <Tags tags={tags.data} />}
         <UserDateTime dateTime={publishedAt} />
       </div>
       {content && <p>{convert(content)}</p>}

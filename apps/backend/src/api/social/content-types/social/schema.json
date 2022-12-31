@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "socials",
+  "info": {
+    "singularName": "social",
+    "pluralName": "socials",
+    "displayName": "Social"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)",
+      "required": true
+    }
+  }
+}
