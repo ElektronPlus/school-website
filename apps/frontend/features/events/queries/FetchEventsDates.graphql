@@ -1,0 +1,9 @@
+query FetchEventsDates {
+  events {
+    data {
+      attributes {
+					date
+      }
+    }
+  }
+}

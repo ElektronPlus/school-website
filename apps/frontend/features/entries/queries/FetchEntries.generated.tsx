@@ -17,6 +17,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
   DateTime: any;
   I18NLocaleCode: any;
   JSON: any;
@@ -148,6 +149,30 @@ export type ComponentSharedSeoInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type DateFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  contains?: InputMaybe<Scalars['Date']>;
+  containsi?: InputMaybe<Scalars['Date']>;
+  endsWith?: InputMaybe<Scalars['Date']>;
+  eq?: InputMaybe<Scalars['Date']>;
+  eqi?: InputMaybe<Scalars['Date']>;
+  gt?: InputMaybe<Scalars['Date']>;
+  gte?: InputMaybe<Scalars['Date']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  lt?: InputMaybe<Scalars['Date']>;
+  lte?: InputMaybe<Scalars['Date']>;
+  ne?: InputMaybe<Scalars['Date']>;
+  not?: InputMaybe<DateFilterInput>;
+  notContains?: InputMaybe<Scalars['Date']>;
+  notContainsi?: InputMaybe<Scalars['Date']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  startsWith?: InputMaybe<Scalars['Date']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -250,6 +275,47 @@ export type EntryRelationResponseCollection = {
   data: Array<EntryEntity>;
 };
 
+export type Event = {
+  __typename?: 'Event';
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date: Scalars['Date'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type EventEntity = {
+  __typename?: 'EventEntity';
+  attributes?: Maybe<Event>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type EventEntityResponse = {
+  __typename?: 'EventEntityResponse';
+  data?: Maybe<EventEntity>;
+};
+
+export type EventEntityResponseCollection = {
+  __typename?: 'EventEntityResponseCollection';
+  data: Array<EventEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type EventFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<DateFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<EventFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type EventInput = {
+  content?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['Date']>;
+};
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
@@ -304,7 +370,7 @@ export type FooterInput = {
   top?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | Home | I18NLocale | Social | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Event | Footer | Home | I18NLocale | Social | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Home = {
   __typename?: 'Home';
@@ -442,6 +508,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAuthor?: Maybe<AuthorEntityResponse>;
   createEntry?: Maybe<EntryEntityResponse>;
+  createEvent?: Maybe<EventEntityResponse>;
   createSocial?: Maybe<SocialEntityResponse>;
   createTag?: Maybe<TagEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -453,6 +520,7 @@ export type Mutation = {
   deleteAlert?: Maybe<AlertEntityResponse>;
   deleteAuthor?: Maybe<AuthorEntityResponse>;
   deleteEntry?: Maybe<EntryEntityResponse>;
+  deleteEvent?: Maybe<EventEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
   deleteHome?: Maybe<HomeEntityResponse>;
   deleteSocial?: Maybe<SocialEntityResponse>;
@@ -477,6 +545,7 @@ export type Mutation = {
   updateAlert?: Maybe<AlertEntityResponse>;
   updateAuthor?: Maybe<AuthorEntityResponse>;
   updateEntry?: Maybe<EntryEntityResponse>;
+  updateEvent?: Maybe<EventEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
   updateHome?: Maybe<HomeEntityResponse>;
@@ -506,6 +575,11 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateEntryArgs = {
   data: EntryInput;
+};
+
+
+export type MutationCreateEventArgs = {
+  data: EventInput;
 };
 
 
@@ -545,6 +619,11 @@ export type MutationDeleteAuthorArgs = {
 
 
 export type MutationDeleteEntryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteEventArgs = {
   id: Scalars['ID'];
 };
 
@@ -632,6 +711,12 @@ export type MutationUpdateAuthorArgs = {
 
 export type MutationUpdateEntryArgs = {
   data: EntryInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateEventArgs = {
+  data: EventInput;
   id: Scalars['ID'];
 };
 
@@ -762,6 +847,8 @@ export type Query = {
   authors?: Maybe<AuthorEntityResponseCollection>;
   entries?: Maybe<EntryEntityResponseCollection>;
   entry?: Maybe<EntryEntityResponse>;
+  event?: Maybe<EventEntityResponse>;
+  events?: Maybe<EventEntityResponseCollection>;
   footer?: Maybe<FooterEntityResponse>;
   home?: Maybe<HomeEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
@@ -806,6 +893,18 @@ export type QueryEntriesArgs = {
 
 export type QueryEntryArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryEventArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryEventsArgs = {
+  filters?: InputMaybe<EventFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 

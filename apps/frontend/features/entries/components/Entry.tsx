@@ -18,8 +18,6 @@ interface EntryProps {
 export const Entry = ({ entry }: EntryProps) => {
   const { title, content, tags, publishedAt, author, image } = entry;
 
-  console.log(tags?.data);
-
   return (
     <>
       <main>

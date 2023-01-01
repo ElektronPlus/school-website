@@ -12,8 +12,8 @@ const nextConfig = {
     return [
       {
         source: '/@/:path*',
-        destination: '/author/:path*',
-      },
+        destination: '/authors/:path*',
+      }
     ]
   },
 

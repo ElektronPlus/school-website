@@ -10,6 +10,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
   DateTime: any;
   I18NLocaleCode: any;
   JSON: any;
@@ -141,6 +142,30 @@ export type ComponentSharedSeoInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type DateFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  contains?: InputMaybe<Scalars['Date']>;
+  containsi?: InputMaybe<Scalars['Date']>;
+  endsWith?: InputMaybe<Scalars['Date']>;
+  eq?: InputMaybe<Scalars['Date']>;
+  eqi?: InputMaybe<Scalars['Date']>;
+  gt?: InputMaybe<Scalars['Date']>;
+  gte?: InputMaybe<Scalars['Date']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  lt?: InputMaybe<Scalars['Date']>;
+  lte?: InputMaybe<Scalars['Date']>;
+  ne?: InputMaybe<Scalars['Date']>;
+  not?: InputMaybe<DateFilterInput>;
+  notContains?: InputMaybe<Scalars['Date']>;
+  notContainsi?: InputMaybe<Scalars['Date']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  startsWith?: InputMaybe<Scalars['Date']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -243,6 +268,47 @@ export type EntryRelationResponseCollection = {
   data: Array<EntryEntity>;
 };
 
+export type Event = {
+  __typename?: 'Event';
+  content: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date: Scalars['Date'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type EventEntity = {
+  __typename?: 'EventEntity';
+  attributes?: Maybe<Event>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type EventEntityResponse = {
+  __typename?: 'EventEntityResponse';
+  data?: Maybe<EventEntity>;
+};
+
+export type EventEntityResponseCollection = {
+  __typename?: 'EventEntityResponseCollection';
+  data: Array<EventEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type EventFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  date?: InputMaybe<DateFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<EventFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type EventInput = {
+  content?: InputMaybe<Scalars['String']>;
+  date?: InputMaybe<Scalars['Date']>;
+};
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
@@ -297,7 +363,7 @@ export type FooterInput = {
   top?: InputMaybe<Scalars['String']>;
 };
 
-export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Footer | Home | I18NLocale | Social | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Alert | Author | ComponentSharedSeo | Entry | Event | Footer | Home | I18NLocale | Social | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Home = {
   __typename?: 'Home';
@@ -435,6 +501,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAuthor?: Maybe<AuthorEntityResponse>;
   createEntry?: Maybe<EntryEntityResponse>;
+  createEvent?: Maybe<EventEntityResponse>;
   createSocial?: Maybe<SocialEntityResponse>;
   createTag?: Maybe<TagEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -446,6 +513,7 @@ export type Mutation = {
   deleteAlert?: Maybe<AlertEntityResponse>;
   deleteAuthor?: Maybe<AuthorEntityResponse>;
   deleteEntry?: Maybe<EntryEntityResponse>;
+  deleteEvent?: Maybe<EventEntityResponse>;
   deleteFooter?: Maybe<FooterEntityResponse>;
   deleteHome?: Maybe<HomeEntityResponse>;
   deleteSocial?: Maybe<SocialEntityResponse>;
@@ -470,6 +538,7 @@ export type Mutation = {
   updateAlert?: Maybe<AlertEntityResponse>;
   updateAuthor?: Maybe<AuthorEntityResponse>;
   updateEntry?: Maybe<EntryEntityResponse>;
+  updateEvent?: Maybe<EventEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateFooter?: Maybe<FooterEntityResponse>;
   updateHome?: Maybe<HomeEntityResponse>;
@@ -499,6 +568,11 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateEntryArgs = {
   data: EntryInput;
+};
+
+
+export type MutationCreateEventArgs = {
+  data: EventInput;
 };
 
 
@@ -538,6 +612,11 @@ export type MutationDeleteAuthorArgs = {
 
 
 export type MutationDeleteEntryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteEventArgs = {
   id: Scalars['ID'];
 };
 
@@ -625,6 +704,12 @@ export type MutationUpdateAuthorArgs = {
 
 export type MutationUpdateEntryArgs = {
   data: EntryInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateEventArgs = {
+  data: EventInput;
   id: Scalars['ID'];
 };
 
@@ -755,6 +840,8 @@ export type Query = {
   authors?: Maybe<AuthorEntityResponseCollection>;
   entries?: Maybe<EntryEntityResponseCollection>;
   entry?: Maybe<EntryEntityResponse>;
+  event?: Maybe<EventEntityResponse>;
+  events?: Maybe<EventEntityResponseCollection>;
   footer?: Maybe<FooterEntityResponse>;
   home?: Maybe<HomeEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
@@ -799,6 +886,18 @@ export type QueryEntriesArgs = {
 
 export type QueryEntryArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryEventArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryEventsArgs = {
+  filters?: InputMaybe<EventFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1452,6 +1551,25 @@ export type FetchEntryQueryVariables = Exact<{
 
 export type FetchEntryQuery = { __typename?: 'Query', entries?: { __typename?: 'EntryEntityResponseCollection', data: Array<{ __typename?: 'EntryEntity', attributes?: { __typename?: 'Entry', title?: string | null, slug: string, content?: string | null, type: Enum_Entry_Type, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', name?: string | null, slug?: string | null, description?: string | null } | null }> } | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null } | null } | null } | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null, SEO?: { __typename?: 'ComponentSharedSeo', description?: string | null } | null } | null }> } | null };
 
+export type EventFragment = { __typename?: 'Event', date: any, content: string };
+
+export type FetchEventQueryVariables = Exact<{
+  date: Scalars['Date'];
+}>;
+
+
+export type FetchEventQuery = { __typename?: 'Query', events?: { __typename?: 'EventEntityResponseCollection', data: Array<{ __typename?: 'EventEntity', attributes?: { __typename?: 'Event', date: any, content: string } | null }> } | null };
+
+export type FetchEventsDatesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchEventsDatesQuery = { __typename?: 'Query', events?: { __typename?: 'EventEntityResponseCollection', data: Array<{ __typename?: 'EventEntity', attributes?: { __typename?: 'Event', date: any } | null }> } | null };
+
+export type FetchNewestEventQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchNewestEventQuery = { __typename?: 'Query', events?: { __typename?: 'EventEntityResponseCollection', data: Array<{ __typename?: 'EventEntity', attributes?: { __typename?: 'Event', date: any, content: string } | null }> } | null };
+
 export type FooterFragment = { __typename?: 'Footer', top?: string | null, bottom?: string | null };
 
 export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null } | null> | null };
@@ -1498,6 +1616,7 @@ export type ImageFragment = { __typename?: 'UploadFile', width?: number | null, 
       "Author",
       "ComponentSharedSeo",
       "Entry",
+      "Event",
       "Footer",
       "Home",
       "I18NLocale",
@@ -1523,6 +1642,7 @@ export type ImageFragment = { __typename?: 'UploadFile', width?: number | null, 
       "Author",
       "ComponentSharedSeo",
       "Entry",
+      "Event",
       "Footer",
       "Home",
       "I18NLocale",

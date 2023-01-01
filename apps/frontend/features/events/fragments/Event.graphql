@@ -1,0 +1,4 @@
+fragment Event on Event {
+  date
+  content
+}

@@ -56,6 +56,10 @@ const TRANSLATIONS = {
   announcement: {
     en: "Announcement",
     pl: "Ogłoszenie",
+  },
+  events: {
+    en: "Events",
+    pl: "Wydarzenia",
   }
 }
 export const t = (key: keyof typeof TRANSLATIONS) => TRANSLATIONS[key][templateConfig.lang]

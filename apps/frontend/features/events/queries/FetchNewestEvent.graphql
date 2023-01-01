@@ -1,0 +1,9 @@
+query FetchNewestEvent {
+  events(pagination: { pageSize: 1 }, sort: "date:desc") {
+    data {
+      attributes {
+        ...Event
+      }
+    }
+  }
+}

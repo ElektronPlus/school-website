@@ -1,11 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { EventFragmentDoc } from '../fragments/Event.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1510,11 +1513,50 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type SocialFragment = { __typename?: 'Social', icon: string, link: string };
+export type FetchEventQueryVariables = Types.Exact<{
+  date: Types.Scalars['Date'];
+}>;
 
-export const SocialFragmentDoc = gql`
-    fragment Social on Social {
-  icon
-  link
+
+export type FetchEventQuery = { __typename?: 'Query', events?: { __typename?: 'EventEntityResponseCollection', data: Array<{ __typename?: 'EventEntity', attributes?: { __typename?: 'Event', date: any, content: string } | null }> } | null };
+
+
+export const FetchEventDocument = gql`
+    query FetchEvent($date: Date!) {
+  events(filters: {date: {eq: $date}}) {
+    data {
+      attributes {
+        ...Event
+      }
+    }
+  }
 }
-    `;
+    ${EventFragmentDoc}`;
+
+/**
+ * __useFetchEventQuery__
+ *
+ * To run a query within a React component, call `useFetchEventQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchEventQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchEventQuery({
+ *   variables: {
+ *      date: // value for 'date'
+ *   },
+ * });
+ */
+export function useFetchEventQuery(baseOptions: Apollo.QueryHookOptions<FetchEventQuery, FetchEventQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchEventQuery, FetchEventQueryVariables>(FetchEventDocument, options);
+      }
+export function useFetchEventLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchEventQuery, FetchEventQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchEventQuery, FetchEventQueryVariables>(FetchEventDocument, options);
+        }
+export type FetchEventQueryHookResult = ReturnType<typeof useFetchEventQuery>;
+export type FetchEventLazyQueryHookResult = ReturnType<typeof useFetchEventLazyQuery>;
+export type FetchEventQueryResult = Apollo.QueryResult<FetchEventQuery, FetchEventQueryVariables>;

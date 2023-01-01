@@ -1,0 +1,9 @@
+query FetchEvent($date: Date!) {
+  events(filters: { date: { eq: $date } }) {
+    data {
+      attributes {
+        ...Event
+      }
+    }
+  }
+}

@@ -1,11 +1,14 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
+import { EventFragmentDoc } from '../fragments/Event.generated';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -1510,11 +1513,47 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type SocialFragment = { __typename?: 'Social', icon: string, link: string };
+export type FetchNewestEventQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export const SocialFragmentDoc = gql`
-    fragment Social on Social {
-  icon
-  link
+
+export type FetchNewestEventQuery = { __typename?: 'Query', events?: { __typename?: 'EventEntityResponseCollection', data: Array<{ __typename?: 'EventEntity', attributes?: { __typename?: 'Event', date: any, content: string } | null }> } | null };
+
+
+export const FetchNewestEventDocument = gql`
+    query FetchNewestEvent {
+  events(pagination: {pageSize: 1}, sort: "date:desc") {
+    data {
+      attributes {
+        ...Event
+      }
+    }
+  }
 }
-    `;
+    ${EventFragmentDoc}`;
+
+/**
+ * __useFetchNewestEventQuery__
+ *
+ * To run a query within a React component, call `useFetchNewestEventQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchNewestEventQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchNewestEventQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchNewestEventQuery(baseOptions?: Apollo.QueryHookOptions<FetchNewestEventQuery, FetchNewestEventQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchNewestEventQuery, FetchNewestEventQueryVariables>(FetchNewestEventDocument, options);
+      }
+export function useFetchNewestEventLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchNewestEventQuery, FetchNewestEventQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchNewestEventQuery, FetchNewestEventQueryVariables>(FetchNewestEventDocument, options);
+        }
+export type FetchNewestEventQueryHookResult = ReturnType<typeof useFetchNewestEventQuery>;
+export type FetchNewestEventLazyQueryHookResult = ReturnType<typeof useFetchNewestEventLazyQuery>;
+export type FetchNewestEventQueryResult = Apollo.QueryResult<FetchNewestEventQuery, FetchNewestEventQueryVariables>;

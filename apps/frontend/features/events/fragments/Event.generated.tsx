@@ -1510,11 +1510,11 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type SocialFragment = { __typename?: 'Social', icon: string, link: string };
+export type EventFragment = { __typename?: 'Event', date: any, content: string };
 
-export const SocialFragmentDoc = gql`
-    fragment Social on Social {
-  icon
-  link
+export const EventFragmentDoc = gql`
+    fragment Event on Event {
+  date
+  content
 }
     `;

@@ -15,7 +15,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body>
         <header>
-          {<Heading as="h1">{DEFAULT_TITLE_LONG}</Heading>}
+          <Heading as="h1">{DEFAULT_TITLE_LONG}</Heading>
           {/* @ts-expect-error Server Component */}
           <Alert />
         </header>
