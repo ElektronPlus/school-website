@@ -1,13 +1,15 @@
-import { DEFAULT_TITLE_SHORT, DEFAULT_TITLE_LONG, MAXIMUM_META_TITLE_LENGTH } from "features/seo/constants";
+import { templateConfig } from "config.template";
+import { MAXIMUM_META_TITLE_LENGTH } from "features/seo/constants";
+
 
 export const trimTitle = (title: string) => {
-  const lengthWithShort = (title?.length ?? 0) + DEFAULT_TITLE_SHORT.length;
-  const lengthWithLong = (title?.length ?? 0) + DEFAULT_TITLE_LONG.length;
+  const lengthWithShort = (title?.length ?? 0) + templateConfig.title.short.length;
+  const lengthWithLong = (title?.length ?? 0) + templateConfig.title.long.length;
 
   if (lengthWithLong <= MAXIMUM_META_TITLE_LENGTH) {
-    return `${title} | ${DEFAULT_TITLE_LONG}`;
+    return `${title} | ${templateConfig.title.long}`;
   } else if (lengthWithShort <= MAXIMUM_META_TITLE_LENGTH) {
-    return `${title} | ${DEFAULT_TITLE_SHORT}`;
+    return `${title} | ${templateConfig.title.short}`;
   } else {
     return title;
   }
