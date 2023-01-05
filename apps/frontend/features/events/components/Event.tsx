@@ -12,10 +12,10 @@ export const Event = ({ event }: EventProps) => {
   const date = new Date(event.date);
 
   return (
-    <>
+    <div className="event">
       <EventPagination date={event.date} />
       <article aria-describedby="date">
-        <Heading id="date" as="h2">
+        <Heading id="date" as="h2" className="date">
           {t("events")} &ndash;{" "}
           <time dateTime={event.date}>
             {date.toLocaleDateString(templateConfig.lang, {
@@ -27,11 +27,12 @@ export const Event = ({ event }: EventProps) => {
           </time>
         </Heading>
         <div
+          className="content"
           dangerouslySetInnerHTML={{
             __html: event.content,
           }}
         />
       </article>
-    </>
+    </div>
   );
 };

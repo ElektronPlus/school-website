@@ -16,11 +16,11 @@ export const Alert = async () => {
   }
 
   return (
-    <section aria-describedby="announcement">
+    <section aria-describedby="announcement" className="alert">
       <Heading as="h2" id="announcement" className="sr-only">
         {t("announcement")}
       </Heading>
-      <p>{link ? <Link href={link}>{content}</Link> : content}</p>
+      <p className="content">{link ? <Link href={link}>{content}</Link> : content}</p>
     </section>
   );
 };

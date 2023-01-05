@@ -8,7 +8,7 @@ interface EventPaginationProps {
 
 export const EventPagination = ({ date }: EventPaginationProps) => {
   return (
-    <nav>
+    <nav className="pagination">
       <Link href={`events/${getDate(date, "previous")}`}>{t("previousDay")}</Link>
       <Link href={`events/${getDate(date, "next")}`}>{t("nextDay")}</Link>
     </nav>

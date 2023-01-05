@@ -12,17 +12,17 @@ export const AuthorDetails = ({ author }: AuthorProps) => {
   const { name, description, slug, avatar } = author;
 
   return (
-    <section aria-labelledby="author">
+    <section aria-labelledby="author" className="author">
       {avatar?.data?.attributes && (
-        <Image image={avatar?.data?.attributes} width="64" height="64" sizes="64px" alt="" />
+        <Image className="avatar" image={avatar?.data?.attributes} sizes="64px" alt="" />
       )}
-      <Link href={`/@/${slug}`}>
-        <Heading id="author" as="h2">
-          <span>{`${t("author")}: `}</span>
+      <Link href={`/@/${slug}`} className="link">
+        <Heading id="author" as="h2" className="name">
+          <span className="sr-only">{`${t("author")}: `}</span>
           {name}
         </Heading>
       </Link>
-      <p>{description}</p>
+      <p className="description">{description}</p>
     </section>
   );
 };

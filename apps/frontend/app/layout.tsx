@@ -7,6 +7,7 @@ import { Footer } from "features/layout/components/Footer";
 import { NavigationMenu } from "features/layout/components/NavigationMenu";
 import { FetchNavigationDocument } from "features/layout/queries/FetchNavigation.generated";
 import { client } from "lib/apolloClient";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { FetchNavigationQuery } from "src/types";
 
@@ -26,10 +27,14 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang={process.env.NEXT_PUBLIC_LANG}>
       <head />
       <body>
-        <header>
-          <Heading as="h1">{templateConfig.title.short}</Heading>
-          {/* @ts-expect-error Server Component */}
-          <NavigationMenu data={navigation.renderNavigation} />
+        <header className="header">
+          <div className="first_row">
+            <Link href="#">
+              <Heading as="h1">{templateConfig.title.short}</Heading>
+            </Link>
+            {/* @ts-expect-error Server Component */}
+            <NavigationMenu data={navigation.renderNavigation} />
+          </div>
           {/* @ts-expect-error Server Component */}
           <Alert />
         </header>

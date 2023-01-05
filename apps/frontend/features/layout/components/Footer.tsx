@@ -28,13 +28,14 @@ export const Footer = async () => {
   const { top, bottom } = content.footer?.data?.attributes ?? {};
 
   return (
-    <footer>
-      <section aria-describedby="contact">
+    <footer className="footer">
+      <section aria-describedby="contact" className="contact">
         <Heading as="h2" id="contact" className="sr-only">
           {t("contact")}
         </Heading>
         {top && (
           <div
+            className="top"
             dangerouslySetInnerHTML={{
               __html: transformHtml(top),
             }}
@@ -47,19 +48,19 @@ export const Footer = async () => {
         <Heading as="h2" id="usefulLinks" className="sr-only">
           {t("usefulLinks")}
         </Heading>
-        <ul>
+        <ul className="items">
           {navigation.renderNavigation.map(
             (item) =>
               item && (
-                <li key={item.id}>
+                <li key={item.id} className="item">
                   {item.path && item.path !== "/" ? (
                     <Link href={item.path}>{item.title}</Link>
                   ) : (
                     <Heading as="h3">{item.title}</Heading>
                   )}
-                  <ul>
+                  <ul className="subitems">
                     {item.items?.map((subitem) => (
-                      <li key={subitem?.id}>
+                      <li key={subitem?.id} className="subitem">
                         <Link href={subitem?.path ?? "#"}>{subitem?.title}</Link>
                       </li>
                     ))}
@@ -68,19 +69,20 @@ export const Footer = async () => {
               ),
           )}
         </ul>
-        <section aria-describedby="siteCreators">
-          <Heading as="h2" id="siteCreators" className="sr-only">
-            {t("siteCreators")}
-          </Heading>
-          <p>
-            {t("builtBy")} <Link href="https://jan.pizza">Jan Szymański</Link> &amp;&nbsp;
-            <Link href="https://wybran.dev">Krystian Wybranowski</Link>
-          </p>
-        </section>
       </nav>
-      <section>
+      <section aria-describedby="siteCreators" className="site_creators">
+        <Heading as="h2" id="siteCreators" className="sr-only">
+          {t("siteCreators")}
+        </Heading>
+        <p className="content">
+          {t("builtBy")} <Link href="https://jan.pizza">Jan Szymański</Link> &amp;&nbsp;
+          <Link href="https://wybran.dev">Krystian Wybranowski</Link>
+        </p>
+      </section>
+      <section className="bottom">
         {bottom && (
           <div
+            className="content"
             dangerouslySetInnerHTML={{
               __html: transformHtml(bottom),
             }}

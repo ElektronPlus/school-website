@@ -1,9 +1,13 @@
 import { templateConfig } from "config.template";
 
 const TRANSLATIONS = {
-  seeMore: {
-    en: "See more",
-    pl: "Zobacz więcej"
+  readMore: {
+    en: "Read more",
+    pl: "Czytaj dalej"
+  },
+  seeMoreArticles: {
+    en: "See more articles",
+    pl: "Zobacz więcej artykułów"
   },
   nextPage: {
     en: "Next page",

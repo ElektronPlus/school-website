@@ -26,29 +26,35 @@ const Link = ({ href, ...props }: LinkProps) => {
 
 export const NavigationMenu = ({ data }: NavigationMenuProps) => {
   return (
-    <Nav.Root>
-      <Nav.List>
+    <Nav.Root className="menu">
+      <Nav.List className="list">
         {data.map(
           (item) =>
             item && (
-              <Nav.Item key={item.id}>
-                <Nav.Trigger>{item.title}</Nav.Trigger>
-                <Nav.Content>
-                  {item.items?.map(
-                    (subitem) =>
-                      subitem && (
-                        <Link key={subitem.id} href={subitem.path ?? "#"}>
-                          {subitem.title}
-                        </Link>
-                      ),
-                  )}
+              <Nav.Item className="item" key={item.id}>
+                <Nav.Trigger className="trigger">{item.title}</Nav.Trigger>
+                <Nav.Content className="content">
+                  <ul className="content__list">
+                    {item.items?.map(
+                      (subitem) =>
+                        subitem && (
+                          <li key={subitem.id} className="content__item">
+                            <Link className="link" href={subitem.path ?? "#"}>
+                              {subitem.title}
+                            </Link>
+                          </li>
+                        ),
+                    )}
+                  </ul>
                 </Nav.Content>
               </Nav.Item>
             ),
         )}
-        <Nav.Indicator />
+        <Nav.Indicator className="indicator" />
       </Nav.List>
-      <Nav.Viewport />
+      <div className="viewportPosition">
+        <Nav.Viewport className="viewport" />
+      </div>
     </Nav.Root>
   );
 };

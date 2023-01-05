@@ -1,15 +1,9 @@
 import { Heading } from "components/Heading";
 import { Image } from "components/Image";
-import { Tags } from "features/tags/components/Tags";
+import { EntryDetails } from "features/entries/components/Details";
 import { convert } from "html-to-text";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { EntryFragment } from "src/types";
-
-const UserDateTime = dynamic(() => import("components/DateTime"), {
-  loading: () => <p>...</p>,
-  ssr: false,
-});
 
 interface CardProps {
   entry: EntryFragment;
@@ -19,16 +13,19 @@ export const Card = ({ entry }: CardProps) => {
   const { title, image, content, type, slug, tags, publishedAt } = entry;
 
   return (
-    <article aria-describedby={slug}>
-      <Link href={`${type}/${slug}`}>
-        <Heading as="h2" id={slug}>{title}</Heading>
-        {image?.data?.attributes && <Image image={image.data.attributes} />}
-      </Link>
-      <div>
-        {tags?.data && tags.data.length !== 0 && <Tags tags={tags.data} />}
-        <UserDateTime dateTime={publishedAt} />
+    <article aria-describedby={slug} className="card">
+      {image?.data?.attributes && <Image className="thumbnail" image={image.data.attributes} />}
+      <div className="text">
+        <div>
+          <Link href={`${type}/${slug}`}>
+            <Heading as="h2" id={slug} className="title">
+              {title}
+            </Heading>
+          </Link>
+          <EntryDetails tags={tags} publishedAt={publishedAt} />
+        </div>
+        {content && <p className="content">{convert(content)}</p>}
       </div>
-      {content && <p>{convert(content)}</p>}
     </article>
   );
 };
