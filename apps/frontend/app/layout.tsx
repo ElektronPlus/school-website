@@ -1,6 +1,9 @@
+import "styles/globals.scss";
+import "styles/normalize.scss";
 import { Heading } from "components/Heading";
 import { Alert } from "features/layout/components/Alert";
 import { Footer } from "features/layout/components/Footer";
+import { NavigationMenu } from "features/layout/components/NavigationMenu";
 import { DEFAULT_TITLE_LONG } from "features/seo/constants";
 import type { ReactNode } from "react";
 
@@ -15,6 +18,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <header>
           <Heading as="h1">{DEFAULT_TITLE_LONG}</Heading>
+          {/* @ts-expect-error Server Component */}
+          <NavigationMenu />
           {/* @ts-expect-error Server Component */}
           <Alert />
         </header>
