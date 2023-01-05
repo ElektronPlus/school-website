@@ -30,9 +30,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <Meta title={event.date} description={event.content} />
-      <main>
-          <Event event={event} />
-      </main>
+      <Event event={event} />
     </>
   );
 }

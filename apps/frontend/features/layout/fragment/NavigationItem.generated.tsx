@@ -1,4 +1,3 @@
-import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
 export type Maybe<T> = T | null;

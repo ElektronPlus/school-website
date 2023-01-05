@@ -1,7 +1,7 @@
 import * as Types from '../../../src/types';
 
 import { gql } from '@apollo/client';
-import { AlertFragmentDoc } from '../fragments/Alert.generated';
+import { AlertFragmentDoc } from '../fragment/Alert.generated';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;

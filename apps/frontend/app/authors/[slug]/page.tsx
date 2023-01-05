@@ -33,9 +33,7 @@ export default async function Page({ params }: PageProps) {
         title={author.name}
         {...(author.description && { description: ellipsize(author.description, MAXIMUM_META_DESCRIPTION_LENGTH) })}
       />
-      <main>
         <AuthorDetails author={author} />
-      </main>
     </>
   );
 }

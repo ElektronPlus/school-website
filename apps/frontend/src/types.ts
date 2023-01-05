@@ -1507,13 +1507,6 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type AlertFragment = { __typename?: 'Alert', content?: string | null, link?: string | null, isEnabled?: boolean | null };
-
-export type FetchAlertQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type FetchAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', content?: string | null, link?: string | null, isEnabled?: boolean | null } | null } | null } | null };
-
 export type AuthorMinimalFragment = { __typename?: 'Author', name: string, slug: string, description?: string | null, avatar?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', width?: number | null, height?: number | null, hash: string, url: string, alternativeText?: string | null, placeholder?: string | null } | null } | null } | null };
 
 export type FetchAuthorQueryVariables = Exact<{
@@ -1570,9 +1563,16 @@ export type FetchNewestEventQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FetchNewestEventQuery = { __typename?: 'Query', events?: { __typename?: 'EventEntityResponseCollection', data: Array<{ __typename?: 'EventEntity', attributes?: { __typename?: 'Event', date: any, content: string } | null }> } | null };
 
+export type AlertFragment = { __typename?: 'Alert', content?: string | null, link?: string | null, isEnabled?: boolean | null };
+
 export type FooterFragment = { __typename?: 'Footer', top?: string | null, bottom?: string | null };
 
 export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null } | null> | null };
+
+export type FetchAlertQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchAlertQuery = { __typename?: 'Query', alert?: { __typename?: 'AlertEntityResponse', data?: { __typename?: 'AlertEntity', attributes?: { __typename?: 'Alert', content?: string | null, link?: string | null, isEnabled?: boolean | null } | null } | null } | null };
 
 export type FetchFooterQueryVariables = Exact<{ [key: string]: never; }>;
 

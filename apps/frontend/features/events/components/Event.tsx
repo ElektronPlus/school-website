@@ -1,22 +1,19 @@
 import { Heading } from "components/Heading";
+import { EventPagination } from "features/events/components/EventPagination";
 import { EventFragment } from "features/events/fragments/Event.generated";
-import dynamic from "next/dynamic";
+import { t } from "utils/translations";
 
 interface EventProps {
   event: EventFragment;
 }
 
-const EventDatePicker = dynamic(() => import("features/events/components/EventDatePicker"), {
-  loading: () => <p>...</p>,
-});
-
 export const Event = ({ event }: EventProps) => {
   return (
     <>
-      <EventDatePicker />
+      <EventPagination date={event.date} />
       <article aria-describedby="date">
         <Heading id="date" as="h2">
-          <time dateTime={event.date}>{event.date}</time>
+          {t("events")} <time dateTime={event.date}>{event.date}</time>
         </Heading>
         <div
           dangerouslySetInnerHTML={{

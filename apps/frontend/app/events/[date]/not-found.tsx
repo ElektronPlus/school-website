@@ -6,11 +6,11 @@ export default async function NotFound() {
   return (
     <>
       <Meta title={t("notFound")} />
-      <main aria-describedby="notFound">
+      <section aria-describedby="notFound">
         <Heading as="h2" id="notFound">
-          Nie ma tutaj wydarzenia
+          {t("noEventsThisDay")}
         </Heading>
-      </main>
+      </section>
     </>
   );
 }

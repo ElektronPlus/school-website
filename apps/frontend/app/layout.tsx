@@ -1,9 +1,8 @@
 import { Heading } from "components/Heading";
-import { Alert } from "features/alert/components/Alert";
-import { Footer } from "features/navigation/components/Footer";
+import { Alert } from "features/layout/components/Alert";
+import { Footer } from "features/layout/components/Footer";
 import { DEFAULT_TITLE_LONG } from "features/seo/constants";
 import type { ReactNode } from "react";
-
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -19,7 +18,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* @ts-expect-error Server Component */}
           <Alert />
         </header>
-        {children}
+        <main>{children}</main>
         {/* @ts-expect-error Server Component */}
         <Footer />
       </body>

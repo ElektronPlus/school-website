@@ -40,13 +40,11 @@ export default async function Page({ params, searchParams }: PageProps) {
 
   return (
     <>
-    <Meta title={t(params.type)} />
-      <main>
-        {data.entries?.data.map(
-          ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
-        )}
-        <Pagination page={page} pageCount={pageCount} pathname={params.type} />
-      </main>
+      <Meta title={t(params.type)} />
+      {data.entries?.data.map(
+        ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
+      )}
+      <Pagination page={page} pageCount={pageCount} pathname={params.type} />
     </>
   );
 }

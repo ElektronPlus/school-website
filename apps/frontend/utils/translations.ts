@@ -60,6 +60,22 @@ const TRANSLATIONS = {
   events: {
     en: "Events",
     pl: "Wydarzenia",
+  },
+  noEventsThisDay: {
+    en: "There are no events on this day",
+    pl: "Nie ma żadnych wydarzeń w tym dniu",
+  },
+  chooseDate: {
+    en: "Choose date",
+    pl: "Wybierz datę",
+  },
+  previousDay: {
+    en: "Previous day",
+    pl: "Poprzedni dzień",
+  },
+  nextDay: {
+    en: "Next day",
+    pl: "Następny dzień",
   }
 }
 export const t = (key: keyof typeof TRANSLATIONS) => TRANSLATIONS[key][templateConfig.lang]

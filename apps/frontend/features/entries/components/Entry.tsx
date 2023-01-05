@@ -19,19 +19,17 @@ export const Entry = ({ entry }: EntryProps) => {
   const { title, content, tags, publishedAt, author, image } = entry;
 
   return (
-    <>
-      <main>
-        <article aria-describedby="title">
-          {image?.data?.attributes && <Image image={image.data.attributes} />}
-          <Heading id="title" as="h2">{title}</Heading>
-          <div>
-            {tags?.data && <Tags tags={tags.data} />}
-            <UserDateTime dateTime={publishedAt} />
-          </div>
-          {content && <div dangerouslySetInnerHTML={{ __html: transformHtml(content) }} />}
-        </article>
+      <article aria-describedby="title">
+        {image?.data?.attributes && <Image image={image.data.attributes} />}
+        <Heading id="title" as="h2">
+          {title}
+        </Heading>
+        <div>
+          {tags?.data && <Tags tags={tags.data} />}
+          <UserDateTime dateTime={publishedAt} />
+        </div>
+        {content && <div dangerouslySetInnerHTML={{ __html: transformHtml(content) }} />}
         {author?.data?.attributes && <AuthorDetails author={author.data?.attributes} />}
-      </main>
-    </>
+      </article>
   );
 };

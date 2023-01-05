@@ -43,12 +43,10 @@ export default async function Page() {
           MAXIMUM_META_DESCRIPTION_LENGTH,
         })}
       />
-      <main>
-        {data.entries?.data.map(
-          ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
-        )}
-        <Link href="blog">{t("seeMore")}</Link>
-      </main>
+      {data.entries?.data.map(
+        ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
+      )}
+      <Link href="blog">{t("seeMore")}</Link>
     </>
   );
 }
