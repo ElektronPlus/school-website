@@ -10,7 +10,6 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "^1.1.2",
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.5",
     "@strapi/plugin-color-picker": "^4.5.5",
     "@strapi/plugin-graphql": "^4.5.5",
@@ -18,8 +17,8 @@
     "@strapi/plugin-users-permissions": "4.5.5",
     "@strapi/strapi": "4.5.5",
     "better-sqlite3": "7.4.6",
-    "strapi-plugin-placeholder": "^4.3.6",
-    "strapi-plugin-navigation": "^2.2.3"
+    "strapi-plugin-navigation": "^2.2.3",
+    "strapi-plugin-placeholder": "^4.3.6"
   },
   "author": {
     "name": "A Strapi developer"
