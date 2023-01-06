@@ -1,20 +1,20 @@
 module.exports = ({ env }) => ({
-  ckeditor: {
-    enabled: true,
-  },
-  placeholder: {
-    enabled: true,
-    config: {
-      size: 10,
+    ckeditor: {
+      enabled: true,
     },
-  },
-  navigation: {
-    enabled: true,
-    gql: {
-      navigationItemRelated: ['Entry', 'Tag', 'UploadFile'],
+    placeholder: {
+      enabled: true,
+      config: {
+        size: 10,
+      },
     },
-  },
-  graphql: {
-    enabled: true
-  },
-});
+    navigation: {
+      enabled: true,
+      gql: {
+        navigationItemRelated: ['Entry', 'Tag', 'UploadFile'],
+      },
+    },
+    graphql: {
+      enabled: true
+    },
+  });
