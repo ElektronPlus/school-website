@@ -1,7 +1,8 @@
 {
   "name": "backend",
   "private": true,
-  "version": "0.0.01",
+  "version": "0.1.0",
+  "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -9,23 +10,22 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@babel/core": "^7.20.7",
+    "@_sh/strapi-plugin-ckeditor": "^1.1.2",
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.5",
-    "@strapi/plugin-color-picker": "^4.5.4",
-    "@strapi/plugin-graphql": "^4.5.4",
-    "@strapi/plugin-i18n": "4.5.4",
-    "@strapi/plugin-users-permissions": "4.5.4",
-    "@strapi/strapi": "4.5.4",
+    "@strapi/plugin-color-picker": "^4.5.5",
+    "@strapi/plugin-graphql": "^4.5.5",
+    "@strapi/plugin-i18n": "^4.5.5",
+    "@strapi/plugin-users-permissions": "4.5.5",
+    "@strapi/strapi": "4.5.5",
     "better-sqlite3": "7.4.6",
-    "koa": "^2.14.1",
-    "mime-types": "^2.1.35",
-    "react": "^18.2.0",
-    "react-is": "^18.2.0",
-    "sharp": "^0.31.3",
-    "strapi-plugin-navigation": "^2.2.2",
     "strapi-plugin-placeholder": "^4.3.6",
-    "webpack": "^5.75.0",
-    "yup": "^0.32.11"
+    "strapi-plugin-navigation": "^2.2.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "d5232b45-738a-408e-a5e2-e265587a6d0d"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
