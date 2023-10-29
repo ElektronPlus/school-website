@@ -2,25 +2,14 @@ import { Heading } from "components/Heading";
 import {
   FetchFooterDocument,
   FetchFooterQuery,
-} from "features/layout/queries/FetchFooter.generated";
-import {
-  FetchNavigationQuery,
-  FetchNavigationDocument,
-} from "features/layout/queries/FetchNavigation.generated";
+} from "features/layout/queries/FetchFooter.generated"
 import { Socials } from "features/socials/components/Socials";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import Link from "next/link";
 import { transformHtml } from "utils/content";
 import { t } from "utils/translations";
 
 export const Footer = async () => {
-  const { data: navigation } = await client.query<FetchNavigationQuery>({
-    query: FetchNavigationDocument,
-    variables: {
-      slug: "footer",
-    },
-  });
-
   const { data: content } = await client.query<FetchFooterQuery>({
     query: FetchFooterDocument,
   });
@@ -42,14 +31,13 @@ export const Footer = async () => {
           />
         )}
       </section>
-      {/* @ts-expect-error Server Component */}
       <Socials />
       <nav aria-describedby="usefulLinks">
         <Heading as="h2" id="usefulLinks" className="sr-only">
           {t("usefulLinks")}
         </Heading>
         <ul className="items">
-          {navigation.renderNavigation.map(
+          {/* {navigation.renderNavigation.map(
             (item) =>
               item && (
                 <li key={item.id} className="item">
@@ -67,7 +55,7 @@ export const Footer = async () => {
                   </ul>
                 </li>
               ),
-          )}
+          )} */}
         </ul>
       </nav>
       <section aria-describedby="siteCreators" className="site_creators">

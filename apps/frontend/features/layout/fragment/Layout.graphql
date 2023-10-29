@@ -1,0 +1,9 @@
+fragment Layout on Layout {
+	background {
+		data {
+			attributes {
+				...Image
+			}
+		}
+	}
+}

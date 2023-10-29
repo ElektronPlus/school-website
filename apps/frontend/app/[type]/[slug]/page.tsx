@@ -8,7 +8,7 @@ import { FetchEntryQuery, FetchEntryDocument } from "features/entries/queries/Fe
 import { Meta } from "features/seo/components/DefaultMeta";
 import { MAXIMUM_META_DESCRIPTION_LENGTH } from "features/seo/constants";
 import { htmlToText } from "html-to-text";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import { notFound } from "next/navigation";
 
 interface PageProps {

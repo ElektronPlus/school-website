@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
-  },
   images: {
-    domains: ['localhost', '127.0.0.1'],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+        port: "1337",
+        pathname: "/uploads/**",
+      }
+    ],
+    /* Better performing formats */
     formats: ['image/avif', 'image/webp'],
   },
   async rewrites() {

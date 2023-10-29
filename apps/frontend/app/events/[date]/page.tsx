@@ -6,7 +6,7 @@ import {
   FetchEventsDatesDocument,
 } from "features/events/queries/FetchEventsDates.generated";
 import { Meta } from "features/seo/components/DefaultMeta";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import { notFound } from "next/navigation";
 
 interface PageProps {

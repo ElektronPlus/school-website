@@ -5,7 +5,7 @@ import { FetchAuthorsQuery } from "features/authors/queries/FetchAuthors.generat
 import { FetchAuthorsDocument } from "features/authors/queries/FetchAuthors.generated";
 import { Meta } from "features/seo/components/DefaultMeta";
 import { MAXIMUM_META_DESCRIPTION_LENGTH } from "features/seo/constants";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import { notFound } from "next/navigation";
 import { FetchAuthorQuery } from "src/types";
 

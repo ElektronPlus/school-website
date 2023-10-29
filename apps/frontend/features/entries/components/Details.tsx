@@ -18,7 +18,7 @@ export const EntryDetails = ({ tags, publishedAt }: EntryDetailsProps) => {
       {tags?.data && tags.data.length !== 0 && (
         <>
           <Tags tags={tags.data} />
-          <span>&nbsp;&ndash;&nbsp;</span>
+          <span className="separator">&nbsp;&ndash;&nbsp;</span>
         </>
       )}
       <UserDateTime dateTime={publishedAt} />

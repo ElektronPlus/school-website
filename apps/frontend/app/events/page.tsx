@@ -4,7 +4,7 @@ import {
   FetchNewestEventQuery,
 } from "features/events/queries/FetchNewestEvent.generated";
 import { Meta } from "features/seo/components/DefaultMeta";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import { notFound } from "next/navigation";
 
 export default async function Page() {

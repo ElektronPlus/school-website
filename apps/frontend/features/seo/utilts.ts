@@ -1,4 +1,4 @@
-import { templateConfig } from "config.template";
+import { templateConfig } from "site.config";
 import { MAXIMUM_META_TITLE_LENGTH } from "features/seo/constants";
 
 

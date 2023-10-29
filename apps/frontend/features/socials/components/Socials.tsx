@@ -1,7 +1,7 @@
 import { Heading } from "components/Heading";
 import { FetchSocialsQuery } from "features/socials/queries/FetchSocials.generated";
 import { FetchSocialsDocument } from "features/socials/queries/FetchSocials.generated";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import Link from "next/link";
 import { SocialFragment } from "src/types";
 import { t } from "utils/translations";

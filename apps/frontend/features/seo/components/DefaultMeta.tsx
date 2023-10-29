@@ -1,4 +1,4 @@
-import { templateConfig } from "config.template";
+import { templateConfig } from "site.config";
 import ellipsize from "ellipsize";
 import { MAXIMUM_META_DESCRIPTION_LENGTH } from "features/seo/constants";
 import { trimTitle } from "features/seo/utilts";

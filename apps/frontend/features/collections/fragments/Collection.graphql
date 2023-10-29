@@ -1,0 +1,18 @@
+fragment Collection on Collection {
+  name
+  link {
+    id
+    entries {
+      data {
+        id
+        attributes {
+          slug
+          title
+        }
+      }
+    }
+  }
+  slug
+  createdAt
+  updatedAt
+}

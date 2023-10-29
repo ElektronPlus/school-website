@@ -1,6 +1,6 @@
 import { Heading } from "components/Heading";
 import { FetchAlertDocument, FetchAlertQuery } from "features/layout/queries/FetchAlert.generated";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import Link from "next/link";
 import { t } from "utils/translations";
 

@@ -1,45 +1,45 @@
 import "styles/globals.scss";
 import "styles/normalize.scss";
 import { Heading } from "components/Heading";
-import { templateConfig } from "config.template";
+import { Image } from "components/Image";
 import { Alert } from "features/layout/components/Alert";
 import { Footer } from "features/layout/components/Footer";
-import { NavigationMenu } from "features/layout/components/NavigationMenu";
-import { FetchNavigationDocument } from "features/layout/queries/FetchNavigation.generated";
-import { client } from "lib/apolloClient";
+import { fetchLayout } from "features/layout/utils.ts/fetch-layout";
+import { font } from "lib/font";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { FetchNavigationQuery } from "src/types";
+import { templateConfig } from "site.config";
 
 interface RootLayoutProps {
   children: ReactNode;
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const { data: navigation } = await client.query<FetchNavigationQuery>({
-    query: FetchNavigationDocument,
-    variables: {
-      slug: "top",
-    },
-  });
+  const { layout } = await fetchLayout();
 
   return (
-    <html lang={process.env.NEXT_PUBLIC_LANG}>
-      <head />
+    <html lang={process.env.NEXT_PUBLIC_LANG} className={font.className}>
       <body>
         <header className="header">
           <div className="first_row">
-            <Link href="#">
-              <Heading as="h1">{templateConfig.title.short}</Heading>
+            <Link href="/">
+              <Heading as="h1" variant="2xl">
+                {templateConfig.title.short}
+              </Heading>
             </Link>
-            {/* @ts-expect-error Server Component */}
-            <NavigationMenu data={navigation.renderNavigation} />
           </div>
-          {/* @ts-expect-error Server Component */}
           <Alert />
         </header>
+        <div className="layout_background_wrapper">
+          {layout.layout?.data?.attributes?.background?.data?.attributes && (
+            <Image
+              className="layout_background"
+              image={layout.layout?.data?.attributes?.background.data?.attributes}
+              priority
+            />
+          )}
+        </div>
         <main>{children}</main>
-        {/* @ts-expect-error Server Component */}
         <Footer />
       </body>
     </html>

@@ -1,0 +1,9 @@
+query FetchLayout {
+	layout {
+		data {
+			attributes {
+				...Layout
+			}
+		}
+	}
+}

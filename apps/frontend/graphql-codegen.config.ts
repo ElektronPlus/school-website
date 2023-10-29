@@ -3,7 +3,8 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: "http://localhost:1337/graphql",
+  schema: "http://0.0.0.0:1337/graphql",
+  watch: true,
   documents: "./**/*.graphql",
   generates: {
     "src/types.ts": {
@@ -16,9 +17,6 @@ const config: CodegenConfig = {
             apolloClientVersion: 3,
             useExplicitTyping: true,
         },
-    },
-    "./graphql.schema.json": {
-        plugins: ["introspection"],
     },
     "src/": {
       preset: "near-operation-file",

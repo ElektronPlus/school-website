@@ -93,18 +93,18 @@ body {
 Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
 */
 
-body {
-	font-family:
-		system-ui,
-		-apple-system, /* Firefox supports this but not yet `system-ui` */
-		'Segoe UI',
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji';
-}
+// body {
+// 	font-family:
+// 		system-ui,
+// 		-apple-system, /* Firefox supports this but not yet `system-ui` */
+// 		'Segoe UI',
+// 		Roboto,
+// 		Helvetica,
+// 		Arial,
+// 		sans-serif,
+// 		'Apple Color Emoji',
+// 		'Segoe UI Emoji';
+// }
 
 /*
 Grouping content
@@ -152,13 +152,13 @@ code,
 kbd,
 samp,
 pre {
-	font-family:
-		ui-monospace,
-		SFMono-Regular,
-		Consolas,
-		'Liberation Mono',
-		Menlo,
-		monospace; /* 1 */
+	// font-family:
+	// 	ui-monospace,
+	// 	SFMono-Regular,
+	// 	Consolas,
+	// 	'Liberation Mono',
+	// 	Menlo,
+	// 	monospace; /* 1 */
 	font-size: 1em; /* 2 */
 }
 

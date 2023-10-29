@@ -1,4 +1,4 @@
-import { templateConfig } from "config.template";
+import { templateConfig } from "site.config";
 
 const TRANSLATIONS = {
   readMore: {
@@ -6,8 +6,8 @@ const TRANSLATIONS = {
     pl: "Czytaj dalej"
   },
   seeMoreArticles: {
-    en: "See more articles",
-    pl: "Zobacz więcej artykułów"
+    en: "See older news",
+    pl: "Zobacz starsze wiadomości"
   },
   nextPage: {
     en: "Next page",
@@ -80,6 +80,10 @@ const TRANSLATIONS = {
   nextDay: {
     en: "Next day",
     pl: "Następny dzień",
+  },
+  whatsNew: {
+    en: "What's new?",
+    pl: "Co nowego?",
   }
 }
 export const t = (key: keyof typeof TRANSLATIONS) => TRANSLATIONS[key][templateConfig.lang]

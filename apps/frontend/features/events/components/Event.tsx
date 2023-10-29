@@ -1,7 +1,7 @@
 import { Heading } from "components/Heading";
-import { templateConfig } from "config.template";
 import { EventPagination } from "features/events/components/EventPagination";
 import { EventFragment } from "features/events/fragments/Event.generated";
+import { templateConfig } from "site.config";
 import { t } from "utils/translations";
 
 interface EventProps {
@@ -13,9 +13,8 @@ export const Event = ({ event }: EventProps) => {
 
   return (
     <div className="event">
-      <EventPagination date={event.date} />
-      <article aria-describedby="date">
-        <Heading id="date" as="h2" className="date">
+      <article aria-describedby="date" className="wrapper">
+        <Heading id="date" as="h2" variant="2xl" className="date">
           {t("events")} &ndash;{" "}
           <time dateTime={event.date}>
             {date.toLocaleDateString(templateConfig.lang, {
@@ -30,8 +29,9 @@ export const Event = ({ event }: EventProps) => {
           className="content"
           dangerouslySetInnerHTML={{
             __html: event.content,
-          }}
-        />
+          }}>
+        </div>
+        <EventPagination date={event.date} />
       </article>
     </div>
   );

@@ -6,7 +6,7 @@ import {
 import { Enum_Entry_Type } from "features/entries/queries/FetchEntriesSlugs.generated";
 import { ENTRIES_PER_PAGE } from "features/pagination/constants";
 import { Meta } from "features/seo/components/DefaultMeta";
-import { client } from "lib/apolloClient";
+import { client } from "lib/apollo";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { t } from "utils/translations";
@@ -41,9 +41,11 @@ export default async function Page({ params, searchParams }: PageProps) {
   return (
     <>
       <Meta title={t(params.type)} />
-      {data.entries?.data.map(
-        ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
-      )}
+      <div className="page--entries">
+        {data.entries?.data.map(
+          ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
+        )}
+      </div>
       <Pagination page={page} pageCount={pageCount} pathname={params.type} />
     </>
   );

@@ -1,12 +1,17 @@
-import type { ReactNode, ElementType, HTMLAttributes } from "react";
+import clsx from "clsx";
 
-interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
-  as: ElementType;
-  children: ReactNode;
+interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  children: React.ReactNode;
+  variant?: "base" | "lg" | "xl" | "2xl";
 }
 
-export const Heading = ({ as, children, ...props }: HeadingProps) => {
+export const Heading = ({ as, children, variant = "base", ...props }: HeadingProps) => {
   const Component = as;
 
-  return <Component {...props}>{children}</Component>;
+  return (
+    <Component data-variant={variant} {...props} className={clsx(props.className, "heading")}>
+      {children}
+    </Component>
+  );
 };

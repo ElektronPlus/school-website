@@ -1,0 +1,9 @@
+query FetchCollections {
+  collections {
+    data {
+      attributes {
+        ...CollectionShort
+      }
+    }
+  }
+}
