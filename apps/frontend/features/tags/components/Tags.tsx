@@ -8,7 +8,7 @@ interface TagsProps {
 
 export const Tags = ({ tags }: TagsProps) => {
   return (
-    <p className="entry__tags">
+    <p>
       <span className="sr-only">{`${t("tags")}: `}</span>
       {tags?.map(
         ({ attributes: tag }, index) =>

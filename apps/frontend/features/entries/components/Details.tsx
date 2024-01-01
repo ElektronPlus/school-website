@@ -1,6 +1,6 @@
+import { EntryFragment } from "features/entries/fragments/Entry.generated";
 import { Tags } from "features/tags/components/Tags";
 import dynamic from "next/dynamic";
-import { EntryFragment } from "src/types";
 
 const UserDateTime = dynamic(() => import("components/DateTime"), {
   loading: () => <p>...</p>,
@@ -14,11 +14,11 @@ interface EntryDetailsProps {
 
 export const EntryDetails = ({ tags, publishedAt }: EntryDetailsProps) => {
   return (
-    <div className="details">
+    <div className="uppercase flex">
       {tags?.data && tags.data.length !== 0 && (
         <>
           <Tags tags={tags.data} />
-          <span className="separator">&nbsp;&ndash;&nbsp;</span>
+          <span className="hidden md:block">&nbsp;&ndash;&nbsp;</span>
         </>
       )}
       <UserDateTime dateTime={publishedAt} />

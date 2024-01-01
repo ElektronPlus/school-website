@@ -1,9 +1,8 @@
-import { Heading } from "components/Heading";
+import { SocialFragment } from "features/socials/fragment/Social.generated";
 import { FetchSocialsQuery } from "features/socials/queries/FetchSocials.generated";
 import { FetchSocialsDocument } from "features/socials/queries/FetchSocials.generated";
 import { client } from "lib/apollo";
 import Link from "next/link";
-import { SocialFragment } from "src/types";
 import { t } from "utils/translations";
 
 const fetchSvg = async (socials: SocialFragment) => {
@@ -37,9 +36,9 @@ export const Socials = async () => {
 
   return (
     <section aria-describedby="socials" className="socials">
-      <Heading as="h2" id="socials" className="sr-only">
+      <h2 id="socials" className="sr-only">
         {t("socials")}
-      </Heading>
+      </h2>
       <ul className="items">
         {items.map((item) => item && (
           <li key={item.link} className="item">

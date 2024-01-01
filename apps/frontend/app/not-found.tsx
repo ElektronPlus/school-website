@@ -1,4 +1,3 @@
-import { Heading } from "components/Heading";
 import { Meta } from "features/seo/components/DefaultMeta";
 import { t } from "utils/translations";
 
@@ -7,7 +6,7 @@ export default async function NotFound() {
     <>
       <Meta title={t("notFound")} />
       <section aria-describedby="notFound">
-        <Heading as="h2" id="notFound">{t("notFound")}</Heading>
+        <h2 id="notFound">{t("notFound")}</h2>
       </section>
     </>
   );

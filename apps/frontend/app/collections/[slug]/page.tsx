@@ -1,10 +1,8 @@
-import ellipsize from "ellipsize";
+import { Heading } from "components/Heading";
 import { fetchCollection } from "features/collections/utils/fetch-collection";
 import { fetchCollections } from "features/collections/utils/fetch-collections";
-import { Entry } from "features/entries/components/Entry";
+import { Card } from "features/entries/components/Card";
 import { Meta } from "features/seo/components/DefaultMeta";
-import { MAXIMUM_META_DESCRIPTION_LENGTH } from "features/seo/constants";
-import { htmlToText } from "html-to-text";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -12,8 +10,7 @@ interface PageProps {
 }
 
 export default async function Page(props: PageProps) {
-  const { collection } = await fetchCollections(props.params.slug);
-
+  const { collection } = await fetchCollection(props.params.slug);
 
   if (!collection) {
     notFound();
@@ -28,7 +25,15 @@ export default async function Page(props: PageProps) {
         //   MAXIMUM_META_DESCRIPTION_LENGTH,
         // )}
       />
-      
+      <section className="pt-20 px-4">
+        <h2 className="text-2xl font-bold">{collection.attributes?.name}</h2>
+        <ul className="grid gap-4 md:grid-cols-2">
+          {collection.attributes?.link?.entries?.data.map(
+            (entry) =>
+              entry.attributes && <Card key={entry.id} entry={entry.attributes} />
+          )}
+        </ul>
+      </section>
     </>
   );
 }
@@ -37,4 +42,6 @@ export async function generateStaticParams() {
   const { slugs } = await fetchCollections();
 
   return slugs;
+
+  return ["uczen"];
 }

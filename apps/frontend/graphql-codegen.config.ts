@@ -7,17 +7,7 @@ const config: CodegenConfig = {
   watch: true,
   documents: "./**/*.graphql",
   generates: {
-    "src/types.ts": {
-        plugins: [
-            "typescript",
-            "typescript-operations",
-            "fragment-matcher"
-        ],
-        config: {
-            apolloClientVersion: 3,
-            useExplicitTyping: true,
-        },
-    },
+    'src/types.ts': { plugins: ['typescript'] },
     "src/": {
       preset: "near-operation-file",
       presetConfig: {

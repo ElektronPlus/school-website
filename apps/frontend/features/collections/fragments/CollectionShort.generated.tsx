@@ -1653,7 +1653,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type CollectionShortFragment = { __typename?: 'Collection', name?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, link?: { __typename?: 'ComponentLinkLink', id: string, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', id?: string | null, attributes?: { __typename?: 'Entry', slug: string, title?: string | null } | null }> } | null } | null };
+export type CollectionShortFragment = { __typename?: 'Collection', name?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, link?: { __typename?: 'ComponentLinkLink', id: string, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', id?: string | null, attributes?: { __typename?: 'Entry', slug: string, title?: string | null, type: Types.Enum_Entry_Type } | null }> } | null } | null };
 
 export const CollectionShortFragmentDoc = gql`
     fragment CollectionShort on Collection {
@@ -1666,6 +1666,7 @@ export const CollectionShortFragmentDoc = gql`
         attributes {
           slug
           title
+          type
         }
       }
     }

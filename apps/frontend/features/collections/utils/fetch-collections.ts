@@ -1,13 +1,10 @@
-import {
-  FetchCollectionsDocument,
-  FetchCollectionsQueryVariables,
-} from "features/collections/queries/FetchCollections.generated";
+import { FetchCollectionsQuery, FetchCollectionsQueryVariables, FetchCollectionsDocument } from "features/collections/queries/FetchCollections.generated";
 import { client } from "lib/apollo";
-import { FetchCollectionsQuery } from "src/types";
 import { nonNullable } from "utils/utils";
 
+
 export const fetchCollections = async () => {
-  const { data: collectionsData } = await client.query<
+  const { data: collectionsData, error } = await client.query<
     FetchCollectionsQuery,
     FetchCollectionsQueryVariables
   >({
@@ -19,6 +16,8 @@ export const fetchCollections = async () => {
       .map((collection) => collection.attributes)
       .filter(nonNullable) ?? [];
   const slugs = collections.map((collection) => collection.slug).filter(nonNullable);
+
+  console.log(collectionsData, error);
 
   return {
     collections,

@@ -1,7 +1,6 @@
-import { FetchEntriesDocument } from "features/entries/queries/FetchEntries.generated";
+import { Enum_Entry_Type, FetchEntriesDocument, FetchEntriesQuery, FetchEntriesQueryVariables } from "features/entries/queries/FetchEntries.generated";
 import { ENTRIES_PER_PAGE } from "features/pagination/constants";
 import { client } from "lib/apollo";
-import { Enum_Entry_Type, FetchEntriesQuery, FetchEntriesQueryVariables } from "src/types";
 
 export const fetchEntries = async () => {
   const { data: entriesData } = await client.query<FetchEntriesQuery, FetchEntriesQueryVariables>({

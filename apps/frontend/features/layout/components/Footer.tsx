@@ -1,27 +1,18 @@
-import { Heading } from "components/Heading";
-import {
-  FetchFooterDocument,
-  FetchFooterQuery,
-} from "features/layout/queries/FetchFooter.generated"
+import { fetchFooter } from "features/layout/utils.ts/fetch-footer";
 import { Socials } from "features/socials/components/Socials";
-import { client } from "lib/apollo";
 import Link from "next/link";
 import { transformHtml } from "utils/content";
 import { t } from "utils/translations";
 
 export const Footer = async () => {
-  const { data: content } = await client.query<FetchFooterQuery>({
-    query: FetchFooterDocument,
-  });
-
-  const { top, bottom } = content.footer?.data?.attributes ?? {};
+  const { footer } = await fetchFooter();
+  
+  const { top, bottom } = footer.footer?.data?.attributes ?? {};
 
   return (
     <footer className="footer">
       <section aria-describedby="contact" className="contact">
-        <Heading as="h2" id="contact" className="sr-only">
-          {t("contact")}
-        </Heading>
+        <h2 id="sr-only">{t("contact")}</h2>
         {top && (
           <div
             className="top"
@@ -33,9 +24,9 @@ export const Footer = async () => {
       </section>
       <Socials />
       <nav aria-describedby="usefulLinks">
-        <Heading as="h2" id="usefulLinks" className="sr-only">
+        <h2 id="usefulLinks" className="sr-only">
           {t("usefulLinks")}
-        </Heading>
+        </h2>
         <ul className="items">
           {/* {navigation.renderNavigation.map(
             (item) =>
@@ -59,9 +50,9 @@ export const Footer = async () => {
         </ul>
       </nav>
       <section aria-describedby="siteCreators" className="site_creators">
-        <Heading as="h2" id="siteCreators" className="sr-only">
+        <h2 id="siteCreators" className="sr-only">
           {t("siteCreators")}
-        </Heading>
+        </h2>
         <p className="content">
           {t("builtBy")} <Link href="https://jan.pizza">Jan Szymański</Link> &amp;&nbsp;
           <Link href="https://wybran.dev">Krystian Wybranowski</Link>

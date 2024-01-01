@@ -18,6 +18,10 @@ const nextConfig = {
       {
         source: '/@/:path*',
         destination: '/authors/:path*',
+      },
+      {
+        source: '/linki/:path*',
+        destination: '/collections/:path*',
       }
     ]
   },

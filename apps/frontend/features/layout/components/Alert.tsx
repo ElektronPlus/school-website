@@ -1,4 +1,3 @@
-import { Heading } from "components/Heading";
 import { FetchAlertDocument, FetchAlertQuery } from "features/layout/queries/FetchAlert.generated";
 import { client } from "lib/apollo";
 import Link from "next/link";
@@ -17,9 +16,9 @@ export const Alert = async () => {
 
   return (
     <section aria-describedby="announcement" className="alert">
-      <Heading as="h2" id="announcement" className="sr-only">
+      <h2 id="announcement" className="sr-only">
         {t("announcement")}
-      </Heading>
+      </h2>
       <p className="content">{link ? <Link href={link}>{content}</Link> : content}</p>
     </section>
   );

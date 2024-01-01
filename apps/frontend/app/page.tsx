@@ -10,7 +10,6 @@ import { fetchSeo } from "features/seo/utils/fetch-seo";
 import Link from "next/link";
 import { t } from "utils/translations";
 
-
 export default async function Page() {
   const { entriesData } = await fetchEntries();
   const { seoData } = await fetchSeo();
@@ -30,12 +29,13 @@ export default async function Page() {
       />
       {event && <Event event={event} />}
       <section className="cards" aria-describedby="whatsNew">
-        <Heading id="whatsNew" as="h2" variant="2xl" className="section-heading">
+        <h2 id="whatsNew" className="text-2xl">
           {t("whatsNew")}
-        </Heading>
-        <div className="entries-items">
+        </h2>
+        <div className="gap-4 flex overflow-x-scroll">
           {entriesData.entries?.data.map(
-            ({ attributes: entry }) => entry && <Card key={entry.slug} entry={entry} />,
+            ({ attributes: entry }) =>
+              entry && <Card key={entry.slug} entry={entry} cardSize="big" />,
           )}
         </div>
       </section>

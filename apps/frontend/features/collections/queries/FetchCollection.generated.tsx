@@ -1656,15 +1656,17 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type FetchCollectionsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type FetchCollectionQueryVariables = Types.Exact<{
+  slug: Types.Scalars['String']['input'];
+}>;
 
 
-export type FetchCollectionsQuery = { __typename?: 'Query', collections?: { __typename?: 'CollectionEntityResponseCollection', data: Array<{ __typename?: 'CollectionEntity', attributes?: { __typename?: 'Collection', name?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, link?: { __typename?: 'ComponentLinkLink', id: string, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', id?: string | null, attributes?: { __typename?: 'Entry', slug: string, title?: string | null, type: Types.Enum_Entry_Type } | null }> } | null } | null } | null }> } | null };
+export type FetchCollectionQuery = { __typename?: 'Query', collections?: { __typename?: 'CollectionEntityResponseCollection', data: Array<{ __typename?: 'CollectionEntity', attributes?: { __typename?: 'Collection', name?: string | null, slug?: string | null, createdAt?: any | null, updatedAt?: any | null, link?: { __typename?: 'ComponentLinkLink', id: string, entries?: { __typename?: 'EntryRelationResponseCollection', data: Array<{ __typename?: 'EntryEntity', id?: string | null, attributes?: { __typename?: 'Entry', slug: string, title?: string | null, type: Types.Enum_Entry_Type } | null }> } | null } | null } | null }> } | null };
 
 
-export const FetchCollectionsDocument = gql`
-    query FetchCollections {
-  collections {
+export const FetchCollectionDocument = gql`
+    query FetchCollection($slug: String!) {
+  collections(filters: {slug: {eq: $slug}}) {
     data {
       attributes {
         ...CollectionShort
@@ -1675,33 +1677,34 @@ export const FetchCollectionsDocument = gql`
     ${CollectionShortFragmentDoc}`;
 
 /**
- * __useFetchCollectionsQuery__
+ * __useFetchCollectionQuery__
  *
- * To run a query within a React component, call `useFetchCollectionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useFetchCollectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchCollectionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchCollectionQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFetchCollectionsQuery({
+ * const { data, loading, error } = useFetchCollectionQuery({
  *   variables: {
+ *      slug: // value for 'slug'
  *   },
  * });
  */
-export function useFetchCollectionsQuery(baseOptions?: Apollo.QueryHookOptions<FetchCollectionsQuery, FetchCollectionsQueryVariables>) {
+export function useFetchCollectionQuery(baseOptions: Apollo.QueryHookOptions<FetchCollectionQuery, FetchCollectionQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FetchCollectionsQuery, FetchCollectionsQueryVariables>(FetchCollectionsDocument, options);
+        return Apollo.useQuery<FetchCollectionQuery, FetchCollectionQueryVariables>(FetchCollectionDocument, options);
       }
-export function useFetchCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchCollectionsQuery, FetchCollectionsQueryVariables>) {
+export function useFetchCollectionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchCollectionQuery, FetchCollectionQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FetchCollectionsQuery, FetchCollectionsQueryVariables>(FetchCollectionsDocument, options);
+          return Apollo.useLazyQuery<FetchCollectionQuery, FetchCollectionQueryVariables>(FetchCollectionDocument, options);
         }
-export function useFetchCollectionsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FetchCollectionsQuery, FetchCollectionsQueryVariables>) {
+export function useFetchCollectionSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FetchCollectionQuery, FetchCollectionQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FetchCollectionsQuery, FetchCollectionsQueryVariables>(FetchCollectionsDocument, options);
+          return Apollo.useSuspenseQuery<FetchCollectionQuery, FetchCollectionQueryVariables>(FetchCollectionDocument, options);
         }
-export type FetchCollectionsQueryHookResult = ReturnType<typeof useFetchCollectionsQuery>;
-export type FetchCollectionsLazyQueryHookResult = ReturnType<typeof useFetchCollectionsLazyQuery>;
-export type FetchCollectionsSuspenseQueryHookResult = ReturnType<typeof useFetchCollectionsSuspenseQuery>;
-export type FetchCollectionsQueryResult = Apollo.QueryResult<FetchCollectionsQuery, FetchCollectionsQueryVariables>;
+export type FetchCollectionQueryHookResult = ReturnType<typeof useFetchCollectionQuery>;
+export type FetchCollectionLazyQueryHookResult = ReturnType<typeof useFetchCollectionLazyQuery>;
+export type FetchCollectionSuspenseQueryHookResult = ReturnType<typeof useFetchCollectionSuspenseQuery>;
+export type FetchCollectionQueryResult = Apollo.QueryResult<FetchCollectionQuery, FetchCollectionQueryVariables>;

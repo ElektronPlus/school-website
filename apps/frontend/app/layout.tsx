@@ -1,6 +1,5 @@
 import "styles/globals.scss";
 import "styles/normalize.scss";
-import { Heading } from "components/Heading";
 import { Image } from "components/Image";
 import { Alert } from "features/layout/components/Alert";
 import { Footer } from "features/layout/components/Footer";
@@ -23,9 +22,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <header className="header">
           <div className="first_row">
             <Link href="/">
-              <Heading as="h1" variant="2xl">
+              <h1 className="text-2xl font-bold">
                 {templateConfig.title.short}
-              </Heading>
+              </h1>
             </Link>
           </div>
           <Alert />

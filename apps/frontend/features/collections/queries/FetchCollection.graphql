@@ -1,0 +1,9 @@
+query FetchCollection($slug: String!) {
+  collections(filters: { slug: { eq: $slug } }) {
+    data {
+      attributes {
+        ...CollectionShort
+      }
+    }
+  }
+}

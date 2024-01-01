@@ -9,6 +9,9 @@
     "lint": "next lint",
     "codegen": "graphql-codegen --config graphql-codegen.config.ts"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@apollo/client": "^3.8.6",
     "clsx": "^2.0.0",
@@ -26,8 +29,6 @@
     "@babel/core": "^7.23.2",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.1.0",
-    "@graphql-codegen/fragment-matcher": "^5.0.0",
-    "@graphql-codegen/introspection": "4.0.0",
     "@graphql-codegen/near-operation-file-preset": "^3.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-react-apollo": "^4.1.0",

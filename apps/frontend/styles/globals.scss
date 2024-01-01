@@ -79,10 +79,6 @@ main {
   gap: 64px;
 
   .entries-items {
-    display: flex;
-    gap: 16px;
-    overflow-x: scroll;
-
     .card {
       width: 80vw;
       display: grid;
@@ -413,40 +409,6 @@ main {
   }
 }
 
-.details {
-  .separator {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .details {
-    display: flex;
-
-    .separator {
-      display: block;
-    }
-  }
-}
-
-
-.author {
-  display: grid;
-  gap: 4px;
-  text-align: center;
-
-  .avatar {
-    margin: 0 auto;
-    border-radius: 100%;
-    aspect-ratio: 1/1;
-    width: 64px;
-  }
-
-  .description {
-    opacity: $opacity-secondary;
-  }
-}
-
 .entry {
   margin: 64px 0;
   display: grid;
@@ -617,25 +579,6 @@ main {
   }
 }
 
-.heading[data-variant="base"] {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.heading[data-variant="lg"] {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
-.heading[data-variant="xl"] {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.heading[data-variant="2xl"] {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
 
 .layout_background {
   position: absolute;
@@ -682,18 +625,4 @@ main {
   .menu__button {
     display: none;
   }
-}
-
-/* Utils */
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
