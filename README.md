@@ -1,11 +1,9 @@
-<img src="https://cdn.discordapp.com/attachments/896508539244281866/972774461629677589/mock.png" alt="Projekt graficzny strony" width="100%"/>
+## Motivation
+
+It was my attempt to create a reusable website for my school. It was a pretty ambitious project and probably helped me land a SWE job at 17. Because of that, I ironically never finished it. I should’ve just used WordPress 😄
 
 
-
-<div align="center">
-     <img alt="Components Preview (Chromatic)" src="https://github.com/ElektronPlus/school-website/actions/workflows/chromatic.yml/badge.svg?branch=main"/>
-     <img alt="Vercel status" src="https://img.shields.io/github/deployments/ElektronPlus/school-website/production?label=vercel&logo=vercel&logoColor=white">
- </div>
+---
 <h1 align="center">🎒 School Website Starter</h1>
   <p align="center">
   Accessible and extremely user-friendly website template for schools, built on fun and modern stack.
